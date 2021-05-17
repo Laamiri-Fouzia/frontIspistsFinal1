@@ -10,8 +10,8 @@ import { AppMainComponent } from './app.main.component';
                 <i class="pi pi-cog"></i>
             </a>
             <div class="layout-config-header">
-                <h3>Theme Customization</h3>
-                <span>Roma offers different themes for layout, topbar, menu etc.</span>
+                <h3>Changer le thème </h3>
+                <span>explination here</span>
             </div>
             <div class="layout-config-content">
                 <div class="layout-config-section options">
@@ -124,7 +124,7 @@ export class AppConfigComponent implements OnInit {
 
     themes: any[];
 
-    themeColor = 'blue';
+    themeColor = 'black';
 
     topbarColors: any[];
 

@@ -102,34 +102,6 @@ import {AppMenuitemComponent} from './app.menuitem.component';
 import {AppRightMenuComponent} from './app.right-menu.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
-import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
-import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
-import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
-import {InputDemoComponent} from './demo/view/inputdemo.component';
-import {ButtonDemoComponent} from './demo/view/buttondemo.component';
-import {TableDemoComponent} from './demo/view/tabledemo.component';
-import {ListDemoComponent} from './demo/view/listdemo.component';
-import {TreeDemoComponent} from './demo/view/treedemo.component';
-import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
-import {OverlaysDemoComponent} from './demo/view/overlaysdemo.component';
-import {MediaDemoComponent} from './demo/view/mediademo.component';
-import {MenusDemoComponent} from './demo/view/menusdemo.component';
-import {MessagesDemoComponent} from './demo/view/messagesdemo.component';
-import {MiscDemoComponent} from './demo/view/miscdemo.component';
-import {EmptyDemoComponent} from './demo/view/emptydemo.component';
-import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
-import {FileDemoComponent} from './demo/view/filedemo.component';
-import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
-import {DocumentationComponent} from './demo/view/documentation.component';
-import {DisplayComponent} from './utilities/display.component';
-import {ElevationComponent} from './utilities/elevation.component';
-import {FlexboxComponent} from './utilities/flexbox.component';
-import {GridComponent} from './utilities/grid.component';
-import {IconsComponent} from './utilities/icons.component';
-import {SpacingComponent} from './utilities/spacing.component';
-import {TypographyComponent} from './utilities/typography.component';
-import {TextComponent} from './utilities/text.component';
-import {WidgetsComponent} from './utilities/widgets.component';
 
 import {CountryService} from './demo/service/countryservice';
 import {EventService} from './demo/service/eventservice';
@@ -139,11 +111,12 @@ import {CustomerService} from './demo/service/customerservice';
 import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
 import {IconService} from './demo/service/iconservice';
-import { CommandeCreateComponent } from './view/admin/commandes/commande-create/commande-create.component';
-import { CommandesComponent } from './view/admin/commandes/commandes.component';
-import { CommandeListComponent } from './view/admin/commandes/commande-list/commande-list.component';
-import { CommandeEditComponent } from './view/admin/commandes/commande-edit/commande-edit.component';
-import { CommandeViewComponent } from './view/admin/commandes/commande-view/commande-view.component';
+import {MyModulesComponent} from "./view/admin/myModules/myModules.component";
+import {MyModuleListComponent} from "./view/admin/myModules/myModule-list/myModule-list.component";
+import {MyModuleEditComponent} from "./view/admin/myModules/myModule-edit/myModule-edit.component";
+import {MyModuleViewComponent} from "./view/admin/myModules/myModule-view/myModule-view.component";
+import {MyModuleCreateComponent} from "./view/admin/myModules/myModule-create/myModule-create.component";
+
 
 @NgModule({
     imports: [
@@ -242,47 +215,19 @@ import { CommandeViewComponent } from './view/admin/commandes/commande-view/comm
         AppRightMenuComponent,
         AppTopBarComponent,
         AppFooterComponent,
-        DashboardDemoComponent,
-        FormLayoutDemoComponent,
-        FloatLabelDemoComponent,
-        InvalidStateDemoComponent,
-        InputDemoComponent,
-        ButtonDemoComponent,
-        TableDemoComponent,
-        ListDemoComponent,
-        TreeDemoComponent,
-        PanelsDemoComponent,
-        OverlaysDemoComponent,
-        MediaDemoComponent,
-        MenusDemoComponent,
-        MessagesDemoComponent,
-        MessagesDemoComponent,
-        MiscDemoComponent,
-        ChartsDemoComponent,
-        EmptyDemoComponent,
-        FileDemoComponent,
-        DocumentationComponent,
-        DisplayComponent,
-        ElevationComponent,
-        FlexboxComponent,
-        GridComponent,
-        IconsComponent,
-        SpacingComponent,
-        TypographyComponent,
-        TextComponent,
         AppCrudComponent,
         AppCalendarComponent,
         AppTimelineDemoComponent,
-        WidgetsComponent,
         AppNotfoundComponent,
         AppErrorComponent,
         AppAccessdeniedComponent,
         AppLoginComponent,
-        CommandeCreateComponent,
-        CommandesComponent,
-        CommandeListComponent,
-        CommandeEditComponent,
-        CommandeViewComponent
+        MyModulesComponent,
+        MyModulesComponent,
+        MyModuleListComponent,
+        MyModuleEditComponent,
+        MyModuleViewComponent,
+        MyModuleCreateComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

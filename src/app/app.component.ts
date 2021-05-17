@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
 
     lightMenu = true;
 
-    topbarColor = 'layout-topbar-blue';
+    topbarColor = 'layout-topbar-pink';
 
     inlineUser = false;
 

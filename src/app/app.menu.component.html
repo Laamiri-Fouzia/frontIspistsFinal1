@@ -1,11 +1,12 @@
+
 <div class="layout-menu-container" (click)="onMenuClick($event)">
     <div class="menu-scroll-content">
         <div class="layout-profile" *ngIf="app.inlineUser && !appMain.isHorizontal()">
                 <a class="layout-profile-button" (click)="appMain.onProfileClick($event)">
-                    <img src="assets/layout/images/avatar.png" alt="roma-layout">
+                    <img src="" alt="image admine"><!--assets/layout/images/avatar.png-->
                     <div class="layout-profile-userinfo">
-                        <span class="layout-profile-name">Arlene Welch</span>
-                        <span class="layout-profile-role">Design Ops</span>
+                        <span class="layout-profile-name">admine admine</span>
+                        <span class="layout-profile-role">??</span>
                     </div>
                 </a>
                 <ul [@inline]="!appMain.isSlim() ? appMain.inlineUserMenuActive ? 'visibleAnimated' : 'hiddenAnimated' : appMain.inlineUserMenuActive ? 'visible' : 'hidden'" class="layout-profile-menu">
@@ -16,7 +17,7 @@
                     </li>
                     <li>
                         <a href="#" pRipple>
-                            <i class="pi pi-fw pi-cog"></i><span>Settings</span>
+                            <i class="pi pi-fw pi-cog"></i><span>Paramètres</span>
                         </a>
                     </li>
                     <li>

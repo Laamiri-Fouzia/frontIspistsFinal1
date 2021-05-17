@@ -11,16 +11,18 @@
     'p-input-filled': app.inputStyle === 'filled',
     'p-ripple-disabled': !app.ripple}" [class]="app.topbarColor" (click)="onLayoutClick()">
     <app-topbar></app-topbar>
-
-    <app-menu></app-menu>
+    <app-menu></app-menu><!--taymxi dak li f jenb li fih crud  'layout-overlay': app.layoutMode === 'overlay',
+    'layout-static': app.layoutMode === 'static',
+    'layout-slim': app.layoutMode === 'slim',-->
     <app-right-menu></app-right-menu>
 
     <div class="layout-main">
         <div class="layout-content">
-            <router-outlet></router-outlet>
+           <router-outlet></router-outlet>
         </div>
-        <app-config></app-config>
+        <<app-config></app-config>
         <app-footer></app-footer>
     </div>
     <div class="layout-content-mask"></div>
+
 </div>
