@@ -116,9 +116,10 @@ import {MyModuleListComponent} from "./view/admin/myModules/myModule-list/myModu
 import {MyModuleEditComponent} from "./view/admin/myModules/myModule-edit/myModule-edit.component";
 import {MyModuleViewComponent} from "./view/admin/myModules/myModule-view/myModule-view.component";
 import {MyModuleCreateComponent} from "./view/admin/myModules/myModule-create/myModule-create.component";
-//import { FiliereComponent } from './view/admin/filiere/filiere.component';
+import { FiliereComponent } from './view/admin/filiere/filiere.component';
 import { FiliereListComponent } from './view/admin/filiere/filiere-list/filiere-list.component';
 import { FiliereCreateComponent } from './view/admin/filiere/filiere-create/filiere-create.component';
+import {ConfirmationService, MessageService} from "primeng/api";
 
 
 @NgModule({
@@ -231,14 +232,14 @@ import { FiliereCreateComponent } from './view/admin/filiere/filiere-create/fili
         MyModuleEditComponent,
         MyModuleViewComponent,
         MyModuleCreateComponent,
-        //FiliereComponent,
+        FiliereComponent,
         FiliereListComponent,
         FiliereCreateComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService
+        PhotoService, ProductService, MenuService,ConfirmationService,MessageService
     ],
     bootstrap: [AppComponent]
 })
