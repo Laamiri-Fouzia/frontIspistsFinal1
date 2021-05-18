@@ -9,6 +9,8 @@ import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
 import {MyModulesComponent} from "./view/admin/myModules/myModules.component";
+import {FiliereComponent} from "./view/admin/filiere/filiere.component";
+import {FiliereListComponent} from "./view/admin/filiere/filiere-list/filiere-list.component";
 
 @NgModule({
     imports: [
@@ -17,11 +19,9 @@ import {MyModulesComponent} from "./view/admin/myModules/myModules.component";
                 path: '', component: AppMainComponent,
                 children: [
                     //{path: '', component: tandiroh },
-                    {path: 'view/commande', component: MyModulesComponent},
-
-                    {path: 'pages/crud', component: AppCrudComponent},
+                    {path: 'view/module', component: MyModulesComponent},
+                    {path: 'view/filiere', component: FiliereListComponent},
                     {path: 'pages/calendar', component: AppCalendarComponent},
-                    {path: 'pages/timeline', component: AppTimelineDemoComponent}
 
                 ]
             },
