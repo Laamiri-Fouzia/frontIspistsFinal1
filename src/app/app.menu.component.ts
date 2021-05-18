@@ -134,7 +134,7 @@ export class AppMenuComponent implements OnInit {
                     {
                         label: 'Coordonateurs', icon: 'pi pi-fw pi-sign-in',
                         items: [
-                            {
+                            {k
                                 label: 'Coordonateur module', icon: 'pi pi-fw pi-sign-in',
                                 items: [
                                     { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-sign-in' },
