@@ -100,7 +100,6 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login'], target: '_blank'},
                     {label: 'Error', icon: 'pi pi-fw pi-exclamation-triangle', routerLink: ['/error'], target: '_blank'},
                     {label: '404', icon: 'pi pi-fw pi-times', routerLink: ['/404'], target: '_blank'},
-                    {label: 'Access Denied', icon: 'pi pi-fw pi-ban', routerLink: ['/accessdenied'], target: '_blank'},
                     {label: 'Empty', icon: 'pi pi-fw pi-clone', routerLink: ['/pages/empty']},*/
                 ]
             },
