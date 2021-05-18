@@ -120,6 +120,9 @@ import { FiliereComponent } from './view/admin/filiere/filiere.component';
 import { FiliereListComponent } from './view/admin/filiere/filiere-list/filiere-list.component';
 import { FiliereCreateComponent } from './view/admin/filiere/filiere-create/filiere-create.component';
 import {ConfirmationService, MessageService} from "primeng/api";
+import { MyOptionComponent } from './view/admin/my-option/my-option.component';
+import { MyOptionListeComponent } from './view/admin/my-option/my-option-liste/my-option-liste.component';
+import { MyOptionCreateComponent } from './view/admin/my-option/my-option-create/my-option-create.component';
 
 
 @NgModule({
@@ -234,7 +237,10 @@ import {ConfirmationService, MessageService} from "primeng/api";
         MyModuleCreateComponent,
         FiliereComponent,
         FiliereListComponent,
-        FiliereCreateComponent
+        FiliereCreateComponent,
+        MyOptionComponent,
+        MyOptionListeComponent,
+        MyOptionCreateComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

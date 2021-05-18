@@ -1,0 +1,21 @@
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Creation de module" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="code">Code Module</label>
+            <input type="text" pInputText id="code" [(ngModel)]="inputValue1" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !myOption.code">code is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="libelle">libelle Module</label>
+            <input type="text" pInputText id="libelle" [(ngModel)]="inputValue2" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !myOption.libelle">libelle is required.</small>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveOption(inputValue1,inputValue2)"></button>
+    </ng-template>
+</p-dialog>
+

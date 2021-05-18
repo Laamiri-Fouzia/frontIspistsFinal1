@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {Filiere} from "../../../../controller/model/filiere.model";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {FiliereService} from "../../../../controller/service/filiere.service";
+import {Filiere} from "../../../../controller/model/filiere.model";
+import {MyOption} from "../../../../controller/model/my-option.model";
 
 @Component({
-  selector: 'app-filiere-list',
-  templateUrl: './filiere-list.component.html',
-  styleUrls: ['./filiere-list.component.scss']
+  selector: 'app-my-option-liste',
+  templateUrl: './my-option-liste.component.html',
+  styleUrls: ['./my-option-liste.component.scss']
 })
-export class FiliereListComponent implements OnInit {
+export class MyOptionListeComponent implements OnInit {
 
   cols: any[];
 
@@ -17,11 +18,10 @@ export class FiliereListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initCol();
-    this.service.findAll().subscribe(data => this.filieres = data);
+    this.service.getAllOptions();
   }
 
-  public delete(filiere: Filiere) {
+  /*public delete(filiere: Filiere) {
     this.filiere = filiere;
     this.confirmationService.confirm({
       message: 'Voulez-vous vraiment supprimer ' + filiere.code + '?',
@@ -40,41 +40,41 @@ export class FiliereListComponent implements OnInit {
         });
       }
     });
-  }
+  }*/
 
   public openCreate() {
-    this.filiere = new Filiere();
+    this.myOption = new MyOption();
     this.submitted = false;
     this.createDialog = true;
   }
 
   public edit(filiere: Filiere) {
-    this.filiere = {...filiere};
+    this.myOption = {...this.myOption};
     this.editDialog = true;
   }
 
 
-  private initCol() {
+  /*private initCol() {
     this.cols = [
       {field: 'id', header: 'Id'},
       {field: 'code', header: 'Code'},
       {field: 'libelle', header: 'Libelle'}
 
     ];
+  }*/
+
+  get myOption(): MyOption {
+    return this.service.myOption;
+  }
+  set myOption(value: MyOption) {
+    this.service.myOption =value;
   }
 
-  get filiere(): Filiere {
-    return this.service.filiere;
+  get myOptions(): Array<MyOption> {
+    return this.service.myOptions;
   }
-  set filiere(value: Filiere) {
-    this.service.filiere =value;
-  }
-
-  get filieres(): Array<Filiere> {
-    return this.service.filieres;
-  }
-  set filieres(value: Array<Filiere>) {
-    this.service.filieres = value;
+  set myOptions(value: Array<MyOption>) {
+    this.service.myOptions = value;
   }
 
 
@@ -110,9 +110,8 @@ export class FiliereListComponent implements OnInit {
     this.service.viewDialog = value;
   }
 
-  detailFiliere(filiere: Filiere) {
-    this.service.detailFiliere(filiere);
-  }
 
-
+  /*choisirParam(myOption: MyOption) {
+    this.moduleSemestreOptionService.choisirParam(myOption);
+  }*/
 }
