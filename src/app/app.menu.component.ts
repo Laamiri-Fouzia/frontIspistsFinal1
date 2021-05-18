@@ -131,7 +131,7 @@ export class AppMenuComponent implements OnInit {
             /*{
                 label: 'Les coordonateurs', icon: 'pi pi-fw pi-sitemap',
                 items: [
-                    {J
+                    {
                         label: 'Coordonateurs', icon: 'pi pi-fw pi-sign-in',
                         items: [
                             {
