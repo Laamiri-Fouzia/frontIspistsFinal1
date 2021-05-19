@@ -52,7 +52,7 @@ export class FiliereService {
   }
 
 
-  private urlOption=environment.baseUrl + 'filiere/code/';
+  private urlOption=environment.baseUrl+'option';
   private _filiere2: Filiere;
   private _myOption: MyOption;
   private _myOptions: Array<MyOption>;

@@ -123,6 +123,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import { MyOptionComponent } from './view/admin/my-option/my-option.component';
 import { MyOptionListeComponent } from './view/admin/my-option/my-option-liste/my-option-liste.component';
 import { MyOptionCreateComponent } from './view/admin/my-option/my-option-create/my-option-create.component';
+import { NoteEtudiantModuleComponent } from './view/coodronnateurModule/note-etudiant-module/note-etudiant-module.component';
 
 
 @NgModule({
@@ -240,7 +241,8 @@ import { MyOptionCreateComponent } from './view/admin/my-option/my-option-create
         FiliereCreateComponent,
         MyOptionComponent,
         MyOptionListeComponent,
-        MyOptionCreateComponent
+        MyOptionCreateComponent,
+        NoteEtudiantModuleComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

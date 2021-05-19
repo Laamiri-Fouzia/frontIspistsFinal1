@@ -107,7 +107,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Les Notes', icon: 'pi pi-fw pi-file', routerLink: ['/pages'],
                 items: [
                     {label: 'Notes rattrapage', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']},
-                    {label: 'Notes Normale', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/commande']},
+                    {label: 'Notes Normale', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/noteEtudiantModule']},
                     {label: 'Résultats', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']},
                 ]
             },

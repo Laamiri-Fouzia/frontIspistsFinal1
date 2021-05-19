@@ -17,9 +17,9 @@ export class ModuleSemestreOptionService {
   private _moduleSemestreOption:ModuleSemestreOption;
   private _moduleSemestreOptions:Array<ModuleSemestreOption>;
   private _displayModules: boolean=false;
-  private _anneUniveSelec = '';
+  private _anneUniveSelec:number;
   private _OptionSelec = '';
-  private _semestreselec = '';
+  private _semestreselec:number;
 
   get displayModules(): boolean {
     return this._displayModules;
@@ -76,19 +76,19 @@ export class ModuleSemestreOptionService {
     );
   }
 
-  get anneUniveSelec(): string {
+  get anneUniveSelec(): number {
     return this._anneUniveSelec;
   }
 
-  set anneUniveSelec(value: string) {
+  set anneUniveSelec(value: number) {
     this._anneUniveSelec = value;
   }
 
-  get semestreselec(): string {
+  get semestreselec(): number {
     return this._semestreselec;
   }
 
-  set semestreselec(value: string) {
+  set semestreselec(value: number) {
     this._semestreselec = value;
   }
 

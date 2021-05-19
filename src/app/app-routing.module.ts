@@ -11,6 +11,8 @@ import {AppLoginComponent} from './pages/app.login.component';
 import {MyModulesComponent} from "./view/admin/myModules/myModules.component";
 import {FiliereComponent} from "./view/admin/filiere/filiere.component";
 import {FiliereListComponent} from "./view/admin/filiere/filiere-list/filiere-list.component";
+import {NoteEtudiantModule} from "./controller/model/note-etudiant-module.model";
+import {NoteEtudiantModuleComponent} from "./view/coodronnateurModule/note-etudiant-module/note-etudiant-module.component";
 
 @NgModule({
     imports: [
@@ -21,6 +23,7 @@ import {FiliereListComponent} from "./view/admin/filiere/filiere-list/filiere-li
                     //{path: '', component: tandiroh },
                     {path: 'view/module', component: MyModulesComponent},
                     {path: 'view/filiere', component: FiliereListComponent},
+                    {path: 'view/noteEtudiantModule', component: NoteEtudiantModuleComponent},
                     {path: 'pages/calendar', component: AppCalendarComponent},
 
                 ]

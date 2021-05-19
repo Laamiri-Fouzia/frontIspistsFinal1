@@ -1,0 +1,22 @@
+<div class="p-grid">
+    <div class="p-col-4">
+
+        <p-toast></p-toast>
+
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <div>
+                    <p-dropdown [options]="years" [(ngModel)]="input1" optionLabel="annee" optionValue="code" (onChange)="change1()"></p-dropdown>
+                </div>
+
+                <div>
+                    <p-dropdown [options]="options" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true"></p-dropdown>
+                </div>
+
+            </p-toolbar>
+
+
+        </div>
+        </div>
+        </div>
+

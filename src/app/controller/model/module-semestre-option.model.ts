@@ -5,7 +5,7 @@ import {MyModule} from "./myModule.model";
 
 export class ModuleSemestreOption {
     public code:string;
-    public anneeUnvers: string;
+    public anneeUnvers: number;
     public semestre:Semestre=new Semestre();
     public myOption:MyOption=new MyOption();
     public myModule:MyModule=new MyModule();
