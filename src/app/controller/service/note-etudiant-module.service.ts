@@ -10,7 +10,8 @@ import {THIS_EXPR} from "@angular/compiler/src/output/output_ast";
 })
 export class NoteEtudiantModuleService {
   private urlBase='http://localhost:8036/';
-  private _noteEtudiantModule:NoteEtudiantModule;
+    private _editDialog: boolean;
+    private _noteEtudiantModule:NoteEtudiantModule;
   private _notesEtudiantModule:Array<NoteEtudiantModule>;
   private _notesEtudiantRat:Array<NoteEtudiantModule>;
   private URLNoteEtudModule: string='ispits-project/note-etudiant-modul';
@@ -18,7 +19,8 @@ export class NoteEtudiantModuleService {
   constructor(private http:HttpClient) { }
 
   serachEtudiant(opt:string,semestre:number,module:string) {
-      alert(opt+semestre+module)
+      alert(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module +'/option/codeOption/'+opt);
+      //alert(opt+semestre+module)
     this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module +'/option/codeOption/'+opt).subscribe(
       data => {
         console.log(data)
@@ -28,7 +30,13 @@ export class NoteEtudiantModuleService {
       }
     );
   }
+    get editDialog(): boolean {
+        return this._editDialog;
+    }
 
+    set editDialog(value: boolean) {
+        this._editDialog = value;
+    }
   get noteEtudiantModule(): NoteEtudiantModule {
     if(this._noteEtudiantModule==null)
       this._noteEtudiantModule=new NoteEtudiantModule();

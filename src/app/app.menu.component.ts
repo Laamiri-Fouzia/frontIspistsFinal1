@@ -79,7 +79,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Programme', icon: 'pi pi-fw pi-copy', routerLink: ['/pages'],
                 items: [
-                    {label: 'Module', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/module']},
+                    {label: 'Module', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/myModule']},
                     {label: 'Filiere/Option/Module', icon: 'pi pi-fw pi-th-large', routerLink: ['/view/filiere']},
                     {label: 'Les inscriptions', icon: 'pi pi-fw pi-book', routerLink: ['#']},
                     {label: 'Les coordonateurs', icon: 'pi pi-fw pi-sitemap',

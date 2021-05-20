@@ -124,6 +124,8 @@ import { MyOptionComponent } from './view/admin/my-option/my-option.component';
 import { MyOptionListeComponent } from './view/admin/my-option/my-option-liste/my-option-liste.component';
 import { MyOptionCreateComponent } from './view/admin/my-option/my-option-create/my-option-create.component';
 import { NoteEtudiantModuleComponent } from './view/coodronnateurModule/note-etudiant-module/note-etudiant-module.component';
+import { NoteEtudiantModuleEditComponent } from './view/coodronnateurModule/note-etudiant-module/note-etudiant-module-edit/note-etudiant-module-edit.component';
+import { NoteEtudiantRatComponent } from './view/coodronnateurModule/note-etudiant-rat/note-etudiant-rat.component';
 
 
 @NgModule({
@@ -242,7 +244,9 @@ import { NoteEtudiantModuleComponent } from './view/coodronnateurModule/note-etu
         MyOptionComponent,
         MyOptionListeComponent,
         MyOptionCreateComponent,
-        NoteEtudiantModuleComponent
+        NoteEtudiantModuleComponent,
+        NoteEtudiantModuleEditComponent,
+        NoteEtudiantRatComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

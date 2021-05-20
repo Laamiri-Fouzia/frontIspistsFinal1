@@ -25,6 +25,7 @@ export class ModuleSemestreOptionService {
     return this._displayModules;
   }
 
+
   get moduleSemestreOption(): ModuleSemestreOption {
     if(this._moduleSemestreOption==null)
       this._moduleSemestreOption=new ModuleSemestreOption();

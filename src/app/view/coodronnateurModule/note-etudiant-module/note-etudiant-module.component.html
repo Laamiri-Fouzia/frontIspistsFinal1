@@ -1,22 +1,73 @@
 <div class="p-grid">
-    <div class="p-col-4">
+    <div class="p-col-12">
 
         <p-toast></p-toast>
 
-        <div class="card">
-            <p-toolbar styleClass="p-mb-4">
-                <div>
+        <div class="card p-grid">
+            <p-toolbar styleClass="p-mb-4 " class="p-col-12">
+                <div class="p-col-2">
                     <p-dropdown [options]="years" [(ngModel)]="input1" optionLabel="annee" optionValue="code" (onChange)="change1()"></p-dropdown>
                 </div>
 
-                <div>
-                    <p-dropdown [options]="options" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true"></p-dropdown>
+                <div class="p-col-2">
+                    <p-dropdown [options]="options" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true" (onChange)="change2()"></p-dropdown>
                 </div>
 
+                <div class="p-col-2">
+                    <p-dropdown [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"  (onChange)="change3()"></p-dropdown>
+                </div>
+
+                <div class="p-col-4">
+                    <p-dropdown [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()"></p-dropdown>
+                </div>
+                <p-button class="p-col-2" (click)="serachEtudiant(input2,input3,input4)">chercher</p-button>
             </p-toolbar>
 
+            <p-table #dt [value]="notesEtudiantModule" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['Etudiant','Note module session normale','Resultat']"
+                      [rowHover]="true" dataKey="id"
+                     styleClass="p-datatable-customers"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="Etudiant">Etudiant <p-sortIcon field="Etudiant"></p-sortIcon></th>
+                        <th pSortableColumn="note continue ">N.continue <p-sortIcon field="note continue "></p-sortIcon></th>
+                        <th pSortableColumn="note Finale avant Rat">N.Finale Normal <p-sortIcon field="note Finale avant Rat"></p-sortIcon></th>
+                        <th pSortableColumn="Note module session normale">N.module sess normal<p-sortIcon field="Note module session normale"></p-sortIcon></th>
+                        <th pSortableColumn="Resultat">Resultat<p-sortIcon field="Resultat"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
+                        <!--<th pSortableColumn="totalPaye">Total Paye <p-sortIcon field="totalPaye"></p-sortIcon></th>-->
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-note>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="note"></p-tableCheckbox>
+                        </td>
+                        <td>{{note.etudiant.nom}}  {{note.etudiant.prenom}}</td>
+                        <td>{{note.noteContinue}}</td>
+                        <td>{{note.noteFinalAvRat}}</td>
+                        <td>{{note.noteModuleNormal}}</td>
+                        <td>{{note.etatValidation.libelle}}</td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(note)"></button>
+                        </td>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                   <!-- <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale il y a {{items ? items.length : 0 }} éléments.
+                    </div> -->
+                </ng-template>
+            </p-table>
 
         </div>
+        <app-note-etudiant-module-edit></app-note-etudiant-module-edit>
         </div>
         </div>
 

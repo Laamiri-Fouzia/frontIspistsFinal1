@@ -21,7 +21,7 @@ import {NoteEtudiantModuleComponent} from "./view/coodronnateurModule/note-etudi
                 path: '', component: AppMainComponent,
                 children: [
                     //{path: '', component: tandiroh },
-                    {path: 'view/module', component: MyModulesComponent},
+                    {path: 'view/myModule', component: MyModulesComponent},
                     {path: 'view/filiere', component: FiliereListComponent},
                     {path: 'view/noteEtudiantModule', component: NoteEtudiantModuleComponent},
                     {path: 'pages/calendar', component: AppCalendarComponent},
