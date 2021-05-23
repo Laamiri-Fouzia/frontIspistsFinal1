@@ -1,0 +1,30 @@
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="editer l'option" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="code">Coeficient continue</label>
+            <input type="number" pInputText id="code" [(ngModel)]="input1" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !myOption.coefContinue">code is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="libelle">Coeficient continue</label>
+            <input type="number" pInputText id="libelle" [(ngModel)]="input2" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !myOption.coefFinale">libelle is required.</small>
+        </div>
+
+
+
+        <!--<div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="totalPaye">Total Paye</label>
+                <p-inputNumber id="totalPaye" [(ngModel)]="selected.totalPaye"></p-inputNumber>
+            </div>
+        </div>-->
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savePonderation(input1,input2)"></button>
+    </ng-template>
+</p-dialog>
+
+

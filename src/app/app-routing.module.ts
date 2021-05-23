@@ -13,6 +13,9 @@ import {FiliereComponent} from "./view/admin/filiere/filiere.component";
 import {FiliereListComponent} from "./view/admin/filiere/filiere-list/filiere-list.component";
 import {NoteEtudiantModule} from "./controller/model/note-etudiant-module.model";
 import {NoteEtudiantModuleComponent} from "./view/coodronnateurModule/note-etudiant-module/note-etudiant-module.component";
+import {PonderationComponent} from "./view/admin/ponderation/ponderation.component";
+import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-affect/ponderation-affect.component";
+import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre.component";
 
 @NgModule({
     imports: [
@@ -25,7 +28,8 @@ import {NoteEtudiantModuleComponent} from "./view/coodronnateurModule/note-etudi
                     {path: 'view/filiere', component: FiliereListComponent},
                     {path: 'view/noteEtudiantModule', component: NoteEtudiantModuleComponent},
                     {path: 'pages/calendar', component: AppCalendarComponent},
-
+                    {path: 'view/ponderation', component: PonderationAffectComponent},
+                    {path: 'view/note-etudiant-semestre', component: NoteEtudiantSemestreComponent},
                 ]
             },
             {path: 'error', component: AppErrorComponent},
