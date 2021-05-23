@@ -13,9 +13,9 @@ import {FiliereComponent} from "./view/admin/filiere/filiere.component";
 import {FiliereListComponent} from "./view/admin/filiere/filiere-list/filiere-list.component";
 import {NoteEtudiantModule} from "./controller/model/note-etudiant-module.model";
 import {NoteEtudiantModuleComponent} from "./view/coodronnateurModule/note-etudiant-module/note-etudiant-module.component";
-import {PonderationComponent} from "./view/admin/ponderation/ponderation.component";
-import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-affect/ponderation-affect.component";
-import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre.component";
+import {NoteEtudiantRatComponent} from "./view/coodronnateurModule/note-etudiant-rat/note-etudiant-rat.component";
+import {InscriptionNouveauEtudiantComponent} from "./view/admin/inscription-nouveau-etudiant/inscription-nouveau-etudiant.component";
+import {InscriptionAncienEtudiantComponent} from "./view/admin/inscription-ancien-etudiant/inscription-ancien-etudiant.component";
 
 @NgModule({
     imports: [
@@ -27,9 +27,11 @@ import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre
                     {path: 'view/myModule', component: MyModulesComponent},
                     {path: 'view/filiere', component: FiliereListComponent},
                     {path: 'view/noteEtudiantModule', component: NoteEtudiantModuleComponent},
+                    {path: 'view/noteEtudiantModuleRat', component: NoteEtudiantRatComponent},
+                    {path: 'view/inscriptionNouveauEtudiant', component: InscriptionNouveauEtudiantComponent},
+                    {path: 'view/inscriptionAncienEtudiant', component: InscriptionAncienEtudiantComponent},
                     {path: 'pages/calendar', component: AppCalendarComponent},
-                    {path: 'view/ponderation', component: PonderationAffectComponent},
-                    {path: 'view/note-etudiant-semestre', component: NoteEtudiantSemestreComponent},
+
                 ]
             },
             {path: 'error', component: AppErrorComponent},
