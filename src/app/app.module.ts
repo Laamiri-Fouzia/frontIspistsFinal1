@@ -126,6 +126,11 @@ import { MyOptionCreateComponent } from './view/admin/my-option/my-option-create
 import { NoteEtudiantModuleComponent } from './view/coodronnateurModule/note-etudiant-module/note-etudiant-module.component';
 import { NoteEtudiantModuleEditComponent } from './view/coodronnateurModule/note-etudiant-module/note-etudiant-module-edit/note-etudiant-module-edit.component';
 import { NoteEtudiantRatComponent } from './view/coodronnateurModule/note-etudiant-rat/note-etudiant-rat.component';
+import { NoteEtudiantRatEditComponent } from './view/coodronnateurModule/note-etudiant-rat/note-etudiant-rat-edit/note-etudiant-rat-edit.component';
+import { InscriptionNouveauEtudiantComponent } from './view/admin/inscription-nouveau-etudiant/inscription-nouveau-etudiant.component';
+import { InscriptionNouveauCreateComponent } from './view/admin/inscription-nouveau-etudiant/inscription-nouveau-create/inscription-nouveau-create.component';
+import { InscriptionAncienEtudiantComponent } from './view/admin/inscription-ancien-etudiant/inscription-ancien-etudiant.component';
+import { InscriptionNouveauEditComponent } from './view/admin/inscription-nouveau-etudiant/inscription-nouveau-edit/inscription-nouveau-edit.component';
 
 
 @NgModule({
@@ -246,7 +251,12 @@ import { NoteEtudiantRatComponent } from './view/coodronnateurModule/note-etudia
         MyOptionCreateComponent,
         NoteEtudiantModuleComponent,
         NoteEtudiantModuleEditComponent,
-        NoteEtudiantRatComponent
+        NoteEtudiantRatComponent,
+        NoteEtudiantRatEditComponent,
+        InscriptionNouveauEtudiantComponent,
+        InscriptionNouveauCreateComponent,
+        InscriptionAncienEtudiantComponent,
+        InscriptionNouveauEditComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

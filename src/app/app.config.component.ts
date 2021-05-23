@@ -124,7 +124,7 @@ export class AppConfigComponent implements OnInit {
 
     themes: any[];
 
-    themeColor = 'black';
+    themeColor = 'lime';
 
     topbarColors: any[];
 
@@ -148,7 +148,8 @@ export class AppConfigComponent implements OnInit {
             {label: 'layout-topbar-deeporange', logo: 'logo-roma-white', color: '#D74A1D'},
             {label: 'layout-topbar-indigo', logo: 'logo-roma-white', color: '#3D53C9'},
             {label: 'layout-topbar-pink', logo: 'logo-roma-white', color: '#BF275B'},
-            {label: 'layout-topbar-purple', logo: 'logo-roma-white', color: '#7F32DA'}
+            {label: 'layout-topbar-purple', logo: 'logo-roma-white', color: '#7F32DA'},
+            {label: 'layout-topbar-goodForUs', logo: 'logo-roma-white', color: '#009933'},
         ];
 
         this.themes = [
@@ -166,8 +167,10 @@ export class AppConfigComponent implements OnInit {
             {label: 'deeporange', color: '#F96F43'},
             {label: 'indigo', color: '#435AD8'},
             {label: 'pink', color: '#E93A76'},
-            {label: 'purple', color: '#9643F9'}
+            {label: 'purple', color: '#9643F9'},
+            {label: 'goodForUs', color: '#009933'}
         ];
+
     }
 
     changeTheme(theme: string) {

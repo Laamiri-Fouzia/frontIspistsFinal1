@@ -1,0 +1,30 @@
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Enregistrer Nouveau Etudiant" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="cne">CNE</label>
+            <input type="text" pInputText id="cne" [(ngModel)]="etudiantOption.etudiant.cne" required autofocus/>
+        </div>
+
+        <div class="p-field">
+            <label for="cin">CIN</label>
+            <input type="text" pInputText id="cin" [(ngModel)]="etudiantOption.etudiant.cin" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="nom">Nom</label>
+            <input type="text" pInputText id="nom" [(ngModel)]="etudiantOption.etudiant.nom" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="prenom">Prenom</label>
+            <input type="text" pInputText id="prenom" [(ngModel)]="etudiantOption.etudiant.prenom" required autofocus />
+        </div>
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveNewEtudiant()"></button>
+    </ng-template>
+</p-dialog>
+
+

@@ -9,9 +9,9 @@ export class AppComponent implements OnInit{
 
     layoutMode = 'horizontal';
 
-    lightMenu = true;
+    lightMenu = false;
 
-    topbarColor = 'layout-topbar-cyan';
+    topbarColor = 'layout-topbar-goodForUs';
 
     inlineUser = false;
 

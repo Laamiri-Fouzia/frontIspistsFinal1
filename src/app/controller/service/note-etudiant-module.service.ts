@@ -23,7 +23,6 @@ export class NoteEtudiantModuleService {
       //alert(opt+semestre+module)
     this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module +'/option/codeOption/'+opt).subscribe(
       data => {
-        console.log(data)
         this.notesEtudiantModule = data;
       }, error => {
         console.log(error);
@@ -89,11 +88,17 @@ export class NoteEtudiantModuleService {
 
   }
 
-  listeRatt() {
-    for (let note of this.notesEtudiantModule){
-      if(note.etatValidation.libelle==='Rattrapage')
-           this.notesEtudiantRat.push(note);
-        }
+    listeRatt(module: string){
+      alert(this.urlBase + this.URLNoteEtudModule+'/moduleSemestreOption/codeModule/'+module+'/etatValidation/codeEtat/R')
+        this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/moduleSemestreOption/codeModule/'+module+'/etatValidation/codeEtat/R').subscribe(
+            data => {
+                console.log(data)
+                this.notesEtudiantRat = data;
+                console.log(this.notesEtudiantRat)
+            }, error => {
+                console.log(error);
+            }
+        );
   }
 
 

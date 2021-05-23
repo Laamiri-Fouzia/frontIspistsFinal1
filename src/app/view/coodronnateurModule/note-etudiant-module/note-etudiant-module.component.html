@@ -6,19 +6,19 @@
         <div class="card p-grid">
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
                 <div class="p-col-2">
-                    <p-dropdown [options]="years" [(ngModel)]="input1" optionLabel="annee" optionValue="code" (onChange)="change1()"></p-dropdown>
+                    <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="annee" optionValue="code" (onChange)="change1()" styleClass = "customClass"></p-dropdown>
                 </div>
 
                 <div class="p-col-2">
-                    <p-dropdown [options]="options" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true" (onChange)="change2()"></p-dropdown>
+                    <p-dropdown [style]="{'width':'180px'}"  [options]="options" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true" (onChange)="change2()"></p-dropdown>
                 </div>
 
                 <div class="p-col-2">
-                    <p-dropdown [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"  (onChange)="change3()"></p-dropdown>
+                    <p-dropdown [style]="{'width':'180px'}"  [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"  (onChange)="change3()"></p-dropdown>
                 </div>
 
                 <div class="p-col-4">
-                    <p-dropdown [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()"></p-dropdown>
+                    <p-dropdown [style]="{'width':'180px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()"></p-dropdown>
                 </div>
                 <p-button class="p-col-2" (click)="serachEtudiant(input2,input3,input4)">chercher</p-button>
             </p-toolbar>
@@ -30,9 +30,6 @@
 
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
                         <th pSortableColumn="Etudiant">Etudiant <p-sortIcon field="Etudiant"></p-sortIcon></th>
                         <th pSortableColumn="note continue ">N.continue <p-sortIcon field="note continue "></p-sortIcon></th>
                         <th pSortableColumn="note Finale avant Rat">N.Finale Normal <p-sortIcon field="note Finale avant Rat"></p-sortIcon></th>
@@ -45,9 +42,6 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-note>
                     <tr>
-                        <td>
-                            <p-tableCheckbox [value]="note"></p-tableCheckbox>
-                        </td>
                         <td>{{note.etudiant.nom}}  {{note.etudiant.prenom}}</td>
                         <td>{{note.noteContinue}}</td>
                         <td>{{note.noteFinalAvRat}}</td>
@@ -58,11 +52,6 @@
                         </td>
 
                     </tr>
-                </ng-template>
-                <ng-template pTemplate="summary">
-                   <!-- <div class="p-d-flex p-ai-center p-jc-between">
-                        En totale il y a {{items ? items.length : 0 }} éléments.
-                    </div> -->
                 </ng-template>
             </p-table>
 

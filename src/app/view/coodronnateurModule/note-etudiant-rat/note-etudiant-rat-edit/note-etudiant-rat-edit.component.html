@@ -1,0 +1,15 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="note Edit" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="ref">Note final apres Rattrapage </label>
+            <p-inputNumber type="text" pInputText id="ref" [(ngModel)]="noteEtudiantModule.noteFinalApresRat" required autofocus></p-inputNumber>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="EditNote()"></button>
+    </ng-template>
+</p-dialog>
+

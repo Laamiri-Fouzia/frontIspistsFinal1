@@ -81,7 +81,17 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {label: 'Module', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/myModule']},
                     {label: 'Filiere/Option/Module', icon: 'pi pi-fw pi-th-large', routerLink: ['/view/filiere']},
-                    {label: 'Les inscriptions', icon: 'pi pi-fw pi-book', routerLink: ['#']},
+                    {label: 'Les inscriptions', icon: 'pi pi-fw pi-book',
+                        items: [
+                            {
+                                label: 'Nouveau Etudiant',routerLink: ['/view/inscriptionNouveauEtudiant']
+                            },
+                            {
+                                label: 'Ancien Etudiant',routerLink: ['/view/inscriptionAncienEtudiant']
+                            },
+                        ]
+
+                    },
                     {label: 'Les coordonateurs', icon: 'pi pi-fw pi-sitemap',
                                 items: [
                                     {
@@ -106,8 +116,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Les Notes', icon: 'pi pi-fw pi-file', routerLink: ['/pages'],
                 items: [
-                    {label: 'Notes rattrapage', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']},
                     {label: 'Notes Normale', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/noteEtudiantModule']},
+                    {label: 'Notes rattrapage', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/noteEtudiantModuleRat']},
                     {label: 'Résultats', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']},
                 ]
             },
