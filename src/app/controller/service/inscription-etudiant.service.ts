@@ -13,7 +13,7 @@ export class InscriptionEtudiantService {
     private urlEtudiantOption = environment.baseUrl + 'etudiantOption/';
     private urlEtudiant = environment.baseUrl + 'Etudiant/';
     private _optSelec: string;
-
+    public date:Date;
     constructor(private http: HttpClient, private confirmationService: ConfirmationService, private messageService: MessageService) {
     }
 
@@ -120,7 +120,6 @@ export class InscriptionEtudiantService {
         this.etudiantOption.anneeUniversitaire.anneeOne=this._anneselect;
         this.etudiantOption.myOption.code=this._optSelec;
         console.log(this.etudiantOption);
-
         this.http.post(this.urlEtudiantOption + 'newEtudiant/', this.etudiantOption).subscribe(
             data => {
                 console.log(this.etudiantOption);

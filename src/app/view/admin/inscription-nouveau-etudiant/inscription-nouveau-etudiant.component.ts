@@ -43,6 +43,7 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
       {field: 'CNE', header: 'CNE'},
       {field: 'NOM', header: 'NOM'},
       {field: 'PRENOM', header: 'PRENOM'},
+      {field: 'DATEn', header: 'DATEn'},
       {field: 'Action', header: 'Action'}
     ];
   }
@@ -53,10 +54,15 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
   get myOptions(): Array<MyOption> {
     return this.filiereService.myOptions;
   }
+
+
   change1() {
+    //const maDate: Date;
     for(let  i = 0; i < this.myOptions.length; i++) {
       this.options.push({label: this.myOptions[i].libelle, value: this.myOptions[i].code});
     }
+    /*let maintenant = maDate.getDate() + '/' + ((maDate.getMonth() + 1)) + '/' + maDate.getFullYear()+ ' ' + maDate.getHours() + ':' + maDate.getMinutes()+ ':' + maDate.getSeconds());
+    console.log(maintenant)*/
 
   }
 
@@ -77,9 +83,6 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
 
 
   SearchStudent() {
-    const maDate: Date = new Date();
-    let maintenant = maDate.getDate() + '/' + ((maDate.getMonth() + 1)) + '/' + maDate.getFullYear();
-    console.log(maintenant)
     this.displayTable=true;
      this.inscriptionEtudiantService.SearchStudent();
   }

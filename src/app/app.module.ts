@@ -135,6 +135,12 @@ import { InscriptionAncienEditComponent } from './view/admin/inscription-ancien-
 import { ModuleSemestreOptionComponent } from './view/admin/module-semestre-option/module-semestre-option.component';
 import { ModuleSemestreOptionCreateComponent } from './view/admin/module-semestre-option/module-semestre-option-create/module-semestre-option-create.component';
 import { ModuleSemestreOptionListComponent } from './view/admin/module-semestre-option/module-semestre-option-list/module-semestre-option-list.component';
+import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-affect/ponderation-affect.component";
+import {PonderationCreateComponent} from "./view/admin/ponderation/ponderation-create/ponderation-create.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule, MatDatepickerToggle} from "@angular/material/datepicker";
+import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -224,6 +230,10 @@ import { ModuleSemestreOptionListComponent } from './view/admin/module-semestre-
         TreeModule,
         TreeTableModule,
         VirtualScrollerModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatIconModule,
+        MatInputModule
     ],
     declarations: [
         AppComponent,
@@ -264,7 +274,9 @@ import { ModuleSemestreOptionListComponent } from './view/admin/module-semestre-
         InscriptionAncienEditComponent,
         ModuleSemestreOptionComponent,
         ModuleSemestreOptionCreateComponent,
-        ModuleSemestreOptionListComponent
+        ModuleSemestreOptionListComponent,
+        PonderationAffectComponent,
+        PonderationCreateComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

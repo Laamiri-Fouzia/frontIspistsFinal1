@@ -4,5 +4,5 @@ export class Etudiant {
   public  nom :String;
   public  cne :String;
   public  cin:string;
-  public  dateNaissance:Date;
+  public  dateNaissance:Date=new Date();
 }

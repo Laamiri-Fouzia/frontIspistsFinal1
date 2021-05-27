@@ -27,7 +27,6 @@ export class AnnéeUniversitaireService {
   public findAllyears(){
     this.http.get<Array<AnneeUniversitaire>>(this.urlAnne +'/').subscribe(
         data => {
-          console.log(data);
           this.years=data;
         },error => {
           console.log(error);

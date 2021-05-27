@@ -34,7 +34,8 @@
                         <th pSortableColumn="CNE">CNE <p-sortIcon field="CNE"></p-sortIcon></th>
                         <th pSortableColumn="CNE">CIN <p-sortIcon field="CNE"></p-sortIcon></th>
                         <th pSortableColumn="NOM">NOM<p-sortIcon field="NOM"></p-sortIcon></th>
-                        <th pSortableColumn="PRENOM">PRENOM<p-sortIcon field="PRENOM"></p-sortIcon></th>
+                        <th pSortableColumn="NOM">NOM<p-sortIcon field="NOM"></p-sortIcon></th>
+                        <th pSortableColumn="DATEn">DATE<p-sortIcon field="DATEn"></p-sortIcon></th>
                         <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
                     </tr>
                 </ng-template>
@@ -45,6 +46,7 @@
                         <td>{{etudiantOption.etudiant.cin}} </td>
                         <td>{{etudiantOption.etudiant.nom}} </td>
                         <td> {{etudiantOption.etudiant.prenom}} </td>
+                        <td> {{etudiantOption.etudiant.dateNaissance | json}} </td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editEtudiant(etudiantOption)"></button>
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(etudiantOption)"></button>

@@ -11,7 +11,7 @@ import {MessageService} from "primeng/api";
 export class InscriptionNouveauCreateComponent implements OnInit {
 
   constructor(private inscriptionEtudiantService:InscriptionEtudiantService,private messageService: MessageService) { }
-
+   date:Date;
   ngOnInit(): void {
   }
   get createDialog(): boolean {
@@ -37,4 +37,11 @@ export class InscriptionNouveauCreateComponent implements OnInit {
   }
 
 
+    addDate() {
+      this.etudiantOption.etudiant.dateNaissance.setDate((this.date.getDate())+1);
+      this.etudiantOption.etudiant.dateNaissance.setMonth(this.date.getMonth());
+      this.etudiantOption.etudiant.dateNaissance.setFullYear(this.date.getFullYear());
+      console.log(this.date);
+      console.log(this.etudiantOption.etudiant.dateNaissance);
+    }
 }
