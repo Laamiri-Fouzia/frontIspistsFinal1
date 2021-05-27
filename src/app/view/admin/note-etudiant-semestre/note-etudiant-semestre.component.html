@@ -6,17 +6,20 @@
         <div class="card p-grid">
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
                 <div class="p-col-2">
-                    <p-dropdown [options]="myOptions" [(ngModel)]="input1" optionLabel="libelle" [filter]="true" optionValue="code" (onChange)="change1()"></p-dropdown>
+                    <p-dropdown [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Filiere" (onChange)="change1()"></p-dropdown>
+                </div>
+                <div class="p-col-2">
+                    <p-dropdown [options]="myOptions" [(ngModel)]="input1" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Option"></p-dropdown>
                 </div>
 
                 <div class="p-col-2">
-                    <p-dropdown [options]="years" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true" (onChange)="change2()"></p-dropdown>
+                    <p-dropdown [options]="years" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true"></p-dropdown>
                 </div>
 
                 <div class="p-col-2">
-                    <p-dropdown [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"  (onChange)="change3()"></p-dropdown>
+                    <p-dropdown [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"></p-dropdown>
                 </div>
-                <p-button class="p-col-2" (click)="serachEtudiant(input2,input1,input3)">chercher</p-button>
+                <p-button class="p-col-2" (click)="serachEtudiant(input1,input2,input3)">chercher</p-button>
             </p-toolbar>
 
             <p-table #dt [value]="myNotesSemestre" [columns]="2" [rows]="4" [paginator]="true" [globalFilterFields]="['etudiant','note','etatValidation']"
@@ -32,27 +35,28 @@
                         <th pSortableColumn="option">Etudiant<p-sortIcon field="option"></p-sortIcon></th>
                         <th pSortableColumn="Action">note<p-sortIcon field="Action"></p-sortIcon></th>
                         <th pSortableColumn="Action">Etat de Validation<p-sortIcon field="Action"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-noteSemestre>
+                <ng-template pTemplate="body" let-noteSemestres>
                     <tr>
-                        <td>{{noteSemestre.etudiant.nom+noteSemestre.etudiant.prenom}}</td>
-                        <td>{{noteSemestre.note}}</td>
-                        <td>{{noteSemestre.etatValidation}}</td>
+                        <td>{{noteSemestres.etudiant.nom+'  '+noteSemestres.etudiant.prenom}}</td>
+                        <td>{{noteSemestres.noteSemestre}}</td>
+                        <td>{{noteSemestres.etatValidation.libelle}}</td>
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"></button>
+                            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2" (click)="openCreate(noteSemestres)"></button>
                         </td>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="summary">
+                <ng-template pTemplate="summary" let-noteSemestres>
                     <div class="p-d-flex p-ai-center p-jc-between">
-                        En totale il y a {{myNotesSemestre ? myNotesSemestre.length : 0 }} éléments.
+                        Etat de Validation: {{noteSemestres.noteEtudiantSemestre.etatValidation}} éléments.
                     </div>
                 </ng-template>
             </p-table>
 
         </div>
-        <app-ponderation-create></app-ponderation-create>
+        <app-note-etudiant-semestre-modules></app-note-etudiant-semestre-modules>
     </div>
 </div>
 

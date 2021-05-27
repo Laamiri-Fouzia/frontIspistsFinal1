@@ -16,6 +16,8 @@ import {NoteEtudiantModuleComponent} from "./view/coodronnateurModule/note-etudi
 import {NoteEtudiantRatComponent} from "./view/coodronnateurModule/note-etudiant-rat/note-etudiant-rat.component";
 import {InscriptionNouveauEtudiantComponent} from "./view/admin/inscription-nouveau-etudiant/inscription-nouveau-etudiant.component";
 import {InscriptionAncienEtudiantComponent} from "./view/admin/inscription-ancien-etudiant/inscription-ancien-etudiant.component";
+import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre.component";
+import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-affect/ponderation-affect.component";
 
 @NgModule({
     imports: [
@@ -31,7 +33,8 @@ import {InscriptionAncienEtudiantComponent} from "./view/admin/inscription-ancie
                     {path: 'view/inscriptionNouveauEtudiant', component: InscriptionNouveauEtudiantComponent},
                     {path: 'view/inscriptionAncienEtudiant', component: InscriptionAncienEtudiantComponent},
                     {path: 'pages/calendar', component: AppCalendarComponent},
-
+                    {path: 'view/note-etudiant-semestre', component: NoteEtudiantSemestreComponent},
+                    {path: 'view/ponderation', component: PonderationAffectComponent},
                 ]
             },
             {path: 'error', component: AppErrorComponent},

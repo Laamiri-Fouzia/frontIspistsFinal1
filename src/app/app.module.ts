@@ -131,6 +131,11 @@ import { InscriptionNouveauEtudiantComponent } from './view/admin/inscription-no
 import { InscriptionNouveauCreateComponent } from './view/admin/inscription-nouveau-etudiant/inscription-nouveau-create/inscription-nouveau-create.component';
 import { InscriptionAncienEtudiantComponent } from './view/admin/inscription-ancien-etudiant/inscription-ancien-etudiant.component';
 import { InscriptionNouveauEditComponent } from './view/admin/inscription-nouveau-etudiant/inscription-nouveau-edit/inscription-nouveau-edit.component';
+import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre.component";
+import {PonderationComponent} from "./view/admin/ponderation/ponderation.component";
+import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-affect/ponderation-affect.component";
+import {PonderationCreateComponent} from "./view/admin/ponderation/ponderation-create/ponderation-create.component";
+import { NoteEtudiantSemestreModulesComponent } from './view/admin/note-etudiant-semestre/note-etudiant-semestre-modules/note-etudiant-semestre-modules.component';
 
 
 @NgModule({
@@ -256,7 +261,12 @@ import { InscriptionNouveauEditComponent } from './view/admin/inscription-nouvea
         InscriptionNouveauEtudiantComponent,
         InscriptionNouveauCreateComponent,
         InscriptionAncienEtudiantComponent,
-        InscriptionNouveauEditComponent
+        InscriptionNouveauEditComponent,
+        NoteEtudiantSemestreComponent,
+        PonderationComponent,
+        PonderationAffectComponent,
+        PonderationCreateComponent,
+        NoteEtudiantSemestreModulesComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

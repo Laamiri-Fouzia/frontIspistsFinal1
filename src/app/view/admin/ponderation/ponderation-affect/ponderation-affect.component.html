@@ -6,10 +6,10 @@
         <div class="card p-grid">
             <p-toolbar styleClass="p-mb-4" class="p-col-12">Choisir une filiére de la liste:
                 <div class="p-col-2">
-                    <p-dropdown [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" (onChange)="change1()"></p-dropdown>
+                    <p-dropdown [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Filiere" (onChange)="change1()"></p-dropdown>
                 </div>
 
-                <p-button class="p-col-2 pi pi-trash pi pi-search" (click)="chercheOptions()"></p-button>
+                <p-button class="p-col-2" icon="pi pi-search" (click)="chercheOptions()"></p-button>
             </p-toolbar>
 
             <p-table #dt [value]="myOptions" [columns]="2" [rows]="4" [paginator]="true" [globalFilterFields]="['code','libelle']"

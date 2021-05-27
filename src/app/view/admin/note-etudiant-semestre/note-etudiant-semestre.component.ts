@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NoteEtudiantSemestreService} from "../../../controller/service/note-etudiant-semestre.service";
 import {MyOption} from "../../../controller/model/my-option.model";
 import {NoteEtudiantSemestre} from "../../../controller/model/note-etudiant-semestre.model";
+import {Filiere} from "../../../controller/model/filiere.model";
 
 @Component({
   selector: 'app-note-etudiant-semestre',
@@ -14,29 +15,28 @@ export class NoteEtudiantSemestreComponent implements OnInit {
   input1;
   input2;
   input3;
+  fil;
 
-  get optionSelct(): string {
-    return this.noteEtudiantSemestreService.optionSelct;
+  get noteSemestre(): NoteEtudiantSemestre {
+    return this.noteEtudiantSemestreService.noteSemestre;
   }
 
-  set optionSelct(value: string) {
-    this.noteEtudiantSemestreService.optionSelct = value;
+  set noteSemestre(value: NoteEtudiantSemestre) {
+    this.noteEtudiantSemestreService.noteSemestre = value;
+  }
+  get filierSelct(): string {
+    return this.noteEtudiantSemestreService.filierSelct;
   }
 
-  get anneeSelect(): number {
-    return this.noteEtudiantSemestreService.anneeSelect;
+  set filierSelct(value: string) {
+    this.noteEtudiantSemestreService.filierSelct = value;
+  }
+  get filieres(): Array<Filiere> {
+    return this.noteEtudiantSemestreService.filieres;
   }
 
-  set anneeSelect(value: number) {
-    this.noteEtudiantSemestreService.anneeSelect = value;
-  }
-
-  get semestreSelect() {
-    return this.noteEtudiantSemestreService.semestreSelect;
-  }
-
-  set semestreSelect(value) {
-    this.noteEtudiantSemestreService.semestreSelect = value;
+  set filieres(value: Array<Filiere>) {
+    this.noteEtudiantSemestreService.filieres = value;
   }
 
   constructor(private noteEtudiantSemestreService:NoteEtudiantSemestreService) {
@@ -60,7 +60,7 @@ export class NoteEtudiantSemestreComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.noteEtudiantSemestreService.findAllOption();
+    this.noteEtudiantSemestreService.findAllFiliere();
   }
   get myOptions(): Array<MyOption> {
     return this.noteEtudiantSemestreService.myOptions;
@@ -70,16 +70,53 @@ export class NoteEtudiantSemestreComponent implements OnInit {
   }
 
   change1() {
-      this.optionSelct=this.input1;
+    this.filierSelct=this.fil;
+    this.noteEtudiantSemestreService.chercheOptions();
   }
 
-  change2() {
+  serachEtudiant(input1: string, input2: number, input3: string) {
+    this.noteEtudiantSemestreService.serachEtudiant(input1, input2, input3);
   }
 
-  change3() {
+  /*detailSemestre(noteSemestres: NoteEtudiantSemestre) {
+    this.noteEtudiantSemestreService.detailSemestre(noteSemestres);
+
+  }*/
+  public openCreate(noteSemestres:NoteEtudiantSemestre) {
+    this.noteSemestre =noteSemestres;
+    this.createDialog = true;
+    this.noteEtudiantSemestreService.detailSemestre(noteSemestres);
+    this.submitted = false;
+  }
+  get createDialog(): boolean {
+    return this.noteEtudiantSemestreService.createDialog;
   }
 
-  serachEtudiant(input2: number, input1: string, input3: string) {
-    this.noteEtudiantSemestreService.serachEtudiant(input2, input1, input3);
+  set createDialog(value: boolean) {
+    this.noteEtudiantSemestreService.createDialog = value;
+  }
+
+  get editDialog(): boolean {
+    return this.noteEtudiantSemestreService.editDialog;
+  }
+
+  set editDialog(value: boolean) {
+    this.noteEtudiantSemestreService.editDialog = value;
+  }
+
+  get viewDialog(): boolean {
+    return this.noteEtudiantSemestreService.viewDialog;
+  }
+
+  set viewDialog(value: boolean) {
+    this.noteEtudiantSemestreService.viewDialog = value;
+  }
+
+  get submitted(): boolean {
+    return this.noteEtudiantSemestreService.submitted;
+  }
+
+  set submitted(value: boolean) {
+    this.noteEtudiantSemestreService.submitted = value;
   }
 }

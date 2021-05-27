@@ -3,7 +3,8 @@ import {MyOption} from "../model/my-option.model";
 import {HttpClient} from "@angular/common/http";
 import {MessageService} from "primeng/api";
 import {NoteEtudiantSemestre} from "../model/note-etudiant-semestre.model";
-import {newArray} from "@angular/compiler/src/util";
+import {Filiere} from "../model/filiere.model";
+import {NoteEtudiantModule} from "../model/note-etudiant-module.model";
 
 @Injectable({
   providedIn: 'root'
@@ -15,33 +16,90 @@ export class NoteEtudiantSemestreService {
   private _urlOption='ispits-project/option';
   private _urlNoteEtudiantSemestre='ispits-project/note-etudiant-semestre';
   private _urlBase='http://localhost:8036/';
-  private _optionSelct:string;
-  private _anneeSelect:number;
-  private _semestreSelect;
+  private _urlFiliere='ispits-project/filliere';
+  private _urlNoteEtudModule: string='ispits-project/note-etudiant-modul';
+  private _filierSelct:string;
+  private _filieres:Array<Filiere>;
+  private _createDialog: boolean;
+  private _editDialog: boolean;
+  private _viewDialog: boolean;
+  private _submitted: boolean;
+  private _noteSemestre:NoteEtudiantSemestre;
+  private _notesEtudiantModules:Array<NoteEtudiantModule>;
 
 
-  get optionSelct(): string {
-    return this._optionSelct;
+  get notesEtudiantModules(): Array<NoteEtudiantModule> {
+      if(this._notesEtudiantModules==null){
+          this._notesEtudiantModules=new Array<NoteEtudiantModule>();
+      }
+        return this._notesEtudiantModules;
+    }
+
+    set notesEtudiantModules(value: Array<NoteEtudiantModule>) {
+        this._notesEtudiantModules = value;
+    }
+
+    get noteSemestre(): NoteEtudiantSemestre {
+        if(this._noteSemestre==null){
+            this._noteSemestre=new NoteEtudiantSemestre();
+        }
+        return this._noteSemestre;
+    }
+
+    set noteSemestre(value: NoteEtudiantSemestre) {
+        this._noteSemestre = value;
+    }
+
+    get createDialog(): boolean {
+        return this._createDialog;
+    }
+
+    set createDialog(value: boolean) {
+        this._createDialog = value;
+    }
+
+    get editDialog(): boolean {
+        return this._editDialog;
+    }
+
+    set editDialog(value: boolean) {
+        this._editDialog = value;
+    }
+
+    get viewDialog(): boolean {
+        return this._viewDialog;
+    }
+
+    set viewDialog(value: boolean) {
+        this._viewDialog = value;
+    }
+
+    get submitted(): boolean {
+        return this._submitted;
+    }
+
+    set submitted(value: boolean) {
+        this._submitted = value;
+    }
+
+
+  get filieres(): Array<Filiere> {
+        if(this._filieres==null){
+            this._filieres=new Array<Filiere>();
+        }
+    return this._filieres;
   }
 
-  set optionSelct(value: string) {
-    this._optionSelct = value;
+  set filieres(value: Array<Filiere>) {
+    this._filieres = value;
   }
 
-  get anneeSelect(): number {
-    return this._anneeSelect;
+  get filierSelct(): string {
+    return this._filierSelct;
   }
 
-  set anneeSelect(value: number) {
-    this._anneeSelect = value;
-  }
-
-  get semestreSelect() {
-    return this._semestreSelect;
-  }
-
-  set semestreSelect(value) {
-    this._semestreSelect = value;
+  set filierSelct(value: string) {
+    this._filierSelct = value;
   }
 
   get myNotesSemestre(): Array<NoteEtudiantSemestre> {
@@ -64,8 +122,19 @@ export class NoteEtudiantSemestreService {
   set myOptions(value: Array<MyOption>) {
     this._myOptions = value;
   }
+    chercheOptions(){
+        this.http.get<Array<MyOption>>(this._urlBase+this._urlOption+'/filiere/code/'+this.filierSelct).subscribe(
+            data=>{
+                console.log(data);
+                this.myOptions=data;
+            },error => {
+                alert('ha fin dkhalet');
+            }
+        );
 
-  findAllOption() {
+
+    }
+  /*findAllOption() {
     this.http.get<Array<MyOption>>(this._urlBase+this._urlOption +'/').subscribe(
         data => {
           console.log(data);
@@ -73,17 +142,38 @@ export class NoteEtudiantSemestreService {
         },error => {
           console.log(error);
         });
-  }
+  }*/
 
-  serachEtudiant(input2: number,input1: string, input3: string) {
-    this.http.get<Array<NoteEtudiantSemestre>>(this._urlBase+this._urlNoteEtudiantSemestre+'/semestre/codeSemestre/'+input2+'/option/codeOption/'+input1+'/annee/'+input3).subscribe(
+
+  serachEtudiant(input1: string,input2: number, input3: string) {
+    this.http.get<Array<NoteEtudiantSemestre>>(this._urlBase+this._urlNoteEtudiantSemestre+'/semestre/codeSemestre/'+input3+'/option/codeOption/'+input1+'/annee/'+input2).subscribe(
         data=>{
           console.log(data);
-          alert('ya gelbi w chaf dwak che mkhabi')
           this.myNotesSemestre=data;
         },error=>{
-          alert('ya samra hobk walali jamra ya yema 3la 3eshk lhadra');
+          alert('error');
         }
     );
   }
+  findAllFiliere() {
+    this.http.get<Array<Filiere>>(this._urlBase+this._urlFiliere+'/').subscribe(
+        data=>{
+          console.log(data+'sana');
+          this.filieres=data;
+        },error=>{
+          alert('ha fin dkhalet');
+        }
+    );
+  }
+
+    detailSemestre(noteSemestres: NoteEtudiantSemestre) {
+        this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+noteSemestres.etudiant.cne).subscribe(
+            data=>{
+                this.notesEtudiantModules=data;
+                console.log(data);
+            },error => {
+                alert('error')
+            }
+        );
+    }
 }
