@@ -3,6 +3,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {FiliereService} from "../../../../controller/service/filiere.service";
 import {Filiere} from "../../../../controller/model/filiere.model";
 import {MyOption} from "../../../../controller/model/my-option.model";
+import {ModuleSemestreOptionService} from "../../../../controller/service/module-semestre-option.service";
 
 @Component({
   selector: 'app-my-option-liste',
@@ -14,7 +15,7 @@ export class MyOptionListeComponent implements OnInit {
   cols: any[];
 
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: FiliereService) {
+              private service: FiliereService, private moduleSemestreOptionService:ModuleSemestreOptionService) {
   }
 
   ngOnInit(): void {
@@ -42,15 +43,38 @@ export class MyOptionListeComponent implements OnInit {
     });
   }*/
 
+  public deleteOption(myOption: MyOption) {
+    this.myOption= myOption;
+    this.confirmationService.confirm({
+      message: 'Voulez-vous vraiment supprimer ' + myOption.code + '?',
+      header: 'Attention',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () =>{
+        this.service.deleteByCode().subscribe(data => {
+          this.myOptions = this.myOptions.filter(val => val.id !== this.myOption.id);
+          this.myOption = new MyOption();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Option est supprimé',
+            life: 2000
+          });
+        });
+      }
+    });
+  }
+
+
+
   public openCreate() {
     this.myOption = new MyOption();
-    this.submitted = false;
-    this.createDialog = true;
+    this.submitted1 = false;
+    this.createDialog1 = true;
   }
 
   public edit(filiere: Filiere) {
     this.myOption = {...this.myOption};
-    this.editDialog = true;
+    this.editDialog1 = true;
   }
 
 
@@ -78,40 +102,40 @@ export class MyOptionListeComponent implements OnInit {
   }
 
 
-  get submitted(): boolean {
-    return this.service.submitted;
+  get submitted1(): boolean {
+    return this.service.submitted1;
   }
 
-  set submitted(value: boolean) {
-    this.service.submitted = value;
+  set submitted1(value: boolean) {
+    this.service.submitted1 = value;
   }
 
-  get createDialog(): boolean {
-    return this.service.createDialog;
+  get createDialog1(): boolean {
+    return this.service.createDialog1;
   }
 
-  set createDialog(value: boolean) {
-    this.service.createDialog = value;
+  set createDialog1(value: boolean) {
+    this.service.createDialog1 = value;
   }
 
-  get editDialog(): boolean {
-    return this.service.editDialog;
+  get editDialog1(): boolean {
+    return this.service.editDialog1;
   }
 
-  set editDialog(value: boolean) {
-    this.service.editDialog = value;
+  set editDialog1(value: boolean) {
+    this.service.editDialog1 = value;
   }
 
-  get viewDialog(): boolean {
-    return this.service.viewDialog;
+  get viewDialog1():boolean {
+    return this.service.viewDialog1;
   }
 
-  set viewDialog(value: boolean) {
-    this.service.viewDialog = value;
+  set viewDialog1(value: boolean) {
+    this.service.viewDialog1 = value;
   }
 
 
-  /*choisirParam(myOption: MyOption) {
+  choisirParam(myOption: MyOption) {
     this.moduleSemestreOptionService.choisirParam(myOption);
-  }*/
+  }
 }

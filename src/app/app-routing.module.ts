@@ -25,7 +25,7 @@ import {InscriptionAncienEtudiantComponent} from "./view/admin/inscription-ancie
                 children: [
                     //{path: '', component: tandiroh },
                     {path: 'view/myModule', component: MyModulesComponent},
-                    {path: 'view/filiere', component: FiliereListComponent},
+                    {path: 'view/filiere', component: FiliereComponent},
                     {path: 'view/noteEtudiantModule', component: NoteEtudiantModuleComponent},
                     {path: 'view/noteEtudiantModuleRat', component: NoteEtudiantRatComponent},
                     {path: 'view/inscriptionNouveauEtudiant', component: InscriptionNouveauEtudiantComponent},

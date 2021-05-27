@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from "primeng/api";
 import {FiliereService} from "../../../../controller/service/filiere.service";
-import {Filiere} from "../../../../controller/model/filiere.model";
 import {MyOption} from "../../../../controller/model/my-option.model";
+import {Filiere} from "../../../../controller/model/filiere.model";
 
 @Component({
   selector: 'app-my-option-create',
@@ -19,8 +19,8 @@ export class MyOptionCreateComponent implements OnInit {
   }
 
   public hideCreateDialog() {
-    this.createDialog = false;
-    this.submitted = false;
+    this.createDialog1 = false;
+    this.submitted1 = false;
   }
 
 
@@ -37,24 +37,25 @@ export class MyOptionCreateComponent implements OnInit {
   set myOptions(value: Array<MyOption>) {
     this.service.myOptions = value;
   }
-  get createDialog(): boolean {
-    return this.service.createDialog;
+
+  get createDialog1(): boolean {
+    return this.service.createDialog1;
   }
 
-  set createDialog(value: boolean) {
-    this.service.createDialog = value;
+  set createDialog1(value: boolean) {
+    this.service.createDialog1 = value;
   }
 
-  get submitted(): boolean {
-    return this.service.submitted;
+  get submitted1(): boolean {
+    return this.service.submitted1;
   }
 
-  set submitted(value: boolean) {
-    this.service.submitted = value;
+  set submitted1(value: boolean) {
+    this.service.submitted1 = value;
   }
-
 
   saveOption(input1:string,input2:string) {
     this.service.saveOption(input1,input2);
   }
+
 }

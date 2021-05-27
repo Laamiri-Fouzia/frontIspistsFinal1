@@ -5,6 +5,9 @@ import {NoteEtudiantModuleService} from "../../../controller/service/note-etudia
 import {MyOption} from "../../../controller/model/my-option.model";
 import {NoteEtudiantModule} from "../../../controller/model/note-etudiant-module.model";
 import {EtudiantOption} from "../../../controller/model/etudiant-option.model";
+import {MessageService} from "primeng/api";
+import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
+import {AnnéeUniversitaireService} from "../../../controller/service/année-universitaire.service";
 
 @Component({
   selector: 'app-inscription-ancien-etudiant',
@@ -13,45 +16,27 @@ import {EtudiantOption} from "../../../controller/model/etudiant-option.model";
 })
 export class InscriptionAncienEtudiantComponent implements OnInit {
 
-
-
-  input1:number;
-  input2='';
-  input3:number;
-  input4 ='';
-  years: any[];
+  displayTable:boolean=false;
   cols: any[];
   options: any[]=new Array();
   semestres: any[]=new Array();
 
-  constructor(private inscriptionEtudiantService:InscriptionEtudiantService,private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
+  constructor(private messageService: MessageService,private annéeUniversitaireService: AnnéeUniversitaireService,private inscriptionEtudiantService:InscriptionEtudiantService,private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
     //anne ce que l'utilisateur voie et code ce qui est stocke
-
-    this.years=[
-      {annee: "Annee universitaire:", code: null},
-      {annee: 2020, code: 2020},
-      {annee:2021, code:2021},
-      {annee: 2022, code: 2022},
-      {annee: 2023, code: 2023},
-      {annee:2024, code: 2024}
-    ];
 
     this.semestres=[
       {label: "Semestre :", value: null},
-      {label: "Semestre 1", value: 1},
-      {label: "Semestre 2", value: 2},
       {label:  "Semestre 3",value: 3},
-      {label:  "Semestre 4",value: 4},
-      {label: "Semestre 5", value: 5},
-      {label: "Semestre 6", value: 6}
+      {label: "Semestre 5", value: 5}
     ];
 
   }
 
   ngOnInit(): void {
+    this.etudiantOption=null;
     this.filiereService.getAllOptions();
     this.options.push({label: 'Option :', value: null});
-
+    this.annéeUniversitaireService.findAllyears();
   }
 
   private initCol() {
@@ -67,16 +52,17 @@ export class InscriptionAncienEtudiantComponent implements OnInit {
     return this.filiereService.myOptions;
   }
   change1() {
+    console.log(this.etudiantOption.anneeUniversitaire.anneeOne);
     for(let  i = 0; i < this.myOptions.length; i++) {
       this.options.push({label: this.myOptions[i].libelle, value: this.myOptions[i].code});
     }
 
   }
 
-
-
-
-  set editDialog(value: boolean) {
+  get years(): Array<AnneeUniversitaire> {
+    return this.annéeUniversitaireService.years;
+  }
+    set editDialog(value: boolean) {
     this.inscriptionEtudiantService.editDialog = value;
   }
   set createDialog(value: boolean) {
@@ -93,9 +79,16 @@ export class InscriptionAncienEtudiantComponent implements OnInit {
 
 
   SearchAncienStudent() {
+    this.displayTable=true;
     this.inscriptionEtudiantService.SearchAncienStudent();
   }
 
+  set etudiantOption(value: EtudiantOption) {
+    this.inscriptionEtudiantService.etudiantOption = value;
+  }
+  set etudiantOptions(value: Array<EtudiantOption>) {
+    this.inscriptionEtudiantService.etudiantOptions = value;
+  }
   get etudiantOption(): EtudiantOption {
     return this.inscriptionEtudiantService.etudiantOption;
   }
@@ -105,5 +98,48 @@ export class InscriptionAncienEtudiantComponent implements OnInit {
   }
 
 
+  set etudiantAnciens(value: Array<EtudiantOption>) {
+    this.inscriptionEtudiantService.etudiantAnciens=value;
+  }
 
+
+  editEtudiant(etudiantOption: EtudiantOption) {
+
+    this.etudiantOption={...etudiantOption};
+    this.etudiantOption.etudiant = {...etudiantOption.etudiant};
+    this.etudiantOption.semestre = {...etudiantOption.semestre};
+    this.etudiantOption.myOption = {...etudiantOption.myOption};
+    this.editDialog = true;
+  }
+
+  public delete(selected: EtudiantOption) {
+    this.etudiantOption = selected;
+    this.inscriptionEtudiantService.deleteEtudiantOption();
+    this.etudiantAnciens = this.etudiantAnciens.filter(val => val.id !== this.etudiantOption.id);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Successful',
+      detail: 'Etudiant bien supprimé',
+      life: 3000
+    });
+    /*this.confirmationService.confirm({
+      message: 'Voulez-vous vraiment supprimer ',
+      header: 'Attention',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.inscriptionEtudiantService.deleteEtudiantOption();
+          //this.etudiantOptions = this.etudiantOptions.filter(val => val.id !== this.etudiantOption.id);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Etudiant bien supprimé',
+            life: 3000
+          });
+      }
+    });*/
+  }
+
+  ch() {
+    alert(this.etudiantOption.myOption.code)
+  }
 }

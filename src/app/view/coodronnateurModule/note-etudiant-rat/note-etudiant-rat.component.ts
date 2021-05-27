@@ -5,6 +5,8 @@ import {NoteEtudiantModuleService} from "../../../controller/service/note-etudia
 import {MyOption} from "../../../controller/model/my-option.model";
 import {ModuleSemestreOption} from "../../../controller/model/module-semestre-option.model";
 import {NoteEtudiantModule} from "../../../controller/model/note-etudiant-module.model";
+import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
+import {AnnéeUniversitaireService} from "../../../controller/service/année-universitaire.service";
 
 @Component({
   selector: 'app-note-etudiant-rat',
@@ -18,23 +20,13 @@ export class NoteEtudiantRatComponent implements OnInit {
   input3:number;
   displaytable: boolean=false;
   input4 ='';
-  years: any[];
   modules: any[]=new Array();
   cols: any[];
   options: any[]=new Array();
   semestres: any[]=new Array();
 
-  constructor(private moduleSemestreOptionService:ModuleSemestreOptionService,private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
-    //anne ce que l'utilisateur voie et code ce qui est stocke
-
-    this.years=[
-      {annee: "Annee universitaire:", code: null},
-      {annee: 2020, code: 2020},
-      {annee:2021, code:2021},
-      {annee: 2022, code: 2022},
-      {annee: 2023, code: 2023},
-      {annee:2024, code: 2024}
-    ];
+  constructor(private annéeUniversitaireService: AnnéeUniversitaireService,private moduleSemestreOptionService:ModuleSemestreOptionService,private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
+    //anne ce que l'utilisateur voie et code ce qui est stock
 
     this.semestres=[
       {label: "Semestre :", value: null},
@@ -48,10 +40,14 @@ export class NoteEtudiantRatComponent implements OnInit {
 
   }
 
+  get years(): Array<AnneeUniversitaire> {
+    return this.annéeUniversitaireService.years;
+  }
   ngOnInit(): void {
     this.filiereService.getAllOptions();
     this.options.push({label: 'Option :', value: null});
     this.modules.push({label: 'Module  :', value: null});
+    this.annéeUniversitaireService.findAllyears();
     console.log( this.modules);
   }
 
@@ -85,9 +81,11 @@ export class NoteEtudiantRatComponent implements OnInit {
 
   }
   change4() {
-    for(let  i = 0; i < this.moduleSemestreOptions.length; i++) {
+    if(this.modules.length<=this.moduleSemestreOptions.length){
+      for(let  i = 0; i < this.moduleSemestreOptions.length; i++) {
       this.modules.push({label: this.moduleSemestreOptions[i].myModule.libelle, value: this.moduleSemestreOptions[i].code});
     }
+  }
   }
 
   get moduleSemestreOptions(): Array<ModuleSemestreOption> {
@@ -112,11 +110,6 @@ export class NoteEtudiantRatComponent implements OnInit {
     return this.noteEtudiantModuleService.editDialog;
   }
 
-
-  serachEtudiant(opt:string,semestre:number,module:string) {
-
-    this.noteEtudiantModuleService.serachEtudiant(opt,semestre,module);
-  }
   public edit(note: NoteEtudiantModule) {
     this.noteEtudiantModule = {...note};
     this.editDialog = true;

@@ -2,12 +2,12 @@
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="ref">Note Continue</label>
-            <p-inputNumber type="text" pInputText id="ref" [(ngModel)]="noteEtudiantModule.noteContinue" required autofocus></p-inputNumber>
+            <p-inputNumber type="text" pInputText id="ref" [(ngModel)]="noteEtudiantModule.noteContinue" required autofocus [min]="0" [max]="20"></p-inputNumber>
         </div>
 
         <div class="p-field">
             <label for="total">Note Examen Final</label>
-            <p-inputNumber type="text" pInputText id="total" [(ngModel)]="noteEtudiantModule.noteFinalAvRat" required autofocus ></p-inputNumber>
+            <p-inputNumber type="text" pInputText id="total" [(ngModel)]="noteEtudiantModule.noteFinalAvRat" required autofocus [min]="0" [max]="20"></p-inputNumber>
         </div>
 
 

@@ -18,10 +18,8 @@ export class NoteEtudiantModuleService {
 
   constructor(private http:HttpClient) { }
 
-  serachEtudiant(opt:string,semestre:number,module:string) {
-      alert(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module +'/option/codeOption/'+opt);
-      //alert(opt+semestre+module)
-    this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module +'/option/codeOption/'+opt).subscribe(
+  serachEtudiant(module:string) {
+      this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module).subscribe(
       data => {
         this.notesEtudiantModule = data;
       }, error => {
@@ -29,6 +27,7 @@ export class NoteEtudiantModuleService {
       }
     );
   }
+
     get editDialog(): boolean {
         return this._editDialog;
     }
@@ -73,7 +72,7 @@ export class NoteEtudiantModuleService {
      let nfAvR=this.noteEtudiantModule.noteFinalAvRat;
      this.noteEtudiantModule.noteModuleNormal=(pc*nc)+(pf*nfAvR);
      this.noteEtudiantModule.noteGlobale=this.noteEtudiantModule.noteModuleNormal;
-     if(this.noteEtudiantModule.noteModuleNormal>10)
+     if(this.noteEtudiantModule.noteModuleNormal>=10)
        this.noteEtudiantModule.etatValidation.libelle='Validé';
      else
        this.noteEtudiantModule.etatValidation.libelle='Rattrapage';
@@ -89,7 +88,6 @@ export class NoteEtudiantModuleService {
   }
 
     listeRatt(module: string){
-      alert(this.urlBase + this.URLNoteEtudModule+'/moduleSemestreOption/codeModule/'+module+'/etatValidation/codeEtat/R')
         this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/moduleSemestreOption/codeModule/'+module+'/etatValidation/codeEtat/R').subscribe(
             data => {
                 console.log(data)

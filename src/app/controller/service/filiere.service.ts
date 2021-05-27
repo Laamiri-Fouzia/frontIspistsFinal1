@@ -4,19 +4,26 @@ import {Filiere} from "../model/filiere.model";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {MyOption} from "../model/my-option.model";
+import {MessageService} from "primeng/api";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FiliereService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private messageService: MessageService) { }
   private _filiere: Filiere;//selected
   private _filieres: Array<Filiere>;//items
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
+
+  private _createDialog1: boolean;
+  private _editDialog1: boolean;
+  private _viewDialog1: boolean;
+  private _submitted1: boolean;
+
   private urlFiliere = environment.baseUrl + 'filliere/';
 
   get filiere(): Filiere {
@@ -86,6 +93,36 @@ export class FiliereService {
   }
 
 
+  get editDialog1(): boolean {
+    return this._editDialog1;
+  }
+  set editDialog1(value: boolean) {
+    this._editDialog1 = value;
+  }
+
+  get submitted1(): boolean {
+    return this._submitted1;
+  }
+  set submitted1(value: boolean) {
+    this._submitted1 = value;
+  }
+
+  get viewDialog1(): boolean {
+    return this._viewDialog1;
+  }
+  set viewDialog1(value: boolean) {
+    this._viewDialog1 = value;
+  }
+
+  get createDialog1(): boolean {
+    return this._createDialog1;
+  }
+  set createDialog1(value: boolean) {
+    this._createDialog1 = value;
+  }
+
+
+
   get editDialog(): boolean {
     return this._editDialog;
   }
@@ -116,7 +153,6 @@ export class FiliereService {
 
 
 
-
   detailFiliere(f:Filiere) {
     //this._displayOptions=true;
     this.http.get<Array<MyOption>>( this.urlOption +'/filiere/code/'+f.code).subscribe(
@@ -135,7 +171,8 @@ export class FiliereService {
           console.log(error);
         });
   }
-  saveOption(input1:string,input2:string) {
+
+  /*saveOption(input1:string,input2:string) {
     this.myOption.code=input1;
     this.myOption.libelle=input2;
     this.myOption.filliere=this.filiere2;
@@ -148,7 +185,32 @@ export class FiliereService {
           console.log(error);
         }
     );
+  }*/
+
+  public saveOption(input1:string,input2:string) {
+    this.submitted1 = true;
+    this.myOption.code=input1;
+    this.myOption.libelle=input2;
+    this.myOption.filliere=this.filiere2;
+    if (this.myOption.code.trim()) {
+      this.http.post<number>(this.urlOption +'/',this.myOption ).subscribe(
+          data=> {
+            this.myOptions.push(this.cloneOption(this.myOption));
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Option est crée',
+              life: 3000
+            });
+            this.myOption=null;
+          });
+
+      this.createDialog = false;
+      this.filiere = new Filiere();
+    }
   }
+
+
   public cloneOption(opt: MyOption) {
     let nvOption : MyOption = new MyOption();
     nvOption.libelle=opt.libelle;
@@ -156,5 +218,11 @@ export class FiliereService {
     nvOption.filliere=opt.filliere;
     return nvOption;
   }
+
+  public deleteOption(): Observable<number> {
+    return this.http.delete<number>(this.urlOption + 'code/' + this.myOption.code);
+  }
+
+
 
 }

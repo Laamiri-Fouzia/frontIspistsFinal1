@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {MyModule} from '../model/myModule.model';
 import {environment} from '../../../environments/environment';
 import {Observable} from "rxjs";
+import {MyModule} from "../model/myModule.model";
 
 @Injectable({
     providedIn: 'root'
@@ -11,20 +11,83 @@ import {Observable} from "rxjs";
 export class MyModuleService {
 
     private url = environment.baseUrl + 'module/';
-    private _items: Array<MyModule>;//une liste des objets myModule
-    private _selected: MyModule;// l'objet myModule choisi
-    private _selectes: Array<MyModule>;//la liste des objet myModule choisi
 
-    private _createDialog: boolean;
-    private _editDialog: boolean;
-    private _viewDialog: boolean;
-    private _submitted: boolean;
+    // }
+    constructor(private http: HttpClient) {
+    }
+
+    private _items: Array<MyModule>;//une liste des objets myModule
+
+    get items(): Array<MyModule> {
+        return this._items;
+    }
+
+    set items(value: Array<MyModule>) {
+        this._items = value;
+    }
+
+    private _selected: MyModule;// l'objet myModule choisi
+
+    get selected(): MyModule {
+        return this._selected;
+    }
+
+    set selected(value: MyModule) {
+        this._selected = value;
+    }
 
 
     // constructor(private messageService: MessageService,
     //             private confirmationService: ConfirmationService, private http: HttpClient) {
-    // }
-    constructor(private http: HttpClient) {
+
+    private _selectes: Array<MyModule>;//la liste des objet myModule choisi
+
+    get selectes(): Array<MyModule> {
+        return this._selectes;
+    }
+
+    set selectes(value: Array<MyModule>) {
+        this._selectes = value;
+    }
+
+    private _createDialog: boolean;
+
+    get createDialog(): boolean {
+        return this._createDialog;
+    }
+
+    set createDialog(value: boolean) {
+        this._createDialog = value;
+    }
+
+    private _editDialog: boolean;
+
+    get editDialog(): boolean {
+        return this._editDialog;
+    }
+
+    set editDialog(value: boolean) {
+        this._editDialog = value;
+    }
+
+    private _viewDialog: boolean;
+
+    get viewDialog(): boolean {
+        return this._viewDialog;
+    }
+
+    set viewDialog(value: boolean) {
+        this._viewDialog = value;
+    }
+
+    private _submitted: boolean;
+
+    get submitted(): boolean {
+        return this._submitted;
+    }
+
+    set submitted(value: boolean) {
+        this._submitted = value;
     }
 
     public findAll(): Observable<Array<MyModule>> {
@@ -44,7 +107,7 @@ export class MyModuleService {
     }
 
     public deleteMultipleByCode(): Observable<number> {
-        return this.http.post<number>(this.url + 'delete-multiple-by-code' , this.selectes);
+        return this.http.post<number>(this.url + 'delete-multiple-by-code', this.selectes);
     }
 
     public findIndexById(id: number): number {
@@ -63,65 +126,8 @@ export class MyModuleService {
     }
 
     public deleteMultipleIndexById() {
-        for (const item of this.selectes){
+        for (const item of this.selectes) {
             this.deleteIndexById(item.id);
         }
-    }
-
-    get items(): Array<MyModule> {
-        return this._items;
-    }
-
-    set items(value: Array<MyModule>) {
-        this._items = value;
-    }
-
-    get selected(): MyModule {
-        return this._selected;
-    }
-
-    set selected(value: MyModule) {
-        this._selected = value;
-    }
-
-    get selectes(): Array<MyModule> {
-        return this._selectes;
-    }
-
-    set selectes(value: Array<MyModule>) {
-        this._selectes = value;
-    }
-
-
-    get createDialog(): boolean {
-        return this._createDialog;
-    }
-
-    set createDialog(value: boolean) {
-        this._createDialog = value;
-    }
-
-    get editDialog(): boolean {
-        return this._editDialog;
-    }
-
-    set editDialog(value: boolean) {
-        this._editDialog = value;
-    }
-
-    get submitted(): boolean {
-        return this._submitted;
-    }
-
-    set submitted(value: boolean) {
-        this._submitted = value;
-    }
-
-    get viewDialog(): boolean {
-        return this._viewDialog;
-    }
-
-    set viewDialog(value: boolean) {
-        this._viewDialog = value;
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Filiere} from "../../../../controller/model/filiere.model";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {FiliereService} from "../../../../controller/service/filiere.service";
+import {MyOption} from "../../../../controller/model/my-option.model";
 
 @Component({
   selector: 'app-filiere-list',
@@ -41,6 +42,7 @@ export class FiliereListComponent implements OnInit {
       }
     });
   }
+
 
   public openCreate() {
     this.filiere = new Filiere();

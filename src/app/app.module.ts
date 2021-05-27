@@ -131,6 +131,10 @@ import { InscriptionNouveauEtudiantComponent } from './view/admin/inscription-no
 import { InscriptionNouveauCreateComponent } from './view/admin/inscription-nouveau-etudiant/inscription-nouveau-create/inscription-nouveau-create.component';
 import { InscriptionAncienEtudiantComponent } from './view/admin/inscription-ancien-etudiant/inscription-ancien-etudiant.component';
 import { InscriptionNouveauEditComponent } from './view/admin/inscription-nouveau-etudiant/inscription-nouveau-edit/inscription-nouveau-edit.component';
+import { InscriptionAncienEditComponent } from './view/admin/inscription-ancien-etudiant/inscription-ancien-edit/inscription-ancien-edit.component';
+import { ModuleSemestreOptionComponent } from './view/admin/module-semestre-option/module-semestre-option.component';
+import { ModuleSemestreOptionCreateComponent } from './view/admin/module-semestre-option/module-semestre-option-create/module-semestre-option-create.component';
+import { ModuleSemestreOptionListComponent } from './view/admin/module-semestre-option/module-semestre-option-list/module-semestre-option-list.component';
 
 
 @NgModule({
@@ -256,7 +260,11 @@ import { InscriptionNouveauEditComponent } from './view/admin/inscription-nouvea
         InscriptionNouveauEtudiantComponent,
         InscriptionNouveauCreateComponent,
         InscriptionAncienEtudiantComponent,
-        InscriptionNouveauEditComponent
+        InscriptionNouveauEditComponent,
+        InscriptionAncienEditComponent,
+        ModuleSemestreOptionComponent,
+        ModuleSemestreOptionCreateComponent,
+        ModuleSemestreOptionListComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

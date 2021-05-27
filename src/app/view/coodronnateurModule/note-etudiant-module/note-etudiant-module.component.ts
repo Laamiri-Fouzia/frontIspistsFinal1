@@ -5,6 +5,8 @@ import {ModuleSemestreOptionService} from "../../../controller/service/module-se
 import {NoteEtudiantModule} from "../../../controller/model/note-etudiant-module.model";
 import {MyOption} from "../../../controller/model/my-option.model";
 import {ModuleSemestreOption} from "../../../controller/model/module-semestre-option.model";
+import {AnnéeUniversitaireService} from "../../../controller/service/année-universitaire.service";
+import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
 
 @Component({
   selector: 'app-note-etudiant-module',
@@ -18,23 +20,14 @@ export class NoteEtudiantModuleComponent implements OnInit {
   input3:number;
   displaytable: boolean=false;
   input4 ='';
-  years: any[];
   modules: any[]=new Array();
   cols: any[];
   options: any[]=new Array();
   semestres: any[]=new Array();
 
-  constructor(private moduleSemestreOptionService:ModuleSemestreOptionService,private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
+  constructor(private annéeUniversitaireService: AnnéeUniversitaireService,private moduleSemestreOptionService:ModuleSemestreOptionService,private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
     //anne ce que l'utilisateur voie et code ce qui est stocke
 
-    this.years=[
-      {annee: "Annee universitaire:", code: null},
-      {annee: 2020, code: 2020},
-      {annee:2021, code:2021},
-      {annee: 2022, code: 2022},
-      {annee: 2023, code: 2023},
-      {annee:2024, code: 2024}
-    ];
 
     this.semestres=[
       {label: "Semestre :", value: null},
@@ -52,6 +45,7 @@ export class NoteEtudiantModuleComponent implements OnInit {
     this.filiereService.getAllOptions();
     this.options.push({label: 'Option :', value: null});
     this.modules.push({label: 'Module  :', value: null});
+    this.annéeUniversitaireService.findAllyears();
     console.log( this.modules);
   }
 
@@ -74,7 +68,6 @@ export class NoteEtudiantModuleComponent implements OnInit {
     for(let  i = 0; i < this.myOptions.length; i++) {
       this.options.push({label: this.myOptions[i].libelle, value: this.myOptions[i].code});
     }
-
   }
   change2() {
     this.moduleSemestreOptionService.moduleSemestreOption.myOption.code=this.input2;
@@ -113,9 +106,13 @@ export class NoteEtudiantModuleComponent implements OnInit {
   }
 
 
-  serachEtudiant(opt:string,semestre:number,module:string) {
+  get years(): Array<AnneeUniversitaire> {
+    return this.annéeUniversitaireService.years;
+  }
 
-    this.noteEtudiantModuleService.serachEtudiant(opt,semestre,module);
+  serachEtudiant(module:string) {
+
+    this.noteEtudiantModuleService.serachEtudiant(module);
   }
   public edit(note: NoteEtudiantModule) {
     this.noteEtudiantModule = {...note};

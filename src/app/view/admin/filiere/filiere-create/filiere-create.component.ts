@@ -29,11 +29,11 @@ export class FiliereCreateComponent implements OnInit {
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
-          detail: 'le module est crée',
+          detail: 'la filiere est crée',
           life: 3000
         });
       });
-      this.createDialog = false;
+      this.createDialog = true;
       this.filiere = new Filiere();
     }
   }

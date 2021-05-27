@@ -6,7 +6,7 @@
         <div class="card p-grid">
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
                 <div class="p-col-2">
-                    <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="annee" optionValue="code" (onChange)="change1()" styleClass = "customClass"></p-dropdown>
+                    <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="libelle" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
                 </div>
 
                 <div class="p-col-2">
@@ -20,7 +20,7 @@
                 <div class="p-col-4">
                     <p-dropdown [style]="{'width':'180px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()"></p-dropdown>
                 </div>
-                <p-button class="p-col-2" (click)="serachEtudiant(input2,input3,input4)">chercher</p-button>
+                <p-button class="p-col-2" (click)="serachEtudiant(input4)">chercher</p-button>
             </p-toolbar>
 
             <p-table #dt [value]="notesEtudiantModule" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['Etudiant','Note module session normale','Resultat']"

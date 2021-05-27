@@ -27,18 +27,14 @@ export class InscriptionNouveauCreateComponent implements OnInit {
   }
 
   public hideCreateDialog() {
+    this.inscriptionEtudiantService.etudiantOption=null;
     this.createDialog = false;
   }
 
   saveNewEtudiant() {
      this.inscriptionEtudiantService. saveNewEtudiant();
-     this.hideCreateDialog();
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'la modification est effectuée ',
-      life: 3000
-    });
+     this.createDialog = false;
   }
+
 
 }

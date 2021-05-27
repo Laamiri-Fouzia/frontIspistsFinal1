@@ -1,0 +1,20 @@
+<p-dialog [(visible)]="createDialog" [style]="{height: '500px',width:'600px'}" header="Creation de module" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label >Choisir un module</label>
+            <p-dropdown [options]="modules" [(ngModel)]="input1" optionLabel="label" optionValue="value" [filter]="true"  ></p-dropdown>
+            <small class="p-invalid" *ngIf="submitted && !moduleSemestreOption.myModule.code">code is required.</small>
+        </div>
+        <div class="p-field">
+            <label >Type de module</label>
+            <p-dropdown [options]="types" [(ngModel)]="input2" optionLabel="type" optionValue="code" (onChange)="change1()"></p-dropdown>
+            <small class="p-invalid" *ngIf="submitted && !moduleSemestreOption.typeModule.code">code is required.</small>
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveOptionSemestreModule(input1,input2)"></button>
+    </ng-template>
+</p-dialog>
