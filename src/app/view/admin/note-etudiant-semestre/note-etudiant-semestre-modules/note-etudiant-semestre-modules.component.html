@@ -1,0 +1,35 @@
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="editer l'option" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-table #dt [value]="notesEtudiantModules" [columns]="3" [rows]="6" [paginator]="true" [globalFilterFields]="['module','note','etatValidation']"
+                 [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
+            <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                    <h5 class="p-m-0">les modules</h5>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="option">Module<p-sortIcon field="option"></p-sortIcon></th>
+                    <th pSortableColumn="Action">note<p-sortIcon field="Action"></p-sortIcon></th>
+                    <th pSortableColumn="Action">Etat de Validation<p-sortIcon field="Action"></p-sortIcon></th>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-notesEtudiantModule>
+                <tr>
+                    <td>{{notesEtudiantModule.moduleSemestreOption.myModule.libelle}}</td>
+                    <td>{{notesEtudiantModule}}</td>
+                    <td>{{notesEtudiantModule.etatValidation.libelle}}</td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary" let-notesEtudiantModule>
+                <div class="p-d-flex p-ai-center p-jc-between">
+                   <!-- Etat de Validation: {{notesEtudiantModule.noteEtudiantSemestre.noteSemestre}}-->
+                </div>
+            </ng-template>
+        </p-table>
+    </ng-template>
+</p-dialog>
+

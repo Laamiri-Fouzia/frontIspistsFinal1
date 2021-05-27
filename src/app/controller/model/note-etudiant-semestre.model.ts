@@ -5,6 +5,6 @@ import {EtatValidation} from "./etat-validation.model";
 export class NoteEtudiantSemestre {
   public semetre:Semestre;
   public etudiant:Etudiant;
-  public note:number;
+  public noteSemestre:number;
   public etatValidation:EtatValidation;
 }
