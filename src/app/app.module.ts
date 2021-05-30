@@ -141,6 +141,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule, MatDatepickerToggle} from "@angular/material/datepicker";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
+import { TestExcelComponent } from './view/admin/test-excel/test-excel.component';
 
 
 @NgModule({
@@ -276,7 +277,8 @@ import {MatInputModule} from "@angular/material/input";
         ModuleSemestreOptionCreateComponent,
         ModuleSemestreOptionListComponent,
         PonderationAffectComponent,
-        PonderationCreateComponent
+        PonderationCreateComponent,
+        TestExcelComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

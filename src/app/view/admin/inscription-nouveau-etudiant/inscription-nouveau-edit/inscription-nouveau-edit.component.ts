@@ -6,6 +6,7 @@ import {InscriptionEtudiantService} from "../../../../controller/service/inscrip
 import {EtudiantOption} from "../../../../controller/model/etudiant-option.model";
 import {AnnéeUniversitaireService} from "../../../../controller/service/année-universitaire.service";
 import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitaire";
+import {Contact} from "../../../../controller/model/contact.model";
 
 @Component({
   selector: 'app-inscription-nouveau-edit',
@@ -65,5 +66,6 @@ export class InscriptionNouveauEditComponent implements OnInit {
   set etudiantOption(value: EtudiantOption) {
     this.inscriptionEtudiantService.etudiantOption = value;
   }
+
 
 }
