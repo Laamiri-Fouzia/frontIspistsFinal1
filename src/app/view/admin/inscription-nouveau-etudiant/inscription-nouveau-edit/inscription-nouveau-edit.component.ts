@@ -15,12 +15,17 @@ import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitair
 export class InscriptionNouveauEditComponent implements OnInit {
 
   constructor(private inscriptionEtudiantService:InscriptionEtudiantService,private annéeUniversitaireService: AnnéeUniversitaireService ,private messageService: MessageService) { }
-
+  date:Date;
   ngOnInit(): void {
-
+    //this.date=this.etudiantOption.etudiant.dateNaissance;
   }
   get editDialog(): boolean {
     return this.inscriptionEtudiantService.editDialog;
+  }
+
+  addDate() {
+    console.log('f add date');
+    this.etudiantOption.etudiant.dateNaissance=this.date;
   }
 
   set editDialog(value: boolean) {

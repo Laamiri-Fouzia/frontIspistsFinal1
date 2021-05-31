@@ -38,7 +38,7 @@ export class InscriptionNouveauCreateComponent implements OnInit {
 
 
     addDate() {
-      this.etudiantOption.etudiant.dateNaissance.setDate((this.date.getDate())+1);
+      this.etudiantOption.etudiant.dateNaissance.setDate((this.date.getDate()));
       this.etudiantOption.etudiant.dateNaissance.setMonth(this.date.getMonth());
       this.etudiantOption.etudiant.dateNaissance.setFullYear(this.date.getFullYear());
       console.log(this.date);

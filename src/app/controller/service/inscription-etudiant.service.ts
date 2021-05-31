@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {EtudiantOption} from "../model/etudiant-option.model";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {MyModule} from "../model/myModule.model";
 import {ConfirmationService, MessageService} from "primeng/api";
 
 @Injectable({
@@ -90,7 +89,6 @@ export class InscriptionEtudiantService {
         let semestreCode = 1;
         this.http.get<Array<EtudiantOption>>(this.urlEtudiantOption + 'AncienEtudiant/option/code/' + this.optSelec + '/annee/' + this.anneselect + '/semestre/codesemes/' + semestreCode).subscribe(
             data => {
-                console.log(data)
                 this.etudiantOptions = data;
             }, error => {
                 console.log(error);
@@ -106,7 +104,6 @@ export class InscriptionEtudiantService {
         console.log(this.etudiantOption);
         this.http.get<Array<EtudiantOption>>(this.urlEtudiantOption + 'AncienEtudiant/option/code/' + optionCode + '/annee/' + annee + '/semestre/codesemes/' + semestreCode).subscribe(
             data => {
-                console.log(data)
                 this.etudiantAnciens = data;
             }, error => {
                 console.log(error);
@@ -114,18 +111,33 @@ export class InscriptionEtudiantService {
         );
     }
 
+   /* serchObject(etudiantOption: EtudiantOption) {
+        this.http.get<EtudiantOption>(this.urlEtudiantOption +'Etudiant/cne/'+this.etudiantOption.etudiant.cne+'/option/codeoption/'+this.etudiantOption.myOption.code+'/anneUniversitaire/annee/'+this.anneselect+'/semestre/semstreCode/'+1).subscribe(
+            data => {
+                this.etudiantOption=data;
+                console.log('flakher')
+                console.log(this.etudiantOption)
+                console.log(this.etudiantOption)
+                this.etudiantOptions.push({...this.etudiantOption});
+
+            },error => {
+                console.log(error);
+            });
+    }*/
 
     saveNewEtudiant() {
         this.etudiantOption.semestre.code=1;
         this.etudiantOption.anneeUniversitaire.anneeOne=this._anneselect;
         this.etudiantOption.myOption.code=this._optSelec;
-        console.log(this.etudiantOption);
+        this.etudiantOption.etudiant.dateInscription=new Date();
+        console.log(this.etudiantOption.etudiant.dateInscription);
+        console.log(this.etudiantOption.etudiant.dateNaissance);
         this.http.post(this.urlEtudiantOption + 'newEtudiant/', this.etudiantOption).subscribe(
             data => {
-                console.log(this.etudiantOption);
-
+                console.log('flfwl')
+                console.log(this.etudiantOption)
                 if (data == 1) {
-                    this.etudiantOptions.push(this.clone(this.etudiantOption));
+                    this.etudiantOptions.push({...this.etudiantOption});
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Successful',
@@ -155,10 +167,8 @@ export class InscriptionEtudiantService {
         return etuOp;
   }
     EditStudent() {
-        console.log(this.etudiantOption);
         this.http.put(this.urlEtudiant, this.etudiantOption.etudiant).subscribe(
             data =>{
-                console.log(this.etudiantOption);
                 if (data == 1) {
                     this.messageService.add({
                         severity: 'success',
@@ -182,9 +192,9 @@ export class InscriptionEtudiantService {
 
 
     deleteEtudiantOption() {
-
         this.http.delete<number>(this.urlEtudiantOption + '/Etudiant/cne/' + this.etudiantOption.etudiant.cne).subscribe(
             data => {
+
             }, error => {
                 console.log(error);
             }

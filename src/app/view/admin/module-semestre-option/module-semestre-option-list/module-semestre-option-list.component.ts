@@ -44,6 +44,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.annéeUniversitaireService.findAllyears();
+    this.moduleSemestreOptions=new Array<ModuleSemestreOption>();
   }
 
 
@@ -128,8 +129,20 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   }
 
   public deleteModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {
+    alert(1)
     this.moduleSemestreOption= moduleSemestreOption;
-    this.confirmationService.confirm({
+    this.moduleSemestreOptionService.deleteModuleSemestreOption().subscribe(data => {
+      alert(2)
+      this.moduleSemestreOptions = this.moduleSemestreOptions.filter(val => val.code !== this.moduleSemestreOption.code);
+      this.moduleSemestreOption = new ModuleSemestreOption();
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successful',
+        detail: 'module est supprimé',
+        life: 2000
+      });
+    });
+    /*this.confirmationService.confirm({
       message: 'Voulez-vous vraiment supprimer ' + moduleSemestreOption.code + '?',
       header: 'Attention',
       icon: 'pi pi-exclamation-triangle',
@@ -145,7 +158,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
           });
         });
       }
-    });
+    });*/
   }
 
 }

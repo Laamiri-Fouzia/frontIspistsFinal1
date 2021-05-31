@@ -9,7 +9,7 @@
                     <p-dropdown (onChange)="change1()" [(ngModel)]="anneselect" [options]="years" [style]="{'width':'180px'}" placeholder="Année Univesitaire"  optionLabel="libelle" optionValue="anneeOne" ></p-dropdown>
                 </div>
 
-                <div class="p-col-2">
+                       <div class="p-col-2">
                     <p-dropdown [(ngModel)]="optSelec" [filter]="true" [options]="options"
                                 [style]="{'width':'180px'}" optionLabel="label" optionValue="value"></p-dropdown>
                 </div>
@@ -24,19 +24,19 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="etudiantOptions" [columns]="cols"  [rows]="4" [paginator]="true" [globalFilterFields]="['CNE','Nom',' Prenom']"
+            <p-table #dt [value]="etudiantOptions" [columns]="cols"  [globalFilterFields]="['CNE','Nom',' Prenom']"
                      [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
 
                 <ng-template pTemplate="header">
                     <tr>
-
                         <th pSortableColumn="CNE">CNE <p-sortIcon field="CNE"></p-sortIcon></th>
                         <th pSortableColumn="CNE">CIN <p-sortIcon field="CNE"></p-sortIcon></th>
                         <th pSortableColumn="NOM">NOM<p-sortIcon field="NOM"></p-sortIcon></th>
-                        <th pSortableColumn="NOM">NOM<p-sortIcon field="NOM"></p-sortIcon></th>
-                        <th pSortableColumn="DATEn">DATE<p-sortIcon field="DATEn"></p-sortIcon></th>
+                        <th pSortableColumn="PRENOM">PRENOM<p-sortIcon field="PRENOM"></p-sortIcon></th>
+                        <th pSortableColumn="DATEn">DATE Naissance<p-sortIcon field="DATEn"></p-sortIcon></th>
+                        <th pSortableColumn="DATE Inscription">DATE Inscription<p-sortIcon field="DATE Inscription"></p-sortIcon></th>
                         <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
                     </tr>
                 </ng-template>
@@ -47,11 +47,11 @@
                         <td>{{etudiantOption.etudiant.cin}} </td>
                         <td>{{etudiantOption.etudiant.nom}} </td>
                         <td> {{etudiantOption.etudiant.prenom}} </td>
-                        <td> {{etudiantOption.etudiant.dateNaissance | json}} </td>
+                        <td>{{etudiantOption.etudiant.dateNaissance}}</td>
+                        <td>{{etudiantOption.etudiant.dateInscription}}</td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editEtudiant(etudiantOption)"></button>
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(etudiantOption)"></button>
-
                         </td>
                     </tr>
                 </ng-template>

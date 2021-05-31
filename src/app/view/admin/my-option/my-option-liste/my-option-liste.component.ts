@@ -45,12 +45,24 @@ export class MyOptionListeComponent implements OnInit {
 
   public deleteOption(myOption: MyOption) {
     this.myOption= myOption;
-    this.confirmationService.confirm({
+
+    this.service.deleteOptionByCode().subscribe(data => {
+      this.myOptions = this.myOptions.filter(val => val.id !== this.myOption.id);
+      this.myOption = new MyOption();
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successful',
+        detail: 'Option est supprimé',
+        life: 2000
+      });
+    });
+
+    /*this.confirmationService.confirm({
       message: 'Voulez-vous vraiment supprimer ' + myOption.code + '?',
       header: 'Attention',
       icon: 'pi pi-exclamation-triangle',
       accept: () =>{
-        this.service.deleteByCode().subscribe(data => {
+        this.service.deleteOptionByCode().subscribe(data => {
           this.myOptions = this.myOptions.filter(val => val.id !== this.myOption.id);
           this.myOption = new MyOption();
           this.messageService.add({
@@ -61,7 +73,7 @@ export class MyOptionListeComponent implements OnInit {
           });
         });
       }
-    });
+    });*/
   }
 
 

@@ -7,7 +7,7 @@
             <div class="p-grid">
                 <p-toolbar styleClass="p-mb-4" class="p-col-12">
                     <div class="p-col-6">
-                        <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="libelle" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
+                        <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
                     </div>
                     <div class="p-col-4">
                         <p-dropdown [options]="semestres" [(ngModel)]="input2" optionLabel="semestre" optionValue="code" (onChange)="change2()"></p-dropdown>
@@ -27,7 +27,7 @@
                     </ng-template>
                 </p-toolbar>
 
-                <p-table #dt [value]="moduleSemestreOptions" [columns]="3" [rows]="4" [paginator]="true" [globalFilterFields]="['code','libelle']"
+                <p-table #dt [value]="moduleSemestreOptions" [columns]="3"  [globalFilterFields]="['code','libelle']"
                          [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
                     <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
                     <ng-template pTemplate="caption">

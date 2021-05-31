@@ -19,6 +19,7 @@ export class NoteEtudiantModuleService {
   constructor(private http:HttpClient) { }
 
   serachEtudiant(module:string) {
+      alert(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module)
       this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module).subscribe(
       data => {
         this.notesEtudiantModule = data;

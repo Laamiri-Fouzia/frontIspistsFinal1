@@ -19,7 +19,6 @@ export class ModuleSemestreOptionCreateComponent implements OnInit {
   input1='';
   input2='';
   types: any[];
-  modules: any[]=new Array();
 
   get OptionSelec(): string {
     return this.moduleSemestreOptionService.OptionSelec ;
@@ -41,9 +40,6 @@ export class ModuleSemestreOptionCreateComponent implements OnInit {
 
   change1() {
     this.moduleSemestreOptionService.typeSelec=this.input1;
-    for(let  i = 0; i < this.items.length; i++) {
-      this.modules.push({label: this.items[i].libelle, value: this.items[i].code});
-    }
 
   }
   /*change2() {
