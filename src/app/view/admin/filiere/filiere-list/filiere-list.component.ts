@@ -119,6 +119,7 @@ export class FiliereListComponent implements OnInit {
   }
 
   detailFiliere(filiere: Filiere) {
+    this.service.labelOption='La liste des Options de la filiere :'+filiere.libelle;
     this.service.detailFiliere(filiere);
   }
 

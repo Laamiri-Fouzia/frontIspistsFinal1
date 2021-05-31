@@ -24,6 +24,8 @@ export class FiliereService {
   private _viewDialog1: boolean;
   private _submitted1: boolean;
 
+  private _labelOption:string;
+
   private urlFiliere = environment.baseUrl + 'filliere/';
 
   get filiere(): Filiere {
@@ -234,6 +236,14 @@ export class FiliereService {
 
   public deleteOption(): Observable<number> {
     return this.http.delete<number>(this.urlOption + 'code/' + this.myOption.code);
+  }
+
+  get labelOption(): string {
+    return this._labelOption;
+  }
+
+  set labelOption(value: string) {
+    this._labelOption = value;
   }
 
 

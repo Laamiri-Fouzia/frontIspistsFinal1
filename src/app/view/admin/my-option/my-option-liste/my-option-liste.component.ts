@@ -14,14 +14,21 @@ export class MyOptionListeComponent implements OnInit {
 
   cols: any[];
 
+
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
               private service: FiliereService, private moduleSemestreOptionService:ModuleSemestreOptionService) {
   }
 
   ngOnInit(): void {
     this.service.getAllOptions();
+    this.labelOption='la liste de tous les Options ';
   }
-
+  get labelOption(): string {
+    return this.service.labelOption;
+  }
+  set labelOption(value: string) {
+    this.service.labelOption = value;
+  }
   /*public delete(filiere: Filiere) {
     this.filiere = filiere;
     this.confirmationService.confirm({

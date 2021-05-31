@@ -45,6 +45,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   ngOnInit(): void {
     this.annéeUniversitaireService.findAllyears();
     this.moduleSemestreOptions=new Array<ModuleSemestreOption>();
+    this.displayModules=false;
   }
 
 
@@ -82,6 +83,11 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   get displayModules(): boolean {
     return this.moduleSemestreOptionService.displayModules;
   }
+
+  set displayModules(value: boolean) {
+    this.moduleSemestreOptionService.displayModules = value;
+  }
+
 
   get moduleSemestreOptions(): Array<ModuleSemestreOption> {
     return this.moduleSemestreOptionService.moduleSemestreOptions;
@@ -126,6 +132,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   }
   findByOptionCode() {
     this.moduleSemestreOptionService.findByOptionCode();
+    this.displayModules=true;
   }
 
   public deleteModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {

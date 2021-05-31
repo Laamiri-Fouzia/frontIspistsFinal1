@@ -39,21 +39,39 @@ export class NoteEtudiantModuleEditComponent implements OnInit {
   }
 
   EditNote() {
+    if(this.noteEtudiantModule.noteContinue<0 || this.noteEtudiantModule.noteContinue>20 || this.noteEtudiantModule.noteFinalAvRat<0 || this.noteEtudiantModule.noteFinalAvRat>20)
+    {
+      alert(1)
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error !',
+        detail: 'Opération echouée: entrer une note entre 0 et 20  !'
+      });
+
+    }else{
+      alert(2)
     if (this.noteEtudiantModule.id) {
       this.notesEtudiantModule[this.findIndexById(this.noteEtudiantModule.id)] = this.noteEtudiantModule;
     }
     this.noteEtudiantModuleService.EditNote();
-    this.hideEditDialog();
+
     this.messageService.add({
       severity: 'success',
       summary: 'Successful',
       detail: 'la modification est effectuée ',
       life: 3000
     });
-
+    }
+    this.hideEditDialog();
   }
+
   public hideEditDialog() {
     this.editDialog = false;
   }
 
+    verifyNote(note:number) {
+       //if(note>20 || note<0)
+
+
+    }
 }

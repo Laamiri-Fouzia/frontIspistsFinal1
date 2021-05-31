@@ -13,6 +13,11 @@ import {MessageService} from "primeng/api";
 export class ModuleSemestreOptionService {
 
 
+    set displayModules(value: boolean) {
+        this._displayModules = value;
+    }
+
+
     private URLmoduleSemOpt = 'ispits-project/module-semestre-option/';
     private urlBase = 'http://localhost:8036/';//http://localhost:8036/ispits-project/module-semestre-option/
 

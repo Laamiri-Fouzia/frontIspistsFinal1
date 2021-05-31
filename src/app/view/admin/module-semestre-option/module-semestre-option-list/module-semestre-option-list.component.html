@@ -19,7 +19,7 @@
                 </p-toolbar>
             </div>
 
-
+    <div [ngClass]="{'vis':displayModules==false}">
             <div class="card">
                 <p-toolbar styleClass="p-mb-4">
                     <ng-template pTemplate="left">
@@ -32,7 +32,7 @@
                     <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
                     <ng-template pTemplate="caption">
                         <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                            <h5 class="p-m-0">Modules</h5>
+                            <h5 class="p-m-0">la liste des Modules de l'option {{moduleSemestreOption.myOption.code}}</h5>
 
                         </div>
                     </ng-template>
@@ -64,6 +64,7 @@
                     </ng-template>
                 </p-table>
             </div>
+    </div>
             <app-module-semestre-option-create></app-module-semestre-option-create>
             <!--<app-myOption-liste></app-myOption-liste>
             <app-myModule-view></app-myModule-view>-->
