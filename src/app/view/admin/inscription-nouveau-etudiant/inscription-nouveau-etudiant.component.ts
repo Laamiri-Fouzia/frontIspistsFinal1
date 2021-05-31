@@ -10,7 +10,10 @@ import {AnnéeUniversitaireService} from "../../../controller/service/année-uni
 import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
 import * as FileSaver from 'file-saver';
 import {Etudiant} from "../../../controller/model/etudiant.model";
-
+import html2canvas from 'html2canvas';
+import { Workbook } from 'exceljs';
+import * as fs from 'file-saver';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-inscription-nouveau-etudiant',
@@ -271,8 +274,6 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
       this.saveAsExcelFile(excelBuffer, "Inscription_etudaints_s1");//hnna nzido option li m selectia o annee
     });
   }
-
-
   saveAsExcelFile(buffer: any, fileName: string): void {
     let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
     let EXCEL_EXTENSION = '.xlsx';
@@ -281,7 +282,6 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);//    FileSaver.saveAs(data, fileName +this.anneselect+this.optSelec+ '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
-
   testExport() {
     this.inscriptionEtudiantService.testExport().subscribe(x => {
       const blob = new Blob([x], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'})
@@ -301,6 +301,49 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
 
     });
   }
+  /*@ViewChild('htmlData')htmlData:
+      ElementRef;*/
+  downloadExcel() {
+
+    const workbook = new Workbook();
+    const worksheet = workbook.addWorksheet('ProductData');
+    const annee=this.anneselect+1
+    worksheet.columns = [
+      { header: 'cne', key: 'cne', width: 10 },
+      { header: 'cin', key: 'cin', width: 32 },
+      { header: 'nom', key: 'nom', width: 10 },
+      { header: 'prenom', key: 'prenom', width: 10 },
+      { header: 'datenaiss', key: 'datenaiss', width: 10 }
+      // { header: 'Price', key: 'price', width: 10, style: { font: { name: 'Arial Black', size: 10} } },
+    ];
+    this.inscriptionEtudiantService.etudiantOptions.forEach(e => {
+      worksheet.addRow({cne: e.etudiant.cne, cin: e.etudiant.cin, nom: e.etudiant.nom, prenom: e.etudiant.prenom ,datenaiss: e.etudiant.dateNaissance}, 'n');
+    });
+    workbook.xlsx.writeBuffer().then((data) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      fs.saveAs(blob, 'Inscription_etudiants_S1_'+this.anneselect+'/'+annee+'_'+this.optSelec+'.xlsx');
+    });
+  }
+
+  public openPDF(): void {
+    const DATA = document.getElementById('htmlData');
+
+    html2canvas(DATA).then(canvas => {
+
+      const fileWidth = 208;
+      const fileHeight = canvas.height * fileWidth / canvas.width;
+
+      const FILEURI = canvas.toDataURL('image/png');
+      const PDF = new jsPDF('p', 'mm', 'a4');
+      const position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+
+      PDF.save('tasssa.pdf');
+    });
+  }
+
+
+
 
 }
 

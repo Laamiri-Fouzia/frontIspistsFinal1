@@ -278,7 +278,8 @@ import { TestExcelComponent } from './view/admin/test-excel/test-excel.component
         ModuleSemestreOptionListComponent,
         PonderationAffectComponent,
         PonderationCreateComponent,
-        TestExcelComponent
+        TestExcelComponent,
+
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
