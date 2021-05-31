@@ -4,7 +4,8 @@
         <p-toast></p-toast>
 
         <div class="card p-grid">
-            <p-toolbar styleClass="p-mb-4 " class="p-col-12">
+            <h4 class="p-col-12 p-text-center bold">Affichage Des PV</h4>
+            <p-toolbar styleClass="p-mb-4" class="p-col-12">
                 <div class="p-col-2">
                     <p-dropdown [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Filiere" (onChange)="change1()"></p-dropdown>
                 </div>
@@ -13,11 +14,11 @@
                 </div>
 
                 <div class="p-col-2">
-                    <p-dropdown [options]="years" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true"></p-dropdown>
+                    <p-dropdown [options]="years" [(ngModel)]="input2" optionLabel="libelle" optionValue="libelle" [filter]="true" placeholder="Année" (onChange)="change3()"></p-dropdown>
                 </div>
 
                 <div class="p-col-2">
-                    <p-dropdown [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"></p-dropdown>
+                    <p-dropdown [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value" (onChange)="change2()"></p-dropdown>
                 </div>
                 <p-button class="p-col-2" (click)="serachEtudiant(input1,input2,input3)">chercher</p-button>
             </p-toolbar>
@@ -48,9 +49,9 @@
                         </td>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="summary" let-noteSemestres>
+                <ng-template pTemplate="summary">
                     <div class="p-d-flex p-ai-center p-jc-between">
-                        Etat de Validation: {{noteSemestres.noteEtudiantSemestre.etatValidation}} éléments.
+                        En totale il y a {{myNotesSemestre ? myNotesSemestre.length : 0 }} éléments.
                     </div>
                 </ng-template>
             </p-table>

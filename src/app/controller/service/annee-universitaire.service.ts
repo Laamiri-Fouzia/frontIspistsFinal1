@@ -7,10 +7,10 @@ import {environment} from "../../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
-export class AnnéeUniversitaireService {
+export class AnneeUniversitaireService {
 
   private _years: Array<AnneeUniversitaire>;
-  private urlAnne=environment.baseUrl+'année-universitaire';
+  private urlAnne=environment.baseUrl+'annee-universitaire';
 
   constructor(private http: HttpClient) { }
 

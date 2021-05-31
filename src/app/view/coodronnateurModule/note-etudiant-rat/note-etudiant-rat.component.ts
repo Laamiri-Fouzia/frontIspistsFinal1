@@ -6,7 +6,7 @@ import {MyOption} from "../../../controller/model/my-option.model";
 import {ModuleSemestreOption} from "../../../controller/model/module-semestre-option.model";
 import {NoteEtudiantModule} from "../../../controller/model/note-etudiant-module.model";
 import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
-import {AnnéeUniversitaireService} from "../../../controller/service/année-universitaire.service";
+import {AnneeUniversitaireService} from "../../../controller/service/annee-universitaire.service";
 
 @Component({
   selector: 'app-note-etudiant-rat',
@@ -25,7 +25,7 @@ export class NoteEtudiantRatComponent implements OnInit {
   options: any[]=new Array();
   semestres: any[]=new Array();
 
-  constructor(private annéeUniversitaireService: AnnéeUniversitaireService,private moduleSemestreOptionService:ModuleSemestreOptionService,private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
+  constructor(private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService:ModuleSemestreOptionService, private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
     //anne ce que l'utilisateur voie et code ce qui est stock
 
     this.semestres=[

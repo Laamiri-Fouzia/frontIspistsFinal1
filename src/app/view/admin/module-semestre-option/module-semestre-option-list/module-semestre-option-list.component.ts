@@ -4,7 +4,7 @@ import {ModuleSemestreOptionService} from "../../../../controller/service/module
 import {MyOption} from "../../../../controller/model/my-option.model";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitaire";
-import {AnnéeUniversitaireService} from "../../../../controller/service/année-universitaire.service";
+import {AnneeUniversitaireService} from "../../../../controller/service/annee-universitaire.service";
 
 @Component({
   selector: 'app-module-semestre-option-list',
@@ -27,7 +27,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
 
 
 
-  constructor(private annéeUniversitaireService: AnnéeUniversitaireService,private moduleSemestreOptionService:ModuleSemestreOptionService,private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService:ModuleSemestreOptionService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
 
     this.semestres=[
