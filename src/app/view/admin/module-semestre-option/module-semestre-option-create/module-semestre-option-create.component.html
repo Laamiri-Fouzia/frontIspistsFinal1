@@ -1,13 +1,13 @@
-<p-dialog [(visible)]="createDialog" [style]="{height: '500px',width:'600px'}" header="Creation de module" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [style]="{width:'600px'}" header="Creation de module" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
             <label >Choisir un module</label>
-            <p-dropdown [options]="modules" [(ngModel)]="input1" optionLabel="label" optionValue="value" [filter]="true"  ></p-dropdown>
+            <p-dropdown placeholder="choisir un Module" [options]="items" [(ngModel)]="input1" optionLabel="libelle" optionValue="code" [filter]="true"  ></p-dropdown>
             <small class="p-invalid" *ngIf="submitted && !moduleSemestreOption.myModule.code">code is required.</small>
         </div>
         <div class="p-field">
             <label >Type de module</label>
-            <p-dropdown [options]="types" [(ngModel)]="input2" optionLabel="type" optionValue="code" (onChange)="change1()"></p-dropdown>
+            <p-dropdown placeholder="choisir un type de  Module" [options]="types" [(ngModel)]="input2" optionLabel="type" optionValue="code" (onChange)="change1()"></p-dropdown>
             <small class="p-invalid" *ngIf="submitted && !moduleSemestreOption.typeModule.code">code is required.</small>
         </div>
 

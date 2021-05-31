@@ -24,7 +24,18 @@ export class FiliereListComponent implements OnInit {
 
   public delete(filiere: Filiere) {
     this.filiere = filiere;
-    this.confirmationService.confirm({
+    this.service.deleteByCode().subscribe(data => {
+      this.filieres = this.filieres.filter(val => val.id !== this.filiere.id);
+      this.filiere = new Filiere();
+    });
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Successful',
+      detail: 'la filière est supprimé',
+      life: 2000
+    });
+
+    /*this.confirmationService.confirm({
       message: 'Voulez-vous vraiment supprimer ' + filiere.code + '?',
       header: 'Attention',
       icon: 'pi pi-exclamation-triangle',
@@ -32,15 +43,10 @@ export class FiliereListComponent implements OnInit {
         this.service.deleteByCode().subscribe(data => {
           this.filieres = this.filieres.filter(val => val.id !== this.filiere.id);
           this.filiere = new Filiere();
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'la filière est supprimé',
-            life: 2000
-          });
+
         });
       }
-    });
+    });*/
   }
 
 
@@ -113,6 +119,7 @@ export class FiliereListComponent implements OnInit {
   }
 
   detailFiliere(filiere: Filiere) {
+    this.service.labelOption='La liste des Options de la filiere :'+filiere.libelle;
     this.service.detailFiliere(filiere);
   }
 

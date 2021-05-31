@@ -4,7 +4,7 @@ import {ModuleSemestreOptionService} from "../../../../controller/service/module
 import {MyOption} from "../../../../controller/model/my-option.model";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitaire";
-import {AnnéeUniversitaireService} from "../../../../controller/service/année-universitaire.service";
+import {AnneeUniversitaireService} from "../../../../controller/service/annee-universitaire.service";
 
 @Component({
   selector: 'app-module-semestre-option-list',
@@ -27,7 +27,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
 
 
 
-  constructor(private annéeUniversitaireService: AnnéeUniversitaireService,private moduleSemestreOptionService:ModuleSemestreOptionService,private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService:ModuleSemestreOptionService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
 
     this.semestres=[
@@ -44,6 +44,8 @@ export class ModuleSemestreOptionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.annéeUniversitaireService.findAllyears();
+    this.moduleSemestreOptions=new Array<ModuleSemestreOption>();
+    this.displayModules=false;
   }
 
 
@@ -81,6 +83,11 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   get displayModules(): boolean {
     return this.moduleSemestreOptionService.displayModules;
   }
+
+  set displayModules(value: boolean) {
+    this.moduleSemestreOptionService.displayModules = value;
+  }
+
 
   get moduleSemestreOptions(): Array<ModuleSemestreOption> {
     return this.moduleSemestreOptionService.moduleSemestreOptions;
@@ -125,11 +132,24 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   }
   findByOptionCode() {
     this.moduleSemestreOptionService.findByOptionCode();
+    this.displayModules=true;
   }
 
   public deleteModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {
+    alert(1)
     this.moduleSemestreOption= moduleSemestreOption;
-    this.confirmationService.confirm({
+    this.moduleSemestreOptionService.deleteModuleSemestreOption().subscribe(data => {
+      alert(2)
+      this.moduleSemestreOptions = this.moduleSemestreOptions.filter(val => val.code !== this.moduleSemestreOption.code);
+      this.moduleSemestreOption = new ModuleSemestreOption();
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successful',
+        detail: 'module est supprimé',
+        life: 2000
+      });
+    });
+    /*this.confirmationService.confirm({
       message: 'Voulez-vous vraiment supprimer ' + moduleSemestreOption.code + '?',
       header: 'Attention',
       icon: 'pi pi-exclamation-triangle',
@@ -145,7 +165,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
           });
         });
       }
-    });
+    });*/
   }
 
 }

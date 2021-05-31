@@ -24,17 +24,26 @@ export class MyModuleCreateComponent implements OnInit {
     public save() {
         this.submitted = true;
         if (this.selected.code.trim()) {
-            this.service.save().subscribe(data => {
-                this.items.push({...data});//au lieu de clonne
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Successful',
-                    detail: 'le module est crée',
-                    life: 3000
-                });
-            });
+            this.service.save().subscribe(
+                data => {
+                    if(data==1){
+                        this.service.serchObject(this.selected);
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Successful',
+                            detail: 'le module est crée',
+                        });
+                    }else {
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Error !',
+                            detail: 'Attention : Une option avec le code : '+this.selected.code+' est deja existe !'
+                        });
+                    }
+                    this.selected = new MyModule();
+                }
+                );
             this.createDialog = false;
-            this.selected = new MyModule();
         }
     }
     get selected(): MyModule {

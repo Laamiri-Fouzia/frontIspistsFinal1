@@ -104,7 +104,7 @@ export class AppMenuComponent implements OnInit {
                             },
                     {label: 'Les ponderations', icon: 'pi pi-fw pi-percentage', routerLink: ['/view/ponderation']},
                     {label: 'Les PVs', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/view/note-etudiant-semestre']},
-
+                    {label: 'Les PV Etudiant', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/view/etudiant']},
                     /*{label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']},
                     {label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']},
                     {label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']},

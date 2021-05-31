@@ -10,12 +10,12 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="myOptions" [columns]="3" [rows]="4" [paginator]="true" [globalFilterFields]="['code','libelle']"
+            <p-table #dt [value]="myOptions" [columns]="3"  [globalFilterFields]="['code','libelle']"
                      [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
                 <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
                 <ng-template pTemplate="caption">
                     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                        <h5 class="p-m-0">Options</h5>
+                        <h5 class="p-m-0">{{labelOption}} </h5>
 
                     </div>
                 </ng-template>

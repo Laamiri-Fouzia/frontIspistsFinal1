@@ -18,7 +18,7 @@ import {InscriptionNouveauEtudiantComponent} from "./view/admin/inscription-nouv
 import {InscriptionAncienEtudiantComponent} from "./view/admin/inscription-ancien-etudiant/inscription-ancien-etudiant.component";
 import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre.component";
 import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-affect/ponderation-affect.component";
-import {TestExcelComponent} from "./view/admin/test-excel/test-excel.component";
+import {EtudiantComponent} from "./view/etudiant/etudiant.component";
 
 @NgModule({
     imports: [
@@ -36,7 +36,7 @@ import {TestExcelComponent} from "./view/admin/test-excel/test-excel.component";
                     {path: 'pages/calendar', component: AppCalendarComponent},
                     {path: 'view/note-etudiant-semestre', component: NoteEtudiantSemestreComponent},
                     {path: 'view/ponderation', component: PonderationAffectComponent},
-                    {path: 'view/testingExcel', component: TestExcelComponent}
+                    {path: 'view/etudiant', component: EtudiantComponent},
                 ]
             },
             {path: 'error', component: AppErrorComponent},

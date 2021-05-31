@@ -68,8 +68,8 @@ export class MyModuleListComponent implements OnInit {
         this.createDialog = true;
     }
 
-    public edit(commande: MyModule) {
-        this.selected = {...commande};
+    public edit(myModule: MyModule) {
+        this.selected = {...myModule};
         this.editDialog = true;
     }
     public view(commande: MyModule) {

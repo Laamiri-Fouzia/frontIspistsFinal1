@@ -7,7 +7,7 @@ import {NoteEtudiantModule} from "../../../controller/model/note-etudiant-module
 import {EtudiantOption} from "../../../controller/model/etudiant-option.model";
 import {MessageService} from "primeng/api";
 import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
-import {AnnéeUniversitaireService} from "../../../controller/service/année-universitaire.service";
+import {AnneeUniversitaireService} from "../../../controller/service/annee-universitaire.service";
 
 @Component({
   selector: 'app-inscription-ancien-etudiant',
@@ -21,7 +21,7 @@ export class InscriptionAncienEtudiantComponent implements OnInit {
   options: any[]=new Array();
   semestres: any[]=new Array();
 
-  constructor(private messageService: MessageService,private annéeUniversitaireService: AnnéeUniversitaireService,private inscriptionEtudiantService:InscriptionEtudiantService,private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
+  constructor(private messageService: MessageService, private annéeUniversitaireService: AnneeUniversitaireService, private inscriptionEtudiantService:InscriptionEtudiantService, private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
     //anne ce que l'utilisateur voie et code ce qui est stocke
 
     this.semestres=[

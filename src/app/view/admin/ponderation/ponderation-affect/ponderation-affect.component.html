@@ -9,7 +9,7 @@
                     <p-dropdown [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Filiere" (onChange)="change1()"></p-dropdown>
                 </div>
 
-                <p-button class="p-col-2" icon="pi pi-search" (click)="chercheOptions()"></p-button>
+                <p-button pButton class="p-col-2" icon="pi pi-search" label="Chercher" (click)="chercheOptions()"></p-button>
             </p-toolbar>
 
             <p-table #dt [value]="myOptions" [columns]="2" [rows]="4" [paginator]="true" [globalFilterFields]="['code','libelle']"

@@ -1,0 +1,68 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card">
+            <!--<p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="Nouveau filiere" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" ></button>
+                </ng-template>
+            </p-toolbar>-->
+
+            <p-table #dt [value]="notesEtudiantModules" [columns]="3" [rows]="4" [globalFilterFields]="['code','libelle']"
+                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
+                <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
+
+                <ng-template pTemplate="header" >
+                    <tr>
+                        <th>PV du jury du semestre:</th>
+                        <th>S{{semestreSelct}} </th>
+                    </tr>
+                    <tr>
+                        <th>Nom et Prénom: </th>
+                        <th>{{notesEtudiantModules[0].etudiant.nom+'  '+notesEtudiantModules[0].etudiant.prenom}}</th>
+                    </tr>
+
+                    <tr>
+
+                        <th pSortableColumn="option">Module<p-sortIcon field="option"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Note Module<p-sortIcon field="Action"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Etat de Validation<p-sortIcon field="Action"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Année Universitaire<p-sortIcon field="Action"></p-sortIcon></th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-notesEtudiantModule>
+                    <tr>
+
+                    </tr>
+                    <tr>
+                        <td>{{notesEtudiantModule.moduleSemestreOption.myModule.libelle}}</td>
+                        <td>{{notesEtudiantModule.noteGlobale}}</td>
+                        <td>{{notesEtudiantModule.etatValidation.libelle}}</td>
+                        <td>{{notesEtudiantModule.moduleSemestreOption.anneeUniversitaire.libelle}}</td>
+                    <tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        <tr>
+                            <th>Moyenne: </th>
+                            <th>{{notesEtudiantModules[0].noteEtudiantSemestre.noteSemestre}}</th>
+                        </tr>
+                        <tr>
+                            <th>Résultat: </th>
+                            <th>{{notesEtudiantModules[0].noteEtudiantSemestre.etatValidation.libelle}}</th>
+                        </tr>
+
+                    </div>
+                </ng-template>
+
+            </p-table>
+        </div>
+        <app-filiere-create></app-filiere-create>
+        <!--<app-myOption-liste></app-myOption-liste>
+        <app-myModule-view></app-myModule-view>-->
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>
