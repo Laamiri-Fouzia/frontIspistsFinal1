@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {NoteEtudiantSemestreService} from "../../../../controller/service/note-etudiant-semestre.service";
-import {NoteEtudiantModule} from "../../../../controller/model/note-etudiant-module.model";
+import {NoteEtudiantModule} from "../../../controller/model/note-etudiant-module.model";
+import {NoteEtudiantSemestreService} from "../../../controller/service/note-etudiant-semestre.service";
 
 @Component({
-  selector: 'app-note-etudiant-semestre-modules',
-  templateUrl: './note-etudiant-semestre-modules.component.html',
-  styleUrls: ['./note-etudiant-semestre-modules.component.scss']
+  selector: 'app-note-semestre-one',
+  templateUrl: './note-semestre-one.component.html',
+  styleUrls: ['./note-semestre-one.component.scss']
 })
-export class NoteEtudiantSemestreModulesComponent implements OnInit {
+export class NoteSemestreOneComponent implements OnInit {
 
   constructor(private noteEtudiantSemestreService:NoteEtudiantSemestreService) { }
 
@@ -19,13 +19,6 @@ export class NoteEtudiantSemestreModulesComponent implements OnInit {
 
   set semestreSelct(value: number) {
     this.noteEtudiantSemestreService.semestreSelct = value;
-  }
-  get createDialog(): boolean {
-    return this.noteEtudiantSemestreService.createDialog;
-  }
-
-  set createDialog(value: boolean) {
-    this.noteEtudiantSemestreService.createDialog = value;
   }
   get notesEtudiantModules(): Array<NoteEtudiantModule> {
     return this.noteEtudiantSemestreService.notesEtudiantModules;

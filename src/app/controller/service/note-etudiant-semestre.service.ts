@@ -5,6 +5,7 @@ import {MessageService} from "primeng/api";
 import {NoteEtudiantSemestre} from "../model/note-etudiant-semestre.model";
 import {Filiere} from "../model/filiere.model";
 import {NoteEtudiantModule} from "../model/note-etudiant-module.model";
+import {Etudiant} from "../model/etudiant.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,16 +20,58 @@ export class NoteEtudiantSemestreService {
   private _urlFiliere='ispits-project/filliere';
   private _urlNoteEtudModule: string='ispits-project/note-etudiant-modul';
   private _filierSelct:string;
+  private _semestreSelct:number;
+  private _etudiant:Etudiant;
+  private _anneeSelect:String;
   private _filieres:Array<Filiere>;
   private _createDialog: boolean;
   private _editDialog: boolean;
   private _viewDialog: boolean;
   private _submitted: boolean;
   private _noteSemestre:NoteEtudiantSemestre;
+  private _notesEtudiantModules1:Array<NoteEtudiantModule>;
   private _notesEtudiantModules:Array<NoteEtudiantModule>;
+  private _notesEtudiantModules2:Array<NoteEtudiantModule>;
+
+    get anneeSelect(): String {
+        return this._anneeSelect;
+    }
+
+    get etudiant(): Etudiant {
+        if(this._etudiant==null){
+            this._etudiant=new Etudiant();
+        }
+        return this._etudiant;
+    }
+
+    set etudiant(value: Etudiant) {
+        this._etudiant = value;
+    }
+
+    set anneeSelect(value: String) {
+        this._anneeSelect = value;
+    }
+
+    get semestreSelct(): number {
+        return this._semestreSelct;
+    }
+
+    set semestreSelct(value: number) {
+        this._semestreSelct = value;
+    }
 
 
-  get notesEtudiantModules(): Array<NoteEtudiantModule> {
+  get notesEtudiantModules1(): Array<NoteEtudiantModule> {
+      if(this._notesEtudiantModules1==null){
+          this._notesEtudiantModules1=new Array<NoteEtudiantModule>();
+      }
+        return this._notesEtudiantModules1;
+    }
+
+    set notesEtudiantModules1(value: Array<NoteEtudiantModule>) {
+        this._notesEtudiantModules1 = value;
+    }
+    get notesEtudiantModules(): Array<NoteEtudiantModule> {
       if(this._notesEtudiantModules==null){
           this._notesEtudiantModules=new Array<NoteEtudiantModule>();
       }
@@ -37,6 +80,16 @@ export class NoteEtudiantSemestreService {
 
     set notesEtudiantModules(value: Array<NoteEtudiantModule>) {
         this._notesEtudiantModules = value;
+    }
+    get notesEtudiantModules2(): Array<NoteEtudiantModule> {
+      if(this._notesEtudiantModules2==null){
+          this._notesEtudiantModules2=new Array<NoteEtudiantModule>();
+      }
+        return this._notesEtudiantModules2;
+    }
+
+    set notesEtudiantModules2(value: Array<NoteEtudiantModule>) {
+        this._notesEtudiantModules2 = value;
     }
 
     get noteSemestre(): NoteEtudiantSemestre {
@@ -145,8 +198,8 @@ export class NoteEtudiantSemestreService {
   }*/
 
 
-  serachEtudiant(input1: string,input2: number, input3: string) {
-    this.http.get<Array<NoteEtudiantSemestre>>(this._urlBase+this._urlNoteEtudiantSemestre+'/semestre/codeSemestre/'+input3+'/option/codeOption/'+input1+'/annee/'+input2).subscribe(
+  serachEtudiant(input1: string,input2: string, input3: number) {
+    this.http.get<Array<NoteEtudiantSemestre>>(this._urlBase+this._urlNoteEtudiantSemestre+'/semestre/codeSemestre/'+input3+'/option/codeOption/'+input1+'/annee-universitaire/libelle/'+input2).subscribe(
         data=>{
           console.log(data);
           this.myNotesSemestre=data;
@@ -167,13 +220,58 @@ export class NoteEtudiantSemestreService {
   }
 
     detailSemestre(noteSemestres: NoteEtudiantSemestre) {
-        this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+noteSemestres.etudiant.cne).subscribe(
+        this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+noteSemestres.etudiant.cne+'/moduleSemestreOption/semestre/code/'+this.semestreSelct).subscribe(
             data=>{
                 this.notesEtudiantModules=data;
+                console.log(data);
+                console.log('hadi data');
+                console.log(data[0].moduleSemestreOption.anneeUniversitaire);
+                this.notesEtudiantModules1=null;
+                this.notesEtudiantModules2=null;
+                for(let i=0 ; i<this.notesEtudiantModules.length ; i++){
+
+                    console.log(this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire)
+                    if(this.notesEtudiantModules[i].moduleSemestreOption.semestre.code==this.semestreSelct && this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.libelle==this.anneeSelect){
+                        this.notesEtudiantModules1.push(this.notesEtudiantModules[i]);
+                    }else if(this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.libelle!=this._anneeSelect){
+                        this.notesEtudiantModules2.push(this.notesEtudiantModules[i]);
+                    }
+                }
+                console.log(this.notesEtudiantModules1);
+                console.log(this.notesEtudiantModules2);
                 console.log(data);
             },error => {
                 alert('error')
             }
         );
+    }
+
+    afficherPV(input1: string, input2: number) {
+        this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+input1+'/moduleSemestreOption/semestre/code/'+input2).subscribe(
+            data=>{
+                this.notesEtudiantModules=data;
+                console.log(data);
+
+                /*for(let i=0 ; i<this.notesEtudiantModules.length ; i++){
+                    for(let j=0 ; j<this.notesEtudiantModules.length ; j++){
+                        if(this.notesEtudiantModules[j].moduleSemestreOption.myModule.code==this.notesEtudiantModules[i].moduleSemestreOption.myModule.code && this.notesEtudiantModules[j].moduleSemestreOption.anneeUniversitaire.anneeOne<this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.anneeOne){
+                            this.notesEtudiantModules1.push(this.notesEtudiantModules[j]);
+                        }
+                    }
+
+
+                }
+                for(let i=0 ; i<this.notesEtudiantModules1.length ; i++){
+            this.notesEtudiantModules.splice(1,i);
+                }
+
+                console.log(this.notesEtudiantModules1);
+                console.log(this.notesEtudiantModules2);
+                console.log(data);*/
+            },error => {
+                alert('error')
+            }
+        );
+
     }
 }

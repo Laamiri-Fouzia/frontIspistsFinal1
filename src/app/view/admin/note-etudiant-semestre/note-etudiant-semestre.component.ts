@@ -3,6 +3,8 @@ import {NoteEtudiantSemestreService} from "../../../controller/service/note-etud
 import {MyOption} from "../../../controller/model/my-option.model";
 import {NoteEtudiantSemestre} from "../../../controller/model/note-etudiant-semestre.model";
 import {Filiere} from "../../../controller/model/filiere.model";
+import {AnneeUniversitaireService} from "../../../controller/service/annee-universitaire.service";
+import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
 
 @Component({
   selector: 'app-note-etudiant-semestre',
@@ -10,13 +12,23 @@ import {Filiere} from "../../../controller/model/filiere.model";
   styleUrls: ['./note-etudiant-semestre.component.scss']
 })
 export class NoteEtudiantSemestreComponent implements OnInit {
-  years: any[];
+
   semestres: any[];
   input1;
   input2;
   input3;
   fil;
 
+  get anneeSelect(): String {
+    return this.noteEtudiantSemestreService.anneeSelect;
+  }
+
+  set anneeSelect(value: String) {
+    this.noteEtudiantSemestreService.anneeSelect = value;
+  }
+  get years(): Array<AnneeUniversitaire> {
+    return this.anneeUniversitaireService.years;
+  }
   get noteSemestre(): NoteEtudiantSemestre {
     return this.noteEtudiantSemestreService.noteSemestre;
   }
@@ -39,15 +51,8 @@ export class NoteEtudiantSemestreComponent implements OnInit {
     this.noteEtudiantSemestreService.filieres = value;
   }
 
-  constructor(private noteEtudiantSemestreService:NoteEtudiantSemestreService) {
-    this.years=[
-      {label: "Annee universitaire:", value: null},
-      {label: 2020, value: 2020},
-      {label:2021, value:2021},
-      {label: 2022, value: 2022},
-      {label: 2023, value: 2023},
-      {label:2024, value: 2024}
-    ];
+  constructor(private noteEtudiantSemestreService:NoteEtudiantSemestreService,private anneeUniversitaireService:AnneeUniversitaireService) {
+
     this.semestres=[
       {label: "Semestre :", value: null},
       {label: "Semestre 1", value: 1},
@@ -61,6 +66,7 @@ export class NoteEtudiantSemestreComponent implements OnInit {
 
   ngOnInit(): void {
     this.noteEtudiantSemestreService.findAllFiliere();
+    this.anneeUniversitaireService.findAllyears();
   }
   get myOptions(): Array<MyOption> {
     return this.noteEtudiantSemestreService.myOptions;
@@ -68,13 +74,20 @@ export class NoteEtudiantSemestreComponent implements OnInit {
   get myNotesSemestre(): Array<NoteEtudiantSemestre> {
     return this.noteEtudiantSemestreService.myNotesSemestre;
   }
+  get semestreSelct(): number {
+    return this.noteEtudiantSemestreService.semestreSelct;
+  }
+
+  set semestreSelct(value: number) {
+    this.noteEtudiantSemestreService.semestreSelct = value;
+  }
 
   change1() {
     this.filierSelct=this.fil;
     this.noteEtudiantSemestreService.chercheOptions();
   }
 
-  serachEtudiant(input1: string, input2: number, input3: string) {
+  serachEtudiant(input1: string, input2: string, input3: number) {
     this.noteEtudiantSemestreService.serachEtudiant(input1, input2, input3);
   }
 
@@ -118,5 +131,13 @@ export class NoteEtudiantSemestreComponent implements OnInit {
 
   set submitted(value: boolean) {
     this.noteEtudiantSemestreService.submitted = value;
+  }
+
+  change2() {
+    this.semestreSelct=this.input3;
+  }
+
+  change3() {
+    this.anneeSelect=this.input2;
   }
 }

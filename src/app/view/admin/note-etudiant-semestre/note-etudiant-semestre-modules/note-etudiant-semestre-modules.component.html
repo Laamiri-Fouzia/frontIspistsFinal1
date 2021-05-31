@@ -1,35 +1,104 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="editer l'option" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <p-table #dt [value]="notesEtudiantModules" [columns]="3" [rows]="6" [paginator]="true" [globalFilterFields]="['module','note','etatValidation']"
-                 [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
-            <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
-            <ng-template pTemplate="caption">
-                <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                    <h5 class="p-m-0">les modules</h5>
-                </div>
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th pSortableColumn="option">Module<p-sortIcon field="option"></p-sortIcon></th>
-                    <th pSortableColumn="Action">note<p-sortIcon field="Action"></p-sortIcon></th>
-                    <th pSortableColumn="Action">Etat de Validation<p-sortIcon field="Action"></p-sortIcon></th>
+<p-dialog [(visible)]="createDialog" [style]="{width: '1000px',textalign:'center'}" [modal]="true" styleClass="p-fluid">
+    <h4 class="p-col-12 p-text-center">Détail De Semestre</h4>
+    <div class="p-grid">
+        <div class="p-col-6"><div class="p-grid">
+            <div class="p-col-12">
 
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-notesEtudiantModule>
-                <tr>
-                    <td>{{notesEtudiantModule.moduleSemestreOption.myModule.libelle}}</td>
-                    <td>{{notesEtudiantModule}}</td>
-                    <td>{{notesEtudiantModule.etatValidation.libelle}}</td>
+                <p-toast></p-toast>
 
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="summary" let-notesEtudiantModule>
-                <div class="p-d-flex p-ai-center p-jc-between">
-                   <!-- Etat de Validation: {{notesEtudiantModule.noteEtudiantSemestre.noteSemestre}}-->
+                <div class="card">
+
+                    <!--<p-toolbar styleClass="p-mb-4">
+                        <ng-template pTemplate="left">
+                            <button pButton pRipple label="Nouveau filiere" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" ></button>
+                        </ng-template>
+                    </p-toolbar>-->
+
+                    <p-table #dt [value]="notesEtudiantModules1" [columns]="3" [rows]="4" [paginator]="true" [globalFilterFields]="['code','libelle']"
+                             [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
+                        <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                                <h5 class="p-m-0">modules</h5>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header" >
+                            <tr>
+
+                                <th pSortableColumn="option">Module<p-sortIcon field="option"></p-sortIcon></th>
+                                <th pSortableColumn="Action">Note Module<p-sortIcon field="Action"></p-sortIcon></th>
+                                <th pSortableColumn="Action">Etat de Validation<p-sortIcon field="Action"></p-sortIcon></th>
+                                <th pSortableColumn="Action">Année Universitaire<p-sortIcon field="Action"></p-sortIcon></th>
+
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-notesEtudiantModule>
+                            <tr>
+                                <td>{{notesEtudiantModule.moduleSemestreOption.myModule.libelle}}</td>
+                                <td>{{notesEtudiantModule.noteGlobale}}</td>
+                                <td>{{notesEtudiantModule.etatValidation.libelle}}</td>
+                                <td>{{notesEtudiantModule.moduleSemestreOption.anneeUniversitaire.libelle}}</td>
+                            <tr>
+
+
+                        </ng-template>
+
+                    </p-table>
                 </div>
-            </ng-template>
-        </p-table>
-    </ng-template>
+                <app-filiere-create></app-filiere-create>
+                <!--<app-myOption-liste></app-myOption-liste>
+                <app-myModule-view></app-myModule-view>-->
+                <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+            </div>
+        </div></div>
+        <div class="p-col-6"><div class="p-grid">
+            <div class="p-col-12">
+
+                <p-toast></p-toast>
+
+                <div class="card">
+                    <!--<p-toolbar styleClass="p-mb-4">
+                        <ng-template pTemplate="left">
+                            <button pButton pRipple label="Nouveau filiere" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" ></button>
+                        </ng-template>
+                    </p-toolbar>-->
+
+                    <p-table #dt [value]="notesEtudiantModules2" [columns]="3" [rows]="4" [paginator]="true" [globalFilterFields]="['code','libelle']"
+                             [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
+                        <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                                <h5 class="p-m-0">modules</h5>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr [style]="{background: 'dark'}">
+
+                                <th pSortableColumn="option">Module<p-sortIcon field="option"></p-sortIcon></th>
+                                <th pSortableColumn="Action">Note Module<p-sortIcon field="Action"></p-sortIcon></th>
+                                <th pSortableColumn="Action">Etat de Validation<p-sortIcon field="Action"></p-sortIcon></th>
+                                <th pSortableColumn="Action">Année Universitaire<p-sortIcon field="Action"></p-sortIcon></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-notesEtudiantModule>
+                            <tr>
+                                <td>{{notesEtudiantModule.moduleSemestreOption.myModule.libelle}}</td>
+                                <td>{{notesEtudiantModule.noteGlobale}}</td>
+                                <td>{{notesEtudiantModule.etatValidation.libelle}}</td>
+                                <td>{{notesEtudiantModule.moduleSemestreOption.anneeUniversitaire.libelle}}</td>
+                            </tr>
+                        </ng-template>
+
+                    </p-table>
+                </div>
+                <app-filiere-create></app-filiere-create>
+                <!--<app-myOption-liste></app-myOption-liste>
+                <app-myModule-view></app-myModule-view>-->
+                <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+            </div>
+        </div></div>
+
+    </div>
+
 </p-dialog>
 

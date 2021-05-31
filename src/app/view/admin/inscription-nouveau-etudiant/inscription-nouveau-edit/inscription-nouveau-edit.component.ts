@@ -4,7 +4,7 @@ import {MessageService} from "primeng/api";
 import {NoteEtudiantModule} from "../../../../controller/model/note-etudiant-module.model";
 import {InscriptionEtudiantService} from "../../../../controller/service/inscription-etudiant.service";
 import {EtudiantOption} from "../../../../controller/model/etudiant-option.model";
-import {AnnéeUniversitaireService} from "../../../../controller/service/année-universitaire.service";
+import {AnneeUniversitaireService} from "../../../../controller/service/annee-universitaire.service";
 import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitaire";
 
 @Component({
@@ -14,7 +14,7 @@ import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitair
 })
 export class InscriptionNouveauEditComponent implements OnInit {
 
-  constructor(private inscriptionEtudiantService:InscriptionEtudiantService,private annéeUniversitaireService: AnnéeUniversitaireService ,private messageService: MessageService) { }
+  constructor(private inscriptionEtudiantService:InscriptionEtudiantService, private annéeUniversitaireService: AnneeUniversitaireService , private messageService: MessageService) { }
 
   ngOnInit(): void {
 

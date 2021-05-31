@@ -9,7 +9,7 @@ import {InscriptionEtudiantService} from "../../../controller/service/inscriptio
 import {EtudiantOption} from "../../../controller/model/etudiant-option.model";
 import {MyModule} from "../../../controller/model/myModule.model";
 import {ConfirmationService, MessageService} from "primeng/api";
-import {AnnéeUniversitaireService} from "../../../controller/service/année-universitaire.service";
+import {AnneeUniversitaireService} from "../../../controller/service/annee-universitaire.service";
 import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
 
 @Component({
@@ -23,7 +23,7 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
   options: any[]=new Array();
   semestres: any[]=new Array();
   displayTable:boolean=false;
-  constructor(private annéeUniversitaireService: AnnéeUniversitaireService,private messageService: MessageService,private inscriptionEtudiantService:InscriptionEtudiantService,private filiereService:FiliereService,private confirmationService: ConfirmationService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
+  constructor(private annéeUniversitaireService: AnneeUniversitaireService, private messageService: MessageService, private inscriptionEtudiantService:InscriptionEtudiantService, private filiereService:FiliereService, private confirmationService: ConfirmationService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
     //anne ce que l'utilisateur voit et code ce qui est stocke
 
 
