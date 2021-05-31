@@ -14,14 +14,21 @@ export class MyOptionListeComponent implements OnInit {
 
   cols: any[];
 
+
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
               private service: FiliereService, private moduleSemestreOptionService:ModuleSemestreOptionService) {
   }
 
   ngOnInit(): void {
     this.service.getAllOptions();
+    this.labelOption='la liste de tous les Options ';
   }
-
+  get labelOption(): string {
+    return this.service.labelOption;
+  }
+  set labelOption(value: string) {
+    this.service.labelOption = value;
+  }
   /*public delete(filiere: Filiere) {
     this.filiere = filiere;
     this.confirmationService.confirm({
@@ -45,12 +52,24 @@ export class MyOptionListeComponent implements OnInit {
 
   public deleteOption(myOption: MyOption) {
     this.myOption= myOption;
-    this.confirmationService.confirm({
+
+    this.service.deleteOptionByCode().subscribe(data => {
+      this.myOptions = this.myOptions.filter(val => val.id !== this.myOption.id);
+      this.myOption = new MyOption();
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successful',
+        detail: 'Option est supprimé',
+        life: 2000
+      });
+    });
+
+    /*this.confirmationService.confirm({
       message: 'Voulez-vous vraiment supprimer ' + myOption.code + '?',
       header: 'Attention',
       icon: 'pi pi-exclamation-triangle',
       accept: () =>{
-        this.service.deleteByCode().subscribe(data => {
+        this.service.deleteOptionByCode().subscribe(data => {
           this.myOptions = this.myOptions.filter(val => val.id !== this.myOption.id);
           this.myOption = new MyOption();
           this.messageService.add({
@@ -61,7 +80,7 @@ export class MyOptionListeComponent implements OnInit {
           });
         });
       }
-    });
+    });*/
   }
 
 

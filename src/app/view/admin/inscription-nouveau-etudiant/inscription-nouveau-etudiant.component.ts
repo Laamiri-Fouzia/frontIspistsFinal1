@@ -44,6 +44,7 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
       {field: 'NOM', header: 'NOM'},
       {field: 'PRENOM', header: 'PRENOM'},
       {field: 'DATEn', header: 'DATEn'},
+      {field: 'DATE Inscription', header: 'DATE Inscription'},
       {field: 'Action', header: 'Action'}
     ];
   }
@@ -105,7 +106,6 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
     editEtudiant(etudiantOption: EtudiantOption) {
       this.etudiantOption=this.inscriptionEtudiantService.clone(etudiantOption);
       this.editDialog = true;
-      console.log(this.etudiantOption);
     }
 
   public delete(selected: EtudiantOption) {
@@ -134,6 +134,7 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
       }
     });*/
   }
+
   get optSelec(): string {
     return this.inscriptionEtudiantService.optSelec;
   }

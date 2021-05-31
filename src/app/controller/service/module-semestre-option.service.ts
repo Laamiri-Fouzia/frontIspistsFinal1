@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {MyOption} from "../model/my-option.model";
 import {Semestre} from "../model/semestre.model";
 import {Observable} from "rxjs";
-import {Filiere} from "../model/filiere.model";
 import {MessageService} from "primeng/api";
 
 
@@ -14,9 +13,13 @@ import {MessageService} from "primeng/api";
 export class ModuleSemestreOptionService {
 
 
+    set displayModules(value: boolean) {
+        this._displayModules = value;
+    }
+
+
     private URLmoduleSemOpt = 'ispits-project/module-semestre-option/';
     private urlBase = 'http://localhost:8036/';//http://localhost:8036/ispits-project/module-semestre-option/
-    anneUniveSeleclibelle: string;
 
     constructor(private http: HttpClient, private messageService: MessageService) {
     }
@@ -168,8 +171,7 @@ export class ModuleSemestreOptionService {
         );
     }*/
     findByOptionCode() {
-        let urlFind='semestre/code/'+this.semestreselec+'/anneeuniv/libelle/'+this.anneUniveSelec+'/option/code/'+this.moduleSemestreOption.myOption.code;
-        alert(urlFind)
+        let urlFind='semestre/code/'+this.semestreselec+'/anneeuniv/anneeOne/'+this.anneUniveSelec+'/option/code/'+this.moduleSemestreOption.myOption.code;
         this.http.get<Array<ModuleSemestreOption>>(this.urlBase + this.URLmoduleSemOpt +urlFind).subscribe(
             data => {
                 this.moduleSemestreOptions = data;
@@ -186,34 +188,38 @@ export class ModuleSemestreOptionService {
         this.moduleSemestreOption.typeModule.code = typemoduleselect;
         this.moduleSemestreOption.semestre.code = this.semestreselec;
         this.moduleSemestreOption.anneeUniversitaire.anneeOne=this.anneUniveSelec;
+        console.log('save d service ');
         console.log(this.moduleSemestreOption);
-        alert(this.moduleSemestreOption.anneeUniversitaire.anneeOne)
+
         if (this.moduleSemestreOption.code.trim()) {
             this.http.post<number>(this.urlBase + this.URLmoduleSemOpt, this.moduleSemestreOption).subscribe(
                 data => {
-                    alert(data);
                     this.moduleSemestreOptions.push(this.cloneModuleSemestreOption(this.moduleSemestreOption));
+                    this.moduleSemestreOption=null;
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Successful',
                         detail: 'le module est ajouter',
                         life: 3000
                     });
-                    this.moduleSemestreOption = null;
-                });
+                },error => {
+                    console.log(error);
+                    this.moduleSemestreOption=new ModuleSemestreOption();
+                }
+                );
             this.createDialog = false;
-            this.moduleSemestreOption = new ModuleSemestreOption();
+
         }
     }
 
     public cloneModuleSemestreOption(mos: ModuleSemestreOption) {
         let moduleSemestreOption: ModuleSemestreOption = new ModuleSemestreOption();
         moduleSemestreOption.code = mos.code;
-        moduleSemestreOption.anneeUnvers = mos.anneeUnvers;
-        moduleSemestreOption.semestre = mos.semestre;
-        moduleSemestreOption.myOption = mos.myOption;
-        moduleSemestreOption.myModule = mos.myModule;
-        moduleSemestreOption.typeModule = mos.typeModule;
+        moduleSemestreOption.anneeUniversitaire = mos.anneeUniversitaire;
+        moduleSemestreOption.semestre = {...mos.semestre};
+        moduleSemestreOption.myOption = {...mos.myOption};
+        moduleSemestreOption.myModule = {...mos.myModule};
+        moduleSemestreOption.typeModule = {...mos.typeModule};
         return moduleSemestreOption;
     }
 
@@ -223,6 +229,7 @@ export class ModuleSemestreOptionService {
 
 
     public deleteModuleSemestreOption(): Observable<number> {
+        alert(this.urlBase + this.URLmoduleSemOpt + 'code/' + this.moduleSemestreOption.code);
         return this.http.delete<number>(this.urlBase + this.URLmoduleSemOpt + 'code/' + this.moduleSemestreOption.code);
     }
 

@@ -24,6 +24,8 @@ export class FiliereService {
   private _viewDialog1: boolean;
   private _submitted1: boolean;
 
+  private _labelOption:string;
+
   private urlFiliere = environment.baseUrl + 'filliere/';
 
   get filiere(): Filiere {
@@ -48,14 +50,19 @@ export class FiliereService {
   public findAll(): Observable<Array<Filiere>> {
     return this.http.get<Array<Filiere>>(this.urlFiliere);
   }
-  public save(): Observable<Filiere> {
-    return this.http.post<Filiere>(this.urlFiliere, this.filiere);
+  public save(): Observable<number> {
+    return this.http.post<number>(this.urlFiliere, this.filiere);
   }
   public edit(): Observable<Filiere> {
     return this.http.put<Filiere>(this.urlFiliere, this.filiere);
   }
   public deleteByCode(): Observable<number> {
     return this.http.delete<number>(this.urlFiliere + 'code/' + this.filiere.code);
+  }
+  public deleteOptionByCode(): Observable<number> {
+    alert(this.myOption.code);
+    alert(this.urlOption + '/code/' + this.myOption.code);
+    return this.http.delete<number>(this.urlOption + '/code/' + this.myOption.code);
   }
 
 
@@ -193,17 +200,25 @@ export class FiliereService {
     this.myOption.libelle=input2;
     this.myOption.filliere=this.filiere2;
     if (this.myOption.code.trim()) {
-      this.http.post<number>(this.urlOption +'/',this.myOption ).subscribe(
+      this.http.post(this.urlOption +'/',this.myOption ).subscribe(
           data=> {
-            this.myOptions.push(this.cloneOption(this.myOption));
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Successful',
-              detail: 'Option est crée',
-              life: 3000
-            });
-            this.myOption=null;
-          });
+            if(data==1){
+               this.myOptions.push(this.cloneOption(this.myOption));
+               this.messageService.add({
+                 severity: 'success',
+                 summary: 'Successful',
+                 detail: 'Option Bien est crée!',
+                 life: 3000
+               });
+             }else {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error !',
+                detail: 'Attention :une option avec le code : '+this.myOption.code+' est deja existe !'
+              });
+            }
+          }
+         );
 
       this.createDialog = false;
       this.filiere = new Filiere();
@@ -221,6 +236,14 @@ export class FiliereService {
 
   public deleteOption(): Observable<number> {
     return this.http.delete<number>(this.urlOption + 'code/' + this.myOption.code);
+  }
+
+  get labelOption(): string {
+    return this._labelOption;
+  }
+
+  set labelOption(value: string) {
+    this._labelOption = value;
   }
 
 

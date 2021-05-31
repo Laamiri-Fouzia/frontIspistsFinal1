@@ -4,6 +4,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {environment} from '../../../environments/environment';
 import {Observable} from "rxjs";
 import {MyModule} from "../model/myModule.model";
+import {AnneeUniversitaire} from "../model/anneeUniversitaire";
 
 @Injectable({
     providedIn: 'root'
@@ -94,8 +95,8 @@ export class MyModuleService {
         return this.http.get<Array<MyModule>>(this.url);
     }
 
-    public save(): Observable<MyModule> {
-        return this.http.post<MyModule>(this.url, this.selected);
+    public save(): Observable<number> {
+        return this.http.post<number>(this.url, this.selected);
     }
 
     public edit(): Observable<MyModule> {
@@ -129,5 +130,17 @@ export class MyModuleService {
         for (const item of this.selectes) {
             this.deleteIndexById(item.id);
         }
+    }
+
+    serchObject(myModule: MyModule) {
+        this.http.get<MyModule>(this.url +'/code/'+myModule.code).subscribe(
+            data => {
+                this.selected=data;
+                console.log(this.selected)
+                this.items.push({...this.selected});//au lieu de clonne
+
+            },error => {
+                console.log(error);
+            });
     }
 }

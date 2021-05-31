@@ -56,6 +56,7 @@ export class MyOptionCreateComponent implements OnInit {
 
   saveOption(input1:string,input2:string) {
     this.service.saveOption(input1,input2);
+    this.createDialog1=false
   }
 
 }

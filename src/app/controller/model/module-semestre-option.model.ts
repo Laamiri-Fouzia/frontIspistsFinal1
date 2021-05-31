@@ -6,7 +6,6 @@ import {AnneeUniversitaire} from "./anneeUniversitaire";
 
 export class ModuleSemestreOption {
     public code:string;
-    public anneeUnvers: number;
     public semestre:Semestre=new Semestre();
     public myOption:MyOption=new MyOption();
     public myModule:MyModule=new MyModule();
