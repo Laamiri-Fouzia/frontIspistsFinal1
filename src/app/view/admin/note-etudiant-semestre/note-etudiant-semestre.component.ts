@@ -5,6 +5,7 @@ import {NoteEtudiantSemestre} from "../../../controller/model/note-etudiant-seme
 import {Filiere} from "../../../controller/model/filiere.model";
 import {AnneeUniversitaireService} from "../../../controller/service/annee-universitaire.service";
 import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
+import {NoteEtudiantModule} from "../../../controller/model/note-etudiant-module.model";
 
 @Component({
   selector: 'app-note-etudiant-semestre',
@@ -19,6 +20,28 @@ export class NoteEtudiantSemestreComponent implements OnInit {
   input3;
   fil;
 
+
+  get notesEtudiantModules(): Array<NoteEtudiantModule> {
+    return this.noteEtudiantSemestreService.notesEtudiantModules;
+  }
+
+  set notesEtudiantModules(value: Array<NoteEtudiantModule>) {
+    this.noteEtudiantSemestreService.notesEtudiantModules = value;
+  }
+  get notesEtudiantModules1(): Array<NoteEtudiantModule> {
+    return this.noteEtudiantSemestreService.notesEtudiantModules1;
+  }
+
+  set notesEtudiantModules1(value: Array<NoteEtudiantModule>) {
+    this.noteEtudiantSemestreService.notesEtudiantModules1 = value;
+  }
+  get notesEtudiantModules2(): Array<NoteEtudiantModule> {
+    return this.noteEtudiantSemestreService.notesEtudiantModules2;
+  }
+
+  set notesEtudiantModules2(value: Array<NoteEtudiantModule>) {
+    this.noteEtudiantSemestreService.notesEtudiantModules2 = value;
+  }
   get anneeSelect(): String {
     return this.noteEtudiantSemestreService.anneeSelect;
   }
