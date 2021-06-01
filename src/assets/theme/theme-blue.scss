@@ -8,3 +8,10 @@ $highlightBg: $primaryColor;
 $highlightTextColor: $primaryTextColor;
 
 @import '../sass/theme/_theme';
+
+.p-dialog .p-dialog-content {
+  background: #714c4c;
+  color: #495057;
+  padding: 0 1.5rem 2rem 1.5rem;
+  height: 700px;
+}

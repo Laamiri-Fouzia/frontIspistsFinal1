@@ -1,0 +1,26 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px',height: '600px'}" header="CHOISIR PARAMETRE " [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+            <div  class="p-field">
+                <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
+            </div>
+
+            <div  class="p-field">
+                <p-dropdown [style]="{'width':'180px'}"  [options]="options" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true" (onChange)="change2()"></p-dropdown>
+            </div>
+
+            <div  class="p-field">
+                <p-dropdown [style]="{'width':'180px'}"  [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"  (onChange)="change3()"></p-dropdown>
+            </div>
+
+            <div  class="p-field">
+                <p-dropdown [style]="{'width':'180px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()"></p-dropdown>
+            </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="chercherEtudiant()"></button>
+    </ng-template>
+</p-dialog>
+

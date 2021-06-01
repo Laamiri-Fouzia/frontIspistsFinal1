@@ -1,0 +1,47 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card p-grid">
+            <p-toolbar styleClass="p-mb-4 " class="p-col-12">
+
+                <p-button class="p-col-2" (click)="choisirParametre()">clicker pour choisir les paramétres </p-button>
+            </p-toolbar>
+
+           <!-- <p-table #dt [value]="" [columns]="" [rows]="4" [paginator]="true" [globalFilterFields]="['Etudiant','Note module session normale','Resultat']"
+                     [rowHover]="true" dataKey="id"
+                     styleClass="p-datatable-customers"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="Etudiant">Etudiant <p-sortIcon field="Etudiant"></p-sortIcon></th>
+                        <th pSortableColumn="note continue ">N.continue <p-sortIcon field="note continue "></p-sortIcon></th>
+                        <th pSortableColumn="note Finale avant Rat">N.Finale Normal <p-sortIcon field="note Finale avant Rat"></p-sortIcon></th>
+                        <th pSortableColumn="Note module session normale">N.module sess normal<p-sortIcon field="Note module session normale"></p-sortIcon></th>
+                        <th pSortableColumn="Resultat">Resultat<p-sortIcon field="Resultat"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-note>
+                    <tr>
+                        <td>{{note.etudiant.nom}}  {{note.etudiant.prenom}}</td>
+                        <td>{{note.noteContinue}}</td>
+                        <td>{{note.noteFinalAvRat}}</td>
+                        <td>{{note.noteModuleNormal}}</td>
+                        <td>{{note.etatValidation.libelle}}</td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(note)"></button>
+                        </td>
+
+                    </tr>
+                </ng-template>
+            </p-table>  -->
+
+        </div>
+        <app-choisir-param></app-choisir-param>
+    </div>
+</div>
+

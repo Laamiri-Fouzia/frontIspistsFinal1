@@ -145,6 +145,9 @@ import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre
 import {NoteEtudiantSemestreModulesComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre-modules/note-etudiant-semestre-modules.component";
 import { EtudiantComponent } from './view/etudiant/etudiant.component';
 import { NoteSemestreOneComponent } from './view/etudiant/note-semestre-one/note-semestre-one.component';
+import { AbsenceEditComponent } from './view/professeur/absence-edit/absence-edit.component';
+import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-param/choisir-param.component';
+
 
 
 @NgModule({
@@ -284,7 +287,9 @@ import { NoteSemestreOneComponent } from './view/etudiant/note-semestre-one/note
         NoteEtudiantSemestreComponent,
         NoteEtudiantSemestreModulesComponent,
         EtudiantComponent,
-        NoteSemestreOneComponent
+        NoteSemestreOneComponent,
+        AbsenceEditComponent,
+        ChoisirParamComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

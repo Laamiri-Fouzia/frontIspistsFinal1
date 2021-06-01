@@ -136,10 +136,10 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   }
 
   public deleteModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {
-    alert(1)
+
     this.moduleSemestreOption= moduleSemestreOption;
     this.moduleSemestreOptionService.deleteModuleSemestreOption().subscribe(data => {
-      alert(2)
+
       this.moduleSemestreOptions = this.moduleSemestreOptions.filter(val => val.code !== this.moduleSemestreOption.code);
       this.moduleSemestreOption = new ModuleSemestreOption();
       this.messageService.add({
