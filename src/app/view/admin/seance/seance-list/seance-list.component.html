@@ -1,0 +1,55 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="Nouveau Seance" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="seances" [columns]="5"  [globalFilterFields]="['libelle','heurDebut','heurFin','dateSeance']"
+                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
+                <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Les seances De cet Module</h5>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+
+                        <th pSortableColumn="code">Libelle <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="heurDebut">Heure Debut <p-sortIcon field="heurDebut"></p-sortIcon></th>
+                        <th pSortableColumn="heurFin">Heure Fin <p-sortIcon field="heurFin"></p-sortIcon></th>
+                        <th pSortableColumn="heurFin">Date Seance <p-sortIcon field="heurFin"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-seance>
+                    <tr>
+                        <td>{{seance.libelle}}</td>
+                        <td>{{seance.heurDebut}}</td>
+                        <td>{{seance.heurFin}}</td>
+                        <td>{{seance.dateSeance}}</td>
+                        <td>
+                            <!--<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(filiere)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="detailFiliere(filiere)"></button>-->
+
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale il y a {{seances ? seances.length : 0 }} éléments.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+        <app-seance-create></app-seance-create>
+        <!--<app-myOption-liste></app-myOption-liste>
+        <app-myModule-view></app-myModule-view>-->
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>
