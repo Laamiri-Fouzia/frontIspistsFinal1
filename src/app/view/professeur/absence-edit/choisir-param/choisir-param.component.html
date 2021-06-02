@@ -1,4 +1,5 @@
-<p-dialog [(visible)]="editDialog" [style]="{width: '450px',height: '600px'}" header="CHOISIR PARAMETRE " [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px',height: '600px'}" header="CHOISIR PARAMETRE " [modal]="true" styleClass=" active" >
+
     <ng-template pTemplate="content">
             <div  class="p-field">
                 <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
@@ -13,7 +14,10 @@
             </div>
 
             <div  class="p-field">
-                <p-dropdown [style]="{'width':'180px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()"></p-dropdown>
+                <p-dropdown [style]="{'width':'180px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()" (onChange)="change5()"></p-dropdown>
+            </div>
+            <div  class="p-field">
+                <p-dropdown [style]="{'width':'180px'}"  [options]="seances" [(ngModel)]="seanceSelected" optionLabel="libelle" optionValue="libelle" [filter]="true" placeholder="choisir une seance"></p-dropdown>
             </div>
 
     </ng-template>

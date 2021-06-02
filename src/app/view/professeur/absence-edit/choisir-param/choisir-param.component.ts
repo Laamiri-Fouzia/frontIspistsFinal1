@@ -7,6 +7,10 @@ import {ModuleSemestreOptionService} from "../../../../controller/service/module
 import {FiliereService} from "../../../../controller/service/filiere.service";
 import {NoteEtudiantModuleService} from "../../../../controller/service/note-etudiant-module.service";
 import {ModuleSemestreOption} from "../../../../controller/model/module-semestre-option.model";
+import {Seance} from "../../../../controller/model/seance.model";
+import {SeanceService} from "../../../../controller/service/seance.service";
+import {InscriptionEtudiantService} from "../../../../controller/service/inscription-etudiant.service";
+import {InscriptionEtudiantModule} from "../../../../controller/model/inscription-etudiant-module.model";
 
 @Component({
   selector: 'app-choisir-param',
@@ -27,7 +31,9 @@ export class ChoisirParamComponent implements OnInit {
   options: any[]=new Array();
   semestres: any[]=new Array();
 
-  constructor(private absenceService:AbsenceService,private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService:ModuleSemestreOptionService, private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
+  input5 ='';
+
+  constructor(private inscriptionEtudiantService:InscriptionEtudiantService,private absenceService:AbsenceService,private seanceService:SeanceService,private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService:ModuleSemestreOptionService, private filiereService:FiliereService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
     this.semestres=[
       {label: "Semestre :", value: null},
       {label: "Semestre 1", value: 1},
@@ -45,6 +51,8 @@ export class ChoisirParamComponent implements OnInit {
     this.options.push({label: 'Option :', value: null});
     this.modules.push({label: 'Module  :', value: null});
   }
+
+  //getters and seters
   get editDialog(): boolean {
     return this.absenceService.editDialog;
   }
@@ -61,6 +69,15 @@ export class ChoisirParamComponent implements OnInit {
   get myOptions(): Array<MyOption> {
     return this.filiereService.myOptions;
   }
+
+  get seances(): Array<Seance> {
+    return this.seanceService.seances;
+  }
+
+  get inscriptionEtudiants(): Array<InscriptionEtudiantModule> {
+    return this.inscriptionEtudiantService.inscriptionEtudiants;
+  }
+
   change1() {
     this.moduleSemestreOptionService.anneUniveSelec=this.input1;
     for(let  i = 0; i < this.myOptions.length; i++) {
@@ -75,13 +92,21 @@ export class ChoisirParamComponent implements OnInit {
     this.moduleSemestreOptionService.findByOptionCode();
 
   }
+
   change4() {
     if(this.modules.length<=this.moduleSemestreOptions.length){
       for(let  i = 0; i < this.moduleSemestreOptions.length; i++) {
         this.modules.push({label: this.moduleSemestreOptions[i].myModule.libelle, value: this.moduleSemestreOptions[i].code});
       }
     }
+  }
 
+  get seanceSelected(): string {
+    return this.absenceService.seanceSelected;
+    }
+
+  set seanceSelected(value: string) {
+    this.absenceService.seanceSelected = value;
   }
 
   hideEditDialog() {
@@ -89,6 +114,20 @@ export class ChoisirParamComponent implements OnInit {
   }
 
   chercherEtudiant() {
-
+      this.inscriptionEtudiantService.chercherEtudiant(this.input4);
+      this.hideEditDialog();
+       this.displayTable=true;
   }
+  get displayTable(): boolean {
+    return this.absenceService.displayTable;
+  }
+
+  set displayTable(value: boolean) {
+    this.absenceService.displayTable = value;
+  }
+  change5() {
+    this.seanceService.serachSeances(this.input4);
+  }
+
+
 }

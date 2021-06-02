@@ -4,41 +4,58 @@
         <p-toast></p-toast>
 
         <div class="card p-grid">
+            <h2 class="p-col-12 p-text-center bold">Liste des Absences</h2>
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
-
-                <p-button class="p-col-2" (click)="choisirParametre()">clicker pour choisir les paramétres </p-button>
+                <button pButton pRipple style="width:300px;height: 40px" class="p-col-2" class="p-button-success p-mr-2 p-mb-2" (click)="choisirParametre()" label="clicker pour choisir les paramétres"></button>
             </p-toolbar>
-
-           <!-- <p-table #dt [value]="" [columns]="" [rows]="4" [paginator]="true" [globalFilterFields]="['Etudiant','Note module session normale','Resultat']"
-                     [rowHover]="true" dataKey="id"
+            <div [ngClass]="{'vis':displayTable==false}">
+            <p-table  #dt [value]="inscriptionEtudiants" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['cne','nom']"
+                     [(selection)]="selects" [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des etudiants du module </h5>
+                        <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text"  placeholder="Search..." />
+                    </span>
+                    </div>
+                </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn="Etudiant">Etudiant <p-sortIcon field="Etudiant"></p-sortIcon></th>
-                        <th pSortableColumn="note continue ">N.continue <p-sortIcon field="note continue "></p-sortIcon></th>
-                        <th pSortableColumn="note Finale avant Rat">N.Finale Normal <p-sortIcon field="note Finale avant Rat"></p-sortIcon></th>
-                        <th pSortableColumn="Note module session normale">N.module sess normal<p-sortIcon field="Note module session normale"></p-sortIcon></th>
-                        <th pSortableColumn="Resultat">Resultat<p-sortIcon field="Resultat"></p-sortIcon></th>
-                        <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
+                        <th pSortableColumn="cne">CNE <p-sortIcon field="cne"></p-sortIcon></th>
+                        <th pSortableColumn="nom">Nom <p-sortIcon field="nom"></p-sortIcon></th>
+
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
                         <th></th>
+                        <!--<th pSortableColumn="nom">present <p-sortIcon field="nom"></p-sortIcon></th>-->
+
+                        <!--<th pSortableColumn="totalPaye">Total Paye <p-sortIcon field="totalPaye"></p-sortIcon></th>-->
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-note>
+                <ng-template pTemplate="body" let-inscription>
                     <tr>
-                        <td>{{note.etudiant.nom}}  {{note.etudiant.prenom}}</td>
-                        <td>{{note.noteContinue}}</td>
-                        <td>{{note.noteFinalAvRat}}</td>
-                        <td>{{note.noteModuleNormal}}</td>
-                        <td>{{note.etatValidation.libelle}}</td>
+                        <td>{{inscription.etudiant.cne}}</td>
+                        <td>{{inscription.etudiant.nom}}</td>
+
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(note)"></button>
+                            <p-tableCheckbox [value]="inscription"></p-tableCheckbox>
                         </td>
 
                     </tr>
                 </ng-template>
-            </p-table>  -->
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+
+                    </div>
+                </ng-template>
+            </p-table>
+                <p-button label="valider" (click)="validerAbsence()"></p-button>
+            </div>
+
 
         </div>
         <app-choisir-param></app-choisir-param>
