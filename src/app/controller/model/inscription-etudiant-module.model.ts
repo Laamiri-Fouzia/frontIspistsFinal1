@@ -1,9 +1,8 @@
 import {ModuleSemestreOption} from "./module-semestre-option.model";
+import {Etudiant} from "./etudiant.model";
 
-export class Seance {
+export class InscriptionEtudiantModule {
     public moduleSemestreOption:ModuleSemestreOption=new ModuleSemestreOption();
-    public heureDebut:Date;
-    public heureFin:Date;
-    public dateSeance:Date;
-    public libelle:string;
+    public etudiant:Etudiant=new Etudiant();
+    public code:string;
 }

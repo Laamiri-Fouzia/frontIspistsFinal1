@@ -136,7 +136,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Les abscences', icon: 'pi pi-fw pi-check-square', routerLink: ['/pages'],
                 items: [
-                    {label: 'Liste Abscence', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']},
+                    {label: 'Liste Abscence', icon: 'pi pi-fw pi-calendar', routerLink: ['/view/absence']},
                     {label: 'Justifications', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
                 ]
             },

@@ -46,7 +46,6 @@ export class NoteEtudiantModuleComponent implements OnInit {
     this.options.push({label: 'Option :', value: null});
     this.modules.push({label: 'Module  :', value: null});
     this.annéeUniversitaireService.findAllyears();
-    console.log( this.modules);
   }
 
   private initCol() {
