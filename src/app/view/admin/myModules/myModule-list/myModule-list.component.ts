@@ -79,10 +79,10 @@ export class MyModuleListComponent implements OnInit {
 
     private initCol() {
         this.cols = [
-            {field: 'id', header: 'Id'},
-            {field: 'reference', header: 'Reference'},
-            {field: 'total', header: 'Total'},
-            {field: 'totalPaye', header: 'Total Paye'}
+
+            {field: 'code', header: 'CODE'},
+            {field: 'libelle', header: 'LIBELLE'}
+
         ];
     }
 

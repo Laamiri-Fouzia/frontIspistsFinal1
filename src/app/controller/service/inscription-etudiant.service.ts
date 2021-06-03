@@ -3,6 +3,8 @@ import {EtudiantOption} from "../model/etudiant-option.model";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ConfirmationService, MessageService} from "primeng/api";
+import * as XLSX from "xlsx";
+import {Observable} from "rxjs";
 import {InscriptionEtudiantModule} from "../model/inscription-etudiant-module.model";
 
 @Injectable({
@@ -11,9 +13,9 @@ import {InscriptionEtudiantModule} from "../model/inscription-etudiant-module.mo
 export class InscriptionEtudiantService {
 
     private urlEtudiantOption = environment.baseUrl + 'etudiantOption/';
-    private _inscriptionEtudiants:Array <InscriptionEtudiantModule>;
+    private _inscriptionEtudiants:Array<InscriptionEtudiantModule>;
     private urlEtudiant = environment.baseUrl + 'Etudiant/';
-    private urlInscriptionModule = environment.baseUrl + 'inscriptionEtudiantModule/';
+    private urlInscriptionModule=environment.baseUrl + 'inscriptionEtudiantModule/';
     private _optSelec: string;
     public date:Date;
     constructor(private http: HttpClient, private confirmationService: ConfirmationService, private messageService: MessageService) {
@@ -24,7 +26,6 @@ export class InscriptionEtudiantService {
     get createDialog(): boolean {
         return this._createDialog;
     }
-
     set createDialog(value: boolean) {
         this._createDialog = value;
     }
@@ -180,15 +181,7 @@ export class InscriptionEtudiantService {
         );
     }
 
-    chercherEtudiant(code:string){
-        this.http.get<Array<InscriptionEtudiantModule>>( this.urlInscriptionModule+'moduleSemestreOption/code/'+code).subscribe(
-            data => {
-                this.inscriptionEtudiants = data;
-            }, error => {
-                console.log(error);
-            }
-        );
-    }
+
     deleteEtudiantOption() {
         this.http.delete<number>(this.urlEtudiantOption + '/Etudiant/cne/' + this.etudiantOption.etudiant.cne).subscribe(
             data => {
@@ -199,6 +192,15 @@ export class InscriptionEtudiantService {
         );
     }
 
+    chercherEtudiant(code:string){
+        this.http.get<Array<InscriptionEtudiantModule>>( this.urlInscriptionModule+'moduleSemestreOption/code/'+code).subscribe(
+            data => {
+                this.inscriptionEtudiants = data;
+            }, error => {
+                console.log(error);
+            }
+        );
+    }
 
     get optSelec(): string {
         return this._optSelec;
@@ -216,6 +218,24 @@ export class InscriptionEtudiantService {
         this._anneselect = value;
     }
 
+    //import/export excel
+
+    public importFromFile(bstr: string): XLSX.AOA2SheetOpts {
+        // bax i9rah
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        // 3la l first sheet
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+        /*save data en va le supprimer apres*/
+        const data = <XLSX.AOA2SheetOpts>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+        return data;
+    }
+    public testExport ():Observable<Blob>{
+        return this.http.get(this.urlEtudiantOption+'etudiants/export/excel',{responseType: 'blob'})
+
+    }
     get inscriptionEtudiants(): Array<InscriptionEtudiantModule> {
         if(this._inscriptionEtudiants==null)
             this._inscriptionEtudiants=new Array<InscriptionEtudiantModule>();
@@ -225,5 +245,4 @@ export class InscriptionEtudiantService {
     set inscriptionEtudiants(value: Array<InscriptionEtudiantModule>) {
         this._inscriptionEtudiants = value;
     }
-
 }

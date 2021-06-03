@@ -5,27 +5,24 @@ import {MyOption} from "../model/my-option.model";
 import {Semestre} from "../model/semestre.model";
 import {Observable} from "rxjs";
 import {MessageService} from "primeng/api";
+import {Seance} from "../model/seance.model";
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ModuleSemestreOptionService {
+    private URLmoduleSemOpt = 'ispits-project/module-semestre-option/';
+    private urlBase = 'http://localhost:8036/';//http://localhost:8036/ispits-project/module-semestre-option/
+    private _moduleSemestreOption: ModuleSemestreOption;
+
+    constructor(private http: HttpClient, private messageService: MessageService) {
+    }
 
 
     set displayModules(value: boolean) {
         this._displayModules = value;
     }
-
-
-    private URLmoduleSemOpt = 'ispits-project/module-semestre-option/';
-    private urlBase = 'http://localhost:8036/';//http://localhost:8036/ispits-project/module-semestre-option/
-
-    constructor(private http: HttpClient, private messageService: MessageService) {
-    }
-
-    private _moduleSemestreOption: ModuleSemestreOption;
-
     get moduleSemestreOption(): ModuleSemestreOption {
         if (this._moduleSemestreOption == null)
             this._moduleSemestreOption = new ModuleSemestreOption();
@@ -232,5 +229,6 @@ export class ModuleSemestreOptionService {
         alert(this.urlBase + this.URLmoduleSemOpt + 'code/' + this.moduleSemestreOption.code);
         return this.http.delete<number>(this.urlBase + this.URLmoduleSemOpt + 'code/' + this.moduleSemestreOption.code);
     }
+
 
 }
