@@ -138,6 +138,7 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {label: 'Liste Abscence', icon: 'pi pi-fw pi-calendar', routerLink: ['/view/absence']},
                     {label: 'Justifications', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
+                    {label: 'Absence Etudiant', icon: 'pi pi-fw pi-globe',  routerLink: ['/view/absenceEtudiant']}
                 ]
             },
             /*{

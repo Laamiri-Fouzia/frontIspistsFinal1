@@ -10,7 +10,7 @@
             </p-toolbar>
             <div [ngClass]="{'vis':displayTable==false}">
             <p-table  #dt [value]="inscriptionEtudiants" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['cne','nom']"
-                     [(selection)]="selects" [rowHover]="true" dataKey="id"
+                     [(selection)]="selects"  [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                 <ng-template pTemplate="caption">

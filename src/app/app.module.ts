@@ -147,6 +147,7 @@ import { EtudiantComponent } from './view/etudiant/etudiant.component';
 import { NoteSemestreOneComponent } from './view/etudiant/note-semestre-one/note-semestre-one.component';
 import { AbsenceEditComponent } from './view/professeur/absence-edit/absence-edit.component';
 import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-param/choisir-param.component';
+import { AbsenceEtudiantComponent } from './view/etudiant/absence-etudiant/absence-etudiant.component';
 
 
 
@@ -289,7 +290,8 @@ import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-pa
         EtudiantComponent,
         NoteSemestreOneComponent,
         AbsenceEditComponent,
-        ChoisirParamComponent
+        ChoisirParamComponent,
+        AbsenceEtudiantComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -5,6 +5,7 @@ import {of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {MessageService} from "primeng/api";
+import {AnneeUniversitaire} from "../model/anneeUniversitaire";
 
 @Injectable({
   providedIn: 'root'
@@ -108,4 +109,15 @@ export class AbsenceService {
   set displayTable(value: boolean) {
     this._displayTable = value;
   }
+
+    searchAbsence(annee: string, semstre: string, cne: string) {
+    alert(this._urlAbsence +'etudiant/cne/'+cne+'/seance/moduleSemestreOption/semestre/code/'+semstre+'/seance/moduleSemestreOption/anneuniv/libelle/'+annee)
+      this.http.get<Array<Absence>>(this._urlAbsence +'/etudiant/cne/'+cne+'/seance/moduleSemestreOption/semestre/code/'+semstre+'/seance/moduleSemestreOption/anneuniv/libelle/'+annee).subscribe(
+          data => {
+            console.log(data)
+            this.absences=data;
+          },error => {
+            console.log(error);
+          });
+    }
 }
