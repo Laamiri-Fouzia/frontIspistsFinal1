@@ -3,6 +3,8 @@ import {EtudiantOption} from "../model/etudiant-option.model";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {ConfirmationService, MessageService} from "primeng/api";
+import * as XLSX from "xlsx";
+import {Observable} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -217,4 +219,22 @@ export class InscriptionEtudiantService {
         this._anneselect = value;
     }
 
+    //import/export excel
+
+    public importFromFile(bstr: string): XLSX.AOA2SheetOpts {
+        // bax i9rah
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        // 3la l first sheet
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+        /*save data en va le supprimer apres*/
+        const data = <XLSX.AOA2SheetOpts>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+        return data;
+    }
+    public testExport ():Observable<Blob>{
+        return this.http.get(this.urlEtudiantOption+'etudiants/export/excel',{responseType: 'blob'})
+
+    }
 }

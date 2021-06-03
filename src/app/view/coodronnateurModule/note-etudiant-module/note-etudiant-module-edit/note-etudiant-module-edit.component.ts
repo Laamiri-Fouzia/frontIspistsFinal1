@@ -41,7 +41,6 @@ export class NoteEtudiantModuleEditComponent implements OnInit {
   EditNote() {
     if(this.noteEtudiantModule.noteContinue<0 || this.noteEtudiantModule.noteContinue>20 || this.noteEtudiantModule.noteFinalAvRat<0 || this.noteEtudiantModule.noteFinalAvRat>20)
     {
-      alert(1)
       this.messageService.add({
         severity: 'error',
         summary: 'Error !',

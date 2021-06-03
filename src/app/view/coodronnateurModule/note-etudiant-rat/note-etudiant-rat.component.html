@@ -5,6 +5,7 @@
 
         <div class="card p-grid">
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
+                <h2 class="p-col-12 p-text-center bold">Note rattrapage</h2>
                 <div class="p-col-2">
                     <p-dropdown [options]="years" placeholder="Année Universitaire" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()"></p-dropdown>
                 </div>
@@ -23,25 +24,36 @@
                 </div>
                     <p-button class="p-col-2" (click)="listeRatt(input4)">chercher</p-button>
             </p-toolbar>
+            <p-toolbar>
+                <ng-template pTemplate="left">
+                    <input type="file" pInputText id="excel" (change)="onFileChange($event)" multiple="false" required autofocus />
+                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="downloadExcel()" class="p-button-success p-mr-2"></button>
+                </ng-template>
+            </p-toolbar>
 
-            <p-table #dt [value]="notesEtudiantRat" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['Etudiant','Resultat']"
+            <p-table #dt [value]="notesEtudiantRat" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['cne','etudiant','etudiant1','noteFinalRat','noteModuleNormale','noteModuleSessionRat','resultat']"
                      [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
 
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn="Etudiant">Etudiant <p-sortIcon field="Etudiant"></p-sortIcon></th>
-                        <th pSortableColumn="Note Final Rat">N.Finale Rat <p-sortIcon field="Note Final Rat"></p-sortIcon></th>
-                        <th pSortableColumn="Note module session normale">N.module sess normal<p-sortIcon field="Note module session normale"></p-sortIcon></th>
-                        <th pSortableColumn="Note module session Rat">N.module sess Rat<p-sortIcon field="Note module session Rat"></p-sortIcon></th>
-                        <th pSortableColumn="Resultat">Resultat<p-sortIcon field="Resultat"></p-sortIcon></th>
+                        <th pSortableColumn="cne">CNE <p-sortIcon field="cne"></p-sortIcon></th>
+                        <th pSortableColumn="etudiant">Nom <p-sortIcon field="etudiant"></p-sortIcon></th>
+                        <th pSortableColumn="etudiant1">Prenom <p-sortIcon field="etudiant1"></p-sortIcon></th>
+                        <th pSortableColumn="noteFinalRat">N.Finale Rat <p-sortIcon field="noteFinalRat"></p-sortIcon></th>
+                        <th pSortableColumn="noteModuleNormale">N.module sess normal<p-sortIcon field="noteModuleNormale"></p-sortIcon></th>
+                        <th pSortableColumn="noteModuleSessionRat">N.module sess Rat<p-sortIcon field="noteModuleSessionRat"></p-sortIcon></th>
+                        <th pSortableColumn="resultat">Resultat<p-sortIcon field="resultat"></p-sortIcon></th>
                         <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
+
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-note>
                     <tr>
-                        <td>{{note.etudiant.nom}}  {{note.etudiant.prenom}}</td>
+                        <td>{{note.etudiant.cne}}</td>
+                        <td>{{note.etudiant.nom}}</td>
+                        <td>{{note.etudiant.prenom}}</td>
                         <td>{{note.noteFinalApresRat}}</td>
                         <td>{{note.noteModuleNormal}}</td>
                         <td>{{note.noteModuleRat}}</td>
