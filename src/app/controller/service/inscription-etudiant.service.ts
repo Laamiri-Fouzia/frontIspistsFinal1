@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {ConfirmationService, MessageService} from "primeng/api";
 import * as XLSX from "xlsx";
 import {Observable} from "rxjs";
+import {InscriptionEtudiantModule} from "../model/inscription-etudiant-module.model";
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,9 @@ import {Observable} from "rxjs";
 export class InscriptionEtudiantService {
 
     private urlEtudiantOption = environment.baseUrl + 'etudiantOption/';
+    private _inscriptionEtudiants:Array<InscriptionEtudiantModule>;
     private urlEtudiant = environment.baseUrl + 'Etudiant/';
+    private urlInscriptionModule=environment.baseUrl + 'inscriptionEtudiantModule/';
     private _optSelec: string;
     public date:Date;
     constructor(private http: HttpClient, private confirmationService: ConfirmationService, private messageService: MessageService) {
@@ -23,7 +26,6 @@ export class InscriptionEtudiantService {
     get createDialog(): boolean {
         return this._createDialog;
     }
-
     set createDialog(value: boolean) {
         this._createDialog = value;
     }
@@ -113,19 +115,6 @@ export class InscriptionEtudiantService {
         );
     }
 
-   /* serchObject(etudiantOption: EtudiantOption) {
-        this.http.get<EtudiantOption>(this.urlEtudiantOption +'Etudiant/cne/'+this.etudiantOption.etudiant.cne+'/option/codeoption/'+this.etudiantOption.myOption.code+'/anneUniversitaire/annee/'+this.anneselect+'/semestre/semstreCode/'+1).subscribe(
-            data => {
-                this.etudiantOption=data;
-                console.log('flakher')
-                console.log(this.etudiantOption)
-                console.log(this.etudiantOption)
-                this.etudiantOptions.push({...this.etudiantOption});
-
-            },error => {
-                console.log(error);
-            });
-    }*/
 
     saveNewEtudiant() {
         this.etudiantOption.semestre.code=1;
@@ -203,6 +192,16 @@ export class InscriptionEtudiantService {
         );
     }
 
+    chercherEtudiant(code:string){
+        this.http.get<Array<InscriptionEtudiantModule>>( this.urlInscriptionModule+'moduleSemestreOption/code/'+code).subscribe(
+            data => {
+                this.inscriptionEtudiants = data;
+            }, error => {
+                console.log(error);
+            }
+        );
+    }
+
     get optSelec(): string {
         return this._optSelec;
     }
@@ -236,5 +235,14 @@ export class InscriptionEtudiantService {
     public testExport ():Observable<Blob>{
         return this.http.get(this.urlEtudiantOption+'etudiants/export/excel',{responseType: 'blob'})
 
+    }
+    get inscriptionEtudiants(): Array<InscriptionEtudiantModule> {
+        if(this._inscriptionEtudiants==null)
+            this._inscriptionEtudiants=new Array<InscriptionEtudiantModule>();
+        return this._inscriptionEtudiants;
+    }
+
+    set inscriptionEtudiants(value: Array<InscriptionEtudiantModule>) {
+        this._inscriptionEtudiants = value;
     }
 }
