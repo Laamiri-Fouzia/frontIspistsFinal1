@@ -52,7 +52,6 @@ export class NoteEtudiantModuleComponent implements OnInit {
     console.log(this.years)
     alert(this.years);
     this.annéeUniversitaireService.findAllyears();
-    console.log( this.modules);
   }
 
   private initCol() {

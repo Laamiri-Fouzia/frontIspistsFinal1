@@ -1,23 +1,23 @@
+<div class="card">
+    <div class="p-grid">
+        <h4 class="p-col-12 p-text-center bold">Consultation de Relevée de Note</h4>
 
-<div class="p-grid">
-    <h2 class="p-col-12 p-text-center bold">Consultation du PV</h2>
-
-    <p-toolbar styleClass="p-mb-4 " class="p-col-12">
-        <div class="p-field">
-            Enter Votre CNE:  <input type="text" pInputText id="code" [(ngModel)]="input1" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !etudiant.cne">code is required.</small>
-        </div>
-        <p-dropdown [options]="semestres" [(ngModel)]="input2" optionLabel="label" optionValue="value" (onChange)="change2()"></p-dropdown>
-        <div class="p-field">
-        <p-button class="p-col-2" label="Confirmer" class="p-button-success p-mr-2 p-mb-2" (click)="afficherPV(input1,input2)"></p-button>
-        </div>
+        <p-toolbar styleClass="p-mb-4 " class="p-col-12">
+            <div class="p-field">
+                Enter Votre CNE:  <input type="text" pInputText id="code" [(ngModel)]="input1" required autofocus />
+                <small class="p-invalid" *ngIf="submitted && !etudiant.cne">code is required.</small>
+            </div>
+            <p-dropdown [options]="semestres" [(ngModel)]="input2" optionLabel="label" optionValue="value" (onChange)="change2()"></p-dropdown>
+            <div class="p-field">
+                <p-button class="p-col-2" label="Confirmer" class="p-button-success p-mr-2 p-mb-2" (click)="afficherPV(input1,input2)"></p-button>
+            </div>
         </p-toolbar>
-</div>
-<div class="p-grid">
+    </div>
+    <div class="p-grid">
         <div class="p-col-12"><app-note-semestre-one></app-note-semestre-one></div>
-
-
+    </div>
 </div>
+
 
 
 

@@ -5,6 +5,7 @@ import {MyOption} from "../../../../controller/model/my-option.model";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitaire";
 import {AnneeUniversitaireService} from "../../../../controller/service/annee-universitaire.service";
+import {SeanceService} from "../../../../controller/service/seance.service";
 
 @Component({
   selector: 'app-module-semestre-option-list',
@@ -27,7 +28,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
 
 
 
-  constructor(private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService:ModuleSemestreOptionService, private messageService: MessageService, private confirmationService: ConfirmationService) {
+  constructor(private seanceService:SeanceService,private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService:ModuleSemestreOptionService, private messageService: MessageService, private confirmationService: ConfirmationService) {
 
 
     this.semestres=[
@@ -136,10 +137,10 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   }
 
   public deleteModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {
-    alert(1)
+
     this.moduleSemestreOption= moduleSemestreOption;
     this.moduleSemestreOptionService.deleteModuleSemestreOption().subscribe(data => {
-      alert(2)
+
       this.moduleSemestreOptions = this.moduleSemestreOptions.filter(val => val.code !== this.moduleSemestreOption.code);
       this.moduleSemestreOption = new ModuleSemestreOption();
       this.messageService.add({
@@ -168,4 +169,7 @@ export class ModuleSemestreOptionListComponent implements OnInit {
     });*/
   }
 
+    detailModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {
+        this.seanceService.detailModuleSemestreOption(moduleSemestreOption);
+    }
 }
