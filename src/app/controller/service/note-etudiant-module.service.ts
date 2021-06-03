@@ -36,10 +36,13 @@ export class NoteEtudiantModuleService {
 
 
     private filterEtudiant(data: Array<NoteEtudiantModule>) {
+        console.log('hadi dtaa')
+        console.log(data)
            for(let noteEtudiantModule of data){
-               this.http.get<Array<Absence>>(this._urlAbsence+'/module-semestre-option/codeModule/').subscribe(
+
+               this.http.get<Array<Absence>>(this._urlAbsence+'/etudiant/cne/'+noteEtudiantModule.etudiant.cne+'/seance/moduleSemestreOption/code/'+this.moduleselsected).subscribe(
                    data => {
-                       if(data.length<=3)
+                       if(data.length<3)
                            this.notesEtudiantModule.push(noteEtudiantModule);
                        else
                            this.etudiantAbsente.push(noteEtudiantModule.etudiant);
@@ -47,14 +50,20 @@ export class NoteEtudiantModuleService {
                        console.log(error);
                    }
                );
+
            }
+        console.log(this.notesEtudiantModule)
+        console.log(this.etudiantAbsente)
     }
   serachEtudiant(module:string) {
       this.moduleselsected=module;
       this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module).subscribe(
       data => {
-
+          console.log('ha li jebt flwl')
+          console.log(data)
            this.filterEtudiant(data);
+          console.log('data')
+          console.log(data)
       }, error => {
         console.log(error);
       }
