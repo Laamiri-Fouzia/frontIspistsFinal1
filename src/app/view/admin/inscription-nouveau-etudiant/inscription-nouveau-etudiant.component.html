@@ -28,14 +28,15 @@
                     <!--<p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>-->
                     <!--<p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="excel/*" maxFileSize="1000000" (onUpload)="onFileChange($event)"></p-fileUpload>-->
                     <!--<a (click)="testExport();">excel here</a>-->
+
                     <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="openPDF()" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #htmlData [value]="etudiantOptions" [columns]="cols"  [globalFilterFields]="['cne','cin','nom','prenom','datenaiss']"
-                     [rowHover]="true" dataKey="htmlData"
-                     styleClass="p-datatable-customers"
-                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+            <div id="htmlData" #htmlData><p-table  #htmlData [value]="etudiantOptions" [columns]="cols"  [globalFilterFields]="['cne','cin','nom','prenom','datenaiss']"
+                                                   [rowHover]="true" dataKey="htmlData"
+                                                   styleClass="p-datatable-customers"
+                                                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
 
                 <ng-template pTemplate="header">
                     <tr>
@@ -64,10 +65,11 @@
                     </tr>
                 </ng-template>
 
-            </p-table>
+            </p-table></div>
            </div>
         </div>
         <app-inscription-nouveau-create></app-inscription-nouveau-create>
         <app-inscription-nouveau-edit></app-inscription-nouveau-edit>
     </div>
 </div>
+<!--<div id="htmlData" #htmlData></div>-->

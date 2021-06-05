@@ -144,9 +144,10 @@ import {MatInputModule} from "@angular/material/input";
 import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre.component";
 import {NoteEtudiantSemestreModulesComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre-modules/note-etudiant-semestre-modules.component";
 import { EtudiantComponent } from './view/etudiant/etudiant.component';
-import { NoteSemestreOneComponent } from './view/etudiant/note-semestre-one/note-semestre-one.component';
 import { AbsenceEditComponent } from './view/professeur/absence-edit/absence-edit.component';
 import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-param/choisir-param.component';
+import { TestpdfComponent } from './view/testpdf/testpdf.component';
+import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-semestre-one.component";
 
 
 
@@ -240,7 +241,8 @@ import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-pa
         MatFormFieldModule,
         MatDatepickerModule,
         MatIconModule,
-        MatInputModule
+        MatInputModule,
+
     ],
     declarations: [
         AppComponent,
@@ -287,9 +289,10 @@ import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-pa
         NoteEtudiantSemestreComponent,
         NoteEtudiantSemestreModulesComponent,
         EtudiantComponent,
-        NoteSemestreOneComponent,
         AbsenceEditComponent,
-        ChoisirParamComponent
+        ChoisirParamComponent,
+        TestpdfComponent,
+        NoteSemestreOneComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

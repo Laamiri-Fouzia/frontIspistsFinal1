@@ -1,0 +1,200 @@
+<!--hadi dyale essay l3adi li tatkhdem-->
+<!--<div class="container">
+    <h1>This is an Angular App!</h1>
+    <input type="button" value="Download PDF" class="btn btn-success" (click)="SavePDF()">
+    <br/><br/>
+    <div class="container" id="content" #content>
+        <table class="table table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Salary</th>
+            </tr>
+            <tr *ngFor="let item of Data">
+                <th>{{item.Id}}</th>
+                <th>{{item.Name}}</th>
+                <th>{{item.Salary}}</th>
+            </tr>
+        </table>
+    </div>
+</div>-->
+<!--hadi dyale essay avec primeNG  (WALOOOO)
+<div class="card p-grid">
+    <p-toolbar class="p-col-12" >
+        <ng-template pTemplate="left">
+
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="openPDFgg" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+
+        </ng-template>
+    </p-toolbar>
+    <div  id="htmlData" #htmlData>
+        <p-table dataKey="htmlData" #htmlData [value]="USERS">
+
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>phone</th>
+                </tr>
+
+
+            <tr *ngFor="let user of USERS">
+                    <td>{{user.id}}}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+
+                </tr>
+        </p-table>
+    </div>
+</div>-->
+
+<!--hadi dyale essay l3adi li tatkhdem-->
+
+<!--<div class="container">
+    <div class="row">
+
+        <div class="col-md-8" id="htmlData" #htmlData>
+            <table class="table table-bordered">
+                <tr class="table-primary">
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                </tr>
+                <tr *ngFor="let user of USERS">
+                    <th>{{user.id}}</th>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-4 text-right">
+
+            <button class="btn btn-danger btn-block" (click)="openPDFgg()">Download PDF</button>
+        </div>
+
+    </div>
+</div>-->
+<!--hadi dyale essay primeNG li makhdmatx -->
+<!--<div class="card p-grid">
+    <p-toolbar class="p-col-12" >
+        <ng-template pTemplate="left">
+
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="openPDFgg" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+
+        </ng-template>
+    </p-toolbar>
+<div id="htmlData" #htmlData><p-table  #htmlData [value]="USERS"   [globalFilterFields]="['cne','cin','nom','prenom','datenaiss']"
+                                       [rowHover]="true" dataKey="htmlData"
+                                       styleClass="p-datatable-customers"
+                                       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="cne">CNE <p-sortIcon field="cne"></p-sortIcon></th>
+            <th pSortableColumn="cin">CIN <p-sortIcon field="cin"></p-sortIcon></th>
+            <th pSortableColumn="nom">NOM<p-sortIcon field="nom"></p-sortIcon></th>
+            <th pSortableColumn="prenom">PRENOM<p-sortIcon field="prenom"></p-sortIcon></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <th>{{user.id}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+
+        </tr>
+    </ng-template>
+
+</p-table></div>
+</div>-->
+<!--<p-table #htmlData  [value]="USERS" selectionMode="multiple" >
+    <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="openPDFgg()" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="cne">CNE <p-sortIcon field="cne"></p-sortIcon></th>
+            <th pSortableColumn="cin">CIN <p-sortIcon field="cin"></p-sortIcon></th>
+            <th pSortableColumn="nom">NOM<p-sortIcon field="nom"></p-sortIcon></th>
+            <th pSortableColumn="prenom">PRENOM<p-sortIcon field="prenom"></p-sortIcon></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <th>{{user.id}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+
+        </tr>
+    </ng-template>
+</p-table>-->
+<!--dyale db-->
+<div class="container">
+<div class="row">
+
+    <div class="col-md-8" id="htmlData">
+        <table class="table table-bordered">
+            <tr class="table-primary">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            <tr *ngFor="let user of USERS">
+                <th>{{user.id}}</th>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-4 text-right">
+        <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
+    </div>
+
+</div>
+
+<!--hadi copy  3la hadak li makhdem lia f essaty avec primeNg-->
+<!--<div class="card p-grid">
+    <p-toolbar class="p-col-12" >
+        <ng-template pTemplate="left">
+
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="openPDFgg" class="p-button-warning p-mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+
+        </ng-template>
+    </p-toolbar>
+    <div  id="htmlData1" #htmlData>
+        <p-table dataKey="htmlData" #htmlData [value]="USERS">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>email</th>
+                    <th>phone</th>
+                </tr>
+
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td>{{user.id}}}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>-->
+</div>

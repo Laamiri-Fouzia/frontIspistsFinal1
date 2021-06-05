@@ -130,7 +130,6 @@ export class NoteEtudiantRatComponent implements OnInit {
     const workbook = new Workbook();
     const worksheet = workbook.addWorksheet('notes');
     worksheet.columns = [
-      { header: 'CNE', key: 'cne', width: 10 },
       { header: 'Nom', key: 'etudiant', width: 10 },
       { header: 'Prenom', key: 'etudiant1', width: 10 },
       { header: 'Note Finale Rattrapage', key: 'noteFinalRat', width: 32 },
@@ -140,7 +139,6 @@ export class NoteEtudiantRatComponent implements OnInit {
     ];
     this.noteEtudiantModuleService.notesEtudiantModule.forEach(e => {
       worksheet.addRow({
-        cne: e.etudiant.cne,
         etudiant: e.etudiant.nom,
         etudiant1:e.etudiant.prenom,
         noteFinalRat: e.noteFinalApresRat,
@@ -172,19 +170,17 @@ export class NoteEtudiantRatComponent implements OnInit {
       for (let i = 0; i < x.length; i++) {//i=2
         console.log(x[i])
         for (let j = 0; j <= x[i].length; j++) {
-          if (j == 1) {
-            this.noteEtudiantModule.etudiant.cne= x[i][j];
-          } else if (j == 3) {
-            console.log('ha lobjet men b3dn new ');
+          if (j == 0){
+            console.log('ha lobjet men b3dn new');
             console.log(this.noteEtudiantModule);//tidir indefined
             this.noteEtudiantModule.noteFinalApresRat= x[i][j];//can not read propertiy of indefined **tayo9ff hnna
             console.log( x[i][j]);
             console.log(this.noteEtudiantModule.noteFinalApresRat);
-          } else if (j == 4) {
+          } else if (j == 3) {
             this.noteEtudiantModule.noteModuleNormal = x[i][j];
-          } else if (j == 5) {
+          } else if (j == 4) {
             this.noteEtudiantModule.noteModuleRat = x[i][j];
-          } else if (j == 6) {
+          } else if (j == 5) {
             this.noteEtudiantModule.etatValidation.libelle= x[i][j];
           }
 

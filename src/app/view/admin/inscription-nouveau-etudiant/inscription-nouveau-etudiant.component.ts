@@ -13,6 +13,8 @@ import html2canvas from 'html2canvas';
 import * as fs from 'file-saver';
 import jsPDF from 'jspdf';
 
+import autoTable from "jspdf-autotable";
+
 @Component({
   selector: 'app-inscription-nouveau-etudiant',
   templateUrl: './inscription-nouveau-etudiant.component.html',
@@ -222,11 +224,10 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
     });
   }
   //pdf ici ri pour tester  @ViewChild('htmlData'):ElementRef
-  @ViewChild('htmlData') htmlData:ElementRef;
+  @ViewChild('htmlData',{static : false}) htmlData:ElementRef;
   public openPDF(): void {
     const DATA = document.getElementById('htmlData');
     html2canvas(DATA).then(canvas => {
-
       const fileWidth = 208;
       const fileHeight = canvas.height * fileWidth / canvas.width;
 
@@ -234,9 +235,47 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
       const PDF = new jsPDF('p', 'mm', 'a4');
       const position = 0;
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-
       PDF.save('tasssa.pdf');
     });
   }
+
+  //@ViewChild('htmlData',{static : false}) el!:ElementRef
+title ='test pdf ';
+  /*makePDf(){
+    let pdf = new jsPDF('p','pt','a4');
+    //pdf.text("TITRE DE PDF",10,10);
+    pdf.html(this.el.nativeElement,{
+      callback:(pdf)=>{
+        pdf.save("smia.pdf");
+      }
+    })
+
+  }*/
+
+
+
+  //auther essay pdf
+
+  /*columns = [
+    { title: "cne", dataKey: "cne" },
+    { title: "cin", dataKey: "cin" },
+    { title: "nom", dataKey: "nom" },
+    { title: "prenom", dataKey: "prenom" },
+    { title: "datenaiss", dataKey: "datenaiss" }
+  ];
+  exportPdf() {
+
+    const doc = new jsPDF('p','pt');
+
+    autoTable(doc, {
+      columns: this.columns,
+      body: this.etudiantOptions,
+      didDrawPage: (dataArg) => {
+        doc.text('smiya', dataArg.settings.margin.left, 10);
+      }
+    });
+    doc.save('smiya.pdf');
+  }*/
+
 
 }
