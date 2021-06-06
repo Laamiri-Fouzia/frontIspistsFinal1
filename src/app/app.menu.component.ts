@@ -121,7 +121,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Notes Normale', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/noteEtudiantModule']},
                     {label: 'Notes rattrapage', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/noteEtudiantModuleRat']},
                     {label: 'Résultats', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']},
-                    {label: 'testingExcel', icon: 'pi pi-fw pi-times', routerLink: ['/view/testingExcel']},
+                    {label: 'testPDF', icon: 'pi pi-fw pi-times', routerLink: ['/view/testpdf']},
 
                 ]
             },
