@@ -31,7 +31,7 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="notesEtudiantRat" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['cne','etudiant','etudiant1','noteFinalRat','noteModuleNormale','noteModuleSessionRat','resultat']"
+            <p-table #dt [value]="notesEtudiantRat" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['cne','nom','prenom','noteFinalRat','noteModuleNormale','notContinue','noteModuleSessionRat','noteGlobal','resultat']"
                      [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -39,11 +39,13 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th pSortableColumn="cne">CNE <p-sortIcon field="cne"></p-sortIcon></th>
-                        <th pSortableColumn="etudiant">Nom <p-sortIcon field="etudiant"></p-sortIcon></th>
-                        <th pSortableColumn="etudiant1">Prenom <p-sortIcon field="etudiant1"></p-sortIcon></th>
+                        <th pSortableColumn="nom">Nom <p-sortIcon field="nom"></p-sortIcon></th>
+                        <th pSortableColumn="prenom">Prenom <p-sortIcon field="prenom"></p-sortIcon></th>
                         <th pSortableColumn="noteFinalRat">N.Finale Rat <p-sortIcon field="noteFinalRat"></p-sortIcon></th>
                         <th pSortableColumn="noteModuleNormale">N.module sess normal<p-sortIcon field="noteModuleNormale"></p-sortIcon></th>
+                        <th pSortableColumn="notContinue">Note continue<p-sortIcon field="notContinue"></p-sortIcon></th>
                         <th pSortableColumn="noteModuleSessionRat">N.module sess Rat<p-sortIcon field="noteModuleSessionRat"></p-sortIcon></th>
+                        <th pSortableColumn="noteGlobal">Note globale<p-sortIcon field="noteGlobal"></p-sortIcon></th>
                         <th pSortableColumn="resultat">Resultat<p-sortIcon field="resultat"></p-sortIcon></th>
                         <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
 
@@ -56,7 +58,9 @@
                         <td>{{note.etudiant.prenom}}</td>
                         <td>{{note.noteFinalApresRat}}</td>
                         <td>{{note.noteModuleNormal}}</td>
+                        <td>{{note.noteContinue}}</td>
                         <td>{{note.noteModuleRat}}</td>
+                        <td>{{note.noteGlobale}}</td>
                         <td>{{note.etatValidation.libelle}}</td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(note)"></button>

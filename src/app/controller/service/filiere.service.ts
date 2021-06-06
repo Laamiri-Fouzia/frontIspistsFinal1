@@ -158,8 +158,6 @@ export class FiliereService {
     this._createDialog = value;
   }
 
-
-
   detailFiliere(f:Filiere) {
     //this._displayOptions=true;
     this.http.get<Array<MyOption>>( this.urlOption +'/filiere/code/'+f.code).subscribe(

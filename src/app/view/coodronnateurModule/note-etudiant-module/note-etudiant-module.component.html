@@ -45,6 +45,7 @@
                         <th pSortableColumn="noteContinue">N.continue <p-sortIcon field="noteContinue"></p-sortIcon></th>
                         <th pSortableColumn="noteFinaleAvantRat">N.Finale Normal <p-sortIcon field="noteFinaleAvantRat"></p-sortIcon></th>
                         <th pSortableColumn="noteModuleNormale">N.module sess normal<p-sortIcon field="noteModuleNormale"></p-sortIcon></th>
+                        <th pSortableColumn="noteGlobale">Note globale<p-sortIcon field="noteGlobale"></p-sortIcon></th>
                         <th pSortableColumn="resultat">Resultat<p-sortIcon field="resultat"></p-sortIcon></th>
                         <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
 
@@ -60,6 +61,7 @@
                         <td>{{note.noteContinue}}</td>
                         <td>{{note.noteFinalAvRat}}</td>
                         <td>{{note.noteModuleNormal}}</td>
+                        <td>{{note.noteGlobale}}</td>
                         <td>{{note.etatValidation.libelle}}</td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(note)"></button>

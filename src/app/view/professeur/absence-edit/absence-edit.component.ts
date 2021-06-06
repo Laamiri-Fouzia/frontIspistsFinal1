@@ -17,6 +17,7 @@ export class AbsenceEditComponent implements OnInit {
   cols: any;
 
 
+
   private initCol() {
     this.cols = [
       {field: 'cne', header: 'cne'},
@@ -25,12 +26,15 @@ export class AbsenceEditComponent implements OnInit {
     ];
   }
 
-  enableDisableRule() {
-    this.toggle = !this.toggle;
-  }
   ngOnInit(): void {
 
   }
+
+  get moduleSelected(): string {
+    return this.absenceService.moduleSelected;
+  }
+
+
   get editDialog(): boolean {
     return this.absenceService.editDialog;
   }

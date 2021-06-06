@@ -42,4 +42,7 @@ export class NoteSemestreOneComponent implements OnInit {
     this.noteEtudiantSemestreService.notesEtudiantModules2 = value;
   }
 
+    openPDF() {
+
+    }
 }

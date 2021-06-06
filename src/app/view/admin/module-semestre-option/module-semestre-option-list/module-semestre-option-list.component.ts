@@ -170,6 +170,6 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   }
 
     detailModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {
-        this.seanceService.detailModuleSemestreOption(moduleSemestreOption);
+        //this.seanceService.detailModuleSemestreOption(moduleSemestreOption);
     }
 }

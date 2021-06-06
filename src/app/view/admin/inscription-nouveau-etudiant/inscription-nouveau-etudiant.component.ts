@@ -12,6 +12,10 @@ import {Workbook} from "exceljs";
 import html2canvas from 'html2canvas';
 import * as fs from 'file-saver';
 import jsPDF from 'jspdf';
+import {Etudiant} from "../../../controller/model/etudiant.model";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-inscription-nouveau-etudiant',
@@ -24,7 +28,9 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
   options: any[]=new Array();
   semestres: any[]=new Array();
   displayTable:boolean=false;
-  constructor(private annéeUniversitaireService: AnneeUniversitaireService, private messageService: MessageService, private inscriptionEtudiantService:InscriptionEtudiantService, private filiereService:FiliereService, private confirmationService: ConfirmationService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
+  private urlEtudiantOption = environment.baseUrl + 'etudiantOption/';
+
+  constructor(private http: HttpClient,private annéeUniversitaireService: AnneeUniversitaireService, private messageService: MessageService, private inscriptionEtudiantService:InscriptionEtudiantService, private filiereService:FiliereService, private confirmationService: ConfirmationService, private noteEtudiantModuleService:NoteEtudiantModuleService) {
     //anne ce que l'utilisateur voit et code ce qui est stocke
 
 
@@ -149,10 +155,9 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
       const bstr: string = e.target.result;
       const data = <any[]>this.inscriptionEtudiantService.importFromFile(bstr);
       const header: string[] = Object.getOwnPropertyNames(new EtudiantOption());
-      const x = data.slice(1);
+      const x = data.slice(0);
 
-      for (let i = 0; i < x.length; i++) {
-        console.log(x[i]);
+      for (let i = 1; i < x.length; i++) {
         for (let j = 0; j <= x[i].length; j++) {
           //console.log( x[i][j]);
           if (j == 0) {
@@ -163,13 +168,38 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
             this.etudiantOption.etudiant.nom = x[i][j];
           } else if (j == 3) {
             this.etudiantOption.etudiant.prenom = x[i][j];
-
           } else if (j == 4) {
-            this.etudiantOption.etudiant.dateNaissance = x[i][j];
-
+            console.log(this.SerialDateToJSDate(x[i][j]));
+            var response=moment(this.SerialDateToJSDate(x[i][j])).format('YYYY-MM-DD');
+            this.etudiantOption.etudiant.dateNaissance=response;
           }
+
         }
-        this.inscriptionEtudiantService.saveNewEtudiant();
+        this.etudiantOption.semestre.code=1;
+        this.etudiantOption.anneeUniversitaire.anneeOne=this.anneselect;
+        this.etudiantOption.myOption.code=this.optSelec;
+        this.etudiantOption.etudiant.dateInscription=moment(new Date()).format('YYYY-MM-DD');
+        this.etudiantOptions.push(this.cloneEtudiantOption(this.etudiantOption));
+        this.http.post(this.urlEtudiantOption + 'newEtudiant/', this.etudiantOption).subscribe(
+            data => {
+              if (data == 1) {
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Successful',
+                  detail: 'Etudiant bien enregistré! ',
+                });
+              } else {
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Error !',
+                  detail: 'Etudiant avec Cne: '+this.etudiantOption.etudiant.cne+'  deja existe !'
+                });
+              }
+
+            }, error => {
+              console.log(error);
+            }
+        );
       }
 
       /*this.etudiantOptions = importedData.map(arr => {
@@ -187,8 +217,26 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
 
   }
 
+  public cloneEtudiantOption(etudianOption:EtudiantOption):EtudiantOption{
+    let  nvEtudiantOption: EtudiantOption = new EtudiantOption();
+    nvEtudiantOption.etudiant= this.cloneEtudiant(etudianOption.etudiant);
+    nvEtudiantOption.myOption= {...etudianOption.myOption}
+    nvEtudiantOption.anneeUniversitaire= {...etudianOption.anneeUniversitaire}
+    nvEtudiantOption.semestre= {...etudianOption.semestre}
+    nvEtudiantOption.id=etudianOption.id
+    return nvEtudiantOption;
 
-
+  }
+  public cloneEtudiant(e:Etudiant){
+    let etudiant=new Etudiant();
+    etudiant.cne=e.cne
+    etudiant.cin=e.cin
+    etudiant.nom=e.nom
+    etudiant.prenom=e.prenom
+    etudiant.dateInscription=e.dateInscription
+    etudiant.dateNaissance=e.dateNaissance
+    return etudiant;
+  }
 
   private initCol() {
     this.cols = [
@@ -207,14 +255,18 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
     const worksheet = workbook.addWorksheet('etudiants');//hnna mieux ndro smiya en detaille option ...
     const annee=this.anneselect+1
     worksheet.columns = [
-      { header: 'cne', key: 'cne', width: 10 },
-      { header: 'cin', key: 'cin', width: 32 },
-      { header: 'nom', key: 'nom', width: 10 },
-      { header: 'prenom', key: 'prenom', width: 10 },
-      { header: 'datenaiss', key: 'datenaiss', width: 10 }
+      { header: 'cne', key: 'cne', width: 25 },
+      { header: 'cin', key: 'cin', width: 25 },
+      { header: 'nom', key: 'nom', width: 25 },
+      { header: 'prenom', key: 'prenom', width: 25 },
+      { header: 'datenaiss', key: 'datenaiss', width: 25 }
     ];
     this.inscriptionEtudiantService.etudiantOptions.forEach(e => {
-      worksheet.addRow({cne: e.etudiant.cne, cin: e.etudiant.cin, nom: e.etudiant.nom, prenom: e.etudiant.prenom ,datenaiss: e.etudiant.dateNaissance}, 'n');
+      worksheet.addRow({cne: e.etudiant.cne,
+        cin: e.etudiant.cin,
+        nom: e.etudiant.nom,
+        prenom: e.etudiant.prenom ,
+        datenaiss: e.etudiant.dateNaissance }, 'n');
     });
     workbook.xlsx.writeBuffer().then((data) => {
       const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
@@ -238,5 +290,10 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
       PDF.save('tasssa.pdf');
     });
   }
-
+   SerialDateToJSDate(serialDate) {
+    var days = Math.floor(serialDate);
+    var hours = Math.floor((serialDate % 1) * 24);
+    var minutes = Math.floor((((serialDate % 1) * 24) - hours) * 60)
+    return new Date(Date.UTC(0, 0, serialDate, hours-17, minutes));
+  }
 }

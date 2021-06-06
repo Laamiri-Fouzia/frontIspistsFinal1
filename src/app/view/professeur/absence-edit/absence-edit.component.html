@@ -6,10 +6,10 @@
         <div class="card p-grid">
             <h2 class="p-col-12 p-text-center bold">Liste des Absences</h2>
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
-                <button pButton pRipple style="width:300px;height: 40px" class="p-col-2" class="p-button-success p-mr-2 p-mb-2" (click)="choisirParametre()" label="clicker pour choisir les paramétres"></button>
+                <button pButton pRipple style="width:300px;height: 40px" class="p-col-2 p-button-success p-mr-2 p-mb-2" (click)="choisirParametre()" label="clicker pour choisir les paramétres"></button>
             </p-toolbar>
             <div [ngClass]="{'vis':displayTable==false}">
-            <p-table  #dt [value]="inscriptionEtudiants" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['cne','nom']"
+            <p-table  #dt [value]="inscriptionEtudiants" [columns]="cols"  [globalFilterFields]="['cne','nom']"
                      [(selection)]="selects"  [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -28,9 +28,9 @@
                         <th pSortableColumn="nom">Nom <p-sortIcon field="nom"></p-sortIcon></th>
 
                         <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                             <p-tableHeaderCheckbox ></p-tableHeaderCheckbox>
                         </th>
-                        <th></th>
+                        <th>Absent</th>
                         <!--<th pSortableColumn="nom">present <p-sortIcon field="nom"></p-sortIcon></th>-->
 
                         <!--<th pSortableColumn="totalPaye">Total Paye <p-sortIcon field="totalPaye"></p-sortIcon></th>-->

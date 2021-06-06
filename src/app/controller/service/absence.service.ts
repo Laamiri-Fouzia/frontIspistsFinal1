@@ -19,9 +19,18 @@ export class AbsenceService {
   private _absences:Array<Absence>;
   private _seanceSelected='';
   private _urlAbsence=environment.baseUrl+'absence/';
-
+  private _moduleSelected :string;
   constructor(private http: HttpClient,private messageService: MessageService) { }
 
+
+
+  get moduleSelected(): string {
+    return this._moduleSelected;
+  }
+
+  set moduleSelected(value: string) {
+    this._moduleSelected = value;
+  }
   get absences(): Array<Absence> {
     if(this._absences==null)
       this._absences=new Array<Absence>();
@@ -120,4 +129,6 @@ export class AbsenceService {
             console.log(error);
           });
     }
+
+
 }

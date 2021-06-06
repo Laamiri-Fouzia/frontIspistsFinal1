@@ -6,6 +6,8 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import * as XLSX from "xlsx";
 import {Observable} from "rxjs";
 import {InscriptionEtudiantModule} from "../model/inscription-etudiant-module.model";
+import {Etudiant} from "../model/etudiant.model";
+import * as moment from "moment";
 
 @Injectable({
     providedIn: 'root'
@@ -77,16 +79,25 @@ export class InscriptionEtudiantService {
     set etudiantAnciens(value: Array<EtudiantOption>) {
         this._etudiantAnciens = value;
     }
-
-    /*public cloneEtudiantOption(etudianOption:EtudiantOption):EtudiantOption{
+     public cloneEtudiant(e:Etudiant){
+        let etudiant=new Etudiant();
+        etudiant.cne=e.cne
+        etudiant.cin=e.cin
+        etudiant.nom=e.nom
+        etudiant.prenom=e.prenom
+        etudiant.dateInscription=e.dateInscription
+        etudiant.dateNaissance=e.dateNaissance
+        return etudiant;
+     }
+    public cloneEtudiantOption(etudianOption:EtudiantOption):EtudiantOption{
         let  nvEtudiantOption: EtudiantOption = new EtudiantOption();
-        nvEtudiantOption.etudiant=etudianOption.etudiant
-        nvEtudiantOption.myOption=etudianOption.myOption
-        nvEtudiantOption.annee=etudianOption.annee
-        nvEtudiantOption.semestre=etudianOption.semestre
+        nvEtudiantOption.etudiant= this.cloneEtudiant(etudianOption.etudiant);
+        nvEtudiantOption.myOption= {...etudianOption.myOption}
+        nvEtudiantOption.anneeUniversitaire= {...etudianOption.anneeUniversitaire}
+        nvEtudiantOption.semestre= {...etudianOption.semestre}
         nvEtudiantOption.id=etudianOption.id
         return nvEtudiantOption;
-    }*/
+    }
     private _anneselect: number;
 
     SearchStudent() {
@@ -116,24 +127,35 @@ export class InscriptionEtudiantService {
     }
 
 
-    saveNewEtudiant() {
+    /*saveNewEtudiant() {
+        console.log('hda sav')
+        console.log(this.etudiantOptions)
         this.etudiantOption.semestre.code=1;
         this.etudiantOption.anneeUniversitaire.anneeOne=this._anneselect;
         this.etudiantOption.myOption.code=this._optSelec;
         this.etudiantOption.etudiant.dateInscription=new Date();
-        console.log(this.etudiantOption.etudiant.dateInscription);
-        console.log(this.etudiantOption.etudiant.dateNaissance);
         this.http.post(this.urlEtudiantOption + 'newEtudiant/', this.etudiantOption).subscribe(
             data => {
                 console.log('flfwl')
                 console.log(this.etudiantOption)
                 if (data == 1) {
-                    this.etudiantOptions.push({...this.etudiantOption});
+                    let j=this.cloneEtudiantOption(this.etudiantOption);
+                    this.etudiantOptions.push(j);
+                    this.etudiantOption.myOption.code='hh';
+                    console.log('hada clone')
+                    console.log(j)
+                    console.log('hada l3adi')
+                    console.log(this.etudiantOption)
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Successful',
                         detail: 'Etudiant bien enregistré! ',
                     });
+                    console.log('ha ljdwel 9bl null')
+                    console.log(this.etudiantOptions)
+                    this.etudiantOption=null;
+                    console.log('ha ljdwel bed null')
+                    console.log(this.etudiantOptions)
                 } else {
                     this.messageService.add({
                         severity: 'error',
@@ -141,12 +163,51 @@ export class InscriptionEtudiantService {
                         detail: 'Etudiant avec Cne: '+this.etudiantOption.etudiant.cne+'  deja existe !'
                     });
                 }
-                 this.etudiantOption=null;
-            }, error => {
+
+                }, error => {
+                console.log(error);
+                this.etudiantOption=null;
+            }
+        );
+
+    }*/
+
+    saveNewEtudiant() {
+        this.etudiantOption.semestre.code=1;
+        this.etudiantOption.anneeUniversitaire.anneeOne=this._anneselect;
+        this.etudiantOption.myOption.code=this._optSelec;
+        this.etudiantOption.etudiant.dateInscription=moment(new Date()).format('YYYY-MM-DD');
+        this.http.post(this.urlEtudiantOption + 'newEtudiant/', this.etudiantOption).subscribe(
+            data => {
+                if (data == 1) {
+                    let j=this.cloneEtudiantOption(this.etudiantOption);
+                    this.etudiantOptions.push(j);
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Successful',
+                        detail: 'Etudiant bien enregistré! ',
+                    });
+                    //this.etudiantOption=new EtudiantOption();
+                    console.log('hada j')
+                    console.log(j.etudiant)
+                    console.log('hada etudiant li khwit ')
+                    console.log(this.etudiantOption.etudiant)
+
+                } else {
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: 'Error !',
+                        detail: 'Etudiant avec Cne: '+this.etudiantOption.etudiant.cne+'  deja existe !'
+                    });
+                }
+                }, error => {
                 console.log(error);
             }
         );
     }
+
+
+
 
   clone (etudiantOption:EtudiantOption){
         let etuOp=new EtudiantOption();
@@ -158,6 +219,7 @@ export class InscriptionEtudiantService {
         return etuOp;
   }
     EditStudent() {
+        console.log(this.etudiantOption)
         this.http.put(this.urlEtudiant, this.etudiantOption.etudiant).subscribe(
             data =>{
                 if (data == 1) {
