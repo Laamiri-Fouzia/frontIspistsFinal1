@@ -47,24 +47,22 @@ export class NoteSemestreOneComponent implements OnInit {
 
   //pdf ici ri pour tester  @ViewChild('htmlData'):ElementRef
   @ViewChild('htmlData',{static : false}) htmlData:ElementRef;
-  public openPDF(): void {
-    const DATA = document.getElementById('htmlData');
-    html2canvas(DATA).then(canvas => {
-      const fileWidth = 208;
-      const fileHeight = canvas.height * fileWidth / canvas.width;
+  public openPDF():void {
+    let DATA = document.getElementById('htmlData');
 
-      const FILEURI = canvas.toDataURL('image/png');
-      const PDF = new jsPDF('p', 'mm', 'a4');
-      const position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
-      PDF.save('tasssa.pdf');
+    html2canvas(DATA).then(canvas => {
+
+      let fileWidth = 208;
+      let fileHeight = canvas.height * fileWidth / canvas.width;
+
+      const FILEURI = canvas.toDataURL('image/png')
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
+
+      PDF.save('PV_Semestre');
     });
   }
-
-
-
-
-
 
 
 
