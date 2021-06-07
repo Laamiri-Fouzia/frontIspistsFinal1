@@ -156,14 +156,13 @@
                 <th>KJKJ</th>
             </tr>
 
-            <th>Nom et Prénom: </th>
             <tr class="table-primary">
                 <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
             </tr>
-            <tr *ngFor="let user of USERS">
+            <tr *ngFor="let user of _USERS">
                 <th>{{user.id}}</th>
                 <td>{{user.name}}</td>
                 <td>{{user.email}}</td>

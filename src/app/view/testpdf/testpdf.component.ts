@@ -12,6 +12,19 @@ export class TestpdfComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this._USERS.push({
+      "id": 1,
+      "name": "Leanne Graham",
+      "email": "sincere@april.biz",
+      "phone": "1-770-736-8031 x56442"
+    });
+    this._USERS.push({
+      "id": 1,
+      "name": "Leanne Graham",
+      "email": "sincere@april.biz",
+      "phone": "1-770-736-8031 x56442"
+    } );
   }
 
   /*sales = [
@@ -33,22 +46,17 @@ export class TestpdfComponent implements OnInit {
     { title: "Last Year Profit", dataKey: "lastYearProfit" },
     { title: "This Year Profit", dataKey: "thisYearProfit" }
   ];*/
-
+  public _USERS:Array<any>=new Array<any>();
   @ViewChild('htmlData') htmlData:ElementRef;
 
-  USERS = [
-    {
-      "id": 1,
-      "name": "Leanne Graham",
-      "email": "sincere@april.biz",
-      "phone": "1-770-736-8031 x56442"
-    },
-    {
-      "id": 2,
-      "name": "Ervin Howell",
-      "email": "shanna@melissa.tv",
-      "phone": "010-692-6593 x09125"
-    },
+  /*{
+    "id": 2,
+        "name": "Ervin Howell",
+        "email": "shanna@melissa.tv",
+        "phone": "010-692-6593 x09125"
+  });
+
+   ,
     {
       "id": 3,
       "name": "Clementine Bauch",
@@ -72,8 +80,8 @@ export class TestpdfComponent implements OnInit {
       "name": "Mrs. Dennis",
       "email": "karley@jasper.info",
       "phone": "1-477-935-8478 x6430"
-    }
-  ];
+    }*/
+
 
   constructor() { }
 

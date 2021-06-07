@@ -21,6 +21,9 @@ import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-a
 import {EtudiantComponent} from "./view/etudiant/etudiant.component";
 import {AbsenceEditComponent} from "./view/professeur/absence-edit/absence-edit.component";
 import {AbsenceEtudiantComponent} from "./view/etudiant/absence-etudiant/absence-etudiant.component";
+import {TestpdfComponent} from "./view/testpdf/testpdf.component";
+import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-semestre-one.component";
+import {ImageUploadComponent} from "./view/test/image-upload/image-upload.component";
 
 @NgModule({
     imports: [
@@ -38,9 +41,11 @@ import {AbsenceEtudiantComponent} from "./view/etudiant/absence-etudiant/absence
                     {path: 'pages/calendar', component: AppCalendarComponent},
                     {path: 'view/note-etudiant-semestre', component: NoteEtudiantSemestreComponent},
                     {path: 'view/ponderation', component: PonderationAffectComponent},
-                    {path: 'view/etudiant', component: EtudiantComponent},
+                    {path: 'view/etudiant', component: NoteSemestreOneComponent},
                     {path: 'view/absence', component: AbsenceEditComponent},
                     {path: 'view/absenceEtudiant', component: AbsenceEtudiantComponent},
+                    {path: 'view/test', component: TestpdfComponent},
+                    {path: 'view/imageUpload', component: ImageUploadComponent}
                 ]
             },
             {path: 'error', component: AppErrorComponent},

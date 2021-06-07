@@ -148,6 +148,8 @@ import { NoteSemestreOneComponent } from './view/etudiant/note-semestre-one/note
 import { AbsenceEditComponent } from './view/professeur/absence-edit/absence-edit.component';
 import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-param/choisir-param.component';
 import { AbsenceEtudiantComponent } from './view/etudiant/absence-etudiant/absence-etudiant.component';
+import {TestpdfComponent} from "./view/testpdf/testpdf.component";
+import { ImageUploadComponent } from './view/test/image-upload/image-upload.component';
 
 
 
@@ -291,7 +293,9 @@ import { AbsenceEtudiantComponent } from './view/etudiant/absence-etudiant/absen
         NoteSemestreOneComponent,
         AbsenceEditComponent,
         ChoisirParamComponent,
-        AbsenceEtudiantComponent
+        AbsenceEtudiantComponent,
+        TestpdfComponent,
+        ImageUploadComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

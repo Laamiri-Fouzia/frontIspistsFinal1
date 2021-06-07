@@ -34,9 +34,11 @@
                         <th pSortableColumn="note Finale avant Rat">Date d'absence <p-sortIcon field="note Finale avant Rat"></p-sortIcon></th>
                         <th pSortableColumn="Resultat">Heure de seance <p-sortIcon field="Resultat"></p-sortIcon></th>
                         <th pSortableColumn="Resultat">Justification <p-sortIcon field="Resultat"></p-sortIcon></th>
+                        <th></th>
                         <th pSortableColumn="Action">Etat Absence <p-sortIcon field="Action"></p-sortIcon></th>
                         <!--<th pSortableColumn="totalPaye">Total Paye <p-sortIcon field="totalPaye"></p-sortIcon></th>-->
                         <th></th>
+
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-absence>
@@ -46,8 +48,10 @@
                         <td>{{absence.seance.dateSeance}}</td>
                         <td>{{absence.seance.heureDebut}}-{{absence.seance.heureFin}}</td>
                         <td>
-                            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success p-mr-2" ></button>
+                            <input type="file" (change)="onFileChanged($event)">
+                            <input type="button" (click)="onUpload(absence)" value="upload">
                         </td>
+                        <td></td>
                         <td>{{absence.etatJustification}}</td>
                     </tr>
                 </ng-template>

@@ -131,4 +131,19 @@ export class AbsenceService {
     }
 
 
+    updateAbsence(absence: Absence) {
+      console.log('ana f update')
+      console.log('absence :')
+      console.log(absence);
+      absence.etatAbsence=true;
+      absence.etatJustification='justification pas encore traite';
+      this.http.put(this._urlAbsence,absence ).subscribe(
+          data => {
+              console.log(data)
+          },error => {
+            console.log(error);
+          });
+      console.log(absence);
+    }
+
 }

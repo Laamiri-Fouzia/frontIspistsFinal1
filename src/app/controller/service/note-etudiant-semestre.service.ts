@@ -11,6 +11,8 @@ import {Etudiant} from "../model/etudiant.model";
   providedIn: 'root'
 })
 export class NoteEtudiantSemestreService {
+
+
   constructor(private http:HttpClient,private messageService: MessageService) { }
   private _myOptions:Array<MyOption>;
   private _myNotesSemestre:Array<NoteEtudiantSemestre>;
@@ -32,7 +34,17 @@ export class NoteEtudiantSemestreService {
   private _notesEtudiantModules1:Array<NoteEtudiantModule>;
   private _notesEtudiantModules:Array<NoteEtudiantModule>;
   private _notesEtudiantModules2:Array<NoteEtudiantModule>;
+  private _notes:Array<any>;
 
+    get notes(): Array<any>{
+        if(this._notes==null)
+            this._notes=new Array<any>();
+        return this._notes;
+    }
+
+    set notes(value: Array<any>) {
+        this._notes = value;
+    }
     get anneeSelect(): String {
         return this._anneeSelect;
     }
@@ -274,4 +286,6 @@ export class NoteEtudiantSemestreService {
         );
 
     }
+
+
 }

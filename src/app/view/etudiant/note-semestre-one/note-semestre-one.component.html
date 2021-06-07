@@ -35,19 +35,19 @@
     </div>
 
 </div>-->
-<div class="row">
+<!-- <div class="row">
 
     <div class="col-md-8" id="htmlData">
         <table class="table table-bordered">
 
             <tr>
                 <th>PV du jury du semestre:</th>
-                <th>S{{semestreSelct}} </th>
+                <th>S{{USERS[0].name}} </th>
             </tr>
 
             <tr>
                 <th>Nom et Prénom: </th>
-                <th>{{notesEtudiantModules[0].etudiant.nom+'  '+notesEtudiantModules[0].etudiant.prenom}}</th>
+                <th>{{USERS[0].email+'  '+USERS[0].name}}</th>
             </tr>
 
 
@@ -57,11 +57,11 @@
                 <th>Etat de Validation</th>
                 <th>Année Universitaire</th>
             </tr>
-            <tr *ngFor="let n of notesEtudiantModules">
-                <th>{{n.moduleSemestreOption.myModule.libelle}}</th>
-                <td>{{n.noteGlobale}}</td>
-                <td>{{n.etatValidation.libelle}}</td>
-                <td>{{n.moduleSemestreOption.anneeUniversitaire.libelle}}</td>
+            <tr *ngFor="let n of USERS">
+                <th>{{n.name}}</th>
+                <td>{{n.email}}</td>
+                <td>{{n.phone}}</td>
+                <td>{{n.id}}</td>
             </tr>
         </table>
     </div>
@@ -70,4 +70,69 @@
         <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
     </div>
 
+</div> -->
+<div class="card">
+    <div class="p-grid">
+        <h4 class="p-col-12 p-text-center bold">Consultation de Relevée de Note</h4>
+
+        <p-toolbar styleClass="p-mb-4 " class="p-col-12">
+            <div class="p-field">
+                Enter Votre CNE:  <input type="text" pInputText id="code" [(ngModel)]="input1" required autofocus />
+                <small class="p-invalid" *ngIf="submitted && !etudiant.cne">code is required.</small>
+            </div>
+            <p-dropdown [options]="semestres" [(ngModel)]="input2" optionLabel="label" optionValue="value" (onChange)="change2()"></p-dropdown>
+            <div class="p-field">
+                <p-button label="Confirmer" class=" p-col-2 p-button-success p-mr-2 p-mb-2" (click)="afficherPV(input1,input2)"></p-button>
+            </div>
+        </p-toolbar>
+    </div>
+    <div class="p-grid">
+        <div class="p-col-12">
+            <div class="row">
+
+                <div class="col-md-8" id="htmlData">
+                    <table class="table table-bordered">
+
+                        <tr>
+                            <th>PV du jury du semestre:</th>
+                            <th>HJJH</th>
+                        </tr>
+
+                        <tr>
+                            <th>Nom et Prénom: </th>
+                        </tr>
+
+                        <tr class="table-primary">
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+
+                        <tr *ngFor="let user of _notes">
+                            <th>{{user.nom}}</th>
+                            <td>{{user.prenom}}</td>
+                            <td>{{user.noteSemestre}}</td>
+                            <td>{{user.nom}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Moyenne: </th>
+                            <th>moyenneDyal FOTTEE</th>
+                        </tr>
+                        <tr>
+                            <th>Résultat: </th>
+                            <th>LOLOLOLOLOLOLOLO</th>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-md-4 text-right">
+                    <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
