@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ModuleSemestreOption} from "../../../../controller/model/module-semestre-option.model";
 import {ModuleSemestreOptionService} from "../../../../controller/service/module-semestre-option.service";
-import {MyOption} from "../../../../controller/model/my-option.model";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitaire";
 import {AnneeUniversitaireService} from "../../../../controller/service/annee-universitaire.service";
@@ -29,8 +28,6 @@ export class ModuleSemestreOptionListComponent implements OnInit {
 
 
   constructor(private seanceService:SeanceService,private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService:ModuleSemestreOptionService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-
-
     this.semestres=[
       {semestre: "Semestre", code: null},
       {semestre: "Semestre1", code: 1},
@@ -63,6 +60,37 @@ export class ModuleSemestreOptionListComponent implements OnInit {
   public openCreate() {
     this.submitted = false;
     this.createDialog = true;
+  }
+  get createDialog1(): boolean {
+    return this.moduleSemestreOptionService.createDialog1;
+  }
+
+  set createDialog1(value: boolean) {
+    this.moduleSemestreOptionService.createDialog1 = value;
+  }
+
+  get editDialog1(): boolean {
+    return this.moduleSemestreOptionService.editDialog1;
+  }
+
+  set editDialog1(value: boolean) {
+    this.moduleSemestreOptionService.editDialog1 = value;
+  }
+
+  get viewDialog1(): boolean {
+    return this.moduleSemestreOptionService.viewDialog1;
+  }
+
+  set viewDialog1(value: boolean) {
+    this.moduleSemestreOptionService.viewDialog1 = value;
+  }
+
+  get submitted1(): boolean {
+    return this.moduleSemestreOptionService.submitted1;
+  }
+
+  set submitted1(value: boolean) {
+    this.moduleSemestreOptionService.submitted1 = value;
   }
 
   get submitted(): boolean {
@@ -169,7 +197,12 @@ export class ModuleSemestreOptionListComponent implements OnInit {
     });*/
   }
 
-    detailModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {
-        //this.seanceService.detailModuleSemestreOption(moduleSemestreOption);
-    }
+  /*detailModuleSemestreOption(moduleSemestreOption: ModuleSemestreOption) {
+     this.seanceService.detailModuleSemestreOption(moduleSemestreOption);
+    }*/
+
+  openCreate1(moduleSemestreOption: ModuleSemestreOption) {
+  this.createDialog1=true;
+  this.seanceService.detailModuleSemestreOption(moduleSemestreOption);
+}
 }

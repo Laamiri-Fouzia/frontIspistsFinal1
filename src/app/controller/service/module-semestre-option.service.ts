@@ -6,7 +6,6 @@ import {Semestre} from "../model/semestre.model";
 import {Observable} from "rxjs";
 import {MessageService} from "primeng/api";
 import {Seance} from "../model/seance.model";
-import {environment} from "../../../environments/environment";
 
 
 @Injectable({
@@ -16,11 +15,49 @@ export class ModuleSemestreOptionService {
     private URLmoduleSemOpt = 'ispits-project/module-semestre-option/';
     private urlBase = 'http://localhost:8036/';//http://localhost:8036/ispits-project/module-semestre-option/
     private _moduleSemestreOption: ModuleSemestreOption;
-    private urlOption=environment.baseUrl+'option';
+    private _createDialog: boolean;
+    private _editDialog: boolean;
+    private _viewDialog: boolean;
+    private _submitted: boolean;
+    private _createDialog1: boolean;
+    private _editDialog1: boolean;
+    private _viewDialog1: boolean;
+    private _submitted1: boolean;
+
     constructor(private http: HttpClient, private messageService: MessageService) {
     }
 
+    get createDialog1(): boolean {
+        return this._createDialog1;
+    }
 
+    set createDialog1(value: boolean) {
+        this._createDialog1 = value;
+    }
+
+    get editDialog1(): boolean {
+        return this._editDialog1;
+    }
+
+    set editDialog1(value: boolean) {
+        this._editDialog1 = value;
+    }
+
+    get viewDialog1(): boolean {
+        return this._viewDialog1;
+    }
+
+    set viewDialog1(value: boolean) {
+        this._viewDialog1 = value;
+    }
+
+    get submitted1(): boolean {
+        return this._submitted1;
+    }
+
+    set submitted1(value: boolean) {
+        this._submitted1 = value;
+    }
     set displayModules(value: boolean) {
         this._displayModules = value;
     }
@@ -94,8 +131,6 @@ export class ModuleSemestreOptionService {
         this._semestreselec = value;
     }
 
-    private _createDialog: boolean;
-
     get createDialog(): boolean {
         return this._createDialog;
     }
@@ -103,8 +138,6 @@ export class ModuleSemestreOptionService {
     set createDialog(value: boolean) {
         this._createDialog = value;
     }
-
-    private _editDialog: boolean;
 
     get editDialog(): boolean {
         return this._editDialog;
@@ -114,8 +147,6 @@ export class ModuleSemestreOptionService {
         this._editDialog = value;
     }
 
-    private _viewDialog: boolean;
-
     get viewDialog(): boolean {
         return this._viewDialog;
     }
@@ -123,8 +154,6 @@ export class ModuleSemestreOptionService {
     set viewDialog(value: boolean) {
         this._viewDialog = value;
     }
-
-    private _submitted: boolean;
 
     get submitted(): boolean {
         return this._submitted;
@@ -177,15 +206,6 @@ export class ModuleSemestreOptionService {
                 console.log(error);
             }
         );
-    }
-
-    findOptionByCode(){
-        this.http.get<MyOption>( this.urlOption +'/code/'+this.moduleSemestreOption.myOption.code).subscribe(
-            data => {
-               this.moduleSemestreOption.myOption=data;
-            },error => {
-                console.log(error);
-            });
     }
 
     saveOptionSemestreModule(moduleselect: string, typemoduleselect: string) {
