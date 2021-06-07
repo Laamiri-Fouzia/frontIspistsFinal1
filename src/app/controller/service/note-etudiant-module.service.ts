@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import {ModuleSemestreOption} from "../model/module-semestre-option.model";
 import {NoteEtudiantModule} from "../model/note-etudiant-module.model";
 import {HttpClient} from "@angular/common/http";
-import {ModuleSemestreOptionService} from "./module-semestre-option.service";
-import {THIS_EXPR} from "@angular/compiler/src/output/output_ast";
+import * as XLSX from "xlsx";
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +13,13 @@ export class NoteEtudiantModuleService {
   private _notesEtudiantModule:Array<NoteEtudiantModule>;
   private _notesEtudiantRat:Array<NoteEtudiantModule>;
   private URLNoteEtudModule: string='ispits-project/note-etudiant-modul';
+  private moduleselected: string;
+    private moduleRatt: string;
 
   constructor(private http:HttpClient) { }
 
   serachEtudiant(module:string) {
+      this.moduleselected=module;
       this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module).subscribe(
       data => {
         this.notesEtudiantModule = data;
@@ -72,13 +73,18 @@ export class NoteEtudiantModuleService {
      let nfAvR=this.noteEtudiantModule.noteFinalAvRat;
      this.noteEtudiantModule.noteModuleNormal=(pc*nc)+(pf*nfAvR);
      this.noteEtudiantModule.noteGlobale=this.noteEtudiantModule.noteModuleNormal;
+     this.noteEtudiantModule.moduleSemestreOption.code=this.moduleselected;
      if(this.noteEtudiantModule.noteModuleNormal>=10)
        this.noteEtudiantModule.etatValidation.libelle='Validé';
      else
        this.noteEtudiantModule.etatValidation.libelle='Rattrapage';
+     console.log('serv')
      console.log(this.noteEtudiantModule);
      this.http.put(this.urlBase+this.URLNoteEtudModule+'/',this.noteEtudiantModule).subscribe(
        data => {
+           console.log('hnna noteEtudiantModule mli 3yetnna 3lihha');
+           console.log(this.noteEtudiantModule);
+           console.log('hnna data');
             console.log(data)
        }, error => {
          console.log(error);
@@ -88,6 +94,7 @@ export class NoteEtudiantModuleService {
   }
 
     listeRatt(module: string){
+        this.moduleRatt=module;
         this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/moduleSemestreOption/codeModule/'+module+'/etatValidation/codeEtat/R').subscribe(
             data => {
                 console.log(data)
@@ -106,8 +113,9 @@ export class NoteEtudiantModuleService {
     let nc=this.noteEtudiantModule.noteContinue;
     let nfApresR=this.noteEtudiantModule.noteFinalApresRat;
     this.noteEtudiantModule.noteModuleRat=(pc*nc)+(pf*nfApresR);
+    this.noteEtudiantModule.moduleSemestreOption.code=this.moduleRatt;
 
-    if(this.noteEtudiantModule.noteModuleRat>this.noteEtudiantModule.noteModuleNormal)
+      if(this.noteEtudiantModule.noteModuleRat>this.noteEtudiantModule.noteModuleNormal)
         this.noteEtudiantModule.noteGlobale=this.noteEtudiantModule.noteModuleRat;
 
     if(this.noteEtudiantModule.noteGlobale<10)
@@ -124,4 +132,18 @@ export class NoteEtudiantModuleService {
       }
     );
   }
+
+    public importFromFile(bstr: string): XLSX.AOA2SheetOpts {
+        // bax i9rah
+        const wb: XLSX.WorkBook = XLSX.read(bstr, { type: 'binary' });
+
+        // 3la l first sheet
+        const wsname: string = wb.SheetNames[0];
+        const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+
+        /*save data en va le supprimer apres*/
+        const data = <XLSX.AOA2SheetOpts>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
+        return data;
+    }
+
 }

@@ -7,6 +7,9 @@ import {ModuleSemestreOption} from "../../../controller/model/module-semestre-op
 import {NoteEtudiantModule} from "../../../controller/model/note-etudiant-module.model";
 import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
 import {AnneeUniversitaireService} from "../../../controller/service/annee-universitaire.service";
+import {Workbook} from "exceljs";
+import * as fs from 'file-saver';
+import {EtudiantOption} from "../../../controller/model/etudiant-option.model";
 
 @Component({
   selector: 'app-note-etudiant-rat',
@@ -95,6 +98,9 @@ export class NoteEtudiantRatComponent implements OnInit {
   get notesEtudiantModule(): Array<NoteEtudiantModule> {
     return this.noteEtudiantModuleService.notesEtudiantModule;
   }
+    get noteEtudiantModule(): NoteEtudiantModule {
+        return this.noteEtudiantModuleService.noteEtudiantModule;
+    }
   set noteEtudiantModule(value: NoteEtudiantModule) {
     this.noteEtudiantModuleService.noteEtudiantModule=value;
   }
@@ -119,4 +125,75 @@ export class NoteEtudiantRatComponent implements OnInit {
     this.noteEtudiantModuleService.listeRatt(input4);
   }
 
-}
+
+  downloadExcel() {
+    const workbook = new Workbook();
+    const worksheet = workbook.addWorksheet('notes');
+    worksheet.columns = [
+      { header: 'Nom', key: 'etudiant', width: 10 },
+      { header: 'Prenom', key: 'etudiant1', width: 10 },
+      { header: 'Note Finale Rattrapage', key: 'noteFinalRat', width: 32 },
+      { header: 'Note Module Normale', key: 'noteModuleNormale', width: 10 },
+      { header: 'Note Module Session Rat', key: 'noteModuleSessionRat', width: 10 },
+      { header: 'Resultat', key: 'resultat', width: 10 }
+    ];
+    this.noteEtudiantModuleService.notesEtudiantModule.forEach(e => {
+      worksheet.addRow({
+        etudiant: e.etudiant.nom,
+        etudiant1:e.etudiant.prenom,
+        noteFinalRat: e.noteFinalApresRat,
+        noteModuleNormale: e.noteModuleNormal,
+        noteModuleSessionRat:e.noteModuleRat,
+        resultat:e.etatValidation.libelle
+      }, 'n');
+    });
+    workbook.xlsx.writeBuffer().then((data) => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      const annee= this.input1+ this.input1+1
+      fs.saveAs(blob, 'Notes_etudiants_Ratt_'+this.input3+'_'+this.input4+'_'+annee+'.xlsx');
+    });
+  }
+
+  onFileChange(evt: any) {
+    const target: DataTransfer = <DataTransfer>(evt.target);
+    if (target.files.length !== 1) throw new Error('Cannot use multiple files');
+
+    const reader: FileReader = new FileReader();
+    reader.onload = (e: any) => {//un gestionnaire pour l'evenement abort (qui se declenche lorsque le chargement de donnee est annuler)
+      this.noteEtudiantModule=new NoteEtudiantModule();
+      const bstr: string = e.target.result;
+      const data = <any[]>this.noteEtudiantModuleService.importFromFile(bstr);
+      const header: string[] = Object.getOwnPropertyNames(new NoteEtudiantModule());
+      const x = data.slice(1);
+
+      console.log( x[1][2]);
+      for (let i = 0; i < x.length; i++) {//i=2
+        console.log(x[i])
+        for (let j = 0; j <= x[i].length; j++) {
+          if (j == 0){
+            console.log('ha lobjet men b3dn new');
+            console.log(this.noteEtudiantModule);//tidir indefined
+            this.noteEtudiantModule.noteFinalApresRat= x[i][j];//can not read propertiy of indefined **tayo9ff hnna
+            console.log( x[i][j]);
+            console.log(this.noteEtudiantModule.noteFinalApresRat);
+          } else if (j == 3) {
+            this.noteEtudiantModule.noteModuleNormal = x[i][j];
+          } else if (j == 4) {
+            this.noteEtudiantModule.noteModuleRat = x[i][j];
+          } else if (j == 5) {
+            this.noteEtudiantModule.etatValidation.libelle= x[i][j];
+          }
+
+        }
+        this.noteEtudiantModuleService.EditNoteRat();
+      }
+
+    };
+    reader.readAsBinaryString(target.files[0]);
+
+  }
+
+  }
+
+
+

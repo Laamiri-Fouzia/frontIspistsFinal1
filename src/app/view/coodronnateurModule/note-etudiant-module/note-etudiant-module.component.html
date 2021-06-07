@@ -5,6 +5,7 @@
 
         <div class="card p-grid">
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
+                <h2 class="p-col-12 p-text-center bold">Les notes de session normale</h2>
                 <div class="p-col-2">
                     <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
                 </div>
@@ -22,27 +23,40 @@
                 </div>
                 <p-button class="p-col-2" (click)="serachEtudiant(input4)">chercher</p-button>
             </p-toolbar>
+            <p-toolbar>
+                <ng-template pTemplate="right">
+                    <input type="file" pInputText id="excel" (change)="onFileChange($event)" multiple="false" required autofocus />
+                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="downloadExcel()" class="p-button-success p-mr-2"></button>
+                    <!--<p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>-->
+                    <!--<p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="excel/*" maxFileSize="1000000" (onUpload)="onFileChange($event)"></p-fileUpload>-->
+                </ng-template>
+            </p-toolbar>
 
-            <p-table #dt [value]="notesEtudiantModule" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['Etudiant','Note module session normale','Resultat']"
+            <p-table #dt [value]="notesEtudiantModule" [columns]="cols" [rows]="4" [paginator]="false" [globalFilterFields]="['etudiant','etudiant1','noteContinue','noteFinaleAvantRat','noteModuleNormale','resultat']"
                       [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
 
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn="Etudiant">Etudiant <p-sortIcon field="Etudiant"></p-sortIcon></th>
-                        <th pSortableColumn="note continue ">N.continue <p-sortIcon field="note continue "></p-sortIcon></th>
-                        <th pSortableColumn="note Finale avant Rat">N.Finale Normal <p-sortIcon field="note Finale avant Rat"></p-sortIcon></th>
-                        <th pSortableColumn="Note module session normale">N.module sess normal<p-sortIcon field="Note module session normale"></p-sortIcon></th>
-                        <th pSortableColumn="Resultat">Resultat<p-sortIcon field="Resultat"></p-sortIcon></th>
+                        <th pSortableColumn="cne">CNE <p-sortIcon field="cne"></p-sortIcon></th>
+                        <th pSortableColumn="etudiant">Nom <p-sortIcon field="etudiant"></p-sortIcon></th>
+                        <th pSortableColumn="etudiant1">Prenom <p-sortIcon field="etudiant1"></p-sortIcon></th>
+                        <th pSortableColumn="noteContinue">N.continue <p-sortIcon field="noteContinue"></p-sortIcon></th>
+                        <th pSortableColumn="noteFinaleAvantRat">N.Finale Normal <p-sortIcon field="noteFinaleAvantRat"></p-sortIcon></th>
+                        <th pSortableColumn="noteModuleNormale">N.module sess normal<p-sortIcon field="noteModuleNormale"></p-sortIcon></th>
+                        <th pSortableColumn="resultat">Resultat<p-sortIcon field="resultat"></p-sortIcon></th>
                         <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
+
                         <!--<th pSortableColumn="totalPaye">Total Paye <p-sortIcon field="totalPaye"></p-sortIcon></th>-->
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-note>
                     <tr>
-                        <td>{{note.etudiant.nom}}  {{note.etudiant.prenom}}</td>
+                        <td>{{note.etudiant.cne}}</td>
+                        <td>{{note.etudiant.nom}}</td>
+                        <td>{{note.etudiant.prenom}}</td>
                         <td>{{note.noteContinue}}</td>
                         <td>{{note.noteFinalAvRat}}</td>
                         <td>{{note.noteModuleNormal}}</td>
