@@ -147,6 +147,10 @@ import { EtudiantComponent } from './view/etudiant/etudiant.component';
 import { NoteSemestreOneComponent } from './view/etudiant/note-semestre-one/note-semestre-one.component';
 import { AbsenceEditComponent } from './view/professeur/absence-edit/absence-edit.component';
 import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-param/choisir-param.component';
+import {SeanceCreateComponent} from "./view/admin/seance/seance-create/seance-create.component";
+import {SeanceListComponent} from "./view/admin/seance/seance-list/seance-list.component";
+import { ConsultationAbsencesComponent } from './view/admin/consultation-absences/consultation-absences.component';
+import { SeanceEditComponent } from './view/admin/seance/seance-edit/seance-edit.component';
 
 
 
@@ -289,7 +293,11 @@ import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-pa
         EtudiantComponent,
         NoteSemestreOneComponent,
         AbsenceEditComponent,
-        ChoisirParamComponent
+        ChoisirParamComponent,
+        SeanceCreateComponent,
+        SeanceListComponent,
+        ConsultationAbsencesComponent,
+        SeanceEditComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -1,3 +1,4 @@
+<p-dialog [(visible)]="createDialog1" [style]="{width: '450px'}" header="Inserer une Seance" [modal]="true" styleClass="p-fluid">
 <div class="p-grid">
     <div class="p-col-12">
 
@@ -20,22 +21,21 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-
                         <th pSortableColumn="code">Libelle <p-sortIcon field="code"></p-sortIcon></th>
                         <th pSortableColumn="heurDebut">Heure Debut <p-sortIcon field="heurDebut"></p-sortIcon></th>
                         <th pSortableColumn="heurFin">Heure Fin <p-sortIcon field="heurFin"></p-sortIcon></th>
                         <th pSortableColumn="heurFin">Date Seance <p-sortIcon field="heurFin"></p-sortIcon></th>
+                        <th pSortableColumn="heurFin">Action <p-sortIcon field="heurFin"></p-sortIcon></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-seance>
                     <tr>
                         <td>{{seance.libelle}}</td>
-                        <td>{{seance.heurDebut}}</td>
-                        <td>{{seance.heurFin}}</td>
+                        <td>{{seance.heureDebut}}</td>
+                        <td>{{seance.heureFin}}</td>
                         <td>{{seance.dateSeance}}</td>
                         <td>
-                            <!--<button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(filiere)"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="detailFiliere(filiere)"></button>-->
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openCreate1(seance)"></button>-->
 
                         </td>
                     </tr>
@@ -48,8 +48,13 @@
             </p-table>
         </div>
         <app-seance-create></app-seance-create>
+        <app-seance-edit></app-seance-edit>
         <!--<app-myOption-liste></app-myOption-liste>
         <app-myModule-view></app-myModule-view>-->
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+    </ng-template>
+   </p-dialog>

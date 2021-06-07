@@ -14,6 +14,29 @@ export class SeanceListComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  get createDialog1(): boolean {
+    return this.moduleSemestreOptionService.createDialog1;
+  }
+
+  set createDialog1(value: boolean) {
+    this.moduleSemestreOptionService.createDialog1 = value;
+  }
+
+  get editDialog1(): boolean {
+    return this.moduleSemestreOptionService.editDialog1;
+  }
+
+  set editDialog1(value: boolean) {
+    this.moduleSemestreOptionService.editDialog1 = value;
+  }
+
+  get viewDialog1(): boolean {
+    return this.moduleSemestreOptionService.viewDialog1;
+  }
+
+  set viewDialog1(value: boolean) {
+    this.moduleSemestreOptionService.viewDialog1 = value;
+  }
   get seances(): Array<Seance> {
     return this.seanceService.seances;
   }
@@ -60,9 +83,56 @@ export class SeanceListComponent implements OnInit {
   set submitted(value: boolean) {
     this.seanceService.submitted = value;
   }
+  get submitted1(): boolean {
+    return this.moduleSemestreOptionService.submitted1;
+  }
+
+  set submitted1(value: boolean) {
+    this.moduleSemestreOptionService.submitted1 = value;
+  }
+  get createDialog2(): boolean {
+    return this.seanceService.createDialog2;
+  }
+
+  set createDialog2(value: boolean) {
+    this.seanceService.createDialog2 = value;
+  }
+
+  get editDialog2(): boolean {
+    return this.seanceService.editDialog2;
+  }
+
+  set editDialog2(value: boolean) {
+    this.seanceService.editDialog2 = value;
+  }
+
+  get viewDialog2(): boolean {
+    return this.seanceService.viewDialog2;
+  }
+
+  set viewDialog2(value: boolean) {
+    this.seanceService.viewDialog2 = value;
+  }
+
+  get submitted2(): boolean {
+    return this.seanceService.submitted2;
+  }
+
+  set submitted2(value: boolean) {
+    this.seanceService.submitted2 = value;
+  }
+  hideCreateDialog() {
+    this.createDialog1 = false;
+    this.submitted1 = false;
+  }
 
   openCreate() {
     this.submitted = false;
     this.createDialog = true;
+  }
+
+  openCreate1(seance: Seance) {
+    this.createDialog2=true;
+    this.seanceService.editSeance(seance);
   }
 }

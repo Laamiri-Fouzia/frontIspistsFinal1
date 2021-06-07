@@ -20,6 +20,7 @@ import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre
 import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-affect/ponderation-affect.component";
 import {EtudiantComponent} from "./view/etudiant/etudiant.component";
 import {AbsenceEditComponent} from "./view/professeur/absence-edit/absence-edit.component";
+import {ConsultationAbsencesComponent} from "./view/admin/consultation-absences/consultation-absences.component";
 
 @NgModule({
     imports: [
@@ -39,6 +40,8 @@ import {AbsenceEditComponent} from "./view/professeur/absence-edit/absence-edit.
                     {path: 'view/ponderation', component: PonderationAffectComponent},
                     {path: 'view/etudiant', component: EtudiantComponent},
                     {path: 'view/absence', component: AbsenceEditComponent},
+                    {path: 'view/consultation', component: ConsultationAbsencesComponent},
+
                 ]
             },
             {path: 'error', component: AppErrorComponent},

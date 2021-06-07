@@ -1,0 +1,72 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4" class="p-col-12">
+                <!--<label for="dateSeance">Entrer la Date:  </label>
+                <input type="datetime-local" pInputText id="dateSeance" [(ngModel)]="input" dateFormat="yyyy-MM-dd" required autofocus/>-->
+
+                    <label for="dateSeance">Entrer la Date:  </label>
+                    <p-calendar  id="dateSeance" [(ngModel)]="input" [monthNavigator]="true"
+                                 [yearNavigator]="true" yearRange="2021:2040" type="datetime-local" dateFormat="yy-MM-dd"></p-calendar>
+
+                <p-button icon="pi pi-search" label="Chercher" (click)="chercheAbsences(input)"></p-button>
+            </p-toolbar>
+
+            <p-table #dt [value]="absences" [columns]="3" [rows]="4" [globalFilterFields]="['etudiant','option','seance','justification','etatAbsence','atatJustification']"
+                     [(selection)]="selectors"  [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
+                <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
+
+                <ng-template pTemplate="header" >
+                    <!--<tr>
+                        <th>PV du jury du semestre:</th>
+                        <th>S{{semestreSelct}} </th>
+                    </tr>
+                    <tr>
+                        <th>Nom et Prénom: </th>
+                        <th>{{notesEtudiantModules[0].etudiant.nom+'  '+notesEtudiantModules[0].etudiant.prenom}}</th>
+                    </tr>-->
+
+                    <tr>
+
+                        <th pSortableColumn="option">Etudiant<p-sortIcon field="option"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Option<p-sortIcon field="Action"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Seance<p-sortIcon field="Action"></p-sortIcon></th>
+                        <!--<th pSortableColumn="Action">Justification<p-sortIcon field="Action"></p-sortIcon></th>-->
+                        <th pSortableColumn="Action">Etat Absence<p-sortIcon field="Action"></p-sortIcon></th>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-absence>
+                    <tr>
+
+                    </tr>
+                    <tr>
+                        <td>{{absence.etudiant.nom+'  '+absence.etudiant.prenom}}</td>
+                        <td>{{absence.seance.moduleSemestreOption.myOption.libelle}}</td>
+                        <td>{{absence.seance.libelle}}</td>
+                        <td>{{absence.etatAbsence}}</td>
+                        <td>
+                            <p-tableCheckbox [value]="absence"></p-tableCheckbox>
+                        </td>
+                    <tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+
+                </ng-template>
+
+            </p-table>
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <tr>
+                    <p-button label="enregistrer tous" (click)="updateAbsences(absences,selectors)"></p-button>
+                </tr>
+
+            </div>
+        </div>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>
