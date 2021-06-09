@@ -6,6 +6,7 @@ import {InscriptionEtudiantService} from "../../../../controller/service/inscrip
 import {EtudiantOption} from "../../../../controller/model/etudiant-option.model";
 import {AnneeUniversitaire} from "../../../../controller/model/anneeUniversitaire";
 import {AnneeUniversitaireService} from "../../../../controller/service/annee-universitaire.service";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-inscription-nouveau-edit',
@@ -24,8 +25,10 @@ export class InscriptionNouveauEditComponent implements OnInit {
   }
 
   addDate() {
-    console.log('f add date');
-    this.etudiantOption.etudiant.dateNaissance=this.date;
+    var response=moment(this.date).format('YYYY-MM-DD');
+    this.etudiantOption.etudiant.dateNaissance=response;
+    console.log('hadi f add date ')
+    console.log(this.etudiantOption)
   }
 
   set editDialog(value: boolean) {

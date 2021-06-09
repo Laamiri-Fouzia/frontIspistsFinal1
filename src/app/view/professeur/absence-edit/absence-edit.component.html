@@ -1,16 +1,14 @@
 <div class="p-grid">
     <div class="p-col-12">
-
         <p-toast></p-toast>
-
         <div class="card p-grid">
             <h2 class="p-col-12 p-text-center bold">Liste des Absences</h2>
-            <p-toolbar styleClass="p-mb-4 " class="p-col-12">
-                <button pButton pRipple style="width:300px;height: 40px" class="p-col-2" class="p-button-success p-mr-2 p-mb-2" (click)="choisirParametre()" label="clicker pour choisir les paramétres"></button>
-            </p-toolbar>
+            <div  class="p-col-12">
+                <button pButton pRipple  class="myButton" (click)="choisirParametre()" label="cliquer pour choisir les paramétres"></button>
+            </div>
             <div [ngClass]="{'vis':displayTable==false}">
-            <p-table  #dt [value]="inscriptionEtudiants" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['cne','nom']"
-                     [(selection)]="selects" [rowHover]="true" dataKey="id"
+            <p-table  #dt [value]="inscriptionEtudiants" [columns]="cols"  [globalFilterFields]="['cne','nom']"
+                     [(selection)]="selects"  [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
                 <ng-template pTemplate="caption">
@@ -26,11 +24,12 @@
                     <tr>
                         <th pSortableColumn="cne">CNE <p-sortIcon field="cne"></p-sortIcon></th>
                         <th pSortableColumn="nom">Nom <p-sortIcon field="nom"></p-sortIcon></th>
+                        <th pSortableColumn="nom">PRENOM <p-sortIcon field="nom"></p-sortIcon></th>
 
                         <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                             <p-tableHeaderCheckbox ></p-tableHeaderCheckbox>
                         </th>
-                        <th></th>
+                        <th>Absent</th>
                         <!--<th pSortableColumn="nom">present <p-sortIcon field="nom"></p-sortIcon></th>-->
 
                         <!--<th pSortableColumn="totalPaye">Total Paye <p-sortIcon field="totalPaye"></p-sortIcon></th>-->
@@ -40,6 +39,7 @@
                     <tr>
                         <td>{{inscription.etudiant.cne}}</td>
                         <td>{{inscription.etudiant.nom}}</td>
+                        <td>{{inscription.etudiant.prenom}}</td>
 
                         <td>
                             <p-tableCheckbox [value]="inscription"></p-tableCheckbox>

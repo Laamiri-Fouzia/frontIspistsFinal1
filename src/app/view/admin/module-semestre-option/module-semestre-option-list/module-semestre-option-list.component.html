@@ -54,7 +54,7 @@
 
                             <td>
                                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteModuleSemestreOption(moduleSemestreOption)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-detail" (click)="detailModuleSemestreOption(moduleSemestreOption)"></button>
+                                <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-detail" (click)="openCreate1(moduleSemestreOption)"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -67,6 +67,7 @@
             </div>
     </div>
             <app-module-semestre-option-create></app-module-semestre-option-create>
+            <app-seance-list></app-seance-list>
             <!--<app-myOption-liste></app-myOption-liste>
             <app-myModule-view></app-myModule-view>-->
             <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

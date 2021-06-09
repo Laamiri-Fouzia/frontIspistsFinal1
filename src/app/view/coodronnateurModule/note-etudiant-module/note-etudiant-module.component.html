@@ -1,11 +1,10 @@
 <div class="p-grid">
-    <div class="p-col-12">
-
+    <div class="p-col-12" style="padding-top:5px">
         <p-toast></p-toast>
-
         <div class="card p-grid">
+            <h2 class="p-col-12 p-text-center bold">Les notes de session normale</h2>
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
-                <h2 class="p-col-12 p-text-center bold">Les notes de session normale</h2>
+
                 <div class="p-col-2">
                     <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
                 </div>
@@ -21,18 +20,20 @@
                 <div class="p-col-4">
                     <p-dropdown [style]="{'width':'180px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()"></p-dropdown>
                 </div>
+
                 <p-button class="p-col-2" (click)="serachEtudiant(input4)">chercher</p-button>
             </p-toolbar>
             <p-toolbar>
                 <ng-template pTemplate="right">
-                    <input type="file" pInputText id="excel" (change)="onFileChange($event)" multiple="false" required autofocus />
-                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="downloadExcel()" class="p-button-success p-mr-2"></button>
+                    <input type="file"   id="excel" (change)="onFileChange($event)"class="upload-box"/>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class=" p-mb-2"  (click)="downloadExcel()"></button>
+                    <!--<p-button type="button"  icon="pi pi-file-excel" (click)="downloadExcel()"  styleClass="test"></p-button>-->
                     <!--<p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>-->
                     <!--<p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="excel/*" maxFileSize="1000000" (onUpload)="onFileChange($event)"></p-fileUpload>-->
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="notesEtudiantModule" [columns]="cols" [rows]="4" [paginator]="false" [globalFilterFields]="['etudiant','etudiant1','noteContinue','noteFinaleAvantRat','noteModuleNormale','resultat']"
+            <p-table #dt [value]="notesEtudiantModule" [columns]="cols"  [globalFilterFields]="['etudiant','etudiant1','noteContinue','noteFinaleAvantRat','noteModuleNormale','resultat']"
                       [rowHover]="true" dataKey="id"
                      styleClass="p-datatable-customers"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
@@ -45,6 +46,7 @@
                         <th pSortableColumn="noteContinue">N.continue <p-sortIcon field="noteContinue"></p-sortIcon></th>
                         <th pSortableColumn="noteFinaleAvantRat">N.Finale Normal <p-sortIcon field="noteFinaleAvantRat"></p-sortIcon></th>
                         <th pSortableColumn="noteModuleNormale">N.module sess normal<p-sortIcon field="noteModuleNormale"></p-sortIcon></th>
+                        <th pSortableColumn="noteGlobale">Note globale<p-sortIcon field="noteGlobale"></p-sortIcon></th>
                         <th pSortableColumn="resultat">Resultat<p-sortIcon field="resultat"></p-sortIcon></th>
                         <th pSortableColumn="Action">Action<p-sortIcon field="Action"></p-sortIcon></th>
 
@@ -52,6 +54,7 @@
                         <th></th>
                     </tr>
                 </ng-template>
+
                 <ng-template pTemplate="body" let-note>
                     <tr>
                         <td>{{note.etudiant.cne}}</td>
@@ -60,6 +63,7 @@
                         <td>{{note.noteContinue}}</td>
                         <td>{{note.noteFinalAvRat}}</td>
                         <td>{{note.noteModuleNormal}}</td>
+                        <td>{{note.noteGlobale}}</td>
                         <td>{{note.etatValidation.libelle}}</td>
                         <td>
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(note)"></button>
@@ -67,6 +71,7 @@
 
                     </tr>
                 </ng-template>
+
             </p-table>
 
         </div>

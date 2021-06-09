@@ -50,7 +50,7 @@ export class NoteEtudiantModuleComponent implements OnInit {
     this.options.push({label: 'Option :', value: null});
     this.modules.push({label: 'Module  :', value: null});
     console.log(this.years)
-    alert(this.years);
+
     this.annéeUniversitaireService.findAllyears();
   }
 
@@ -76,6 +76,7 @@ export class NoteEtudiantModuleComponent implements OnInit {
   }
   change2() {
     this.moduleSemestreOptionService.moduleSemestreOption.myOption.code=this.input2;
+    this.moduleSemestreOptionService.findOptionByCode();
   }
   change3() {
     this.moduleSemestreOptionService.semestreselec=this.input3;
@@ -89,6 +90,10 @@ export class NoteEtudiantModuleComponent implements OnInit {
       }
     }
 
+  }
+
+  get moduleselected(): string {
+    return this.noteEtudiantModuleService.moduleselected;
   }
 
   get moduleSemestreOptions(): Array<ModuleSemestreOption> {
@@ -111,6 +116,9 @@ export class NoteEtudiantModuleComponent implements OnInit {
   set editDialog(value: boolean) {
     this.noteEtudiantModuleService.editDialog = value;
   }
+  set notesEtudiantModule(value:  Array<NoteEtudiantModule>) {
+    this.noteEtudiantModuleService.notesEtudiantModule = value;
+  }
 
   get editDialog(): boolean {
     return this.noteEtudiantModuleService.editDialog;
@@ -122,9 +130,9 @@ export class NoteEtudiantModuleComponent implements OnInit {
   }
 
   serachEtudiant(module:string) {
-
     this.noteEtudiantModuleService.serachEtudiant(module);
   }
+
   public edit(note: NoteEtudiantModule) {
     this.noteEtudiantModule = {...note};
     this.editDialog = true;
@@ -132,37 +140,58 @@ export class NoteEtudiantModuleComponent implements OnInit {
 
   //import_export methode
   onFileChange(evt: any) {
+    //vider table
+    this.notesEtudiantModule=new Array<NoteEtudiantModule>();
+
     const target: DataTransfer = <DataTransfer>(evt.target);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
 
     const reader: FileReader = new FileReader();
-    reader.onload = (e: any) => {//un gestionnaire pour l'evenement abort (qui se declenche lorsque le chargement de donnee est annuler)
+    reader.onload = (e: any) => {
+      //un gestionnaire pour l'evenement abort (qui se declenche lorsque le chargement de donnee est annuler)
       this.noteEtudiantModule=new NoteEtudiantModule();
       const bstr: string = e.target.result;
       const data = <any[]>this.noteEtudiantModuleService.importFromFile(bstr);
       const header: string[] = Object.getOwnPropertyNames(new EtudiantOption());
       const x = data.slice(1);
-      for (let i = 0; i < x.length; i++) {//i=2
-        console.log(x[i])
+      console.log('hadi data ')
+      console.log(x)
+      for (let i = 0; i < x.length; i++) { //i=2
         for (let j = 0; j <= x[i].length; j++) {
           if (j == 0) {
             this.noteEtudiantModule.etudiant.cne= x[i][j];//can not read propertiy of indefined **tayo9ff hnna
-            console.log( x[i][j]);
-          }
-          if (j == 3) {
+          }if (j == 1) {
+            this.noteEtudiantModule.etudiant.nom= x[i][j];//can not read propertiy of indefined **tayo9ff hnna
+          } else if (j == 2) {
+            this.noteEtudiantModule.etudiant.prenom= x[i][j];//can not read propertiy of indefined **tayo9ff hnna
+          } else if (j == 3) {
             this.noteEtudiantModule.noteContinue= x[i][j];//can not read propertiy of indefined **tayo9ff hnna
-            console.log( x[i][j]);
           } else if (j == 4) {
             this.noteEtudiantModule.noteFinalAvRat = x[i][j];
           } else if (j == 5) {
             this.noteEtudiantModule.noteModuleNormal = x[i][j];
           } else if (j == 6) {
+            this.noteEtudiantModule.noteGlobale= x[i][j];
+          } else if (j == 7) {
             this.noteEtudiantModule.etatValidation.libelle= x[i][j];
           }
 
         }
-      //this.noteEtudiantModuleService.ch
-        this.noteEtudiantModuleService.EditNote();
+        let pc=this.moduleSemestreOption.myOption.coefContinue;
+        let pf=this.moduleSemestreOption.myOption.coefFinale;
+        let nc=this.noteEtudiantModule.noteContinue;
+        let nfAvR=this.noteEtudiantModule.noteFinalAvRat;
+        this.noteEtudiantModule.noteModuleNormal=(pc*nc)+(pf*nfAvR);
+        this.noteEtudiantModule.noteGlobale=this.noteEtudiantModule.noteModuleNormal;
+        this.noteEtudiantModule.moduleSemestreOption.code=this.moduleselected;
+        if(this.noteEtudiantModule.noteModuleNormal>=10)
+          this.noteEtudiantModule.etatValidation.libelle='Validé';
+        else
+          this.noteEtudiantModule.etatValidation.libelle='Rattrapage';
+        console.log('note etuf')
+        this.notesEtudiantModule.push(this.clone(this.noteEtudiantModule));
+        console.log(this.notesEtudiantModule)
+        this.noteEtudiantModuleService.EditNoteForExcel();
       }
 
     };
@@ -181,6 +210,7 @@ export class NoteEtudiantModuleComponent implements OnInit {
       { header: 'noteContinue', key: 'noteContinue', width: 32 },
       { header: 'noteFinaleAvantRat', key: 'noteFinaleAvantRat', width: 10 },
       { header: 'noteModuleNormale', key: 'noteModuleNormale', width: 10 },
+      { header: 'noteGlobale', key: 'noteGlobale', width: 10 },
       { header: 'resultat', key: 'resultat', width: 10 }
     ];
     this.noteEtudiantModuleService.notesEtudiantModule.forEach(e => {
@@ -192,6 +222,7 @@ export class NoteEtudiantModuleComponent implements OnInit {
             noteContinue: e.noteContinue,
             noteFinaleAvantRat: e.noteFinalAvRat,
             noteModuleNormale:e.noteModuleNormal,
+            noteGlobale:e.noteGlobale,
             resultat:e.etatValidation.libelle
           }, 'n');
     });
@@ -201,5 +232,17 @@ export class NoteEtudiantModuleComponent implements OnInit {
     });
   }
 
-
+   clone(not:NoteEtudiantModule){
+    let n=new NoteEtudiantModule();
+    n.etudiant={...not.etudiant}
+    n.moduleSemestreOption={...not.moduleSemestreOption}
+    n.noteEtudiantSemestre={...not.noteEtudiantSemestre}
+    n.etatValidation={...not.etatValidation}
+    n.noteGlobale=not.noteGlobale
+    n.noteModuleNormal=not.noteModuleNormal
+    n.noteContinue=not.noteContinue
+    n.noteFinalApresRat=not.noteFinalApresRat
+    n.noteFinalAvRat=not.noteFinalAvRat
+     return n;
+   }
 }

@@ -105,6 +105,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Les ponderations', icon: 'pi pi-fw pi-percentage', routerLink: ['/view/ponderation']},
                     {label: 'Les PVs', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/view/note-etudiant-semestre']},
                     {label: 'Les PV Etudiant', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/view/etudiant']},
+                    {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/view/login']},
                     /*{label: 'Crud', icon: 'pi pi-fw pi-pencil', routerLink: ['/pages/crud']},
                     {label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']},
                     {label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/pages/timeline']},
@@ -121,8 +122,8 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Notes Normale', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/noteEtudiantModule']},
                     {label: 'Notes rattrapage', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/noteEtudiantModuleRat']},
                     {label: 'Résultats', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']},
-                    {label: 'testPDF', icon: 'pi pi-fw pi-times', routerLink: ['/view/testpdf']},
-
+                    {label: 'testPDF', icon: 'pi pi-fw pi-times', routerLink: ['/view/test']},
+                    {label: 'Test image ', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/view/imageUpload']}
                 ]
             },
             {
@@ -140,6 +141,8 @@ export class AppMenuComponent implements OnInit {
                 items: [
                     {label: 'Liste Abscence', icon: 'pi pi-fw pi-calendar', routerLink: ['/view/absence']},
                     {label: 'Justifications', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
+                    {label: 'Absence Etudiant', icon: 'pi pi-fw pi-globe',  routerLink: ['/view/absenceEtudiant']},
+                    {label: 'Consultation Absences', icon: 'pi pi-fw pi-globe', routerLink: ['/view/consultation']},
                 ]
             },
             /*{

@@ -5,6 +5,7 @@ import {of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {MessageService} from "primeng/api";
+import {AnneeUniversitaire} from "../model/anneeUniversitaire";
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,24 @@ import {MessageService} from "primeng/api";
 export class AbsenceService {
 
 
+
   private _editDialog:boolean=false;
   private _displayTable:boolean=false;
+
   private _selects:Array<InscriptionEtudiantModule>;
   private _absences:Array<Absence>;
   private _seanceSelected='';
   private _urlAbsence=environment.baseUrl+'absence/';
-
+  private _moduleSelected :string;
   constructor(private http: HttpClient,private messageService: MessageService) { }
 
+  get moduleSelected(): string {
+    return this._moduleSelected;
+  }
+
+  set moduleSelected(value: string) {
+    this._moduleSelected = value;
+  }
   get absences(): Array<Absence> {
     if(this._absences==null)
       this._absences=new Array<Absence>();
@@ -108,4 +118,32 @@ export class AbsenceService {
   set displayTable(value: boolean) {
     this._displayTable = value;
   }
+
+    searchAbsence(annee: string, semstre: string, cne: string) {
+    alert(this._urlAbsence +'etudiant/cne/'+cne+'/seance/moduleSemestreOption/semestre/code/'+semstre+'/seance/moduleSemestreOption/anneuniv/libelle/'+annee)
+      this.http.get<Array<Absence>>(this._urlAbsence +'/etudiant/cne/'+cne+'/seance/moduleSemestreOption/semestre/code/'+semstre+'/seance/moduleSemestreOption/anneuniv/libelle/'+annee).subscribe(
+          data => {
+            console.log(data)
+            this.absences=data;
+          },error => {
+            console.log(error);
+          });
+    }
+
+
+    updateAbsence(absence: Absence) {
+      console.log('ana f update')
+      console.log('absence :')
+      console.log(absence);
+      absence.etatAbsence=true;
+      absence.etatJustification='justification pas encore traite';
+      this.http.put(this._urlAbsence+'updateForImage',absence ).subscribe(
+          data => {
+              console.log(data)
+          },error => {
+            console.log(error);
+          });
+      console.log(absence);
+    }
+
 }

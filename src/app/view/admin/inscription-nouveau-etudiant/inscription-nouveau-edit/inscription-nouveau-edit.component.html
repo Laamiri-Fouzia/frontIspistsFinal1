@@ -6,15 +6,15 @@
             <input type="text" pInputText id="cne" [(ngModel)]="etudiantOption.etudiant.cne" required autofocus/>
         </div>
 
-       <!-- <div class="p-field">
+        <div class="p-field">
             <label for="dateNaissance">Date de Naissance</label>
             <p-calendar  id="dateNaissance" [(ngModel)]="date" [monthNavigator]="true"
-                               [yearNavigator]="true" yearRange="1900:2040" dateFormat="yy-MM-dd"></p-calendar>
-        </div>   (click)="addDate()"-->
+                         [yearNavigator]="true" yearRange="1900:2040" dateFormat="yy-MM-dd"></p-calendar>
+        </div>
 
         <div class="p-field">
             <label for="cin">CIN</label>
-            <input type="text"  pInputText id="cin" [(ngModel)]="etudiantOption.etudiant.cin" required autofocus />
+            <input type="text" (click)="addDate()" pInputText id="cin" [(ngModel)]="etudiantOption.etudiant.cin" required autofocus />
         </div>
 
         <div class="p-field">

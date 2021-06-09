@@ -144,10 +144,18 @@ import {MatInputModule} from "@angular/material/input";
 import {NoteEtudiantSemestreComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre.component";
 import {NoteEtudiantSemestreModulesComponent} from "./view/admin/note-etudiant-semestre/note-etudiant-semestre-modules/note-etudiant-semestre-modules.component";
 import { EtudiantComponent } from './view/etudiant/etudiant.component';
+import { NoteSemestreOneComponent } from './view/etudiant/note-semestre-one/note-semestre-one.component';
 import { AbsenceEditComponent } from './view/professeur/absence-edit/absence-edit.component';
 import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-param/choisir-param.component';
-import { TestpdfComponent } from './view/testpdf/testpdf.component';
-import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-semestre-one.component";
+import { AbsenceEtudiantComponent } from './view/etudiant/absence-etudiant/absence-etudiant.component';
+import {TestpdfComponent} from "./view/testpdf/testpdf.component";
+import { ImageUploadComponent } from './view/test/image-upload/image-upload.component';
+import {SeanceCreateComponent} from "./view/admin/seance/seance-create/seance-create.component";
+import {ConsultationAbsencesComponent} from "./view/admin/consultation-absences/consultation-absences.component";
+import {SeanceEditComponent} from "./view/admin/seance/seance-edit/seance-edit.component";
+import {SeanceListComponent} from "./view/admin/seance/seance-list/seance-list.component";
+import { JustificationComponent } from './view/admin/consultation-absences/justification/justification.component';
+import { LoginComponent } from './view/login/login.component';
 
 
 
@@ -241,8 +249,7 @@ import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-s
         MatFormFieldModule,
         MatDatepickerModule,
         MatIconModule,
-        MatInputModule,
-
+        MatInputModule
     ],
     declarations: [
         AppComponent,
@@ -289,11 +296,18 @@ import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-s
         NoteEtudiantSemestreComponent,
         NoteEtudiantSemestreModulesComponent,
         EtudiantComponent,
+        NoteSemestreOneComponent,
         AbsenceEditComponent,
         ChoisirParamComponent,
+        AbsenceEtudiantComponent,
         TestpdfComponent,
-        NoteSemestreOneComponent,
-
+        ImageUploadComponent,
+        SeanceCreateComponent,
+        SeanceListComponent,
+        ConsultationAbsencesComponent,
+        SeanceEditComponent,
+        JustificationComponent,
+        LoginComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
