@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NoteEtudiantSemestreService} from "../../controller/service/note-etudiant-semestre.service";
 import {NoteEtudiantModule} from "../../controller/model/note-etudiant-module.model";
 import {Etudiant} from "../../controller/model/etudiant.model";
+import {Router, Routes} from "@angular/router";
 
 @Component({
   selector: 'app-etudiant',
@@ -14,7 +15,7 @@ export class EtudiantComponent implements OnInit {
   input2;
 
 
-  constructor(private noteEtudiantSemestreService:NoteEtudiantSemestreService) {
+  constructor(private noteEtudiantSemestreService:NoteEtudiantSemestreService,private router:Router) {
     this.semestres=[
       {label: "Semestre :", value: null},
       {label: "Semestre 1", value: 1},
@@ -35,6 +36,15 @@ export class EtudiantComponent implements OnInit {
   set semestreSelct(value: number) {
     this.noteEtudiantSemestreService.semestreSelct = value;
   }
+
+  get cneEtudiant(): string {
+    return this.noteEtudiantSemestreService.cneEtudiant;
+  }
+
+  set cneEtudiant(value: string) {
+    this.noteEtudiantSemestreService.cneEtudiant = value;
+  }
+
   get etudiant(): Etudiant {
     return this.noteEtudiantSemestreService.etudiant;
   }
@@ -75,5 +85,15 @@ export class EtudiantComponent implements OnInit {
   afficherPV(input1:string, input2:number) {
     this.noteEtudiantSemestreService.afficherPV(input1,input2);
 
+  }
+
+  openNewTab() {
+    window.open('/view/note-semestre-one');
+
+  }
+
+
+  gotToPage(viewNoteSemestreOne: string) {
+    this.router.navigate([`${viewNoteSemestreOne}`]);
   }
 }

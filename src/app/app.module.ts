@@ -292,7 +292,8 @@ import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-s
         AbsenceEditComponent,
         ChoisirParamComponent,
         TestpdfComponent,
-        NoteSemestreOneComponent
+        NoteSemestreOneComponent,
+
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -1,4 +1,4 @@
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
@@ -21,7 +21,15 @@ import {PonderationAffectComponent} from "./view/admin/ponderation/ponderation-a
 import {EtudiantComponent} from "./view/etudiant/etudiant.component";
 import {AbsenceEditComponent} from "./view/professeur/absence-edit/absence-edit.component";
 import {TestpdfComponent} from "./view/testpdf/testpdf.component";
+import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-semestre-one.component";
 
+
+
+/*const routes : Routes =[
+    {path :'view/note-semestre-one',component:NoteSemestreOneComponent},
+    //{path :'note-semestre-one',component:NoteSemestreOneComponent},
+    {path :'**',component:TestpdfComponent}
+];*/
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -29,7 +37,8 @@ import {TestpdfComponent} from "./view/testpdf/testpdf.component";
                 path: '', component: AppMainComponent,
                 children: [
                     //{path: '', component: tandiroh },
-                    {path: 'view/myModule', component: MyModulesComponent},
+                    {path: 'view/myModule', component: MyModulesComponent}
+                    ,
                     {path: 'view/filiere', component: FiliereComponent},
                     {path: 'view/noteEtudiantModule', component: NoteEtudiantModuleComponent},
                     {path: 'view/noteEtudiantModuleRat', component: NoteEtudiantRatComponent},
@@ -38,10 +47,10 @@ import {TestpdfComponent} from "./view/testpdf/testpdf.component";
                     {path: 'pages/calendar', component: AppCalendarComponent},
                     {path: 'view/note-etudiant-semestre', component: NoteEtudiantSemestreComponent},
                     {path: 'view/ponderation', component: PonderationAffectComponent},
-                    {path: 'view/etudiant', component: EtudiantComponent},
+                    {path: 'view/etudiant', component:EtudiantComponent},
                     {path: 'view/absence', component: AbsenceEditComponent},
                     {path: 'view/testpdf', component: TestpdfComponent},
-
+                    {path :'view/note-semestre-one',component:NoteSemestreOneComponent}
 
                 ]
             },
@@ -50,6 +59,7 @@ import {TestpdfComponent} from "./view/testpdf/testpdf.component";
             {path: '404', component: AppNotfoundComponent},
             {path: 'login', component: AppLoginComponent},
             {path: '**', redirectTo: '/404'},
+            {path :'view/note-semestre-one',component:NoteSemestreOneComponent},
         ], {scrollPositionRestoration: 'enabled'})
     ],
     exports: [RouterModule]

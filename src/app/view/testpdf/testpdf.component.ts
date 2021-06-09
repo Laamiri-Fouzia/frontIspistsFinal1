@@ -2,17 +2,21 @@ import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import jsPDF from "jspdf";
 import html2canvas from 'html2canvas';
 import autoTable from "jspdf-autotable";
+import {NoteEtudiantModule} from "../../controller/model/note-etudiant-module.model";
+import {NoteEtudiantSemestreService} from "../../controller/service/note-etudiant-semestre.service";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-testpdf',
   templateUrl: './testpdf.component.html',
   styleUrls: ['./testpdf.component.scss']
 })
 export class TestpdfComponent implements OnInit {
+  constructor(private router:Router){}
 
-
-
-  ngOnInit(): void {
+  gotToPage(viewNoteSemestreOne: string) {
+    this.router.navigate([`${viewNoteSemestreOne}`]);
   }
+
 
   /*sales = [
     { brand: 'Apple', lastYearSale: '51%', thisYearSale: '40%', lastYearProfit: '$54,406.00', thisYearProfit: '$43,342' },
@@ -75,7 +79,7 @@ export class TestpdfComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+
 
   /*public openPDF():void {
     let DATA = this.htmlData.nativeElement;
@@ -102,7 +106,7 @@ export class TestpdfComponent implements OnInit {
   }*/
 
 
-  public openPDFgg(): void {
+  /*public openPDFgg(): void {
     const DATA = document.getElementById('htmlData');
     html2canvas(DATA).then(canvas => {
       const fileWidth = 208;
@@ -114,7 +118,7 @@ export class TestpdfComponent implements OnInit {
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
       PDF.save('tasssa.pdf');
     });
-  }
+  }*/
 
 /*  exportPdf() {
     import("jspdf").then(jsPDF => {
@@ -126,8 +130,7 @@ export class TestpdfComponent implements OnInit {
     })
   }*/
 
-
-  public openPDF():void {
+  /*public openPDF():void {
     let DATA = document.getElementById('htmlData');
 
     html2canvas(DATA).then(canvas => {
@@ -142,6 +145,34 @@ export class TestpdfComponent implements OnInit {
 
       PDF.save('angular-demo.pdf');
     });
+  }*/
+
+  /************/
+
+
+
+  ngOnInit() {
+
   }
+public gneratePDF (){
+    var data = document.getElementById('coco');
+    html2canvas(data).then(canvas =>{
+      var imgWidth = 309;
+      var pageHight= 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      const contentDataURL =canvas.toDataURL('image/png')
+      let pdf = new jsPDF('p','mm','a2');//a5  a1
+      var position = 0;
+      pdf.addImage(contentDataURL,'PNG',0,position,imgWidth,imgHeight)
+      pdf.save('telecharger_PDF');
+    });
+}
+
+
+
+
+
 
 }
