@@ -24,6 +24,8 @@ import {AbsenceEtudiantComponent} from "./view/etudiant/absence-etudiant/absence
 import {TestpdfComponent} from "./view/testpdf/testpdf.component";
 import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-semestre-one.component";
 import {ImageUploadComponent} from "./view/test/image-upload/image-upload.component";
+import {ConsultationAbsencesComponent} from "./view/admin/consultation-absences/consultation-absences.component";
+import {LoginComponent} from "./view/login/login.component";
 
 @NgModule({
     imports: [
@@ -45,7 +47,9 @@ import {ImageUploadComponent} from "./view/test/image-upload/image-upload.compon
                     {path: 'view/absence', component: AbsenceEditComponent},
                     {path: 'view/absenceEtudiant', component: AbsenceEtudiantComponent},
                     {path: 'view/test', component: TestpdfComponent},
-                    {path: 'view/imageUpload', component: ImageUploadComponent}
+                    {path: 'view/imageUpload', component: ImageUploadComponent},
+                    {path: 'view/consultation', component: ConsultationAbsencesComponent},
+                    {path: 'view/login', component: LoginComponent}
                 ]
             },
             {path: 'error', component: AppErrorComponent},

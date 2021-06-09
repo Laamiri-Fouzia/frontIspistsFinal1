@@ -3,32 +3,29 @@
         <p-toast></p-toast>
         <div class="card p-grid">
             <h2 class="p-col-12 p-text-center bold">Inscription des Etudiants en Semestre 1:</h2>
-            <p-toolbar class="p-col-12" styleClass="p-mb-4 ">
 
+            <p-toolbar class="p-col-12" styleClass="p-mb-4 ">
                 <div class="p-col-2">
                     <p-dropdown (onChange)="change1()" [(ngModel)]="anneselect" [options]="years" [style]="{'width':'180px'}" placeholder="Année Univesitaire"  optionLabel="libelle" optionValue="anneeOne" ></p-dropdown>
                 </div>
 
-                       <div class="p-col-2">
+                <div class="p-col-2">
                     <p-dropdown [(ngModel)]="optSelec" [filter]="true" [options]="options"
                                 [style]="{'width':'180px'}" optionLabel="label" optionValue="value"></p-dropdown>
                 </div>
 
-                <button pButton pRipple class="p-col-2" class="p-button-success p-mr-2 p-mb-2" (click)="SearchStudent()" label="chercher"></button>
+                <button pButton pRipple class=" p-button-success p-mr-2 p-mb-2" (click)="SearchStudent()" label="chercher"></button>
 
             </p-toolbar>
+
            <div [ngClass]="{'vis':displayTable==false}">
             <p-toolbar class="p-col-12" >
                 <ng-template pTemplate="left">
                     <button pButton pRipple label="Nouveau Etudiant" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
                 </ng-template>
                 <ng-template pTemplate="right">
-                    <!--<input type="file"  pInputText id="excel" (change)="onFileChange($event)" multiple="false" required autofocus class="upload-box"/> -->
                     <input type="file"   id="excel" (change)="onFileChange($event)" class="upload-box"/>
-                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="downloadExcel()" style="background-color: #BB9CA1" class=" p-mr-2"></button>
-                    <!--<p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>-->
-                    <!--<p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="excel/*" maxFileSize="1000000" (onUpload)="onFileChange($event)"></p-fileUpload>-->
-                    <!--<a (click)="testExport();">excel here</a>-->
+                    <p-button type="button" icon="pi pi-file-excel" (click)="downloadExcel()"></p-button>
                 </ng-template>
             </p-toolbar>
 
@@ -58,6 +55,7 @@
                         <td>{{etudiantOption.etudiant.dateNaissance}}</td>
                         <td>{{etudiantOption.etudiant.dateInscription}}</td>
                         <td>
+
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editEtudiant(etudiantOption)"></button>
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(etudiantOption)"></button>
                         </td>

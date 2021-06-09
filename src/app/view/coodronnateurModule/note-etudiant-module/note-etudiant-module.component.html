@@ -1,11 +1,10 @@
 <div class="p-grid">
-    <div class="p-col-12">
-
+    <div class="p-col-12" style="padding-top:5px">
         <p-toast></p-toast>
-
         <div class="card p-grid">
+            <h2 class="p-col-12 p-text-center bold">Les notes de session normale</h2>
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
-                <h2 class="p-col-12 p-text-center bold">Les notes de session normale</h2>
+
                 <div class="p-col-2">
                     <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
                 </div>
@@ -21,12 +20,14 @@
                 <div class="p-col-4">
                     <p-dropdown [style]="{'width':'180px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()"></p-dropdown>
                 </div>
+
                 <p-button class="p-col-2" (click)="serachEtudiant(input4)">chercher</p-button>
             </p-toolbar>
             <p-toolbar>
                 <ng-template pTemplate="right">
-                    <input type="file" pInputText id="excel" (change)="onFileChange($event)" multiple="false" required autofocus />
-                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="downloadExcel()" class="p-button-success p-mr-2"></button>
+                    <input type="file"   id="excel" (change)="onFileChange($event)"class="upload-box"/>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class=" p-mb-2"  (click)="downloadExcel()"></button>
+                    <!--<p-button type="button"  icon="pi pi-file-excel" (click)="downloadExcel()"  styleClass="test"></p-button>-->
                     <!--<p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>-->
                     <!--<p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="excel/*" maxFileSize="1000000" (onUpload)="onFileChange($event)"></p-fileUpload>-->
                 </ng-template>

@@ -150,6 +150,12 @@ import { ChoisirParamComponent } from './view/professeur/absence-edit/choisir-pa
 import { AbsenceEtudiantComponent } from './view/etudiant/absence-etudiant/absence-etudiant.component';
 import {TestpdfComponent} from "./view/testpdf/testpdf.component";
 import { ImageUploadComponent } from './view/test/image-upload/image-upload.component';
+import {SeanceCreateComponent} from "./view/admin/seance/seance-create/seance-create.component";
+import {ConsultationAbsencesComponent} from "./view/admin/consultation-absences/consultation-absences.component";
+import {SeanceEditComponent} from "./view/admin/seance/seance-edit/seance-edit.component";
+import {SeanceListComponent} from "./view/admin/seance/seance-list/seance-list.component";
+import { JustificationComponent } from './view/admin/consultation-absences/justification/justification.component';
+import { LoginComponent } from './view/login/login.component';
 
 
 
@@ -295,7 +301,13 @@ import { ImageUploadComponent } from './view/test/image-upload/image-upload.comp
         ChoisirParamComponent,
         AbsenceEtudiantComponent,
         TestpdfComponent,
-        ImageUploadComponent
+        ImageUploadComponent,
+        SeanceCreateComponent,
+        SeanceListComponent,
+        ConsultationAbsencesComponent,
+        SeanceEditComponent,
+        JustificationComponent,
+        LoginComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

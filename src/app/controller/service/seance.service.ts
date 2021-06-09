@@ -167,6 +167,16 @@ export class SeanceService {
 
   }
 
+  cloneSeance(seance:Seance){
+    let s=new Seance();
+    s.dateSeance=seance.dateSeance;
+    s.libelle=seance.libelle;
+    s.heureDebut=seance.heureDebut;
+    s.heureFin=seance.heureFin;
+    s.moduleSemestreOption={...seance.moduleSemestreOption};
+    return s;
+  }
+
   saveSeance(input1: string, input2: string, input3: string, input4: Date) {
     this.seance.libelle=input1;
     var d=moment(input4).format('YYYY-MM-DD');
@@ -177,12 +187,15 @@ export class SeanceService {
 
     this.http.post<number>(this._urlBase+this._urlS+'/',this.seance).subscribe(
         data=>{
-          if(data==1)
+          if(data==1){
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',
               detail: 'la seance bien enregistré! ',
             });
+            this.seances.push(this.cloneSeance(this.seance));
+          }
+
           else if(data==-1){
             this.messageService.add({
               severity: 'error',

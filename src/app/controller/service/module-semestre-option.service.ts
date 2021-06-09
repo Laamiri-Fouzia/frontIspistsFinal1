@@ -6,6 +6,7 @@ import {Semestre} from "../model/semestre.model";
 import {Observable} from "rxjs";
 import {MessageService} from "primeng/api";
 import {Seance} from "../model/seance.model";
+import {environment} from "../../../environments/environment";
 
 
 @Injectable({
@@ -23,6 +24,7 @@ export class ModuleSemestreOptionService {
     private _editDialog1: boolean;
     private _viewDialog1: boolean;
     private _submitted1: boolean;
+    private urlOption=environment.baseUrl+'option';
 
     constructor(private http: HttpClient, private messageService: MessageService) {
     }
@@ -206,6 +208,15 @@ export class ModuleSemestreOptionService {
                 console.log(error);
             }
         );
+    }
+
+    findOptionByCode(){
+        this.http.get<MyOption>( this.urlOption +'/code/'+this.moduleSemestreOption.myOption.code).subscribe(
+            data => {
+                this.moduleSemestreOption.myOption=data;
+            },error => {
+                console.log(error);
+            });
     }
 
     saveOptionSemestreModule(moduleselect: string, typemoduleselect: string) {

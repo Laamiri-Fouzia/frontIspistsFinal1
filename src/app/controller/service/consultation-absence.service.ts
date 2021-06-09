@@ -8,14 +8,31 @@ import * as moment from 'moment';
   providedIn: 'root'
 })
 export class ConsultationAbsenceService {
+
   constructor(private http:HttpClient,private messageService: MessageService) { }
   private _absence:Absence;
   private _absences:Array<Absence>;
   private _etatAbse:string;
   private _urlBase='http://localhost:8036/';
   private _urlAbsence='ispits-project/absence';
+  private _displayImage:boolean=false;
   private _selectors:Array<Absence>;
+  private _retrievedImage: any;
 
+
+    get retrievedImage(): any {
+        return this._retrievedImage;
+    }
+    set retrievedImage(value: any) {
+        this._retrievedImage = value;
+    }
+    get displayImage(): boolean {
+        return this._displayImage;
+    }
+
+    set displayImage(value: boolean) {
+        this._displayImage = value;
+    }
 
     get selectors(): Array<Absence> {
         if(this._selectors==null){
@@ -76,16 +93,23 @@ export class ConsultationAbsenceService {
     updateAbsences(absences: Array<Absence>,selectors:Array<Absence>) {
         console.log(absences);
         console.log(selectors);
-        for(var abs of absences){
-            for(var selected of selectors){
-               if(selected.id==abs.id) {
-                   abs.etatJustification="accepte";
-                   break;
-               }else{
-                   abs.etatJustification="refuse";
-               }
+        if(selectors.length==0){
+            for(let absence of absences){
+                absence.etatJustification="refuse";
+            }
+        }else{
+            for(var abs of absences){
+                for(var selected of selectors){
+                    if(selected.id==abs.id) {
+                        abs.etatJustification="accepte";
+                        break;
+                    }else{
+                        abs.etatJustification="refuse";
+                    }
+                }
             }
         }
+
         console.log('pour absences:')
         console.log(absences);
       this.http.put(this._urlBase+this._urlAbsence+'/',absences).subscribe(

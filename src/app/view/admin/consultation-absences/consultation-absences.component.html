@@ -3,7 +3,9 @@
 
         <p-toast></p-toast>
 
-        <div class="card">
+        <div class="card p-grid">
+            <h2 class="p-col-12 p-text-center bold">Consultation des Absences</h2>
+
             <p-toolbar styleClass="p-mb-4" class="p-col-12">
                 <!--<label for="dateSeance">Entrer la Date:  </label>
                 <input type="datetime-local" pInputText id="dateSeance" [(ngModel)]="input" dateFormat="yyyy-MM-dd" required autofocus/>-->
@@ -19,7 +21,7 @@
                      [(selection)]="selectors"  [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
                 <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
 
-                <ng-template pTemplate="header" >
+                <ng-template pTemplate="header">
                     <!--<tr>
                         <th>PV du jury du semestre:</th>
                         <th>S{{semestreSelct}} </th>
@@ -30,15 +32,15 @@
                     </tr>-->
 
                     <tr>
-
                         <th pSortableColumn="option">Etudiant<p-sortIcon field="option"></p-sortIcon></th>
                         <th pSortableColumn="Action">Option<p-sortIcon field="Action"></p-sortIcon></th>
                         <th pSortableColumn="Action">Seance<p-sortIcon field="Action"></p-sortIcon></th>
-                        <!--<th pSortableColumn="Action">Justification<p-sortIcon field="Action"></p-sortIcon></th>-->
-                        <th pSortableColumn="Action">Etat Absence<p-sortIcon field="Action"></p-sortIcon></th>
+                        <th pSortableColumn="Action">Justification<p-sortIcon field="Action"></p-sortIcon></th>
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
+                        <th>Accepter</th>
+                        <th>etat de justification</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-absence>
@@ -49,11 +51,13 @@
                         <td>{{absence.etudiant.nom+'  '+absence.etudiant.prenom}}</td>
                         <td>{{absence.seance.moduleSemestreOption.myOption.libelle}}</td>
                         <td>{{absence.seance.libelle}}</td>
-                        <td>{{absence.etatAbsence}}</td>
+                        <td><input type="button" (click)="getImage(absence)" value="Get Image"></td>
                         <td>
                             <p-tableCheckbox [value]="absence"></p-tableCheckbox>
                         </td>
-                    <tr>
+                        <td></td>
+                        <td>{{absence.etatJustification}}</td>
+                    </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">
 
@@ -61,12 +65,10 @@
 
             </p-table>
             <div class="p-d-flex p-ai-center p-jc-between">
-                <tr>
-                    <p-button label="enregistrer tous" (click)="updateAbsences(absences,selectors)"></p-button>
-                </tr>
-
+                    <button style="background-color: cadetblue"  (click)="updateAbsences(absences,selectors)">enregistrer tous</button>
             </div>
+
         </div>
-        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
+    <app-justification></app-justification>
 </div>

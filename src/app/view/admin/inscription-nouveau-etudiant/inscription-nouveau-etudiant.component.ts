@@ -106,28 +106,13 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
   public delete(selected: EtudiantOption) {
     this.etudiantOption = selected;
     this.inscriptionEtudiantService.deleteEtudiantOption();
-    this.etudiantOptions = this.etudiantOptions.filter(val => val.id !== this.etudiantOption.id);
+    this.etudiantOptions = this.etudiantOptions.filter(val => val.etudiant.cne !== this.etudiantOption.etudiant.cne);
     this.messageService.add({
       severity: 'success',
       summary: 'Successful',
       detail: 'Etudiant bien supprimé',
       life: 3000
     });
-    /*this.confirmationService.confirm({
-      message: 'Voulez-vous vraiment supprimer ',
-      header: 'Attention',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-          this.inscriptionEtudiantService.deleteEtudiantOption();
-          //this.etudiantOptions = this.etudiantOptions.filter(val => val.id !== this.etudiantOption.id);
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Etudiant bien supprimé',
-            life: 3000
-          });
-      }
-    });*/
   }
 
   get optSelec(): string {

@@ -130,9 +130,9 @@ export class NoteEtudiantModuleComponent implements OnInit {
   }
 
   serachEtudiant(module:string) {
-
     this.noteEtudiantModuleService.serachEtudiant(module);
   }
+
   public edit(note: NoteEtudiantModule) {
     this.noteEtudiantModule = {...note};
     this.editDialog = true;

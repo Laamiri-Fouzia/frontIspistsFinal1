@@ -1,30 +1,29 @@
-<p-dialog [(visible)]="editDialog" [style]="{width: '450px',height: '600px'}" header="CHOISIR PARAMETRE " [modal]="true" styleClass=" active" >
-
-    <ng-template pTemplate="content">
+<p-dialog [(visible)]="editDialog"   [style]="{width: '450px'}"  [modal]="true"  >
+    <p-header >
+       veuillez choisir les paramétres :
+    </p-header>
+    <ng-template  pTemplate="content">
             <div  class="p-field">
-                <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
+                <p-dropdown [style]="{'width':'280px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
             </div>
 
             <div  class="p-field">
-                <p-dropdown [style]="{'width':'180px'}"  [options]="options" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true" (onChange)="change2()"></p-dropdown>
+                <p-dropdown [style]="{'width':'280px'}"  [options]="options" [(ngModel)]="input2" optionLabel="label" optionValue="value" [filter]="true" (onChange)="change2()"></p-dropdown>
             </div>
 
             <div  class="p-field">
-                <p-dropdown [style]="{'width':'180px'}"  [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"  (onChange)="change3()"></p-dropdown>
+                <p-dropdown [style]="{'width':'280px'}"  [options]="semestres" [(ngModel)]="input3" optionLabel="label" optionValue="value"  (onChange)="change3()"></p-dropdown>
             </div>
 
             <div  class="p-field">
-                <p-dropdown [style]="{'width':'180px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()" (onChange)="change5()"></p-dropdown>
+                <p-dropdown [style]="{'width':'280px'}"  [options]="modules" [(ngModel)]="input4" optionLabel="label" optionValue="value" [filter]="true" (onClick)="change4()" (onChange)="change5()"></p-dropdown>
             </div>
-            <div  class="p-field">
-                <p-dropdown [style]="{'width':'180px'}"  [options]="seances" [(ngModel)]="seanceSelected" optionLabel="libelle" optionValue="libelle" [filter]="true" placeholder="choisir une seance"></p-dropdown>
+            <div  class="p-field" style="margin-bottom: 70px">
+                <p-dropdown [style]="{'width':'280px'}"  [options]="seances" [(ngModel)]="seanceSelected" optionLabel="libelle" optionValue="libelle" [filter]="true" placeholder="choisir une seance"></p-dropdown>
             </div>
 
-    </ng-template>
-
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
-        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="chercherEtudiant()"></button>
+        <button style="margin-left: 200px" pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-text" (click)="chercherEtudiant()"></button>
     </ng-template>
 </p-dialog>
 

@@ -62,6 +62,7 @@ export class NoteEtudiantModuleService {
            }
     }
   serachEtudiant(module:string) {
+        this.notesEtudiantModule=new Array<NoteEtudiantModule>();
       this._moduleselected=module;
       this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+module).subscribe(
       data => {

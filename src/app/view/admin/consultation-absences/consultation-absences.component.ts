@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ConsultationAbsenceService} from "../../../controller/service/consultation-absence.service";
 import {Absence} from "../../../controller/model/absence.model";
+import {HttpClient} from "@angular/common/http";
+import {image} from "html2canvas/dist/types/css/types/image";
 
 @Component({
   selector: 'app-consultation-absences',
@@ -12,7 +14,13 @@ export class ConsultationAbsencesComponent implements OnInit {
     etats: any;
   etatAbs: any;
 
-  constructor(private consultationAbsenceService:ConsultationAbsenceService) {
+  selectedFile: File;
+  base64Data: any;
+  retrieveResonse: any;
+  message: string;
+  imageName: any;
+
+  constructor(private consultationAbsenceService:ConsultationAbsenceService,private httpClient: HttpClient) {
     this.etats=[
       {label: "accepte", value: "accepte"},
       {label: "refuse", value: "refuse"},
@@ -22,6 +30,19 @@ export class ConsultationAbsencesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get retrievedImage(): any {
+    return this.consultationAbsenceService.retrievedImage;
+  }
+  set retrievedImage(value: any) {
+    this.consultationAbsenceService.retrievedImage = value;
+  }
+  get displayImage(): boolean {
+    return this.consultationAbsenceService.displayImage;
+  }
+
+  set displayImage(value: boolean) {
+    this.consultationAbsenceService.displayImage = value;
+  }
   get selectors(): Array<Absence> {
     return this.consultationAbsenceService.selectors;
   }
@@ -64,4 +85,23 @@ export class ConsultationAbsencesComponent implements OnInit {
   updateAbsences(absences: Array<Absence>,selectors:Array<Absence>) {
    this.consultationAbsenceService.updateAbsences(absences,selectors) ;
   }
+
+  //for image
+  getImage(absence:Absence) {
+    this.displayImage=true;
+    //Make a call to Sprinf Boot to get the Image Bytes.
+    this.imageName=absence.seance.libelle+absence.etudiant.cne;
+    this.httpClient.get('http://localhost:8036/ispits-project/image/get/' + this.imageName)
+        .subscribe(
+            res => {
+              console.log('dkhelt l res ')
+              this.retrieveResonse = res;
+              this.base64Data = this.retrieveResonse.picByte;
+              this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+
+
+            }
+        );
+  }
+
 }

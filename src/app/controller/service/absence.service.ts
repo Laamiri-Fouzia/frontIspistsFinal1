@@ -13,16 +13,16 @@ import {AnneeUniversitaire} from "../model/anneeUniversitaire";
 export class AbsenceService {
 
 
+
   private _editDialog:boolean=false;
   private _displayTable:boolean=false;
+
   private _selects:Array<InscriptionEtudiantModule>;
   private _absences:Array<Absence>;
   private _seanceSelected='';
   private _urlAbsence=environment.baseUrl+'absence/';
   private _moduleSelected :string;
   constructor(private http: HttpClient,private messageService: MessageService) { }
-
-
 
   get moduleSelected(): string {
     return this._moduleSelected;
@@ -137,7 +137,7 @@ export class AbsenceService {
       console.log(absence);
       absence.etatAbsence=true;
       absence.etatJustification='justification pas encore traite';
-      this.http.put(this._urlAbsence,absence ).subscribe(
+      this.http.put(this._urlAbsence+'updateForImage',absence ).subscribe(
           data => {
               console.log(data)
           },error => {

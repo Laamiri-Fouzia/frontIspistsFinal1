@@ -5,7 +5,8 @@ import {AbsenceService} from "../../../controller/service/absence.service";
 import {Absence} from "../../../controller/model/absence.model";
 import {HttpClient} from "@angular/common/http";
 import {ImageModl} from "../../../controller/model/image-modl.model";
-
+import {MessageService} from "primeng/api";
+import * as moment from "moment";
 @Component({
   selector: 'app-absence-etudiant',
   templateUrl: './absence-etudiant.component.html',
@@ -19,7 +20,7 @@ export class AbsenceEtudiantComponent implements OnInit {
   imageName: any;
   message: string;
 
-  constructor(private annéeUniversitaireService: AnneeUniversitaireService,private absenceService:AbsenceService,private httpClient: HttpClient) {
+  constructor(private messageService: MessageService,private annéeUniversitaireService: AnneeUniversitaireService,private absenceService:AbsenceService,private httpClient: HttpClient) {
     this.semestres=[
       {label: "Semestre :", value: null},
       {label: "Semestre 1", value: 1},
@@ -33,8 +34,12 @@ export class AbsenceEtudiantComponent implements OnInit {
 
   ngOnInit(): void {
     this.annéeUniversitaireService.findAllyears();
+    this.absences=new Array<Absence>();
   }
 
+  set absences(value: Array<Absence>) {
+    this.absenceService.absences = value;
+  }
   get absences(): Array<Absence> {
     return this.absenceService.absences;
   }
@@ -54,27 +59,58 @@ export class AbsenceEtudiantComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
-  onUpload(absence:Absence) {
+  checkDate(dateMax:Date){
+    let now=new Date();
+    if(now.getTime()===dateMax.getTime() || now<dateMax)
+      return 1;
+    else
+      return -1;
+}
 
+  onUpload(absence:Absence) {
     //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
     const uploadImageData = new FormData();
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     //Make a call to the Spring Boot Application to save the image
-    let nameData=this.selectedFile.name+absence.seance.libelle+absence.etudiant.cne;
-    this.httpClient.post('http://localhost:8036/ispits-project/image/upload/nameData/'+nameData, uploadImageData, { observe: 'response' })
-        .subscribe(
-            data => {
-              console.log('dkhlt l data ')
-              console.log(absence)
-              console.log(nameData)
-              if(absence.imageModel==null)
-                absence.imageModel=new ImageModl();
-              absence.imageModel.nameData=nameData;
-              this.absenceService.updateAbsence(absence);
-            },error => {
-              console.log(error);
-            }
-        );
+    let nameData=absence.seance.libelle+absence.etudiant.cne;
+    let dateAbsence:Date=moment(absence.seance.dateSeance).toDate();
+    dateAbsence.setDate(dateAbsence.getDate()+2);
+    if(this.checkDate(dateAbsence)==1)
+    {
+      this.httpClient.post('http://localhost:8036/ispits-project/image/upload/nameData/'+nameData, uploadImageData)
+          .subscribe(
+              data => {
+                if(data==1){
+                  if(absence.imageModel==null)
+                    absence.imageModel=new ImageModl();
+                  absence.imageModel.nameData=nameData;
+                  this.absenceService.updateAbsence(absence);
+                  this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'justfication Bien ajoutée!',
+
+                  });
+                }else{
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error !',
+                    detail: 'une erreur servenu :justification deja existe ou bien operation echouée reassayer une autre fois s\'il vous plait !'
+                  });
+                }
+              },error => {
+                console.log(error);
+              }
+          );
+    }else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error !',
+        detail: 'Vous ne pouvez pas ajouter du justification le dernier delai été '+moment(dateAbsence).format('YYYY-MM-DD')
+      });
+    }
+
+
 
   }
 

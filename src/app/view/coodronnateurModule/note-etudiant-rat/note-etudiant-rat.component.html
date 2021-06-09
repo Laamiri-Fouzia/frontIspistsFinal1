@@ -1,11 +1,10 @@
 <div class="p-grid">
     <div class="p-col-12">
-
         <p-toast></p-toast>
-
         <div class="card p-grid">
+            <h2 class="p-col-12 p-text-center bold">Note rattrapage</h2>
+
             <p-toolbar styleClass="p-mb-4 " class="p-col-12">
-                <h2 class="p-col-12 p-text-center bold">Note rattrapage</h2>
                 <div class="p-col-2">
                     <p-dropdown [options]="years" placeholder="Année Universitaire" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()"></p-dropdown>
                 </div>
@@ -26,8 +25,8 @@
             </p-toolbar>
             <p-toolbar>
                 <ng-template pTemplate="left">
-                    <input type="file" pInputText id="excel" (change)="onFileChange($event)" multiple="false" required autofocus />
-                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="downloadExcel()" class="p-button-success p-mr-2"></button>
+                    <input type="file"   id="excel" (change)="onFileChange($event)" class="upload-box"/>
+                    <p-button type="button" icon="pi pi-file-excel" (click)="downloadExcel()"></p-button>
                 </ng-template>
             </p-toolbar>
 

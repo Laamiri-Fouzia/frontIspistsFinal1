@@ -3,6 +3,7 @@ import {Seance} from "./seance.model";
 import {ImageModl} from "./image-modl.model";
 
 export class Absence {
+    public id:number;
     public etudiant:Etudiant=new Etudiant();
     public seance:Seance=new Seance();
     public etatJustification:string;

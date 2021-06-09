@@ -247,7 +247,6 @@ export class InscriptionEtudiantService {
     deleteEtudiantOption() {
         this.http.delete<number>(this.urlEtudiantOption + '/Etudiant/cne/' + this.etudiantOption.etudiant.cne).subscribe(
             data => {
-
             }, error => {
                 console.log(error);
             }

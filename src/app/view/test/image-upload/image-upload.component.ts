@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-image-upload',
@@ -8,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class ImageUploadComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private router:Router) { }
 
   selectedFile: File;
   retrievedImage: any;
@@ -59,7 +60,9 @@ export class ImageUploadComponent implements OnInit {
   }
 
 
-
+    gotToPage(pageName:string) {
+        this.router.navigate([`${pageName}`]);
+    }
 }
 
 
