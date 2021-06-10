@@ -9,7 +9,6 @@
             </div>
             <p-dropdown [options]="semestres" [(ngModel)]="input2" optionLabel="label" optionValue="value" (onChange)="change2()"></p-dropdown>
             <div class="p-field">
-
                 <p-button class="p-col-2" label="Confirmer" class="p-button-success p-mr-2 p-mb-2"
                           (onClick)="afficherPV(input1,input2);gotToPage('view/note-semestre-one');"></p-button>
                     <!--<p-button class="p-col-2" label="Confirmer" class="p-button-success p-mr-2 p-mb-2" (click)="afficherPV(input1,input2)"></p-button>
