@@ -48,7 +48,7 @@ export class NoteEtudiantModuleService {
 
            for(let noteEtudiantModule of data){
 
-               this.http.get<Array<Absence>>(this._urlAbsence+'/etudiant/cne/'+noteEtudiantModule.etudiant.cne+'/seance/moduleSemestreOption/code/'+this.moduleselsected).subscribe(
+               this.http.get<Array<Absence>>(this._urlAbsence+'etudiant/cne/'+noteEtudiantModule.etudiant.cne+'/seance/moduleSemestreOption/code/'+this.moduleselsected).subscribe(
                    data => {
                        if(data.length<3)
                            this.notesEtudiantModule.push(noteEtudiantModule);
@@ -61,6 +61,7 @@ export class NoteEtudiantModuleService {
 
            }
     }
+
   serachEtudiant(module:string) {
         this.notesEtudiantModule=new Array<NoteEtudiantModule>();
       this._moduleselected=module;

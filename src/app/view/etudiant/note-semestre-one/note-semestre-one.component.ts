@@ -100,7 +100,7 @@ export class NoteSemestreOneComponent implements OnInit {
   public gneratePDF (){
     var data = document.getElementById('coco');
     html2canvas(data).then(canvas =>{
-      var imgWidth = 195;
+      var imgWidth = 220;//195
       var pageHight= 250;
       var imgHeight = canvas.height * imgWidth / canvas.width;
       var heightLeft = imgHeight;

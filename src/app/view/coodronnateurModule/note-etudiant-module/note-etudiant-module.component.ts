@@ -202,16 +202,16 @@ export class NoteEtudiantModuleComponent implements OnInit {
   downloadExcel() {
 
     const workbook = new Workbook();
-    const worksheet = workbook.addWorksheet('notes');
+    const worksheet = workbook.addWorksheet('notes_session_normale');
     worksheet.columns = [
-      { header: 'cne', key: 'cne', width: 10 },
-      { header: 'etudiant', key: 'etudiant', width: 10 },
-      { header: 'etudiant1', key: 'etudiant1', width: 10 },
-      { header: 'noteContinue', key: 'noteContinue', width: 32 },
-      { header: 'noteFinaleAvantRat', key: 'noteFinaleAvantRat', width: 10 },
-      { header: 'noteModuleNormale', key: 'noteModuleNormale', width: 10 },
-      { header: 'noteGlobale', key: 'noteGlobale', width: 10 },
-      { header: 'resultat', key: 'resultat', width: 10 }
+      { header: 'Cne', key: 'cne', width: 17 },
+      { header: 'Nom', key: 'etudiant', width: 23 },
+      { header: 'Prenom', key: 'etudiant1', width: 23},
+      { header: 'Note Continue', key: 'noteContinue', width: 20 },
+      { header: 'Note Finale', key: 'noteFinaleAvantRat', width: 20 },
+      { header: 'Note Module Normale', key: 'noteModuleNormale', width: 25 },
+      { header: 'Note Globale', key: 'noteGlobale', width: 20, },
+      { header: 'Resultat', key: 'resultat', width: 20 }
     ];
     this.noteEtudiantModuleService.notesEtudiantModule.forEach(e => {
 

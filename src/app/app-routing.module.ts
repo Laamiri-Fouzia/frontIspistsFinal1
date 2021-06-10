@@ -43,13 +43,14 @@ import {LoginComponent} from "./view/login/login.component";
                     {path: 'pages/calendar', component: AppCalendarComponent},
                     {path: 'view/note-etudiant-semestre', component: NoteEtudiantSemestreComponent},
                     {path: 'view/ponderation', component: PonderationAffectComponent},
-                    {path: 'view/etudiant', component: NoteSemestreOneComponent},
+                    {path: 'view/etudiant', component: EtudiantComponent},
                     {path: 'view/absence', component: AbsenceEditComponent},
                     {path: 'view/absenceEtudiant', component: AbsenceEtudiantComponent},
                     {path: 'view/test', component: TestpdfComponent},
                     {path: 'view/imageUpload', component: ImageUploadComponent},
                     {path: 'view/consultation', component: ConsultationAbsencesComponent},
-                    {path: 'view/login', component: LoginComponent}
+                    {path: 'view/login', component: LoginComponent},
+                    {path: 'view/note-semestre-one', component: NoteSemestreOneComponent},
                 ]
             },
             {path: 'error', component: AppErrorComponent},
