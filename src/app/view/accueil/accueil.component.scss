@@ -1,4 +1,4 @@
-/*****carrousel 3d automatique*****/
+
 
 *{box-sizing : border-box}
 
@@ -92,11 +92,46 @@ img{max-width:100%}
 }
 
 
-
-
 @keyframes rotation{
   from{transform:rotatey(0)}
-  to{transform:rotatey(2turn)}}
+  to{transform:rotatey(1turn)}}
 
-/*****fin carrousel 3d automatique*****/
+.button {
+  border-radius: 4px;
+  background-color: #8FAB55 ;//hsla(0, 100%, 30%, 0.3); rgb(204, 153, 0) rgb(102, 153, 0)->khder
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 26px;
+  padding: 10px;//20px
+  width: 150px;//200px
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.7s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.7s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
