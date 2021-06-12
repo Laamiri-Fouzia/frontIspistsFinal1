@@ -96,4 +96,8 @@ export class EtudiantComponent implements OnInit {
   gotToPage(viewNoteSemestreOne: string) {
     this.router.navigate([`${viewNoteSemestreOne}`]);
   }
+
+    gotEspaceEtudiant(espacesEtudiant: string) {
+      this.router.navigate([`${espacesEtudiant}`]);
+    }
 }

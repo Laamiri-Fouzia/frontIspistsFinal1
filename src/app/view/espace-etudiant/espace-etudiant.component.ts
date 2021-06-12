@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-espace-etudiant',
@@ -8,12 +9,21 @@ import {MenuItem} from "primeng/api";
 })
 export class EspaceEtudiantComponent implements OnInit {
 
-  constructor() {
+  constructor(private router:Router) {
   }
 
   items: MenuItem[];
 
   ngOnInit() {
 
+  }
+
+
+  gotToNote(viewEtudiant: string) {
+    this.router.navigate([`${viewEtudiant}`]);
+  }
+
+  gotToAbsence(viewAbsenceEtudiant: string) {
+    this.router.navigate([`${viewAbsenceEtudiant}`]);
   }
 }

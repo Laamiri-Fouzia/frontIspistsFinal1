@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 import {ImageModl} from "../../../controller/model/image-modl.model";
 import {MessageService} from "primeng/api";
 import * as moment from "moment";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-absence-etudiant',
   templateUrl: './absence-etudiant.component.html',
@@ -20,7 +21,7 @@ export class AbsenceEtudiantComponent implements OnInit {
   imageName: any;
   message: string;
 
-  constructor(private messageService: MessageService,private annéeUniversitaireService: AnneeUniversitaireService,private absenceService:AbsenceService,private httpClient: HttpClient) {
+  constructor(private messageService: MessageService,private router:Router,private annéeUniversitaireService: AnneeUniversitaireService,private absenceService:AbsenceService,private httpClient: HttpClient) {
     this.semestres=[
       {label: "Semestre :", value: null},
       {label: "Semestre 1", value: 1},
@@ -115,4 +116,8 @@ export class AbsenceEtudiantComponent implements OnInit {
   }
 
 
+    gotEspaceEtudiant(espacesEtudiant: string) {
+      this.router.navigate([`${espacesEtudiant}`]);
+
+    }
 }
