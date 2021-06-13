@@ -100,4 +100,8 @@ export class EtudiantComponent implements OnInit {
     this.afficherPV(this.input1,this.input2);
     this.submitted=true;
   }
+
+    gotEspaceEtudiant(espacesEtudiant: string) {
+      this.router.navigate([`${espacesEtudiant}`]);
+    }
 }

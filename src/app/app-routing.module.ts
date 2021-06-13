@@ -26,8 +26,9 @@ import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-s
 import {ImageUploadComponent} from "./view/test/image-upload/image-upload.component";
 import {ConsultationAbsencesComponent} from "./view/admin/consultation-absences/consultation-absences.component";
 import {LoginComponent} from "./view/login/login.component";
-import {DetailNoteComponent} from "./view/admin/detail-note/detail-note.component";
-import {ErreurNoteComponent} from "./view/etudiant/erreur-note/erreur-note.component";
+import {AccueilComponent} from "./view/accueil/accueil.component";
+import {EspacesComponent} from "./view/espaces/espaces.component";
+import {EspaceEtudiantComponent} from "./view/espace-etudiant/espace-etudiant.component";
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import {ErreurNoteComponent} from "./view/etudiant/erreur-note/erreur-note.compo
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    //{path: '', component: tandiroh },
+                    {path: '', component:AccueilComponent},
+                    {path: 'accueil/espace', component:EspacesComponent},
                     {path: 'view/myModule', component: MyModulesComponent},
                     {path: 'view/filiere', component: FiliereComponent},
                     {path: 'view/noteEtudiantModule', component: NoteEtudiantModuleComponent},
@@ -53,8 +55,7 @@ import {ErreurNoteComponent} from "./view/etudiant/erreur-note/erreur-note.compo
                     {path: 'view/consultation', component: ConsultationAbsencesComponent},
                     {path: 'view/login', component: LoginComponent},
                     {path: 'view/note-semestre-one', component: NoteSemestreOneComponent},
-                    {path: 'view/detail-note', component: DetailNoteComponent},
-                    {path: 'view/erreurNote', component: ErreurNoteComponent},
+                    {path: 'espaces/etudiant', component: EspaceEtudiantComponent},
                 ]
             },
             {path: 'error', component: AppErrorComponent},

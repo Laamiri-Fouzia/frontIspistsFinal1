@@ -11,7 +11,7 @@ import { AppMainComponent } from './app.main.component';
             </a>
             <div class="layout-config-header">
                 <h3>Changer le thème </h3>
-                <span>explination here</span>
+                
             </div>
             <div class="layout-config-content">
                 <div class="layout-config-section options">

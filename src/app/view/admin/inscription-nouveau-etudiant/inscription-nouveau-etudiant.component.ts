@@ -9,8 +9,9 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {AnneeUniversitaireService} from "../../../controller/service/annee-universitaire.service";
 import {AnneeUniversitaire} from "../../../controller/model/anneeUniversitaire";
 import {Workbook} from "exceljs";
-import html2canvas from 'html2canvas';
 import * as fs from 'file-saver';
+import html2canvas from 'html2canvas';
+
 import jsPDF from 'jspdf';
 import {Etudiant} from "../../../controller/model/etudiant.model";
 import {HttpClient} from "@angular/common/http";

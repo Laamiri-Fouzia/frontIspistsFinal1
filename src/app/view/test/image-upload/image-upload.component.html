@@ -1,44 +1,12 @@
-<div class="container row">
-    <div class="col-md-12">
-        <h1>Upload Image</h1>
+<div class="contenu_carou_auto">
+    <div class="caroussel-image">
+        <img src="../../../../assets/OurImages/JRDAOLOGO.PNG" alt>
+        <img src="../../../../assets/OurImages/logoIspits.png" alt>
+        <img src="../../../../assets/OurImages/LIDARAA.PNG" alt>
+        <img src="../../../../assets/OurImages/yyyyy.PNG" alt>
+        <img src="../../../../assets/OurImages/background.jpg" alt>
+        <img src="../../../../assets/OurImages/img.png" alt>
+        <img src="../../../../assets/OurImages/infer.jpg" alt>
+        <img src="../../../../assets/OurImages/Capture.PNG" alt>
     </div>
 </div>
-
-<div class="container row">
-    <div class="col-md-6">
-        <input type="file" (change)="onFileChanged($event)">
-
-    </div>
-    <div class="col-md-6">
-        <input type="button" (click)="onUpload()" value="upload">
-    </div>
-</div>
-
-<hr />
-
-<div class="container row">
-    <div class="col-md-12">
-        <div *ngIf=message>{{message}}</div>
-    </div>
-</div>
-
-<div class="container row">
-    <div class="col-md-6">
-        <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
-               name="name" />
-    </div>
-    <div class="col-md-6">
-        <input type="button" (click)="getImage()" value="Get Image">
-
-    </div>
-</div>
-
-<div class="container row">
-    <div class="col-md-12">
-        <div *ngIf=retrievedImage>
-            <img [src]="retrievedImage">
-        </div>
-    </div>
-</div>
-
-<button (click)="gotToPage('view/consultation')"> go to </button>
