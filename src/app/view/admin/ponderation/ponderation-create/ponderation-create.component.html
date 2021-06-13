@@ -1,15 +1,18 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="editer l'option" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Ajouter Pondération" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <div class="p-field">
-            <label for="code">Coeficient continue</label>
-            <input type="number" pInputText id="code" [(ngModel)]="input1" required autofocus />
+        <div class="p-field" style="margin-top: 100px">
+            <label for="code">Coeficient Examen Continue</label>
+            <input placeholder="0.00" type="number" pInputText id="code" [(ngModel)]="input1" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !myOption.coefContinue">code is required.</small>
         </div>
-        <div class="p-field">
-            <label for="libelle">Coeficient continue</label>
-            <input type="number" pInputText id="libelle" [(ngModel)]="input2" required autofocus />
+        <div class="p-field" style="margin-bottom: 120px">
+            <label for="libelle">Coeficient Examen Final</label>
+            <input placeholder="0.00" type="number" pInputText id="libelle" [(ngModel)]="input2" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !myOption.coefFinale">libelle is required.</small>
         </div>
+
+        <button pButton pRipple style="margin-left: 30px;width: 94px; background-color: black;color: white" label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple style=" margin-left: 60px; width: 120px; background-color: black;color: white" label="Enregistrer"  icon="pi pi-check" class="p-button-text" (click)="savePonderation(input1,input2)"></button>
 
 
 
@@ -21,10 +24,6 @@
         </div>-->
     </ng-template>
 
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="savePonderation(input1,input2)"></button>
-    </ng-template>
 </p-dialog>
 
 

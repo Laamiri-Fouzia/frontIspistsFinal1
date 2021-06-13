@@ -4,20 +4,22 @@
         <p-toast></p-toast>
 
         <div class="card p-grid">
-            <p-toolbar styleClass="p-mb-4" class="p-col-12">Choisir une filiére de la liste:
-                <div class="p-col-2">
-                    <p-dropdown [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Filiere" (onChange)="change1()"></p-dropdown>
+            <p-toolbar styleClass="p-mb-4" class="p-col-12">
+
+                <div class="p-col-8">
+                    <label class="p-col-3">veuillez Choisir une filiére:</label>
+                    <p-dropdown class="p-col-3" [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Filiere" (onChange)="change1()"></p-dropdown>
                 </div>
 
-                <p-button pButton class="p-col-2" icon="pi pi-search" label="Chercher" (click)="chercheOptions()"></p-button>
+                <p-button  class="p-col-4" icon="pi pi-search" label="Chercher" (click)="chercheOptions()"></p-button>
             </p-toolbar>
 
-            <p-table #dt [value]="myOptions" [columns]="2" [rows]="4" [paginator]="true" [globalFilterFields]="['code','libelle']"
+            <p-table #dt [value]="myOptions" [columns]="2" [rows]="4"  [globalFilterFields]="['code','libelle']"
                      [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
                 <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
                 <ng-template pTemplate="caption">
                     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                        <h5 class="p-m-0">options</h5>
+                        <h5 style="margin-left: 450px">Liste des Options et ses pondérations </h5>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">

@@ -16,16 +16,22 @@ import * as moment from "moment";
 export class InscriptionNouveauEditComponent implements OnInit {
 
   constructor(private inscriptionEtudiantService:InscriptionEtudiantService,private annéeUniversitaireService: AnneeUniversitaireService ,private messageService: MessageService) { }
-  date:Date;
   ngOnInit(): void {
     //this.date=this.etudiantOption.etudiant.dateNaissance;
   }
   get editDialog(): boolean {
     return this.inscriptionEtudiantService.editDialog;
   }
+  get dateNvEtud(): Date {
+    return this.inscriptionEtudiantService.dateNvEtud;
+  }
+
+  set dateNvEtud(value: Date) {
+    this.inscriptionEtudiantService.dateNvEtud = value;
+  }
 
   addDate() {
-    var response=moment(this.date).format('YYYY-MM-DD');
+    var response=moment(this.dateNvEtud).format('YYYY-MM-DD');
     this.etudiantOption.etudiant.dateNaissance=response;
     console.log('hadi f add date ')
     console.log(this.etudiantOption)
@@ -36,10 +42,10 @@ export class InscriptionNouveauEditComponent implements OnInit {
   }
 
 
-  public findIndexById(id: number): number {
+  public findIndexById(cne: string): number {
     let index = -1;
     for (let i = 0; i < this.etudiantOptions.length; i++) {
-      if (this.etudiantOptions[i].id === id) {
+      if (this.etudiantOptions[i].etudiant.cne === cne) {
         index = i;
         break;
       }
@@ -51,8 +57,8 @@ export class InscriptionNouveauEditComponent implements OnInit {
   }
 
   EditStudent() {
-    if (this.etudiantOption.id) {
-      this.etudiantOptions[this.findIndexById(this.etudiantOption.id)] =this.etudiantOption;
+    if (this.etudiantOption.etudiant.cne) {
+      this.etudiantOptions[this.findIndexById(this.etudiantOption.etudiant.cne)] =this.etudiantOption;
     }
     this.inscriptionEtudiantService.EditStudent();
     this.editDialog = false;

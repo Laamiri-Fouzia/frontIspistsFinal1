@@ -6,13 +6,14 @@ import {NoteEtudiantSemestre} from "../model/note-etudiant-semestre.model";
 import {Filiere} from "../model/filiere.model";
 import {NoteEtudiantModule} from "../model/note-etudiant-module.model";
 import {Etudiant} from "../model/etudiant.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteEtudiantSemestreService {
 
-  constructor(private http:HttpClient,private messageService: MessageService) { }
+  constructor(private http:HttpClient,private messageService: MessageService,private router:Router) { }
   private _myOptions:Array<MyOption>;
   private _myNotesSemestre:Array<NoteEtudiantSemestre>;
   private _urlOption='ispits-project/option';
@@ -212,8 +213,16 @@ export class NoteEtudiantSemestreService {
   serachEtudiant(input1: string,input2: string, input3: number) {
     this.http.get<Array<NoteEtudiantSemestre>>(this._urlBase+this._urlNoteEtudiantSemestre+'/semestre/codeSemestre/'+input3+'/option/codeOption/'+input1+'/annee-universitaire/libelle/'+input2).subscribe(
         data=>{
-          console.log(data);
-          this.myNotesSemestre=data;
+            if(data==null)
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error !',
+                    detail: 'Le PV des etudiants pour l\'option "'+input1+'" n\'est pas disponible veuillez entrer toutes les notes des modules pour toutes les étudiants!'
+                });
+            else{
+                console.log(data);
+                this.myNotesSemestre=data;
+            }
         },error=>{
           alert('error');
         }
@@ -256,13 +265,19 @@ export class NoteEtudiantSemestreService {
             }
         );
     }
-
+    gotToPage(viewNoteSemestreOne: string) {
+        this.router.navigate([`${viewNoteSemestreOne}`]);
+    }
     afficherPV(input1: string, input2: number) {
         this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+input1+'/moduleSemestreOption/semestre/code/'+input2).subscribe(
             data=>{
                 this.notesEtudiantModules=data;
                 console.log(data);
-
+                if(this.notesEtudiantModules[0].noteEtudiantSemestre.noteSemestre===0){
+                    this.gotToPage('view/erreurNote');
+                }else{
+                    this.gotToPage('view/note-semestre-one');
+                }
                 /*for(let i=0 ; i<this.notesEtudiantModules.length ; i++){
                     for(let j=0 ; j<this.notesEtudiantModules.length ; j++){
                         if(this.notesEtudiantModules[j].moduleSemestreOption.myModule.code==this.notesEtudiantModules[i].moduleSemestreOption.myModule.code && this.notesEtudiantModules[j].moduleSemestreOption.anneeUniversitaire.anneeOne<this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.anneeOne){
@@ -280,7 +295,6 @@ export class NoteEtudiantSemestreService {
                 console.log(this.notesEtudiantModules2);
                 console.log(data);*/
             },error => {
-                alert('error')
             }
         );
 

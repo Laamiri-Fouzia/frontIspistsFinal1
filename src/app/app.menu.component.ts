@@ -123,6 +123,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Notes rattrapage', icon: 'pi pi-fw pi-pencil', routerLink: ['/view/noteEtudiantModuleRat']},
                     {label: 'Résultats', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/pages/calendar']},
                     {label: 'testPDF', icon: 'pi pi-fw pi-times', routerLink: ['/view/test']},
+                    {label: 'Notes Etudiants', icon: 'pi pi-fw pi-times', routerLink: ['/view/detail-note']},
                     {label: 'Test image ', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/view/imageUpload']}
                 ]
             },
@@ -140,7 +141,6 @@ export class AppMenuComponent implements OnInit {
                 label: 'Les abscences', icon: 'pi pi-fw pi-check-square', routerLink: ['/pages'],
                 items: [
                     {label: 'Liste Abscence', icon: 'pi pi-fw pi-calendar', routerLink: ['/view/absence']},
-                    {label: 'Justifications', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank'},
                     {label: 'Absence Etudiant', icon: 'pi pi-fw pi-globe',  routerLink: ['/view/absenceEtudiant']},
                     {label: 'Consultation Absences', icon: 'pi pi-fw pi-globe', routerLink: ['/view/consultation']},
                 ]

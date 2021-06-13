@@ -98,21 +98,24 @@ export class InscriptionNouveauEtudiantComponent implements OnInit {
     this.inscriptionEtudiantService.etudiantOptions = value;
   }
 
+  set dateNvEtud(value: Date) {
+    this.inscriptionEtudiantService.dateNvEtud = value;
+  }
+  get dateNvEtud(): Date {
+    return this.inscriptionEtudiantService.dateNvEtud;
+  }
+
+
     editEtudiant(etudiantOption: EtudiantOption) {
       this.etudiantOption=this.inscriptionEtudiantService.clone(etudiantOption);
+      this.dateNvEtud=moment(etudiantOption.etudiant.dateNaissance).toDate();
       this.editDialog = true;
     }
 
   public delete(selected: EtudiantOption) {
     this.etudiantOption = selected;
     this.inscriptionEtudiantService.deleteEtudiantOption();
-    this.etudiantOptions = this.etudiantOptions.filter(val => val.etudiant.cne !== this.etudiantOption.etudiant.cne);
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Etudiant bien supprimé',
-      life: 3000
-    });
+
   }
 
   get optSelec(): string {

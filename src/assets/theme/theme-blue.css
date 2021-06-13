@@ -203,6 +203,7 @@ p-calendar.ng-dirty.ng-invalid > .p-calendar > .p-inputtext {
 .p-datepicker table {
   font-size: 1rem;
   margin: 0.5rem 0;
+  background-color: #EFEDED;
 }
 .p-datepicker table th {
   padding: 0.5rem;
@@ -541,6 +542,7 @@ p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
   transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   border-radius: 3px;
 }
+
 .p-dropdown:not(.p-disabled):hover {
   border-color: #0f97c7;
 }
@@ -565,6 +567,7 @@ p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
   box-shadow: none;
 }
 .p-dropdown .p-dropdown-trigger {
+
   background: transparent;
   color: #6c757d;
   width: 2.357rem;
@@ -583,6 +586,7 @@ p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
   border-radius: 3px;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
+
 .p-dropdown-panel .p-dropdown-header {
   padding: 0.5rem 1rem;
   border-bottom: 0 none;
@@ -1944,10 +1948,11 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   padding: 1rem 1rem;
   border: 1px solid #e9ecef;
   border-width: 0 0 1px 0;
-  font-weight: 600;
-  color: #495057;
-  background: #f8f9fa;
+  font-weight: 300;
+  color: #efebeb;
+  background: #252529;
   transition: box-shadow 0.2s;
+
 }
 .p-datatable .p-datatable-tfoot > tr > td {
   text-align: left;
@@ -2007,7 +2012,9 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   border: 1px solid #e9ecef;
   border-width: 0 0 1px 0;
   padding: 1rem 1rem;
+  background-color: #EFEDED;
 }
+
 .p-datatable .p-datatable-tbody > tr > td .p-row-toggler,
 .p-datatable .p-datatable-tbody > tr > td .p-row-editor-init,
 .p-datatable .p-datatable-tbody > tr > td .p-row-editor-save,
@@ -3300,6 +3307,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   border: 1px solid #dee2e6;
   border-width: 0 0 2px 0;
 }
+
 .p-tabview .p-tabview-nav li {
   margin-right: 0;
 }
@@ -3410,16 +3418,18 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-dialog .p-dialog-header {
   border-bottom: 0 none;
-  background: #ffffff;
-  color: #495057;
+  background: black;
+  color: white;
   padding: 1.5rem;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }
+
 .p-dialog .p-dialog-header .p-dialog-title {
   font-weight: 600;
   font-size: 1.25rem;
 }
+
 .p-dialog .p-dialog-header .p-dialog-header-icon {
   width: 2rem;
   height: 2rem;
@@ -3430,6 +3440,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
   margin-right: 0.5rem;
 }
+
 .p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover {
   color: #495057;
   border-color: transparent;
@@ -3444,10 +3455,11 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   margin-right: 0;
 }
 .p-dialog .p-dialog-content {
-  background: #ffffff;
+  background: #efeded;
   color: #495057;
-  padding: 0 1.5rem 2rem 1.5rem;
-}
+  padding: 0px 20px 0px 60px ;
+  height: 480px;
+  }
 .p-dialog .p-dialog-footer {
   border-top: 0 none;
   background: #ffffff;
@@ -3460,6 +3472,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-dialog .p-dialog-footer button {
   margin: 0 0.5rem 0 0;
   width: auto;
+  background:black;
 }
 .p-dialog.p-confirm-dialog .p-confirm-dialog-icon {
   font-size: 2rem;

@@ -156,6 +156,8 @@ import {SeanceEditComponent} from "./view/admin/seance/seance-edit/seance-edit.c
 import {SeanceListComponent} from "./view/admin/seance/seance-list/seance-list.component";
 import { JustificationComponent } from './view/admin/consultation-absences/justification/justification.component';
 import { LoginComponent } from './view/login/login.component';
+import { DetailNoteComponent } from './view/admin/detail-note/detail-note.component';
+import { ErreurNoteComponent } from './view/etudiant/erreur-note/erreur-note.component';
 
 
 
@@ -307,7 +309,9 @@ import { LoginComponent } from './view/login/login.component';
         ConsultationAbsencesComponent,
         SeanceEditComponent,
         JustificationComponent,
-        LoginComponent
+        LoginComponent,
+        DetailNoteComponent,
+        ErreurNoteComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

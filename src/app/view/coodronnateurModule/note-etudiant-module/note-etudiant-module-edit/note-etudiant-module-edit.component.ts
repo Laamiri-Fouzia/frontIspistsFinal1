@@ -27,10 +27,10 @@ export class NoteEtudiantModuleEditComponent implements OnInit {
     return this.noteEtudiantModuleService.notesEtudiantModule;
   }
 
-  public findIndexById(id: number): number {
+  public findIndexById(cne: string): number {
     let index = -1;
     for (let i = 0; i < this.notesEtudiantModule.length; i++) {
-      if (this.notesEtudiantModule[i].id === id) {
+      if (this.notesEtudiantModule[i].etudiant.cne === cne) {
         index = i;
         break;
       }
@@ -48,10 +48,11 @@ export class NoteEtudiantModuleEditComponent implements OnInit {
       });
 
     }else{
-      alert(2)
-    if (this.noteEtudiantModule.id) {
-      this.notesEtudiantModule[this.findIndexById(this.noteEtudiantModule.id)] = this.noteEtudiantModule;
+    if (this.noteEtudiantModule.etudiant.cne) {
+      this.notesEtudiantModule[this.findIndexById(this.noteEtudiantModule.etudiant.cne)] = this.noteEtudiantModule;
     }
+
+    //this.noteEtudiantModule.moduleSemestreOption.myOption.coefFinale=
     this.noteEtudiantModuleService.EditNote();
 
     this.messageService.add({

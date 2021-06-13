@@ -1,13 +1,12 @@
 <div class="p-grid">
-    <div class="p-col-12">
-
+    <div class="p-col-12 " style="padding-top:5px">
         <p-toast></p-toast>
-
         <div class="card p-grid">
-            <h4 class="p-col-12 p-text-center bold">Affichage Des PV</h4>
-            <p-toolbar styleClass="p-mb-4" class="p-col-12">
+            <h2 class="p-col-12 p-text-center bold">Affichage du PV</h2>
+
+            <p-toolbar class="p-col-12" styleClass="p-mb-4 ">
                 <div class="p-col-2">
-                    <p-dropdown [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Filiere" (onChange)="change1()"></p-dropdown>
+                    <p-dropdown  [options]="filieres" [(ngModel)]="fil" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Filiere" (onChange)="change1()"></p-dropdown>
                 </div>
                 <div class="p-col-2">
                     <p-dropdown [options]="myOptions" [(ngModel)]="input1" optionLabel="libelle" [filter]="true" optionValue="code" placeholder="Option"></p-dropdown>
@@ -26,11 +25,6 @@
             <p-table #dt [value]="myNotesSemestre" [columns]="2" [rows]="4" [paginator]="true" [globalFilterFields]="['etudiant','note','etatValidation']"
                      [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
                 <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
-                <ng-template pTemplate="caption">
-                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                        <h5 class="p-m-0">options</h5>
-                    </div>
-                </ng-template>
                 <ng-template pTemplate="header" let-modules>
                     <tr>
                         <th pSortableColumn="option">Etudiant<p-sortIcon field="option"></p-sortIcon></th>

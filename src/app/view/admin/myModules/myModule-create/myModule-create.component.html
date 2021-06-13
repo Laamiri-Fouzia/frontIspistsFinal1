@@ -1,16 +1,17 @@
 <p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Creation de module" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <div class="p-field">
+        <div class="p-field" style="margin-top: 100px">
             <label for="ref">Code Module</label>
             <input type="text" pInputText id="ref" [(ngModel)]="selected.code" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.code">code is required.</small>
         </div>
-        <div class="p-field">
+        <div class="p-field" style="margin-bottom: 120px">
             <label for="total">libelle Module</label>
             <input type="text" pInputText id="total" [(ngModel)]="selected.libelle" required autofocus />
             <small class="p-invalid" *ngIf="submitted && !selected.libelle">libelle is required.</small>
         </div>
-
+        <button pButton pRipple style="margin-left: 30px;width: 94px; background-color: black;color: white" label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton style=" margin-left: 60px; width: 120px; background-color: black;color: white" pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
 
 
         <!--<div class="p-formgrid p-grid">
@@ -21,8 +22,4 @@
         </div>-->
     </ng-template>
 
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
-    </ng-template>
 </p-dialog>

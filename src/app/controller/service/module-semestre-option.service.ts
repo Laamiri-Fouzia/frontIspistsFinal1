@@ -213,7 +213,10 @@ export class ModuleSemestreOptionService {
     findOptionByCode(){
         this.http.get<MyOption>( this.urlOption +'/code/'+this.moduleSemestreOption.myOption.code).subscribe(
             data => {
+                console.log('ana kyn f find hada howa option')
+
                 this.moduleSemestreOption.myOption=data;
+                console.log(this.moduleSemestreOption.myOption)
             },error => {
                 console.log(error);
             });

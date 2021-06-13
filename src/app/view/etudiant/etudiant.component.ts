@@ -28,6 +28,7 @@ export class EtudiantComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.submitted=false;
   }
   get semestreSelct(): number {
     return this.noteEtudiantSemestreService.semestreSelct;
@@ -93,7 +94,10 @@ export class EtudiantComponent implements OnInit {
   }
 
 
-  gotToPage(viewNoteSemestreOne: string) {
-    this.router.navigate([`${viewNoteSemestreOne}`]);
+
+
+  tester() {
+    this.afficherPV(this.input1,this.input2);
+    this.submitted=true;
   }
 }

@@ -37,6 +37,7 @@
                         <th pSortableColumn="Resultat">Heure de seance <p-sortIcon field="Resultat"></p-sortIcon></th>
                         <th pSortableColumn="Resultat">Justification <p-sortIcon field="Resultat"></p-sortIcon></th>
                         <th></th>
+
                         <th pSortableColumn="Action">Etat Absence <p-sortIcon field="Action"></p-sortIcon></th>
                         <!--<th pSortableColumn="totalPaye">Total Paye <p-sortIcon field="totalPaye"></p-sortIcon></th>-->
                         <th></th>
@@ -50,9 +51,14 @@
                         <td>{{absence.seance.dateSeance}}</td>
                         <td>{{absence.seance.heureDebut}}-{{absence.seance.heureFin}}</td>
                         <td>
-                            <input type="file" (change)="onFileChanged($event)">
-                            <input type="button" (click)="onUpload(absence)" value="upload">
+                           <!-- <div class="file-input">
+                                <input type="file" id="file" class="file">
+                                <label for="file">Select file</label>
+                            </div>-->
+                            <input type="file" (change)="onFileChanged($event)" class="upload-box">
+                             <input type="button" (click)="onUpload(absence)" class="envoye" value="envoyer">
                         </td>
+
                         <td></td>
                         <td>{{absence.etatJustification}}</td>
                     </tr>

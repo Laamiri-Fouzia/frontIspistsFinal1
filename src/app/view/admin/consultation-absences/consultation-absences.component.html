@@ -7,14 +7,13 @@
             <h2 class="p-col-12 p-text-center bold">Consultation des Absences</h2>
 
             <p-toolbar styleClass="p-mb-4" class="p-col-12">
-                <!--<label for="dateSeance">Entrer la Date:  </label>
-                <input type="datetime-local" pInputText id="dateSeance" [(ngModel)]="input" dateFormat="yyyy-MM-dd" required autofocus/>-->
-
-                    <label for="dateSeance">Entrer la Date:  </label>
-                    <p-calendar  id="dateSeance" [(ngModel)]="input" [monthNavigator]="true"
-                                 [yearNavigator]="true" yearRange="2021:2040" type="datetime-local" dateFormat="yy-MM-dd"></p-calendar>
-
-                <p-button icon="pi pi-search" label="Chercher" (click)="chercheAbsences(input)"></p-button>
+                <div class="p-col-6">
+                    <label class="p-col-3" for="dateSeance">Entrer la Date:  </label>
+                    <p-calendar class="p-col-9"  id="dateSeance" [(ngModel)]="input" [monthNavigator]="true"
+                                [yearNavigator]="true" yearRange="2021:2040" type="datetime-local" dateFormat="yy-MM-dd"></p-calendar>
+                </div>
+                <div class="p-col-2"></div>
+                <p-button class="p-col-4" icon="pi pi-search" label="Chercher" (click)="chercheAbsences(input)"></p-button>
             </p-toolbar>
 
             <p-table #dt [value]="absences" [columns]="3" [rows]="4" [globalFilterFields]="['etudiant','option','seance','justification','etatAbsence','atatJustification']"
@@ -60,12 +59,11 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">
-
+                    <button class="buttonClass" (click)="updateAbsences(absences,selectors)">Enregistrer tous</button>
                 </ng-template>
 
             </p-table>
             <div class="p-d-flex p-ai-center p-jc-between">
-                    <button style="background-color: cadetblue"  (click)="updateAbsences(absences,selectors)">enregistrer tous</button>
             </div>
 
         </div>

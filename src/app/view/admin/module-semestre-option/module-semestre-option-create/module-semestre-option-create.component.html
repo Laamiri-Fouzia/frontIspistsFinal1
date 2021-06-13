@@ -1,20 +1,19 @@
-<p-dialog [(visible)]="createDialog" [style]="{width:'600px'}" header="Creation de module" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [style]="{width:'450px'}" header="Affectation de Module" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
-        <div class="p-field">
+        <div class="p-field" style="margin-top: 100px">
             <label >Choisir un module</label>
             <p-dropdown placeholder="choisir un Module" [options]="items" [(ngModel)]="input1" optionLabel="libelle" optionValue="code" [filter]="true"  ></p-dropdown>
             <small class="p-invalid" *ngIf="submitted && !moduleSemestreOption.myModule.code">code is required.</small>
         </div>
-        <div class="p-field">
+        <div class="p-field" style="margin-bottom: 120px">
             <label >Type de module</label>
             <p-dropdown placeholder="choisir un type de  Module" [options]="types" [(ngModel)]="input2" optionLabel="type" optionValue="code" (onChange)="change1()"></p-dropdown>
             <small class="p-invalid" *ngIf="submitted && !moduleSemestreOption.typeModule.code">code is required.</small>
         </div>
 
+        <button pButton pRipple style="margin-left: 30px;width: 94px; background-color: black;color: white" label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple style=" margin-left: 60px; width: 120px; background-color: black;color: white" label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveOptionSemestreModule(input1,input2)"></button>
+
     </ng-template>
 
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-        <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveOptionSemestreModule(input1,input2)"></button>
-    </ng-template>
 </p-dialog>

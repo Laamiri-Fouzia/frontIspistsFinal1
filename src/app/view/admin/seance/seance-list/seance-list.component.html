@@ -1,16 +1,12 @@
-<p-dialog [(visible)]="createDialog1" [style]="{width: '450px'}" header="Inserer une Seance" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog1" [style]="{width: '600px'}" header="La Liste des Seances" [modal]="true" styleClass="p-fluid">
 <div class="p-grid">
     <div class="p-col-12">
-
         <p-toast></p-toast>
-
-        <div class="card">
-            <p-toolbar styleClass="p-mb-4">
-                <ng-template pTemplate="left">
-                    <button pButton pRipple label="Nouveau Seance" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
-                </ng-template>
-            </p-toolbar>
-
+        <div style="margin: 7px 0">
+                <button pButton pRipple style="margin-left: 30px;width: 120px; background-color: black;color: white"  label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+                <button pButton pRipple style=" margin-left: 160px; width: 160px; background-color: #5E8F32;color: white" label="Nouveau Seance" icon="pi pi-plus" class="p-button-text"  (click)="openCreate()"></button>
+        </div>
+            <div class="card">
             <p-table #dt [value]="seances" [columns]="5"  [globalFilterFields]="['libelle','heurDebut','heurFin','dateSeance']"
                      [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
                 <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
@@ -21,11 +17,11 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th pSortableColumn="code">Libelle <p-sortIcon field="code"></p-sortIcon></th>
-                        <th pSortableColumn="heurDebut">Heure Debut <p-sortIcon field="heurDebut"></p-sortIcon></th>
-                        <th pSortableColumn="heurFin">Heure Fin <p-sortIcon field="heurFin"></p-sortIcon></th>
-                        <th pSortableColumn="heurFin">Date Seance <p-sortIcon field="heurFin"></p-sortIcon></th>
-                        <th pSortableColumn="heurFin">Action <p-sortIcon field="heurFin"></p-sortIcon></th>
+                        <th pSortableColumn="code">Libelle</th>
+                        <th pSortableColumn="heurDebut">Heure Debut</th>
+                        <th pSortableColumn="heurFin">Heure Fin </th>
+                        <th pSortableColumn="heurFin">Date Seance</th>
+                        <th pSortableColumn="heurFin">Action </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-seance>
@@ -35,7 +31,7 @@
                         <td>{{seance.heureFin}}</td>
                         <td>{{seance.dateSeance}}</td>
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openCreate1(seance)"></button>-->
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="openCreate1(seance)"></button>
 
                         </td>
                     </tr>
@@ -53,8 +49,8 @@
         <app-myModule-view></app-myModule-view>-->
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
+
+
 </div>
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-    </ng-template>
+
    </p-dialog>

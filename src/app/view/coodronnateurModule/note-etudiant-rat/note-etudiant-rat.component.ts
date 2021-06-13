@@ -142,15 +142,15 @@ export class NoteEtudiantRatComponent implements OnInit {
         const workbook = new Workbook();
         const worksheet = workbook.addWorksheet('notes_rattrapage');
         worksheet.columns = [
-            {header: 'CNE', key: 'cne', width: 10},
-            {header: 'NOM', key: 'nom', width: 10},
-            {header: 'PRENOM', key: 'prenom', width: 10},
-            {header: 'NOTE FINALE RATT', key: 'noteFinalRat', width: 32},
-            {header: 'NOTE MODULE NORMALE', key: 'noteModuleNormale', width: 10},
-            {header: 'NOTE CONTINUE', key: 'notContinue', width: 10},
-            {header: 'NOTE MODULE SESSION RATT', key: 'noteModuleSessionRat', width: 10},
-            {header: 'NOTE GLOBALE', key: 'noteGlobal', width: 10},
-            {header: 'resultat', key: 'resultat', width: 10}
+            {header: 'CNE', key: 'cne', width: 20},
+            {header: 'NOM', key: 'nom', width: 20},
+            {header: 'PRENOM', key: 'prenom', width: 20},
+            {header: 'NOTE FINALE RAT', key: 'noteFinalRat', width: 20},
+            {header: 'NOTE MODULE NORMALE', key: 'noteModuleNormale', width: 20},
+            {header: 'NOTE CONTINUE', key: 'notContinue', width: 20},
+            {header: 'NOTE MODULE SESSION RAT', key: 'noteModuleSessionRat', width: 20},
+            {header: 'NOTE GLOBALE', key: 'noteGlobal', width: 20},
+            {header: 'Resultat', key: 'resultat', width: 20}
         ];
         this.noteEtudiantModuleService.notesEtudiantRat.forEach(e => {
 
@@ -248,8 +248,6 @@ export class NoteEtudiantRatComponent implements OnInit {
                 let nc = this.noteEtudiantModule.noteContinue;
                 let nfApresR = this.noteEtudiantModule.noteFinalApresRat;
                 this.noteEtudiantModule.noteModuleRat = (pc * nc) + (pf * nfApresR);
-                console.log('note module rat apres calc')
-                console.log(this.noteEtudiantModule.noteModuleRat)
                 this.noteEtudiantModule.moduleSemestreOption.code = this.moduleRatt;
                 if (this.noteEtudiantModule.noteModuleRat > this.noteEtudiantModule.noteModuleNormal) {
                     this.noteEtudiantModule.noteGlobale = this.noteEtudiantModule.noteModuleRat;
@@ -260,8 +258,7 @@ export class NoteEtudiantRatComponent implements OnInit {
                 else
                     this.noteEtudiantModule.etatValidation.libelle = 'V aprés Rattrapage';
                 this.notesEtudiantRat.push(this.clone(this.noteEtudiantModule));
-                 console.log(this.notesEtudiantRat)
-                this.noteEtudiantModuleService.EditNoteRat();
+                this.noteEtudiantModuleService.EditNoteRatForEXcel();
             }
 
         };

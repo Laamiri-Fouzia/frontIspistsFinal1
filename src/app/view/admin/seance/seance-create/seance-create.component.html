@@ -1,33 +1,28 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Inserer une Seance" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content" >
-        <div class="p-field">
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Insérer Seance" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content"  >
+        <div class="p-field" style="margin-top: 10px">
             <label for="dateSeance">Date Seance</label>
             <p-calendar  id="dateSeance" [(ngModel)]="input4" [monthNavigator]="true"
                          [yearNavigator]="true" yearRange="1900:2040" dateFormat="yy-MM-dd"></p-calendar>
         </div>
-        <div class="p-field">
+        <div class="p-field" >
             <label for="libelle">Libelle</label>
-            <input type="text" pInputText id="libelle" [(ngModel)]="input1" required autofocus/>
+            <input type="text" pInputText id="libelle" [(ngModel)]="input1" required />
         </div>
-        <div c
-             lass="p-field">
+        <div class="p-field">
             <label for="dateDebut">Heure Debut</label>
-            <input type="text" pInputText id="dateDebut" [(ngModel)]="input2" required autofocus/>
+            <input type="text" pInputText id="dateDebut" [(ngModel)]="input2" required />
         </div>
-        <div class="p-field">
+        <div class="p-field"  style="margin-bottom: 60px">
             <label for="dateFin">Heure Fin</label>
-            <input type="text" pInputText id="dateFin" [(ngModel)]="input3" required autofocus/>
+            <input type="text" pInputText id="dateFin" [(ngModel)]="input3" required />
         </div>
-        <div class="p-field">
-            <!--<label for="heurFin">Heure Fin</label>
-            <p-calendar  id="heurFin" [(ngModel)]="input3" [stepHour]="true" [stepMinute]="true"
-                         hourFormat="HH:mm"></p-calendar>-->
-        </div>
+
+        <button pButton pRipple style="margin-left: 30px;width: 94px; background-color: black;color: white" label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple style=" margin-left: 60px; width: 120px; background-color: black;color: white" label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveSeance(input1,input2,input3,input4)"></button>
+
     </ng-template>
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveSeance(input1,input2,input3,input4)"></button>
-    </ng-template>
+
 </p-dialog>
 
 

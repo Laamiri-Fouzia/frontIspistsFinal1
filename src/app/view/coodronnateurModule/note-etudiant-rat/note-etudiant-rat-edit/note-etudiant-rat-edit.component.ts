@@ -29,10 +29,10 @@ export class NoteEtudiantRatEditComponent implements OnInit {
     return this.noteEtudiantModuleService.notesEtudiantRat;
   }
 
-  public findIndexById(id: number): number {
+  public findIndexById(cne: string): number {
     let index = -1;
     for (let i = 0; i < this.notesEtudiantRat.length; i++) {
-      if (this.notesEtudiantRat[i].id === id) {
+      if (this.notesEtudiantRat[i].etudiant.cne === cne) {
         index = i;
         break;
       }
@@ -50,8 +50,8 @@ export class NoteEtudiantRatEditComponent implements OnInit {
       });
 
     }else{
-    if (this.noteEtudiantModule.id) {
-      this.notesEtudiantRat[this.findIndexById(this.noteEtudiantModule.id)] = this.noteEtudiantModule;
+    if (this.noteEtudiantModule.etudiant.cne) {
+      this.notesEtudiantRat[this.findIndexById(this.noteEtudiantModule.etudiant.cne)] = this.noteEtudiantModule;
     }
     this.noteEtudiantModuleService.EditNoteRat();
 

@@ -114,7 +114,7 @@ export class ChoisirParamComponent implements OnInit {
   }
 
   chercherEtudiant() {
-      this.inscriptionEtudiantService.chercherEtudiant(this.input4);
+      this.inscriptionEtudiantService.chercherEtudiant(this.input4,this.seanceSelected);
       this.hideEditDialog();
        this.displayTable=true;
   }

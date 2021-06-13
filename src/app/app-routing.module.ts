@@ -26,6 +26,8 @@ import {NoteSemestreOneComponent} from "./view/etudiant/note-semestre-one/note-s
 import {ImageUploadComponent} from "./view/test/image-upload/image-upload.component";
 import {ConsultationAbsencesComponent} from "./view/admin/consultation-absences/consultation-absences.component";
 import {LoginComponent} from "./view/login/login.component";
+import {DetailNoteComponent} from "./view/admin/detail-note/detail-note.component";
+import {ErreurNoteComponent} from "./view/etudiant/erreur-note/erreur-note.component";
 
 @NgModule({
     imports: [
@@ -51,6 +53,8 @@ import {LoginComponent} from "./view/login/login.component";
                     {path: 'view/consultation', component: ConsultationAbsencesComponent},
                     {path: 'view/login', component: LoginComponent},
                     {path: 'view/note-semestre-one', component: NoteSemestreOneComponent},
+                    {path: 'view/detail-note', component: DetailNoteComponent},
+                    {path: 'view/erreurNote', component: ErreurNoteComponent},
                 ]
             },
             {path: 'error', component: AppErrorComponent},

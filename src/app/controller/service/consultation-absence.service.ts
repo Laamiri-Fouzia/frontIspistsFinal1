@@ -78,7 +78,6 @@ export class ConsultationAbsenceService {
 
   chercheAbsences(input: Date) {
         var t=moment(input).format('YYYY-MM-DD');
-        alert(this._urlBase+this._urlAbsence+'/seance/date/'+t);
         console.log(t);
       this.http.get<Array<Absence>>(this._urlBase+this._urlAbsence+'/seance/date/'+t).subscribe(
           data=>{

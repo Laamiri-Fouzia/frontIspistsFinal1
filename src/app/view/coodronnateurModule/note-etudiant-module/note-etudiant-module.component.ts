@@ -136,6 +136,7 @@ export class NoteEtudiantModuleComponent implements OnInit {
   public edit(note: NoteEtudiantModule) {
     this.noteEtudiantModule = {...note};
     this.editDialog = true;
+
   }
 
   //import_export methode

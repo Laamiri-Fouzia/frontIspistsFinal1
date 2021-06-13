@@ -1,6 +1,6 @@
 <p-dialog [(visible)]="createDialog2" [style]="{width: '450px'}" header="Modéfie une Seance" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content" >
-        <div class="p-field">
+    <ng-template pTemplate="content">
+        <div class="p-field" style="margin-top: 60px" >
             <label for="dateSeance">Date Seance</label>
             <p-calendar  id="dateSeance" [(ngModel)]="dateSea" [monthNavigator]="true"
                          [yearNavigator]="true" yearRange="1900:2040" dateFormat="yy-MM-dd"></p-calendar>
@@ -9,14 +9,14 @@
             <label for="dateDebut">Heure Debut</label>
             <input type="text" pInputText id="dateDebut" [(ngModel)]="seanceEdit.heureDebut" required autofocus/>
         </div>
-        <div class="p-field">
+        <div class="p-field" style="margin-bottom: 60px">
             <label for="dateFin">Heure Fin</label>
             <input type="text" pInputText id="dateFin" [(ngModel)]="seanceEdit.heureFin" required autofocus/>
         </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="seanceEDIT(dateSea,seanceEdit.libelle,seanceEdit.heureDebut,seanceEdit.heureFin)"></button>
+
+        <button pButton pRipple label="Annuler" style="margin-left: 30px;width: 94px; background-color: black;color: white" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple style=" margin-left: 60px; width: 110px; background-color: black;color: white" label="Editer" icon="pi pi-check" class="p-button-text" (click)="seanceEDIT(dateSea,seanceEdit.libelle,seanceEdit.heureDebut,seanceEdit.heureFin)"></button>
+
     </ng-template>
 
 </p-dialog>

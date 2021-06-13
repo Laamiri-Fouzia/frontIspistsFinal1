@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbsenceService} from "../../../controller/service/absence.service";
 import {InscriptionEtudiantService} from "../../../controller/service/inscription-etudiant.service";
 import {InscriptionEtudiantModule} from "../../../controller/model/inscription-etudiant-module.model";
+import {Absence} from "../../../controller/model/absence.model";
 
 @Component({
   selector: 'app-absence-edit',
@@ -30,6 +31,13 @@ export class AbsenceEditComponent implements OnInit {
 
   }
 
+
+  get listAbsences(): Array<Absence> {
+    return this.absenceService.listAbsences;
+  }
+  set listAbsences(value: Array<Absence>) {
+    this.absenceService.listAbsences = value;
+  }
   get moduleSelected(): string {
     return this.absenceService.moduleSelected;
   }
@@ -65,5 +73,10 @@ export class AbsenceEditComponent implements OnInit {
 
   set displayTable(value: boolean) {
     this.absenceService.displayTable = value;
+  }
+
+  delete(absence: Absence) {
+    this.listAbsences = this.listAbsences.filter(val => val.etudiant.cne !== absence.etudiant.cne);
+    this.absenceService.delete(absence)
   }
 }

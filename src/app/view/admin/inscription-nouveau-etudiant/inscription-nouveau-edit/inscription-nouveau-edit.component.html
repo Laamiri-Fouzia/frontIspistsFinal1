@@ -1,20 +1,20 @@
 <p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Editer Etudiant " [modal]="true" styleClass="p-fluid">
 
     <ng-template pTemplate="content">
-        <div class="p-field">
+        <div class="p-field" style="margin-top: 20px">
             <label for="cne">CNE</label>
             <input type="text" pInputText id="cne" [(ngModel)]="etudiantOption.etudiant.cne" required autofocus/>
         </div>
 
         <div class="p-field">
             <label for="dateNaissance">Date de Naissance</label>
-            <p-calendar  id="dateNaissance" [(ngModel)]="date" [monthNavigator]="true"
+            <p-calendar (click)="addDate()"   id="dateNaissance" [(ngModel)]="dateNvEtud" [monthNavigator]="true"
                          [yearNavigator]="true" yearRange="1900:2040" dateFormat="yy-MM-dd"></p-calendar>
         </div>
 
         <div class="p-field">
             <label for="cin">CIN</label>
-            <input type="text" (click)="addDate()" pInputText id="cin" [(ngModel)]="etudiantOption.etudiant.cin" required autofocus />
+            <input type="text" pInputText id="cin" [(ngModel)]="etudiantOption.etudiant.cin" required autofocus />
         </div>
 
         <div class="p-field">
@@ -22,16 +22,14 @@
             <input type="text" pInputText id="nom" [(ngModel)]="etudiantOption.etudiant.nom" required autofocus />
         </div>
 
-        <div class="p-field">
+        <div class="p-field"  style="margin-bottom: 30px">
             <label for="prenom">Prenom</label>
             <input type="text" pInputText id="prenom" [(ngModel)]="etudiantOption.etudiant.prenom" required autofocus />
         </div>
 
-    </ng-template>
+        <button pButton pRipple  style="margin-left: 30px;width: 94px; background-color: black;color: white" label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple  style=" margin-left: 60px; width: 120px; background-color: black;color: white" label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="EditStudent()"></button>
 
-    <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
-        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="EditStudent()"></button>
     </ng-template>
 </p-dialog>
 

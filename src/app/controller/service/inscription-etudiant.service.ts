@@ -8,19 +8,28 @@ import {Observable} from "rxjs";
 import {InscriptionEtudiantModule} from "../model/inscription-etudiant-module.model";
 import {Etudiant} from "../model/etudiant.model";
 import * as moment from "moment";
+import {AbsenceService} from "./absence.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class InscriptionEtudiantService {
+    get dateNvEtud(): Date {
+        return this._dateNvEtud;
+    }
+
+    set dateNvEtud(value: Date) {
+        this._dateNvEtud = value;
+    }
 
     private urlEtudiantOption = environment.baseUrl + 'etudiantOption/';
     private _inscriptionEtudiants:Array<InscriptionEtudiantModule>;
     private urlEtudiant = environment.baseUrl + 'Etudiant/';
     private urlInscriptionModule=environment.baseUrl + 'inscriptionEtudiantModule/';
     private _optSelec: string;
-    public date:Date;
-    constructor(private http: HttpClient, private confirmationService: ConfirmationService, private messageService: MessageService) {
+    private _dateNvEtud:Date;
+
+    constructor(private http: HttpClient, private confirmationService: ConfirmationService, private messageService: MessageService,private absenceService:AbsenceService) {
     }
 
     private _createDialog: boolean;
@@ -216,10 +225,12 @@ export class InscriptionEtudiantService {
         etuOp.semestre= {...etudiantOption.semestre};
         etuOp.anneeUniversitaire= {...etudiantOption.anneeUniversitaire};
         etuOp.id=etudiantOption.id;
+
         return etuOp;
   }
     EditStudent() {
-        console.log(this.etudiantOption)
+        console.log('hadi edit f service ')
+        console.log(this.etudiantOption);
         this.http.put(this.urlEtudiant, this.etudiantOption.etudiant).subscribe(
             data =>{
                 if (data == 1) {
@@ -247,16 +258,31 @@ export class InscriptionEtudiantService {
     deleteEtudiantOption() {
         this.http.delete<number>(this.urlEtudiantOption + '/Etudiant/cne/' + this.etudiantOption.etudiant.cne).subscribe(
             data => {
+                if(data==-7){
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: 'Error !',
+                        detail: 'Vous ne pouvez pas supprimer cet etudiant !'
+                    });
+                }else{
+                    this.etudiantOptions = this.etudiantOptions.filter(val => val.etudiant.cne !== this.etudiantOption.etudiant.cne);
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Successful',
+                        detail: 'Etudiant bien supprimé'
+                    });
+                }
             }, error => {
                 console.log(error);
             }
         );
     }
 
-    chercherEtudiant(code:string){
+    chercherEtudiant(code:string,seance:string){
         this.http.get<Array<InscriptionEtudiantModule>>( this.urlInscriptionModule+'moduleSemestreOption/code/'+code).subscribe(
             data => {
                 this.inscriptionEtudiants = data;
+                this.absenceService.getAbsences(seance);
             }, error => {
                 console.log(error);
             }

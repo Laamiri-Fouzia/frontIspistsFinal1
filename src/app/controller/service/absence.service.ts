@@ -19,10 +19,23 @@ export class AbsenceService {
 
   private _selects:Array<InscriptionEtudiantModule>;
   private _absences:Array<Absence>;
+  private _listAbsences:Array<Absence>;
   private _seanceSelected='';
   private _urlAbsence=environment.baseUrl+'absence/';
   private _moduleSelected :string;
   constructor(private http: HttpClient,private messageService: MessageService) { }
+
+
+
+  get listAbsences(): Array<Absence> {
+    if(this._listAbsences==null)
+      this._listAbsences=new Array<Absence>();
+    return this._listAbsences;
+  }
+
+  set listAbsences(value: Array<Absence>) {
+    this._listAbsences = value;
+  }
 
   get moduleSelected(): string {
     return this._moduleSelected;
@@ -67,29 +80,29 @@ export class AbsenceService {
   }
 
   validerAbsence() {
-    console.log('hada selects')
-    console.log(this.selects)
-    console.log('hadi seance ')
-    console.log(this.seanceSelected)
+
      for(var inscriptionModule of this.selects){
        let absence =new Absence();
        absence.seance.libelle=this.seanceSelected;
        absence.etudiant.cne=inscriptionModule.etudiant.cne;
-
-       if(this.absences==null)
-         alert(2);
+       absence.etudiant.nom=inscriptionModule.etudiant.nom;
+       absence.etudiant.prenom=inscriptionModule.etudiant.prenom;
        this.absences.push(absence);
     }
-    console.log('hada absences')
-    console.log(this.absences)
+
     this.http.post(this._urlAbsence,this.absences).subscribe(
         data => {
-           if(data==1)
+           if(data==1){
+             for(var abs of this.absences){
+               this.listAbsences.push(abs);
+             }
              this.messageService.add({
                severity: 'success',
                summary: 'Successful',
                detail: 'modification bien enregistré! ',
              });
+
+           }
            else if(data==-1){
              this.messageService.add({
                severity: 'error',
@@ -111,6 +124,17 @@ export class AbsenceService {
 
   }
 
+  getAbsences(seance:string){
+    this.http.get<Array<Absence>>(this._urlAbsence +'/seance/libelle/'+seance).subscribe(
+        data => {
+          console.log('hani f getabs')
+          console.log(data)
+          this.listAbsences=data;
+        },error => {
+          console.log(error);
+        });
+  }
+
   get displayTable(): boolean {
     return this._displayTable;
   }
@@ -120,7 +144,6 @@ export class AbsenceService {
   }
 
     searchAbsence(annee: string, semstre: string, cne: string) {
-    alert(this._urlAbsence +'etudiant/cne/'+cne+'/seance/moduleSemestreOption/semestre/code/'+semstre+'/seance/moduleSemestreOption/anneuniv/libelle/'+annee)
       this.http.get<Array<Absence>>(this._urlAbsence +'/etudiant/cne/'+cne+'/seance/moduleSemestreOption/semestre/code/'+semstre+'/seance/moduleSemestreOption/anneuniv/libelle/'+annee).subscribe(
           data => {
             console.log(data)
@@ -146,4 +169,12 @@ export class AbsenceService {
       console.log(absence);
     }
 
+  delete(absence: Absence) {
+    this.http.delete(this._urlAbsence+'etudian/cne/'+absence.etudiant.cne+'/seance/libelle/'+absence.seance.libelle ).subscribe(
+        data => {
+          console.log(data)
+        },error => {
+          console.log(error);
+        });
+  }
 }

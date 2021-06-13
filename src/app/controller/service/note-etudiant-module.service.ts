@@ -31,7 +31,12 @@ export class NoteEtudiantModuleService {
     private _moduleRatt: string;
 
 
-    constructor(private http:HttpClient) { }
+    constructor(private http:HttpClient,private moduleSemestreOptionService:ModuleSemestreOptionService) { }
+
+
+    get moduleSemestreOption(): ModuleSemestreOption {
+        return this.moduleSemestreOptionService.moduleSemestreOption;
+    }
 
     get etudiantAbsente(): Array<Etudiant> {
       if(this._etudiantAbsente==null)
@@ -111,11 +116,15 @@ export class NoteEtudiantModuleService {
     this._notesEtudiantRat = value;
   }
 
+
+
   EditNote() {
-     let pc=0.75;
-     let pf=0.25;
+        alert(this.moduleSemestreOption.myOption.coefFinale)
+     let pc = this.moduleSemestreOption.myOption.coefContinue;
+     let pf = this.moduleSemestreOption.myOption.coefFinale;
      let nc=this.noteEtudiantModule.noteContinue;
      let nfAvR=this.noteEtudiantModule.noteFinalAvRat;
+      console.log((pc*nc)+(pf*nfAvR));
      this.noteEtudiantModule.noteModuleNormal=(pc*nc)+(pf*nfAvR);
      this.noteEtudiantModule.noteGlobale=this.noteEtudiantModule.noteModuleNormal;
       this.noteEtudiantModule.moduleSemestreOption.code=this._moduleselected;
@@ -123,6 +132,7 @@ export class NoteEtudiantModuleService {
        this.noteEtudiantModule.etatValidation.libelle='Validé';
      else
        this.noteEtudiantModule.etatValidation.libelle='Rattrapage';
+      console.log(this.noteEtudiantModule)
      this.http.put(this.urlBase+this.URLNoteEtudModule+'/updatenormal/',this.noteEtudiantModule).subscribe(
        data => {
             console.log(data)
@@ -157,7 +167,30 @@ export class NoteEtudiantModuleService {
         );
   }
 
+  EditNoteRatForEXcel() {
+    this.http.put(this.urlBase+this.URLNoteEtudModule+'/updateratt/',this.noteEtudiantModule).subscribe(
+      data => {
+
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
   EditNoteRat() {
+      let pc = this.moduleSemestreOption.myOption.coefContinue;
+      let pf = this.moduleSemestreOption.myOption.coefFinale;
+      let nc = this.noteEtudiantModule.noteContinue;
+      let nfApresR = this.noteEtudiantModule.noteFinalApresRat;
+      this.noteEtudiantModule.noteModuleRat = (pc * nc) + (pf * nfApresR);
+      this.noteEtudiantModule.moduleSemestreOption.code = this.moduleRatt;
+      if (this.noteEtudiantModule.noteModuleRat > this.noteEtudiantModule.noteModuleNormal) {
+          this.noteEtudiantModule.noteGlobale = this.noteEtudiantModule.noteModuleRat;
+      }
+
+      if (this.noteEtudiantModule.noteGlobale < 10)
+          this.noteEtudiantModule.etatValidation.libelle = 'Non Validé';
+      else
+          this.noteEtudiantModule.etatValidation.libelle = 'V aprés Rattrapage';
     this.http.put(this.urlBase+this.URLNoteEtudModule+'/updateratt/',this.noteEtudiantModule).subscribe(
       data => {
 
