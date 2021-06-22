@@ -1,0 +1,101 @@
+<div id="menu">
+    <ul>
+        <li><a (click)="gotTo('')" class="active" href="#">Acceuil</a></li>
+        <li><a (click)="gotTo('')" class="active" href="#">Comptes</a></li>
+        <li><a (click)="gotTo('view/inscriptionNouveauEtudiant')" class="active">Inscription Nouveau Etudiant</a></li>
+        <li><a (click)="gotTo('view/inscriptionAncienEtudiant')" class="active">Inscription Ancien Etudiant</a></li>
+        <li><a (click)="gotTo('view/ModuleOrAffecation')" class="active">Filiére-Module-Option</a></li>
+        <li><a (click)="gotTo('view/note-etudiant-semestre')" class="active">PV des étudiants</a></li>
+        <li><a (click)="gotTo('view/releveAdmin')" class="active">Relevé de Notes</a></li>
+        <li><a (click)="gotTo('view/ponderation')" class="active">Pondération</a></li>
+    </ul>
+</div>
+<div class="p-grid">
+    <div class="p-col-12 ">
+        <p-toast></p-toast>
+        <div class="card p-grid">
+            <h2 class="p-col-12 p-text-center bold">Liste des étudiants</h2>
+
+            <p-toolbar class="p-col-12" styleClass="p-mb-4 ">
+
+                <div class="p-col-2">
+                    <p-dropdown (onChange)="change1()" [(ngModel)]="etudiantOption.anneeUniversitaire.anneeOne"
+                                [options]="years" [style]="{'width':'180px'}" optionLabel="libelle" optionValue="anneeOne" placeholder="année Univesitaire" styleClass="customClass"></p-dropdown>
+                </div>
+
+                <div class="p-col-2">
+                    <p-dropdown [(ngModel)]="etudiantOption.myOption.code" [filter]="true" [options]="options"
+                                [style]="{'width':'180px'}" optionLabel="label" optionValue="value"></p-dropdown>
+                </div>
+
+                <div class="p-col-2">
+                    <p-dropdown [(ngModel)]="etudiantOption.semestre.code" [options]="semestres"
+                                [style]="{'width':'180px'}" optionLabel="label" optionValue="value"></p-dropdown>
+                </div>
+                    <p-button class="p-col-2" (click)="SearchAncienStudent()">chercher</p-button>
+
+
+            </p-toolbar>
+            <div [ngClass]="{'vis':displayTable==false}">
+                <p-toolbar class="p-col-12">
+                    <ng-template pTemplate="left">
+                        <h4 style="margin-left:200px ">La Liste des etudiants de l'option "{{optionForExcel}}" semestre {{semestreForExcel}} année universitaire {{anforEXcel}}: </h4>
+                    </ng-template>
+                </p-toolbar>
+                <p-table #dt1 [columns]="cols" [globalFilterFields]="['CNE','Nom',' Prenom']" [rowHover]="true"
+                         [rows]="4"
+                         [showCurrentPageReport]="true" [value]="etudiants"
+                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                         dataKey="id"
+                         styleClass="p-datatable-customers">
+                    <ng-template pTemplate="caption">
+                      <div class="p-d-flex">
+                              <button style="margin-right: 800px" (click)="downloadExcel()" class=" p-mb-2" icon="pi pi-upload" label="Export" pButton
+                                      pRipple></button>
+                          <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                          <span class="p-input-icon-left p-ml-auto">
+                   <i class="pi pi-search"></i>
+                   <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+               </span>
+                      </div>
+                  </ng-template>
+
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="CNE">CNE
+                                <p-sortIcon field="CNE"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="NOM">NOM
+                                <p-sortIcon field="NOM"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="PRENOM">PRENOM
+                                <p-sortIcon field="PRENOM"></p-sortIcon>
+                            </th>
+                            <th>DATE NAISSANCE</th>
+                            <th>DATE D'INSCRIPTION</th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template let-etudiant pTemplate="body">
+                        <tr>
+                            <td>{{etudiant.cne}} </td>
+                            <td>{{etudiant.nom}} </td>
+                            <td>{{etudiant.prenom}} </td>
+                            <td>{{etudiant.dateNaissance}} </td>
+                            <td>{{etudiant.dateInscription}} </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            En totale il y a {{etudiants ? etudiants.length : 0 }} étudiants.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+        <app-inscription-ancien-edit></app-inscription-ancien-edit>
+    </div>
+</div>
+
+<button (click)="gotTo('view/AdminNoteNote')" class="p-button-rounded p-button-secondary" icon="pi pi-arrow-left" pButton pRipple
+        type="button"></button>

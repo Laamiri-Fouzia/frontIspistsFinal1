@@ -1,0 +1,130 @@
+.page{
+  margin: 0px;
+  padding: 0px;
+  /*background-image: url("green6.jpg");*/
+  background-size: cover;
+  background-attachment: fixed;
+  font-family:new time roman ;
+  height: 700px;//100%
+  background-image: url("../../../assets/OurImages/overlay.png"),url("../../../assets/OurImages/infer.jpg");
+}
+
+.police{
+  font-size: small;
+  font-family: "Niagara Solid";
+}
+
+ul{
+  margin-bottom: 50px;
+}
+#sign a {
+  border-bottom: 2px solid;
+  padding: 10px;
+  margin-left: 120px;
+  font-size: xx-large;
+  color: lightblue;
+}
+#sign a:hover{
+  text-decoration: none;
+  color:lightcyan;
+  /*background-color:palegreen ;*/
+}
+.label{
+  font-size: 22px;
+  color:ghostwhite;
+  font-weight: normal;
+}
+.form-control{
+  background:  transparent;
+  border-radius: 0px;
+  border: 0px;
+  border-bottom: 1px solid cadetblue;
+  margin-bottom: 10px ;
+  font-size: 20px;
+  color: darkgrey;
+  padding: 10px;
+}
+input[type="checkbox"]{
+  height: 15px;
+  width: 15px;
+}
+small{
+  font-size: 19px;
+  color:ghostwhite ;
+}
+.btn-info{
+  border: 1px solid cadetblue;
+  width: 360px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  background: transparent;
+  margin-left: 50px
+}
+.btn-info:hover{
+  background:#87CEFA ;
+  border-bottom: 2px;
+}
+p{
+  font-size: 13px;
+  margin-top: 8px;
+  color: darkseagreen;
+}
+img{
+  width: 450px;
+  height: 477px;
+}
+input{
+  margin-top: 15px 0px;
+}
+#menu {
+  margin: 0;
+  width: auto;
+  background-color: #565656;
+  font-size: 14px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  text-align: left;
+  padding: 8px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+#menu ul {
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  height: auto;
+}
+
+#menu li {
+  display: inline;
+  padding: 10px;
+}
+
+#menu a {
+  color: #FFF;
+  padding: 10px;
+  text-decoration: none;
+  cursor:pointer;
+}
+
+#menu a:hover {
+  background-color: #1B191B;
+  color: #FFF;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+#menu li .active {
+  background-color: #1B191B;
+  color: #FFF;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -o-border-radius: 20px;
+}

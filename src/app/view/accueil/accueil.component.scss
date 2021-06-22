@@ -1,4 +1,69 @@
+.card{
+  cursor: pointer;
+  border-color: gray;
+  border-width: 2px;
+  background-color:#8EAA54;/* #008080 #008B8B #00FA9A #48D1CC #87CEEB  #00FFFF  #7FFFD4 #5F9EA0  #00CED1 #ADD8E6  #20B2AA*/
 
+}
+.container {
+  position: relative;
+  width: 280px;
+  height:280px;
+
+}
+
+.image {
+  display: block;
+  width: 280px;
+  height:280px;
+
+}
+.image2 {
+  display: block;
+  width: 400px;
+  height:280px;
+
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  width: 280px;
+  height: 0;
+  transition: .5s ease;
+}
+.overlay1{
+  background-color: #D7E73F;
+}
+.overlay2{
+  background-color: #0C8990;
+}
+.overlay3{
+  background-color: #DAF1AC;
+}
+.overlay4{
+  background-color: #027abc;
+}
+
+.container:hover .overlay {
+  height:280px;
+}
+
+.text {
+  color: white;
+  font-size:40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family:bold;
+}
 
 *{box-sizing : border-box}
 
@@ -98,13 +163,13 @@ img{max-width:100%}
 
 .button {
   border-radius: 4px;
-  background-color: #8FAB55 ;//hsla(0, 100%, 30%, 0.3); rgb(204, 153, 0) rgb(102, 153, 0)->khder
+  background-color: #0a3e41 ;//hsla(0, 100%, 30%, 0.3); rgb(204, 153, 0) rgb(102, 153, 0)->khder
   border: none;
-  color: #FFFFFF;
+  color:white;
   text-align: center;
   font-size: 26px;
   padding: 10px;//20px
-  width: 150px;//200px
+  width: 280px;//200px
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
@@ -134,4 +199,3 @@ img{max-width:100%}
   opacity: 1;
   right: 0;
 }
-

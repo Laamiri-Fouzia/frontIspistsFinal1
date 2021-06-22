@@ -1,7 +1,7 @@
 <div class="page">
     <div class="container">
         <div class="row">
-            <div class="col-md-2"></div>
+            <div class="col-md-3"></div>
             <div class="col-md-5">
                 <div class="row" style="margin-top: 120px;box-shadow: -1px 1px 50px 10px black;">
                     <div class="col-md-12">
@@ -13,7 +13,7 @@
 
                             <label class="label control-label">Nom d'utilisateur</label>
                             <div class="login-input">
-                                <input id="input" type="text" pInputText class="form-control" name="user" placeholder="nom d'utilisateur">
+                                <input style="margin-top: 15px" id="input" [(ngModel)]="username" type="text" pInputText class="form-control" name="user" placeholder="nom d'utilisateur">
                             </div>
 
                         </div>
@@ -23,18 +23,17 @@
                             <!-- <h:panelGroup> -->
                             <label class="label control-label">Mot de passe</label>
                             <div class="login-input">
-                                <input pPassword type="password" class="form-control" placeholder="Mot de passe" />
+                                <input pPassword type="password" [(ngModel)]="password" class="form-control" placeholder="Mot de passe" />
                             </div>
                             <!-- </h:panelGroup> -->
                         </div>
-                        <p>Un bon mot de passe contient des majuscules, des minuscules, au moins 1 chiffre .<br>
-                            Exemple : ert@Ty4o32.</p>
+
                         <label class="police">
 
                         </label>
                         <!--<label class="label control-label">Mot de passe</label>
                         <input type="password" class="form-control"name="passWord" placeholder="Mot de passe">-->
-                        <a href="#"><div class="btn btn-info">Connexion</div> </a>
+                        <a (click)="goto()"><div   class="btn btn-info">Connexion</div> </a>
                         <!--<p class="text-center">Informations de compte oubliées ?</p>-->
                     </div>
                     <!--<div class="col-md-6">

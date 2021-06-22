@@ -159,7 +159,7 @@ export class AbsenceService {
       console.log('absence :')
       console.log(absence);
       absence.etatAbsence=true;
-      absence.etatJustification='justification pas encore traite';
+      absence.etatJustification='justification pas encore traiée';
       this.http.put(this._urlAbsence+'updateForImage',absence ).subscribe(
           data => {
               console.log(data)

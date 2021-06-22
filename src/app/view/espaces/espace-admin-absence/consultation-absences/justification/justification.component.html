@@ -1,0 +1,11 @@
+<p-dialog [(visible)]="displayImage" [style]="{width: '700px'}" header="Justification " [modal]="true" styleClass="p-fluid">
+
+        <div *ngIf=retrievedImage>
+            <img [src]="retrievedImage" alt="justification">
+        </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Ok" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+    </ng-template>
+
+</p-dialog>

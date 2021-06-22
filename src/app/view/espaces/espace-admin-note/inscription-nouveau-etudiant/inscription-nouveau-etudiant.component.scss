@@ -1,0 +1,89 @@
+h2{
+  padding: 20px;
+  width: 100%;
+  background-color: #f2f2f2;
+  color: black;
+ }
+
+.card{
+  margin: 10px 50px;
+  padding: 1px;
+}
+
+
+.vis{
+  visibility: hidden;
+}
+
+.upload-box{
+  font-size: 14px;
+  background: white;
+  border-radius: 50px ;
+  //box-shadow: 5px 5px 10px black;
+  width: 300px ;
+  outline: none;
+  margin-right: 20px;
+
+}
+ ::-webkit-file-upload-button{
+   color: black;
+   background: #BB9CA1;
+   padding: 10px;
+   border: none;
+   border-radius: 50px;
+   //box-shadow: 0px 1px 1px #6b4559 ;
+   outline: none;
+ }
+
+#menu {
+  margin: 0;
+  width: auto;
+  background-color: #565656;
+  font-size: 14px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  text-align: left;
+  padding: 8px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+
+#menu ul {
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+  height: auto;
+}
+
+#menu li {
+  display: inline;
+  padding: 8px;
+}
+
+#menu a {
+  color: #FFF;
+  padding: 10px;
+  text-decoration: none;
+  cursor:pointer;
+}
+
+#menu a:hover {
+  background-color: #1B191B;
+  color: #FFF;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+#menu li .active {
+  background-color: #1B191B;
+  color: #FFF;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -o-border-radius: 20px;
+}

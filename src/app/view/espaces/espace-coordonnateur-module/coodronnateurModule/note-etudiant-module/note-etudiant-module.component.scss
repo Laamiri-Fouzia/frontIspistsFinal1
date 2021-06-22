@@ -1,0 +1,49 @@
+.p-sortable-column{
+  width: 140px;
+}
+
+.card{
+  margin: 10px;
+}
+label{
+  color: #992e9b;
+  font-weight: bold;
+  margin-left: 50px;
+  margin-right: 100px;
+  font-size: 18px;
+  font-family: emoji;
+}
+
+h1{
+  padding: 20px;
+  width: 100%;
+  background-color: #f2f2f2;
+  color: black;
+}
+
+.card{
+  margin: 0 50px;
+  padding: 1px;
+}
+.layout-main{
+   background-color: #0a3e41;
+}
+.upload-box{
+  font-size: 14px;
+  background: white;
+  border-radius: 50px ;
+  //box-shadow: 5px 5px 10px black;
+  width: 300px ;
+  outline: none;
+  margin-right: 20px;
+
+}
+::-webkit-file-upload-button{
+  color: white;
+  background: #669A9C;
+  padding: 10px;
+  border: none;
+  border-radius: 50px;
+  //box-shadow: 0px 1px 1px #6b4559 ;
+  outline: none;
+}

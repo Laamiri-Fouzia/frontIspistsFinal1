@@ -243,32 +243,48 @@ export class NoteEtudiantSemestreService {
         this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+noteSemestres.etudiant.cne+'/moduleSemestreOption/semestre/code/'+this.semestreSelct).subscribe(
             data=>{
                 this.notesEtudiantModules=data;
-                console.log(data);
-                console.log('hadi data');
-                console.log(data[0].moduleSemestreOption.anneeUniversitaire);
-                this.notesEtudiantModules1=null;
-                this.notesEtudiantModules2=null;
-                for(let i=0 ; i<this.notesEtudiantModules.length ; i++){
-
-                    console.log(this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire)
-                    if(this.notesEtudiantModules[i].moduleSemestreOption.semestre.code==this.semestreSelct && this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.libelle==this.anneeSelect){
-                        this.notesEtudiantModules1.push(this.notesEtudiantModules[i]);
-                    }else if(this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.libelle!=this._anneeSelect){
-                        this.notesEtudiantModules2.push(this.notesEtudiantModules[i]);
-                    }
-                }
-                console.log(this.notesEtudiantModules1);
-                console.log(this.notesEtudiantModules2);
-                console.log(data);
             },error => {
                 alert('error')
             }
         );
     }
+
     gotToPage(viewNoteSemestreOne: string) {
         this.router.navigate([`${viewNoteSemestreOne}`]);
     }
-    afficherPV(input1: string, input2: number) {
+
+    afficherPVPouE(input1: string, input2: number) {
+        this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+input1+'/moduleSemestreOption/semestre/code/'+input2).subscribe(
+            data=>{
+                this.notesEtudiantModules=data;
+                console.log(data);
+                if(this.notesEtudiantModules[0].noteEtudiantSemestre.noteSemestre===0){
+                    this.gotToPage('view/erreurNote');
+                }else{
+                    this.gotToPage('view/releve');
+                }
+                /*for(let i=0 ; i<this.notesEtudiantModules.length ; i++){
+                    for(let j=0 ; j<this.notesEtudiantModules.length ; j++){
+                        if(this.notesEtudiantModules[j].moduleSemestreOption.myModule.code==this.notesEtudiantModules[i].moduleSemestreOption.myModule.code && this.notesEtudiantModules[j].moduleSemestreOption.anneeUniversitaire.anneeOne<this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.anneeOne){
+                            this.notesEtudiantModules1.push(this.notesEtudiantModules[j]);
+                        }
+                    }
+
+
+                }
+                for(let i=0 ; i<this.notesEtudiantModules1.length ; i++){
+            this.notesEtudiantModules.splice(1,i);
+                }
+
+                console.log(this.notesEtudiantModules1);
+                console.log(this.notesEtudiantModules2);
+                console.log(data);*/
+            },error => {
+            }
+        );
+
+    }
+    afficherPVPourA(input1: string, input2: number) {
         this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+input1+'/moduleSemestreOption/semestre/code/'+input2).subscribe(
             data=>{
                 this.notesEtudiantModules=data;

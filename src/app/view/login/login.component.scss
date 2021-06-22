@@ -16,8 +16,11 @@ ul{
   margin-bottom: 50px;
 }
 ul a {
-  font-size: 23px;
-  color: #20B2AA;
+  border-bottom: 2px solid;
+  padding: 10px;
+  margin-left: 120px;
+  font-size: xx-large;
+  color: lightblue;
 }
 ul a:hover{
   text-decoration: none;
@@ -36,7 +39,7 @@ ul a:hover{
   border-bottom: 1px solid cadetblue;
   margin-bottom: 10px ;
   font-size: 20px;
-  color: #1E90FF;
+  color: darkgrey;
   padding: 10px;
 }
 input[type="checkbox"]{
@@ -48,12 +51,13 @@ small{
   color:ghostwhite ;
 }
 .btn-info{
-  background:palegreen;
-  border:1px solid cadetblue;
+  border: 1px solid cadetblue;
   width: 360px;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   font-size: 20px;
-  background:transparent;
+  background: transparent;
+  margin-left: 50px
 }
 .btn-info:hover{
   background:#87CEFA ;
@@ -67,4 +71,7 @@ p{
 img{
   width: 450px;
   height: 477px;
+}
+input{
+  margin-top: 15px 0px;
 }

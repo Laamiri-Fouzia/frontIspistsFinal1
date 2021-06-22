@@ -1,0 +1,213 @@
+<div class="layout-menu-container" (click)="onMenuClick($event)">
+    <div class="menu-scroll-content">
+        <ul class="layout-menu">
+            <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+        </ul>
+
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 mb-5" >
+        <div class="slideshow">
+            <ul>
+                <li><img src="../../../assets/OurImages/sage-femme.png" alt></li>
+                <li><img src="../../../assets/OurImages/soins-infirmiers.jpg" alt></li>
+                <li><img src="../../../assets/OurImages/TECHNICIEN-DE-santé.jpg" alt></li>
+                <li><img src="../../../assets/OurImages/secteur_sanitaire_medico_social.jpg" alt></li>
+                <li><img src="../../../assets/OurImages/reeducation.jpg" alt></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" style="background-size: cover;
+  background-attachment: fixed;">
+        <div class="col-md-4 mb-5">
+            <div style="background-color: whitesmoke;border-radius: 12px;margin-left:20px;box-shadow: -1px 1px 10px 5px rosybrown;">
+                <div class="card-title" style="text-align: center;font-size: 20px;text-decoration:underline;color:green">FILIERE SOINS INFERMIERS</div>
+                <div class="card-body">
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OPTION DE CETTE FILIERE</div>
+                    <p style="font-size: 15px;font-weight: bold">
+                        Infirmier polyvalent.<br>
+                        Infirmier en Anesthésie-Réanimation.<br>
+                        Infirmier en Santé Mentale.<br>
+                        Infirmier en Soins d’Urgence et Soins Intensifs.
+                    </p>
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OBJECTIFS DE LA FILIERE</div>
+                    <p style="text-align: center;font-size: 15px;font-weight: bold">
+                        Evaluer une situation clinique et établir un diagnostic dans le domaine de soins
+                        infirmiers.<br>
+                        Concevoir et conduire un projet de soins infirmiers. <br>
+                        Accompagner une personne dans la réalisation de ses soins quotidiens.<br>
+                        Mettre en œuvre des actions à visée analytique, éducative et thérapeutique.<br>
+                        Participer à la planification, l'exécution, la supervision et à l'évaluation des activités
+                        et programmes sanitaires selon sa spécialité.<br>
+                        Agir avec professionnalisme selon les règles de l’éthique, de la déontologie, du
+                        partenariat, de la collaboration interdisciplinaire, de l’humanisme, du respect de la
+                        diversité socioculturelle et religieuse et de la communication efficace.<br>
+                        Porter un regard critique sur la pratique et traiter toute activité professionnelle avec
+                        rigueur scientifique et créativité.<br>
+                        Contribuer à la formation et à l’encadrement des étudiants stagiaires en cours de
+                        formation.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 mb-5">
+            <div style="background-color: whitesmoke;border-radius: 12px;margin-left:20px;box-shadow: -1px 1px 10px 5px rosybrown">
+                <div class="card-title" style="text-align: center;font-size: 20px;text-decoration:underline;color:green">FILIERE SAGE-FEMME</div>
+                <div class="card-body">
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OPTION DE CETTE FILIERE</div>
+                    <p style="font-size: 15px;font-weight: bold">
+                        Sage-femme
+                    </p>
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OBJECTIFS DE LA FILIERE</div>
+                    <p style="text-align: center;font-size: 15px;font-weight: bold">
+                        Assurer des prestations de qualité pour promouvoir la santé du couple
+                        mère/nouveau-né durant la grossesse, l’accouchement et le postpartum dans
+                        les situations normales et à risque.<br>
+                        Assurer des prestations de qualité pour promouvoir la santé du nourrisson
+                        jusqu’à l’âge de deux ans dans les situations normales et à risque.<br>
+                        Contribuer à la prise en charge de la femme/couple en matière de sexualité,
+                        de planification familiale, dans les périodes de ménopause et en cas
+                        d’infertilité.<br>
+                        Contribuer à la prise en charge des jeunes filles et des femmes/ couple en
+                        matière d’IST/SIDA, de pathologies gynécologiques et des cancers féminins
+                        en conformité avec les protocoles en vigueur.<br>
+                        Contribuer à la promotion de la santé sexuelle et reproductive auprès des
+                        jeunes, des femmes, des couples, des familles et de la communauté.<br>
+                        Participer à l’organisation et à la coordination des activités en matière de
+                        SSR.<br>
+                        Participer à la formation des étudiants stagiaires en cours de formation.
+
+                    </p>
+                    <p style="color: whitesmoke">hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 mb-5">
+            <div style="background-color: whitesmoke;border-radius: 12px;margin-left:20px;box-shadow: -1px 1px 10px 5px rosybrown;">
+                <div class="card-title" style="text-align: center;font-size: 20px;text-decoration:underline;color:green">FILIERE ASSISTANCE MEDICO-SOCIALE</div>
+                <div class="card-body">
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OPTION DE CETTE FILIERE</div>
+                    <p style="font-size: 15px;font-weight: bold">
+                        Assistant – social
+                    </p>
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OBJECTIFS DE LA FILIERE</div>
+                    <p style="text-align: center;font-size: 15px;font-weight: bold">
+                        Établir le diagnostic et l’analyse des besoins des personnes, groupes et
+                        communautés dans le domaine médico-social.<br>
+                        Engager une action médico-sociale en fonction des ressources disponibles.<br>
+                        Mener des actions d’éducation et de sensibilisation selon des besoins médico-sociaux.<br>
+                        Contribuer au développement des activités collectives à caractère médico-social au
+                        sein de la communauté.<br>
+                        Promouvoir la coopération médico-sociale intra et inter sectorielle à l’échelon
+                        national et international.<br>
+                        Agir avec professionnalisme selon les règles de l’éthique, de la déontologie, du
+                        partenariat, de la collaboration interdisciplinaire, de l’humanisme, du respect de la
+                        diversité socioculturelle et religieuse et de la communication efficace.<br>
+                        Porter un regard critique sur la pratique et traiter toute activité professionnelle avec
+                        rigueur scientifique et créativité.<br>
+                        Contribuer à la formation et à l’encadrement des étudiants stagiaires en cours de
+                        formation.
+                    </p>
+                    <p style="color:whitesmoke">
+                        huhfiu,nnkjuijknjfkeiujnddnfiue,nhiougkhl,nnjkf,n
+
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-5">
+            <div style="background-color: whitesmoke;border-radius: 12px;margin-left:20px;box-shadow: -1px 1px 10px 5px rosybrown;">
+                <div class="card-title" style="text-align: center;font-size: 20px;text-decoration:underline;color:green">FILIERE REEDUCATION-REHABILITATION</div>
+                <div class="card-body">
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OPTION DE CETTE FILIERE</div>
+                    <p style="font-size: 15px;font-weight: bold">
+                        Kinésithérapie.<br>
+                        Orthoprothèse.<br>
+                        Orthoptie.<br>
+                        Orthophonie.<br>
+                        Psychomotricité.
+                    </p>
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OBJECTIFS DE LA FILIERE</div>
+                    <p style="text-align: center;font-size: 15px;font-weight: bold">
+                        Réaliser une évaluation, un bilan et établir un diagnostic dans le domaine de la
+                        rééducation/réhabilitation.<br>
+                        Concevoir un projet thérapeutique et une prise en charge clinique dans le domaine
+                        de la rééducation/réhabilitation.<br>
+                        Prendre en charge l’individu ou la collectivité en matière de
+                        rééducation/réhabilitation dans les différents contextes.<br>
+                        Prévenir, conseiller et promouvoir la santé de la population.<br>
+                        Agir avec professionnalisme selon les règles de l’éthique, de la déontologie, du
+                        partenariat, de la collaboration interdisciplinaire, de l’humanisme, du respect de la
+                        diversité socioculturelle et religieuse et de la communication efficace.<br>
+                        Porter un regard critique sur la pratique et traiter toute activité professionnelle avec
+                        rigueur scientifique et créativité.<br>
+                        Contribuer à la formation et à l’encadrement des étudiants stagiaires en cours de
+                        formation
+
+                    </p>
+                    <p style="color: whitesmoke">
+                        kefbizeugkklefiç noiefkjkk,,f jjioefjioeknf<br>
+                        eefuie_uiofee,kjof,;<br>
+                        jfkiefop,,iiu<br>
+                        vcxngf,jyfykuyoluuh<br>
+                        vcxngf,jyfykuyoluuh<br>
+                        vcxngf,jyfykuyoluuh<br>
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 mb-5">
+            <div style="background-color: whitesmoke;border-radius: 12px;margin-left:20px;box-shadow: -1px 1px 10px 5px rosybrown;">
+                <div class="card-title" style="text-align: center;font-size: 20px;text-decoration:underline;color:green"> FILIERE TECHNIQUES DE SANTE</div>
+                <div class="card-body">
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OPTION DE CETTE FILIERE</div>
+                    <p style="font-size: 15px;font-weight: bold">
+                        Laboratoire.<br>
+                        Radiologie.<br>
+                        Santé et environnement.<br>
+                        Maintenance biomédicale.<br>
+                        Préparateur en pharmacie.<br>
+                        Diététique/Nutrition.<br>
+                        Statistiques sanitaires
+                    </p>
+                    <div class="card-title" style="text-align: center;text-decoration: underline;color:darkred">OBJECTIFS DE LA FILIERE</div>
+                    <p style="text-align: center;font-size: 15px;font-weight: bold">
+                        Etablir le diagnostic et la priorisation des besoins des patients, des familles et de la
+                        communauté en matière de soins de santé dans leurs composantes techniques.<br>
+                        Planifier, exécuter et évaluer les soins techniques que nécessite l'état de santé du
+                        patient de la famille et de la communauté découlant de son rôle propre.<br>
+                        Promouvoir la santé et l’environnement de l’individu, de la famille et de la
+                        communauté.<br>
+                        Participer à la planification, l'exécution, la supervision et à l'évaluation des activités
+                        et programmes sanitaires selon sa spécialité.<br>
+                        Participer et appuyer le diagnostic des maladies.<br>
+                        Assurer l'information, l'éducation et la communication en matière de santé en
+                        faveur des patients, des familles et de la population.<br>
+                        Agir avec professionnalisme selon les règles de l’éthique, de la déontologie, du
+                        partenariat, de la collaboration interdisciplinaire, de l’humanisme, du respect de la
+                        diversité socioculturelle et religieuse et de la communication efficace.<br>
+                        TS43
+                        Porter un regard critique sur la pratique et traiter toute activité professionnelle avec
+                        rigueur scientifique et créativité.<br>
+                        Contribuer à la formation et à l’encadrement des étudiants stagiaires en cours de
+                        formation.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

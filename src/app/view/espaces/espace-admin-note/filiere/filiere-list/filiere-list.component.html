@@ -1,0 +1,54 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="Nouveau filiere" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="filieres" [columns]="3"  [globalFilterFields]="['code','libelle']"
+                     [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
+                <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">La liste de Tous les Filiéres</h5>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+
+                        <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Libelle <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-filiere>
+                    <tr>
+
+                        <td>{{filiere.code}}</td>
+                        <td>{{filiere.libelle}}</td>
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(filiere)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="detailFiliere(filiere)"></button>
+
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale il y a {{filieres ? filieres.length : 0 }} filières.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+        <app-filiere-create></app-filiere-create>
+        <!--<app-myOption-liste></app-myOption-liste>
+        <app-myModule-view></app-myModule-view>-->
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

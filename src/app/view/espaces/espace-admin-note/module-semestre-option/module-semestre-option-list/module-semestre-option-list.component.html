@@ -1,0 +1,77 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card">
+            <div class="p-grid">
+
+
+                <p-toolbar styleClass="p-mb-4" class="p-col-12">
+                    <div class="p-col-12 ">
+                        <h5 class="p-m-0">la liste des Modules de l'option {{forOption}}</h5>
+
+                    </div>
+                    <div class="p-col-6">
+                        <p-dropdown [style]="{'width':'180px'}" [options]="years" [(ngModel)]="input1" optionLabel="libelle" optionValue="anneeOne" (onChange)="change1()" styleClass = "customClass" placeholder="Année universitaire"></p-dropdown>
+                    </div>
+                    <div class="p-col-4">
+                        <p-dropdown [options]="semestres" [(ngModel)]="input2" optionLabel="semestre" optionValue="code" (onChange)="change2()"></p-dropdown>
+                    </div>
+                    <div class="p-col-2">
+                        <!--<p-button label="Search" icon="pi pi-search" [loading]="isLoading"></p-button>-->
+                        <button pButton pRipple type="button" icon="pi pi-search" class="p-button-rounded p-button-success" (click)="findByOptionCode()"></button>
+                    </div>
+                </p-toolbar>
+            </div>
+
+    <div [ngClass]="{'vis':displayModules==false}">
+            <div class="card">
+                <p-toolbar styleClass="p-mb-4">
+                    <ng-template pTemplate="left">
+                        <button pButton pRipple label="Ajouter module" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt [value]="moduleSemestreOptions" [columns]="3"  [globalFilterFields]="['code','libelle']"
+                         [rowHover]="true" dataKey="id" styleClass="p-datatable-customers">
+                    <!--currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true"  [(selection)]="selectes">-->
+
+                    <ng-template pTemplate="header">
+                        <tr>
+
+
+
+                            <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
+                            <th pSortableColumn="libelle">Type Module <p-sortIcon field="libelle"></p-sortIcon></th>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-moduleSemestreOption>
+                        <tr>
+
+                            <td>{{moduleSemestreOption.myModule.code}}</td>
+                            <td>{{moduleSemestreOption.typeModule.code}}</td>
+
+                            <td>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteModuleSemestreOption(moduleSemestreOption)"></button>
+                                <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-detail" (click)="openCreate1(moduleSemestreOption)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            En totale il y a {{moduleSemestreOptions ? moduleSemestreOptions.length : 0 }} éléments.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+    </div>
+            <app-module-semestre-option-create></app-module-semestre-option-create>
+            <app-seance-list></app-seance-list>
+            <!--<app-myOption-liste></app-myOption-liste>
+            <app-myModule-view></app-myModule-view>-->
+            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+        </div>
+    </div>
+</div>

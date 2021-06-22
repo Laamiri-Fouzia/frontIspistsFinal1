@@ -94,16 +94,16 @@ export class ConsultationAbsenceService {
         console.log(selectors);
         if(selectors.length==0){
             for(let absence of absences){
-                absence.etatJustification="refuse";
+                absence.etatJustification="refusée";
             }
         }else{
             for(var abs of absences){
                 for(var selected of selectors){
                     if(selected.id==abs.id) {
-                        abs.etatJustification="accepte";
+                        abs.etatJustification="acceptée";
                         break;
                     }else{
-                        abs.etatJustification="refuse";
+                        abs.etatJustification="refusée";
                     }
                 }
             }

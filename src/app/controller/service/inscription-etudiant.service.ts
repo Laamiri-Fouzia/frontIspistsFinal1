@@ -9,6 +9,7 @@ import {InscriptionEtudiantModule} from "../model/inscription-etudiant-module.mo
 import {Etudiant} from "../model/etudiant.model";
 import * as moment from "moment";
 import {AbsenceService} from "./absence.service";
+import {MyModule} from "../model/myModule.model";
 
 @Injectable({
     providedIn: 'root'
@@ -107,18 +108,22 @@ export class InscriptionEtudiantService {
         nvEtudiantOption.id=etudianOption.id
         return nvEtudiantOption;
     }
-    private _anneselect: number;
 
-    SearchStudent() {
+    private _anneselect: number;
+//for new students
+    SearchStudent(): Observable<Array<EtudiantOption>>  {
         let semestreCode = 1;
-        this.http.get<Array<EtudiantOption>>(this.urlEtudiantOption + 'AncienEtudiant/option/code/' + this.optSelec + '/annee/' + this.anneselect + '/semestre/codesemes/' + semestreCode).subscribe(
-            data => {
-                this.etudiantOptions = data;
-            }, error => {
-                console.log(error);
-            }
-        );
+        return this.http.get<Array<EtudiantOption>>(this.urlEtudiantOption + 'AncienEtudiant/option/code/' + this.optSelec + '/annee/' + this.anneselect + '/semestre/codesemes/' + semestreCode);
     }
+
+     chercherEtudiantsN() :Observable<Array<EtudiantOption>>{
+         let annee = this.etudiantOption.anneeUniversitaire.anneeOne;
+         let optionCode = this.etudiantOption.myOption.code;
+         let semestreCode = this.etudiantOption.semestre.code;
+         console.log(this.urlEtudiantOption + 'option/codeOpt/'+optionCode+'/annee-universitaire/anneone/'+annee+'/semestre/codeSemestre/'+semestreCode)
+         return this.http.get<Array<EtudiantOption>>(this.urlEtudiantOption + 'option/codeOpt/'+optionCode+'/annee-universitaire/anneone/'+annee+'/semestre/codeSemestre/'+semestreCode);
+     }
+
 
 
     SearchAncienStudent() {
@@ -128,7 +133,9 @@ export class InscriptionEtudiantService {
         console.log(this.etudiantOption);
         this.http.get<Array<EtudiantOption>>(this.urlEtudiantOption + 'AncienEtudiant/option/code/' + optionCode + '/annee/' + annee + '/semestre/codesemes/' + semestreCode).subscribe(
             data => {
+
                 this.etudiantAnciens = data;
+                console.log(this.etudiantAnciens);
             }, error => {
                 console.log(error);
             }

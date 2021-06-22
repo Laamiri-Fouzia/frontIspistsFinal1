@@ -7,12 +7,16 @@ import {Observable} from "rxjs";
 import {MessageService} from "primeng/api";
 import {Seance} from "../model/seance.model";
 import {environment} from "../../../environments/environment";
+import {Etudiant} from "../model/etudiant.model";
+import {MyModule} from "../model/myModule.model";
+import {Filiere} from "../model/filiere.model";
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class ModuleSemestreOptionService {
+
     private URLmoduleSemOpt = 'ispits-project/module-semestre-option/';
     private urlBase = 'http://localhost:8036/';//http://localhost:8036/ispits-project/module-semestre-option/
     private _moduleSemestreOption: ModuleSemestreOption;
@@ -25,10 +29,67 @@ export class ModuleSemestreOptionService {
     private _viewDialog1: boolean;
     private _submitted1: boolean;
     private urlOption=environment.baseUrl+'option';
+    private _filieres:Array<Filiere>;
+    private _options:Array<MyOption>;
+    private _modules:Array<MyModule>;
+    private _etudiants:Array<Etudiant>;
+    private urlEtudiant = environment.baseUrl + 'Etudiant';
+    private urlFiliere = environment.baseUrl + 'filliere';
+    private urlModule = environment.baseUrl + 'module';
 
     constructor(private http: HttpClient, private messageService: MessageService) {
     }
 
+    get forOption(): string {
+        return this._forOption;
+    }
+
+    set forOption(value: string) {
+        this._forOption = value;
+    }
+    get filieres(): Array<Filiere> {
+        if(this._filieres==null){
+            this._filieres=new Array<Filiere>();
+        }
+        return this._filieres;
+    }
+
+    set filieres(value: Array<Filiere>) {
+        this._filieres = value;
+    }
+
+    get options(): Array<MyOption> {
+        if(this._options==null){
+            this._options=new Array<MyOption>();
+        }
+        return this._options;
+    }
+
+    set options(value: Array<MyOption>) {
+        this._options = value;
+    }
+
+    get modules(): Array<MyModule> {
+        if(this._modules==null){
+            this._modules=new Array<MyModule>();
+        }
+        return this._modules;
+    }
+
+    set modules(value: Array<MyModule>) {
+        this._modules = value;
+    }
+
+    get etudiants(): Array<Etudiant> {
+        if(this._etudiants==null){
+            this._etudiants=new Array<Etudiant>();
+        }
+        return this._etudiants;
+    }
+
+    set etudiants(value: Array<Etudiant>) {
+        this._etudiants = value;
+    }
     get createDialog1(): boolean {
         return this._createDialog1;
     }
@@ -200,7 +261,7 @@ export class ModuleSemestreOptionService {
         );
     }*/
     findByOptionCode() {
-        let urlFind='semestre/code/'+this.semestreselec+'/anneeuniv/anneeOne/'+this.anneUniveSelec+'/option/code/'+this.moduleSemestreOption.myOption.code;
+        let urlFind='semestre/code/'+this.semestreselec+'/anneeuniv/anneeOne/'+this.anneUniveSelec+'/option/code/'+this._forOption;
         this.http.get<Array<ModuleSemestreOption>>(this.urlBase + this.URLmoduleSemOpt +urlFind).subscribe(
             data => {
                 this.moduleSemestreOptions = data;
@@ -221,10 +282,11 @@ export class ModuleSemestreOptionService {
                 console.log(error);
             });
     }
-
+    private _forOption:string;
     saveOptionSemestreModule(moduleselect: string, typemoduleselect: string) {
         this.submitted = true;
-        this.moduleSemestreOption.code = this.moduleSemestreOption.myOption.code + moduleselect + this.semestreselec;
+        this.moduleSemestreOption.myOption.code=this._forOption;
+        this.moduleSemestreOption.code = this.moduleSemestreOption.myOption.code + moduleselect + this.semestreselec+this.anneUniveSelec;
         this.moduleSemestreOption.myModule.code = moduleselect;
         this.moduleSemestreOption.typeModule.code = typemoduleselect;
         this.moduleSemestreOption.semestre.code = this.semestreselec;
@@ -265,14 +327,44 @@ export class ModuleSemestreOptionService {
     }
 
     choisirParam(myOption: MyOption) {
-        this.moduleSemestreOption.myOption.code = myOption.code;
+        this._forOption = myOption.code;
     }
 
 
     public deleteModuleSemestreOption(): Observable<number> {
-        alert(this.urlBase + this.URLmoduleSemOpt + 'code/' + this.moduleSemestreOption.code);
         return this.http.delete<number>(this.urlBase + this.URLmoduleSemOpt + 'code/' + this.moduleSemestreOption.code);
     }
-
+    getAllOptions(){
+        this.http.get<Array<MyOption>>(this.urlOption +'/').subscribe(
+            data => {
+                this.options=data;
+            },error => {
+                console.log(error);
+            });
+    }
+    getAllEtudiants(){
+        this.http.get<Array<Etudiant>>(this.urlEtudiant +'/').subscribe(
+            data => {
+                this.etudiants=data;
+            },error => {
+                console.log(error);
+            });
+    }
+    getAllFilieres(){
+        this.http.get<Array<Filiere>>(this.urlFiliere +'/').subscribe(
+            data => {
+                this.filieres=data;
+            },error => {
+                console.log(error);
+            });
+    }
+    getAllModules(){
+        this.http.get<Array<MyModule>>(this.urlModule +'/').subscribe(
+            data => {
+                this.modules=data;
+            },error => {
+                console.log(error);
+            });
+    }
 
 }

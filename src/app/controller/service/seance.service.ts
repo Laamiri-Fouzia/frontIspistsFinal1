@@ -188,6 +188,7 @@ export class SeanceService {
     this.http.post<number>(this._urlBase+this._urlS+'/',this.seance).subscribe(
         data=>{
           if(data==1){
+            alert('ok')
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',
@@ -230,6 +231,7 @@ export class SeanceService {
       this.seance.libelle=libelle;
       this.seance.moduleSemestreOption=this.moduleSemestreOption;
       console.log(this.seance);
+      this.dateSea=moment(this.seance.dateSeance).toDate();
     this.http.put(this._urlBase+this._urlS+'/',this.seance).subscribe(
         data=>{
             this.messageService.add({

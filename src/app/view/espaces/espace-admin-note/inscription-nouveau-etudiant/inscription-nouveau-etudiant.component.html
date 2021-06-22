@@ -1,0 +1,96 @@
+<div id="menu">
+    <ul>
+        <li><a (click)="gotTo('')" href="#" class="active">Acceuil</a></li>
+        <li><a (click)="gotTo('')" href="#" class="active">Comptes</a></li>
+        <li><a (click)="gotTo('view/inscriptionNouveauEtudiant')" class="active">Inscription Nouveau Etudiant</a></li>
+        <li><a (click)="gotTo('view/inscriptionAncienEtudiant')" class="active">Inscription Ancien Etudiant</a></li>
+        <li><a (click)="gotTo('view/ModuleOrAffecation')" class="active">Filiére-Module-Option</a></li>
+        <li><a (click)="gotTo('view/note-etudiant-semestre')" class="active">PV des étudiants</a></li>
+        <li><a (click)="gotTo('view/releveAdmin')" class="active">Relevé de Notes</a></li>
+        <li><a (click)="gotTo('view/ponderation')" class="active">Pondération</a></li>
+    </ul>
+</div>
+<div class="p-grid">
+    <div class="p-col-12 " style="padding-top:5px">
+        <p-toast></p-toast>
+        <div class="card p-grid">
+            <h2 class="p-col-12 p-text-center bold">Inscription des Etudiants en Semestre 1:</h2>
+
+            <p-toolbar class="p-col-12" styleClass="p-mb-4 ">
+                <div class="p-col-2">
+                    <p-dropdown (onChange)="change1()" [(ngModel)]="anneselect" [options]="years" [style]="{'width':'180px'}" placeholder="Année Univesitaire"  optionLabel="libelle" optionValue="anneeOne" ></p-dropdown>
+                </div>
+
+                <div class="p-col-2">
+                    <p-dropdown [(ngModel)]="optSelec" [filter]="true" [options]="options"
+                                [style]="{'width':'180px'}" optionLabel="label" optionValue="value"></p-dropdown>
+                </div>
+
+                <button pButton pRipple class=" p-button-success p-mr-2 p-mb-2" (click)="SearchStudent()" label="chercher"></button>
+
+            </p-toolbar>
+
+           <div [ngClass]="{'vis':displayTable==false}">
+            <p-toolbar class="p-col-12" >
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="Nouveau Etudiant" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <input type="file"   id="excel" (change)="onFileChange($event)" class="upload-box"/>
+                    <p-button type="button" icon="pi pi-file-excel" (click)="downloadExcel()"></p-button>
+                </ng-template>
+            </p-toolbar>
+
+               <p-table #dt1 [value]="etudiantOptions" dataKey="id"  [columns]="cols"
+                        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" styleClass="p-datatable-customers p-datatable-gridlines"
+                        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        [globalFilterFields]="['id','nom','prenom']">
+                   <!--<ng-template pTemplate="caption">
+                       <div class="p-d-flex">
+                           <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                           <span class="p-input-icon-left p-ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                </span>
+                       </div>
+                   </ng-template>-->
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="cne">CNE <p-sortIcon  field="etudiant"></p-sortIcon></th>
+                        <th pSortableColumn="cin">CIN <p-sortIcon field="etudiant"></p-sortIcon></th>
+                        <th pSortableColumn="nom">NOM <p-sortIcon field="etudiant"></p-sortIcon></th>
+                        <th pSortableColumn="prenom">PRENOM <p-sortIcon field="etudiant"></p-sortIcon></th>
+                        <th >DATE NAISSANCE </th>
+                        <th >DATE D'INSCRIPTION</th>
+                        <th >ACTION </th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-etudiant style="background-color: #0a3e41">
+                    <tr>
+
+                        <td>{{etudiant.etudiant.cne}} </td>
+                        <td>{{etudiant.etudiant.cin}} </td>
+                        <td>{{etudiant.etudiant.nom}} </td>
+                        <td>{{etudiant.etudiant.prenom}} </td>
+                        <td>{{etudiant.etudiant.dateNaissance}} </td>
+                        <td>{{etudiant.etudiant.dateInscription}} </td>
+                       <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editEtudiant(etudiant)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(etudiant)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                   <ng-template pTemplate="summary">
+                       <div class="p-d-flex p-ai-center p-jc-between">
+                           En totale il y a {{etudiantOptions ? etudiantOptions.length : 0 }} étudiants.
+                       </div>
+                   </ng-template>
+            </p-table>
+           </div>
+        </div>
+        <app-inscription-nouveau-create></app-inscription-nouveau-create>
+        <app-inscription-nouveau-edit></app-inscription-nouveau-edit>
+    </div>
+</div>
+<button pButton pRipple type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-secondary" (click)="gotTo('view/AdminNoteNote')"></button>
