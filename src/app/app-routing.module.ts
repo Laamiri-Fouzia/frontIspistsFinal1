@@ -55,7 +55,7 @@ import {CalendarComponent} from "ng-fullcalendar";
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: '', component:EmploiComponent},
+                    {path: '', component:AccueilComponent},
                     {path: 'accueil/espace', component:EspacesComponent},
                     {path: 'view/formation', component:FormationComponent},
                     {path: 'view/myModule', component: MyModulesComponent},

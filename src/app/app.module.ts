@@ -181,6 +181,9 @@ import { StudentsComponent } from './view/espaces/espace-admin-note/students/stu
 import { FormationComponent } from './view/formation/formation.component';
 import { EmploiComponent } from './view/emploi/emploi.component';
 import {ScheduleModule} from "@syncfusion/ej2-angular-schedule";
+import { Login2Component } from './view/login2/login2.component';
+import { RegisterComponent } from './view/register/register.component';
+import { ProfileComponent } from './view/profile/profile.component';
 
 
 
@@ -359,6 +362,9 @@ import {ScheduleModule} from "@syncfusion/ej2-angular-schedule";
         StudentsComponent,
         FormationComponent,
         EmploiComponent,
+        Login2Component,
+        RegisterComponent,
+        ProfileComponent,
 
 
     ],
