@@ -179,8 +179,9 @@ import { SignUpComponent } from './view/sign-up/sign-up.component';
 import { TesttablComponent } from './view/testtabl/testtabl.component';
 import { StudentsComponent } from './view/espaces/espace-admin-note/students/students.component';
 import { FormationComponent } from './view/formation/formation.component';
-import { EmploiComponent } from './view/emploi/emploi.component';
 import {ScheduleModule} from "@syncfusion/ej2-angular-schedule";
+import {EmploiComponent} from "./view/emploi/emploi.component";
+import { EmploiSelectComponent } from './view/emploi/emploi-select/emploi-select.component';
 
 
 
@@ -359,6 +360,7 @@ import {ScheduleModule} from "@syncfusion/ej2-angular-schedule";
         StudentsComponent,
         FormationComponent,
         EmploiComponent,
+        EmploiSelectComponent
 
 
     ],

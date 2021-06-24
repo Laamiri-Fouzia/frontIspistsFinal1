@@ -46,8 +46,8 @@ import {SignUpComponent} from "./view/sign-up/sign-up.component";
 import {TesttablComponent} from "./view/testtabl/testtabl.component";
 import {StudentsComponent} from "./view/espaces/espace-admin-note/students/students.component";
 import {FormationComponent} from "./view/formation/formation.component";
-import {EmploiComponent} from "./view/emploi/emploi.component";
 import {CalendarComponent} from "ng-fullcalendar";
+import {EmploiComponent} from "./view/emploi/emploi.component";
 
 @NgModule({
     imports: [

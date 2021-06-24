@@ -28,6 +28,10 @@ export class AppCalendarComponent implements OnInit{
     changedEvent: any;
 
     clickedEvent = null;
+    years: any;
+    input1: any;
+    input2: any;
+    myOptions: any;
 
     constructor(private eventService: EventService) {}
 
@@ -71,5 +75,13 @@ export class AppCalendarComponent implements OnInit{
         this.changedEvent.title = this.clickedEvent.title;
         this.changedEvent.start = this.clickedEvent.start;
         this.changedEvent.end = this.clickedEvent.end;
+    }
+
+    change1() {
+
+    }
+
+    change2() {
+
     }
 }
