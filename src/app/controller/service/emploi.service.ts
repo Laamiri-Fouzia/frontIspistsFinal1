@@ -77,7 +77,7 @@ export class EmploiService {
   */
 
   afficherSeance(input1: string, input2: string) :Observable<Array<Seance>>{
-return this.http.get<Array<Seance>>(this._urlS+'/moduleSemestreOption/anneeUniversitaire/libelle/'+input1+'/moduleSemestreOption/option/code/'+input2);
+    return this.http.get<Array<Seance>>(this._urlS+'/moduleSemestreOption/anneeUniversitaire/libelle/'+input1+'/moduleSemestreOption/option/code/'+input2);
    /* this.http.get<Array<Seance>>(this._urlS+'/moduleSemestreOption/anneeUniversitaire/libelle/'+input1+'/moduleSemestreOption/option/code/'+input2).subscribe(
         data=>{
           console.log(data);

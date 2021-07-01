@@ -188,7 +188,6 @@ export class SeanceService {
     this.http.post<number>(this._urlBase+this._urlS+'/',this.seance).subscribe(
         data=>{
           if(data==1){
-            alert('ok')
             this.messageService.add({
               severity: 'success',
               summary: 'Successful',

@@ -1,0 +1,18 @@
+label{
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px 30px;
+}
+li{
+    margin-left: 200px;
+    padding-top: 0;
+
+}
+ul{
+    list-style-type: none;
+}
+.shdwdiv{
+    margin-top: 50px;
+    -webkit-box-shadow: 1px 0px 16px 4px #000000;
+    box-shadow: 1px 0px 16px 4px #000000;
+}

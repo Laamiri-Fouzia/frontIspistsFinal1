@@ -106,9 +106,11 @@ export class NoteEtudiantRatComponent implements OnInit {
         }
 
     }
-
+    set forOption(value: string) {
+        this.moduleSemestreOptionService.forOption = value;
+    }
     change2() {
-        this.moduleSemestreOptionService.moduleSemestreOption.myOption.code = this.input2;
+        this.forOption= this.input2;
         this.moduleSemestreOptionService.findOptionByCode();
     }
 

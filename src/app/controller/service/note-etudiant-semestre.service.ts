@@ -228,6 +228,7 @@ export class NoteEtudiantSemestreService {
         }
     );
   }
+
   findAllFiliere() {
     this.http.get<Array<Filiere>>(this._urlBase+this._urlFiliere+'/').subscribe(
         data=>{

@@ -1,21 +1,24 @@
 <p-dialog [(visible)]="createDialog" [style]="{width: '450px'}" header="Insérer Seance" [modal]="true" styleClass="p-fluid">
-    <ng-template pTemplate="content"  >
+    <ng-template pTemplate="content">
         <div class="p-field" style="margin-top: 10px">
-            <label for="dateSeance">Date Seance</label>
+            <label for="dateSeance">Date de la séance</label>
             <p-calendar  id="dateSeance" [(ngModel)]="input4" [monthNavigator]="true"
                          [yearNavigator]="true" yearRange="1900:2040" dateFormat="yy-MM-dd"></p-calendar>
         </div>
-        <div class="p-field" >
-            <label for="libelle">Libelle</label>
-            <input type="text" pInputText id="libelle" [(ngModel)]="input1" required />
-        </div>
+
         <div class="p-field">
-            <label for="dateDebut">Heure Debut</label>
-            <input type="text" pInputText id="dateDebut" [(ngModel)]="input2" required />
+            <label for="libelle">Libellé de la séance</label>
+            <input type="text" pInputText id="libelle" [(ngModel)]="input1"  required />
         </div>
+
+        <div class="p-field">
+            <label for="dateDebut">Heure Début de la séance</label>
+            <input type="text" pInputText id="dateDebut" [(ngModel)]="input2" placeholder="00:00" required />
+        </div>
+
         <div class="p-field"  style="margin-bottom: 60px">
-            <label for="dateFin">Heure Fin</label>
-            <input type="text" pInputText id="dateFin" [(ngModel)]="input3" required />
+            <label for="dateFin">Heure Fin de la séance</label>
+            <input type="text" pInputText id="dateFin" placeholder="00:00" [(ngModel)]="input3" required />
         </div>
 
         <button pButton pRipple style="margin-left: 30px;width: 94px; background-color: black;color: white" label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>

@@ -53,25 +53,22 @@ export class NoteEtudiantModuleService {
            for(let noteEtudiantModule of data){
                this.http.get<Array<Absence>>(this._urlAbsence+'etudiant/cne/'+noteEtudiantModule.etudiant.cne+'/seance/moduleSemestreOption/code/'+mod).subscribe(
                    data => {
-
                        if(data.length<3)
                            this.notesEtudiantModule.push(noteEtudiantModule);
                        else
                            this.etudiantAbsente.push(noteEtudiantModule);
 
-                       console.log('hada notes')
-                       console.log(this.notesEtudiantModule)
-                       console.log('absences')
-                       console.log(this.etudiantAbsente)
                    }, error => {
                        console.log(error);
                    }
                );
 
            }
+
   }
 
   serachEtudiant(mod:string) {
+
         this.notesEtudiantModule=new Array<NoteEtudiantModule>();
       this._moduleselected=mod;
 

@@ -1,12 +1,46 @@
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+.card-container.card {
+  max-width: 400px !important;
+  padding: 40px 40px;
+}
+
+.card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+
 .page{
   margin: 0px;
   padding: 0px;
-  /*background-image: url("green6.jpg");*/
-  background-size: cover;
+/*background-image: url("green6.jpg");*/
+background-size: cover;
   background-attachment: fixed;
   font-family:new time roman ;
-  height: 700px;//100%
-  background-image: url("../../../assets/OurImages/overlay.png"),url("../../../assets/OurImages/infer.jpg");
+  height: 1000px;
+background-image: url("../../../assets/OurImages/overlay.png"),url("../../../assets/OurImages/infer.jpg");
 }
 
 .police{
@@ -15,7 +49,7 @@
 }
 
 ul{
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 #sign a {
   border-bottom: 2px solid;
@@ -27,10 +61,10 @@ ul{
 #sign a:hover{
   text-decoration: none;
   color:lightcyan;
-  /*background-color:palegreen ;*/
+/*background-color:palegreen ;*/
 }
 .label{
-  font-size: 22px;
+  font-size: 25px;/*lktba*/
   color:ghostwhite;
   font-weight: normal;
 }
@@ -42,7 +76,7 @@ ul{
   margin-bottom: 10px ;
   font-size: 20px;
   color: darkgrey;
-  padding: 10px;
+  padding: 5px;
 }
 input[type="checkbox"]{
   height: 15px;
@@ -55,9 +89,9 @@ small{
 .btn-info{
   border: 1px solid cadetblue;
   width: 360px;
-  margin-top: 10px;
+margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 17px;/*botton s'inscrir*/
   background: transparent;
   margin-left: 50px
 }
@@ -66,8 +100,8 @@ small{
   border-bottom: 2px;
 }
 p{
-  font-size: 13px;
-  margin-top: 8px;
+  font-size: 20px;
+  margin-top: 1px;
   color: darkseagreen;
 }
 img{
@@ -75,7 +109,7 @@ img{
   height: 477px;
 }
 input{
-  margin-top: 15px 0px;
+  margin-top: 1px ;
 }
 #menu {
   margin: 0;
@@ -127,4 +161,15 @@ input{
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -o-border-radius: 20px;
+}
+
+.alertt{
+  font-size: 25px;
+  text-align: center;
+  margin-top: 110px;
+  color: green;
+
+}
+.alertDanger{
+  font-size: 20px;
 }

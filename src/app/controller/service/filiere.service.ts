@@ -59,6 +59,7 @@ export class FiliereService {
   public deleteByCode(): Observable<number> {
     return this.http.delete<number>(this.urlFiliere + 'code/' + this.filiere.code);
   }
+
   public deleteOptionByCode(): Observable<number> {
     alert(this.myOption.code);
     alert(this.urlOption + '/code/' + this.myOption.code);

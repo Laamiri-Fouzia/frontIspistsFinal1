@@ -28,6 +28,7 @@ export class AnneeUniversitaireService {
     this.http.get<Array<AnneeUniversitaire>>(this.urlAnne +'/').subscribe(
         data => {
           this.years=data;
+          console.log(data)
         },error => {
           console.log(error);
         });

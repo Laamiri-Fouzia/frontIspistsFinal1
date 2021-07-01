@@ -125,7 +125,7 @@ export class AbsenceService {
   }
 
   getAbsences(seance:string){
-    this.http.get<Array<Absence>>(this._urlAbsence +'/seance/libelle/'+seance).subscribe(
+    this.http.get<Array<Absence>>(this._urlAbsence +'seance/libelle/'+seance).subscribe(
         data => {
           console.log('hani f getabs')
           console.log(data)
@@ -144,7 +144,7 @@ export class AbsenceService {
   }
 
     searchAbsence(annee: string, semstre: string, cne: string) {
-      this.http.get<Array<Absence>>(this._urlAbsence +'/etudiant/cne/'+cne+'/seance/moduleSemestreOption/semestre/code/'+semstre+'/seance/moduleSemestreOption/anneuniv/libelle/'+annee).subscribe(
+      this.http.get<Array<Absence>>(this._urlAbsence +'etudiant/cne/'+cne+'/seance/moduleSemestreOption/semestre/code/'+semstre+'/seance/moduleSemestreOption/anneuniv/libelle/'+annee).subscribe(
           data => {
             console.log(data)
             this.absences=data;

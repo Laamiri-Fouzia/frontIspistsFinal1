@@ -109,8 +109,8 @@ export class ConsultationAbsenceService {
             }
         }
 
-        console.log('pour absences:')
-        console.log(absences);
+      console.log('pour absences:')
+      console.log(absences);
       this.http.put(this._urlBase+this._urlAbsence+'/',absences).subscribe(
           data=>{
             this.messageService.add({

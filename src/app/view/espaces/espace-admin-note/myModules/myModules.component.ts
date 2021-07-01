@@ -7,11 +7,13 @@ import {ConfirmationService, MessageService} from "primeng/api";
   styleUrls: ['./myModules.component.scss'],
   providers: [MessageService, ConfirmationService]
 })
+
 export class MyModulesComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

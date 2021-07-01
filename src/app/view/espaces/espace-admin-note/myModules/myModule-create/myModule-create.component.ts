@@ -37,7 +37,7 @@ export class MyModuleCreateComponent implements OnInit {
                         this.messageService.add({
                             severity: 'error',
                             summary: 'Error !',
-                            detail: 'Attention : Une option avec le code : '+this.selected.code+' est deja existe !'
+                            detail: 'Attention : Un module avec le code : '+this.selected.code+' est deja existe !'
                         });
                     }
                     this.selected = new MyModule();

@@ -1,87 +1,101 @@
-<div class="page">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-5">
-                <div class="row" style="margin-top: 120px;box-shadow: -1px 1px 50px 10px black;">
-                    <div class="col-md-12">
-                        <ul>
-                            <a href="#" style="border-bottom: 2px solid ;padding: 10px;">Se connecter </a>
-
-                        </ul>
-                        <div class="p-col-12 username-container">
-
-                            <label class="label control-label">Nom d'utilisateur</label>
-                            <div class="login-input">
-                                <input style="margin-top: 15px" id="input" [(ngModel)]="username" type="text" pInputText class="form-control" name="user" placeholder="nom d'utilisateur">
-                            </div>
-
-                        </div>
-                        <!--<label class="label control-label">Nom d'utilisateur</label>
-                        <input type="text" class="form-control" name="user" placeholder="nom d'utilisateur">-->
-                        <div class="p-col-12 password-container">
-                            <!-- <h:panelGroup> -->
-                            <label class="label control-label">Mot de passe</label>
-                            <div class="login-input">
-                                <input pPassword type="password" [(ngModel)]="password" class="form-control" placeholder="Mot de passe" />
-                            </div>
-                            <!-- </h:panelGroup> -->
-                        </div>
-
-                        <label class="police">
-
-                        </label>
-                        <!--<label class="label control-label">Mot de passe</label>
-                        <input type="password" class="form-control"name="passWord" placeholder="Mot de passe">-->
-                        <a (click)="goto()"><div   class="btn btn-info">Connexion</div> </a>
-                        <!--<p class="text-center">Informations de compte oubliées ?</p>-->
-                    </div>
-                    <!--<div class="col-md-6">
-                      <img src="green1.jpg">
-                    </div>-->
-                </div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-    </div>
-
+<div class="layout-menu-container" (click)="onMenuClick($event)">
+  <div class="menu-scroll-content">
+    <ul class="layout-menu">
+      <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+    </ul>
+  </div>
 </div>
-<!--<div class="login-body">
-    <div class="card login-panel p-fluid">
-        <div class="login-panel-content">
-            <div class="p-grid">
-                <div class="p-col-12 p-sm-6 p-md-6 logo-container">
-                    <span class="guest-sign-in">Welcome, please use the form to sign-in Roma network</span>
-                </div>
-                <div class="p-col-12 username-container">
+<div class="page">
+  <button pButton pRipple type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-secondary" (click)="go()"></button>
 
-                    <label>Username</label>
-                    <div class="login-input">
-                        <input id="input" type="text" pInputText>
-                    </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-5">
+        <div class="row" style="margin-top: 120px;box-shadow: -1px 1px 50px 10px black;">
+          <form class="col-md-12"
+                *ngIf="!isLoggedIn"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate>
+            <ul>
+              <a href="#" style="border-bottom: 2px solid ;padding: 10px;">Se connecter </a>
 
-                </div>
-                <div class="p-col-12 password-container">
+            </ul>
+            <div class="p-col-12 username-container">
 
-                    <label>Password</label>
-                    <div class="login-input">
-                        <input pPassword type="password" />
-                    </div>
+              <label for="username" class="label control-label">Nom d'utilisateur</label>
+              <div class="login-input">
+                <input
+                        type="text"
+                        class="form-control"
+                        name="username"
+                        [(ngModel)]="form.username"
+                        required
+                        #username="ngModel"
+                        id="username"
+                        placeholder="nom d'utilisateur"
+                />
+                <div    style="padding: 13px"
+                        class="alertDanger alert alert-danger"
+                        role="alert"
+                        *ngIf="f.submitted && username.invalid"
+                >
+                  Nom d'utilisateur est nécessaire
+                </div>
+              </div>
 
-                </div>
-                <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">
-                    <p-checkbox></p-checkbox>
-                    <label> Remember me</label>
-                </div>
-
-                <div class="p-col-12 p-sm-6 p-md-6 forgetpassword-container">
-                    <a href="#" class="forget-password">Forget Password</a>
-                </div>
-
-                <div class="p-col-12 p-sm-6 p-md-6">
-                    <button [routerLink]="['/']"  pButton type="button" icon="pi pi-check" label="Sign In"></button>
-                </div>
             </div>
+
+            <div class="p-col-12 password-container">
+
+              <label for="password" class="label control-label">Mot de passe</label>
+              <div class="login-input">
+                <input
+                       placeholder="Mot de passe"
+                       type="password"
+                       class="form-control"
+                       name="password"
+                       [(ngModel)]="form.password"
+                       required
+                       minlength="6"
+                       #password="ngModel"
+                       id="password"
+                />
+                <div
+                        class="alert alert-danger"
+                        role="alert"
+                        *ngIf="f.submitted && password.invalid"
+                >
+                  <div class="alertDanger" *ngIf="password.errors.required">Mot de passe est nécessaire</div>
+                  <div *ngIf="password.errors.minlength" class="alertDanger" style="padding: 3px">
+                    Le mot de passe doit être au moins de 6 caractères
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+              <button class="btn btn-info">Connexion</button>
+            </div>
+            <div class="form-group">
+              <div
+                      class="alert alert-danger alertDanger"
+                      role="alert"
+                      *ngIf="f.submitted && isLoginFailed"
+                      style="padding: 6px"
+              >
+                Connexion est echouée : Mot de passe ou nom d'utilisateur sont incorrects !!
+              </div>
+            </div>
+
+          </form>
         </div>
+      </div>
+
     </div>
-</div>-->
+  </div>
+</div>

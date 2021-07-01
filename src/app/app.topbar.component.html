@@ -1,9 +1,11 @@
-<div class="layout-topbar" style="padding-top: 0px;height: 200px ;background-color:white">
+<div class="layout-topbar" style="padding-top: 0px;padding-right: 80px;height: 230px ;background-color:white">
 
 
-    <a class="layout-right-panel-button layout-topbar-icon" (click)="appMain.onRightMenuClick($event)" href="#">
-        <i class="pi pi-ellipsis-v"></i>
-    </a>
+    <div *ngIf="LoginSucces" class="layout-right-panel-button layout-topbar-icon" style="margin-top: 20px;height: 200px;width: 30px">
+        <label style="font-weight: bold">  {{userName}}  </label>
+        <button pButton pRipple type="button" icon="pi pi-user" (click)="goTo()" class="p-button-rounded p-button-success"></button>
+        <button pButton pRipple type="button" icon="pi pi-sign-out"   (click)="logout1()" class="p-button-rounded p-button-success"></button>
+    </div>
 
     <a href="#" class="layout-menu-button layout-topbar-icon" (click)="appMain.onMenuButtonClick($event)">
         <i class="pi pi-bars"></i>
@@ -16,7 +18,7 @@
         </div>
         <div class="col-md-10">
             <div class="layout-topbar-logo">
-                <img src="assets/OurImages/a.PNG" style="width: 932px; height: 190px;">
+                <img src="assets/OurImages/a.PNG" style="width: 1020px; height: 200px;">
             </div>
         </div>
 
@@ -27,8 +29,8 @@
 
 
 
-    <ul  class="topbar-menu">
-        <!--<li class="user-profile" [ngClass]="{'active-topmenuitem fadeInDown': appMain.topbarUserMenuActive}">
+    <!--<ul  class="topbar-menu">
+        <li class="user-profile" [ngClass]="{'active-topmenuitem fadeInDown': appMain.topbarUserMenuActive}">
             <a href="#" (click)="appMain.onTopbarUserMenuButtonClick($event)" *ngIf="!app.inlineUser">
                 <img src="assets/layout/images/avatar.png" alt="roma-layout" />
                 <div class="layout-profile-userinfo">
@@ -109,8 +111,8 @@
                         </a>
                     </li>
                 </ul>
-        </li>-->
-    </ul>
+        </li>
+    </ul>-->
 </div>
 
 

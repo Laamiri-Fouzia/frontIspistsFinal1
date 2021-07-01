@@ -1,8 +1,73 @@
-<div class="page">
+<div class="layout-menu-container" (click)="onMenuClick($event)">
+    <div class="menu-scroll-content">
+        <ul class="layout-menu">
+            <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+        </ul>
+    </div>
+</div>
+<!--<div class="page">
     <button pButton pRipple type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-secondary" (click)="gotToAbsence('')"></button>
 
     <h1>Bienvenue dans Espace Etudiant</h1>
     <button (click)="gotToNote('view/releveEtudiant')" class="button">CONSULTER LE RELVE DE NOTE <span class="gg">-------------</span>
     </button>
+    <button (click)="gotToNote('view/emploi')" class="button">CONSULTER L'EMPLOI DU TEMPS  <span class="gg">-------------</span>
+    </button>
     <button (click)="gotToAbsence('view/absenceEtudiant')" class="button">CONSULTER ET JUSTIFIER L'ABSENCE</button>
+</div>-->
+<div class="container">
+    <div class="container-fluid">
+        <h1 style="color:#243842;margin-left: 300px;font-size:50px;margin-top:20px">Bienvenue dans Espace Etudiant </h1>
+
+        <div class="card-body" style="margin-top: 160px">
+            <div class="row">
+
+                <div class="col-md-3 mb-5">
+
+                </div>
+                <div class="col-md-3 mb-5">
+                    <div class="card p-3" style="width: 17rem;">
+                        <div class="img1">
+                            <img  class="card-img-top shadow bg-white rounded"  height="160" width="40">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Relevé des notes</h5>
+                            <p class="card-text"> </p>
+                            <button type="button" class="btn btn-outline-dark"  (click)="gotToNote('view/releveEtudiant')">Entrer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-5">
+                    <div class="card p-3" style="width: 17rem;" >
+                        <div class="img2">
+                            <img  class="card-img-top shadow bg-white rounded " height="160" >
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Absence</h4>
+                            <p class="card-text"></p>
+                            <button type="button" class="btn btn-outline-dark"  (click)="gotToNote('view/absenceEtudiant')" >Entrer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-5">
+                    <div class="card p-3" style="width: 17rem;" >
+                        <div class="img3">
+                            <img  class="card-img-top shadow bg-white rounded " height="160" >
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Emploi du temps </h4>
+                            <p class="card-text"></p>
+                            <button type="button" class="btn btn-outline-dark"  (click)="gotToAbsence('view/emploi')" >Entrer</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div style="margin-left: 580px;">
+            <button class="button" (click)="gotToAbsence('')"><span>Accueil </span></button>
+        </div>
+    </div>
+
 </div>

@@ -94,6 +94,7 @@ export class ConsultationAbsencesComponent implements OnInit {
     this.displayImage=true;
     //Make a call to Sprinf Boot to get the Image Bytes.
     this.imageName=absence.seance.libelle+absence.etudiant.cne;
+
     this.httpClient.get('http://localhost:8036/ispits-project/image/get/' + this.imageName)
         .subscribe(
             res => {

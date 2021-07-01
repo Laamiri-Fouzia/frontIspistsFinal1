@@ -157,7 +157,6 @@ import {ConsultationAbsencesComponent} from "./view/espaces/espace-admin-absence
 import {SeanceEditComponent} from "./view/espaces/espace-admin-note/seance/seance-edit/seance-edit.component";
 import {SeanceListComponent} from "./view/espaces/espace-admin-note/seance/seance-list/seance-list.component";
 import { JustificationComponent } from './view/espaces/espace-admin-absence/consultation-absences/justification/justification.component';
-import { LoginComponent } from './view/login/login.component';
 import {AccueilComponent} from "./view/accueil/accueil.component";
 import { EspacesComponent } from './view/espaces/espaces.component';
 import { EspaceEtudiantComponent } from './view/espaces/espace-etudiant/espace-etudiant.component';
@@ -175,13 +174,21 @@ import { ChoixCoordonnateurComponent } from './view/espaces/espace-coordonnateur
 import { EtudiantExcluComponent } from './view/espaces/espace-admin-absence/etudiant-exclu/etudiant-exclu.component';
 import { ListeAbsenceComponent } from './view/liste-absence/liste-absence.component';
 import {SeanceComponent} from "./view/espaces/espace-admin-note/seance/seance.component";
-import { SignUpComponent } from './view/sign-up/sign-up.component';
 import { TesttablComponent } from './view/testtabl/testtabl.component';
 import { StudentsComponent } from './view/espaces/espace-admin-note/students/students.component';
 import { FormationComponent } from './view/formation/formation.component';
 import {ScheduleModule} from "@syncfusion/ej2-angular-schedule";
 import {EmploiComponent} from "./view/emploi/emploi.component";
 import { EmploiSelectComponent } from './view/emploi/emploi-select/emploi-select.component';
+import {RegisterComponent} from "./view/register/register.component";
+import {LoginComponent} from "./view/login/login.component";
+import { DyalhomComponent } from './view/dyalhom/dyalhom.component';
+import {BoardUserComponent} from "./board-user/board-user.component";
+import {BoardModeratorComponent} from "./board-moderator/board-moderator.component";
+import {BoardAdminComponent} from "./board-admin/board-admin.component";
+import {HomeComponent} from "./home/home.component";
+import {ProfileComponent} from "./view/profile/profile.component";
+import {authInterceptorProviders} from "./helpers/auth.interceptor";
 
 
 
@@ -337,7 +344,6 @@ import { EmploiSelectComponent } from './view/emploi/emploi-select/emploi-select
         ConsultationAbsencesComponent,
         SeanceEditComponent,
         JustificationComponent,
-        LoginComponent,
         AccueilComponent,
         EspacesComponent,
         EspaceEtudiantComponent,
@@ -355,19 +361,20 @@ import { EmploiSelectComponent } from './view/emploi/emploi-select/emploi-select
         EtudiantExcluComponent,
         ListeAbsenceComponent,
         SeanceComponent,
-        SignUpComponent,
         TesttablComponent,
         StudentsComponent,
         FormationComponent,
         EmploiComponent,
-        EmploiSelectComponent
+        EmploiSelectComponent,
+        RegisterComponent,LoginComponent, DyalhomComponent,BoardUserComponent
+        ,BoardModeratorComponent,BoardAdminComponent,HomeComponent,ProfileComponent
 
 
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService,ConfirmationService,MessageService
+        PhotoService, ProductService, MenuService,ConfirmationService,MessageService,authInterceptorProviders
     ],
     bootstrap: [AppComponent]
 })

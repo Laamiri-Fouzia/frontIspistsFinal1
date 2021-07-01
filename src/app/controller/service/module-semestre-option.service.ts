@@ -260,10 +260,12 @@ export class ModuleSemestreOptionService {
             }
         );
     }*/
+
     findByOptionCode() {
-        let urlFind='semestre/code/'+this.semestreselec+'/anneeuniv/anneeOne/'+this.anneUniveSelec+'/option/code/'+this._forOption;
+        let urlFind='semestre/code/'+this.semestreselec+'/anneeuniv/anneeOne/'+this.anneUniveSelec+'/option/code/'+this.forOption;
         this.http.get<Array<ModuleSemestreOption>>(this.urlBase + this.URLmoduleSemOpt +urlFind).subscribe(
             data => {
+                console.log(data)
                 this.moduleSemestreOptions = data;
             }, error => {
                 console.log(error);
@@ -272,7 +274,7 @@ export class ModuleSemestreOptionService {
     }
 
     findOptionByCode(){
-        this.http.get<MyOption>( this.urlOption +'/code/'+this.moduleSemestreOption.myOption.code).subscribe(
+        this.http.get<MyOption>( this.urlOption +'/code/'+this.forOption).subscribe(
             data => {
                 console.log('ana kyn f find hada howa option')
 

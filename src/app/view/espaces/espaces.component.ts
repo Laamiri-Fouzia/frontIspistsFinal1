@@ -16,13 +16,13 @@ export class EspacesComponent implements OnInit {constructor(private router:Rout
         label: 'Accueil', icon: 'pi pi-fw pi-home', routerLink: ['/']
 
       }, {
-        label: 'Epaces', icon: 'pi pi-desktop', routerLink: ['/accueil/espace']
+        label: 'Connexion', icon: 'pi pi-desktop', routerLink: ['/view/login']
 
       }, {
-        label: 'Formation', icon: 'pi pi-book', routerLink: ['/view/formation']
+        label: 'Espace Etudiant', icon: 'pi pi-book', routerLink: ['/espaces/etudiant']
 
       }, {
-        label: 'Aide', icon: 'pi pi-question-circle', routerLink: ['/accueil/aide']
+        label: 'Formation', icon: 'pi pi-question-circle', routerLink: ['/view/formation']
 
       },
     ];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {AppComponent} from "../../app.component";
 import {AppMainComponent} from "../../app.main.component";
@@ -7,79 +7,106 @@ import {Filiere} from "../../controller/model/filiere.model";
 import {MyOption} from "../../controller/model/my-option.model";
 import {MyModule} from "../../controller/model/myModule.model";
 import {Etudiant} from "../../controller/model/etudiant.model";
+import {TokenStorageService} from "../../controller/service/token-storage.service";
 
 @Component({
-  selector: 'app-accueil',
-  templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.scss']
+    selector: 'app-accueil',
+    templateUrl: './accueil.component.html',
+    styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements OnInit {
 
 
+    model: any[];
+    roles: string[] = [];
+    url: string
 
-  model: any[];
+    constructor(public app: AppComponent, public appMain: AppMainComponent,private tokenStorageService:TokenStorageService,private router: Router, private moduleSemestreOptionService: ModuleSemestreOptionService) {
+    }
 
-  constructor(public app: AppComponent, public appMain: AppMainComponent,private router:Router,private moduleSemestreOptionService:ModuleSemestreOptionService) { }
+    get filieres(): Array<Filiere> {
+        return this.moduleSemestreOptionService.filieres;
+    }
 
-  ngOnInit() {
-    this.model = [
-      {
-        label: 'Accueil', icon: 'pi pi-fw pi-home', routerLink: ['/']
+    set filieres(value: Array<Filiere>) {
+        this.moduleSemestreOptionService.filieres = value;
+    }
 
-      }, {
-        label: 'Epaces', icon: 'pi pi-desktop', routerLink: ['/accueil/espace']
+    get options(): Array<MyOption> {
+        return this.moduleSemestreOptionService.options;
+    }
 
-      }, {
-        label: 'Formation', icon: 'pi pi-book', routerLink: ['/accueil/espace']
+    set options(value: Array<MyOption>) {
+        this.moduleSemestreOptionService.options = value;
+    }
 
-      }, {
-        label: 'Aide', icon: 'pi pi-question-circle', routerLink: ['/accueil/espace']
+    get modules(): Array<MyModule> {
+        return this.moduleSemestreOptionService.modules;
+    }
 
-      },
-    ];
-    this.moduleSemestreOptionService.getAllFilieres();
-    this.moduleSemestreOptionService.getAllEtudiants();
-    this.moduleSemestreOptionService.getAllOptions();
-    this.moduleSemestreOptionService.getAllModules();
-  }
+    set modules(value: Array<MyModule>) {
+        this.moduleSemestreOptionService.modules = value;
+    }
 
-  onMenuClick(event) {
-    this.appMain.onMenuClick(event);
-  }
+    get etudiants(): Array<Etudiant> {
+        return this.moduleSemestreOptionService.etudiants;
+    }
 
+    set etudiants(value: Array<Etudiant>) {
+        this.moduleSemestreOptionService.etudiants = value;
+    }
 
-  gotToPage(accueilEspace: string) {
-    this.router.navigate([`${accueilEspace}`]);
-  }
-  get filieres(): Array<Filiere> {
-    return this.moduleSemestreOptionService.filieres;
-  }
+    ngOnInit() {
+        this.model = [
+            {
+                label: 'Accueil', icon: 'pi pi-fw pi-home', routerLink: ['/']
 
-  set filieres(value: Array<Filiere>) {
-    this.moduleSemestreOptionService.filieres = value;
-  }
+            }, {
+                label: 'Espace Etudiant', icon: 'pi pi-book', routerLink: ['/espaces/etudiant']
 
-  get options(): Array<MyOption> {
-    return this.moduleSemestreOptionService.options;
-  }
+            }, {
+                label: 'Formation', icon: 'pi pi-question-circle', routerLink: ['/view/formation']
 
-  set options(value: Array<MyOption>) {
-    this.moduleSemestreOptionService.options = value;
-  }
+            },
+        ];
+        this.moduleSemestreOptionService.getAllFilieres();
+        this.moduleSemestreOptionService.getAllEtudiants();
+        this.moduleSemestreOptionService.getAllOptions();
+        this.moduleSemestreOptionService.getAllModules();
+    }
 
-  get modules(): Array<MyModule> {
-    return this.moduleSemestreOptionService.modules;
-  }
+    onMenuClick(event) {
+        this.appMain.onMenuClick(event);
+    }
 
-  set modules(value: Array<MyModule>) {
-    this.moduleSemestreOptionService.modules = value;
-  }
+    gotToPage(accueilEspace: string) {
+        this.router.navigate([`${accueilEspace}`]);
+    }
 
-  get etudiants(): Array<Etudiant> {
-    return this.moduleSemestreOptionService.etudiants;
-  }
+    getEspace() {
+        if (this.roles.includes('ROLE_ADMINOTE'))
+            this.url = 'view/AdminNoteNote';
+        else if (this.roles.includes('ROLE_PROFESSEUR'))
+            this.url = 'view/professeur';
+        else if (this.roles.includes('ROLE_COORDONNATEURMODULE'))
+            this.url = 'view/coordonatteurModule';
+        else if (this.roles.includes('ROLE_ADMINABSENCE'))
+            this.url = 'view/AdminAbsence';
+        else if (this.roles.includes('ROLE_PROFESSEUR') && this.roles.includes('ROLE_COORDONNATEURMODULE'))
+            this.url = 'accueil/espace';
+    }
 
-  set etudiants(value: Array<Etudiant>) {
-    this.moduleSemestreOptionService.etudiants = value;
-  }
+    go() {
+        if (!!this.tokenStorageService.getToken()) {
+            const user = this.tokenStorageService.getUser();
+            this.roles = this.tokenStorageService.getUser().roles;
+            this.getEspace();
+            //  this.reloadPage();
+            this.router.navigate([`${this.url}`]);
+
+        }else{
+            this.router.navigate([`view/login`]);
+        }
+
+    }
 }

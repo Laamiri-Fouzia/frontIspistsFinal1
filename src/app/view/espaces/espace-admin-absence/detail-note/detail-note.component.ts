@@ -75,10 +75,16 @@ export class DetailNoteComponent implements OnInit {
       this.options.push({label: this.myOptions[i].libelle, value: this.myOptions[i].code});
     }
   }
+
   change2() {
-    this.moduleSemestreOptionService.moduleSemestreOption.myOption.code=this.input2;
+    this.forOption=this.input2;
     this.moduleSemestreOptionService.findOptionByCode();
   }
+
+  set forOption(value: string) {
+    this.moduleSemestreOptionService.forOption = value;
+  }
+
   change3() {
     this.moduleSemestreOptionService.semestreselec=this.input3;
     this.moduleSemestreOptionService.findByOptionCode();

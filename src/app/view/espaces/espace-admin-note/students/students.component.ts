@@ -165,45 +165,6 @@ export class StudentsComponent implements OnInit {
   }
 
 
-  editEtudiant(etudiantOption: EtudiantOption) {
-
-    this.etudiantOption={...etudiantOption};
-    this.etudiantOption.etudiant = {...etudiantOption.etudiant};
-    this.etudiantOption.semestre = {...etudiantOption.semestre};
-    this.etudiantOption.myOption = {...etudiantOption.myOption};
-    this.editDialog = true;
-  }
-
-  public delete(selected: EtudiantOption) {
-    this.etudiantOption = selected;
-    this.inscriptionEtudiantService.deleteEtudiantOption();
-    this.etudiantAnciens = this.etudiantAnciens.filter(val => val.id !== this.etudiantOption.id);
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Successful',
-      detail: 'Etudiant bien supprimé',
-      life: 3000
-    });
-    /*this.confirmationService.confirm({
-      message: 'Voulez-vous vraiment supprimer ',
-      header: 'Attention',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-          this.inscriptionEtudiantService.deleteEtudiantOption();
-          //this.etudiantOptions = this.etudiantOptions.filter(val => val.id !== this.etudiantOption.id);
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Etudiant bien supprimé',
-            life: 3000
-          });
-      }
-    });*/
-  }
-
-  ch() {
-    alert(this.etudiantOption.myOption.code)
-  }
   gotTo(viewEtudiant: string) {
     this.router.navigate([`${viewEtudiant}`]);
   }

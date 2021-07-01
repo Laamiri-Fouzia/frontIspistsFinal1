@@ -8,6 +8,7 @@ import {EmploiService} from "../../controller/service/emploi.service";
 import {MyOption} from "../../controller/model/my-option.model";
 import {AnneeUniversitaire} from "../../controller/model/anneeUniversitaire";
 import * as moment from "moment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-emploi',
@@ -67,7 +68,7 @@ export class EmploiComponent implements OnInit{
   input2: any;
   myOptions: any;
 
-  constructor(private emploiService:EmploiService) {}
+  constructor(private router:Router,private emploiService:EmploiService) {}
 
   ngOnInit() {
     this.emploiService.findAllyears();
@@ -150,6 +151,9 @@ this.optSel=this.input2;
             }
         });*/
 
+  gotTo(viewEtudiant: string) {
+    this.router.navigate([`${viewEtudiant}`]);
+  }
   afficherSeance(input1: string, input2: string) {
     this.emploiService.afficherSeance(input1, input2).subscribe(
         data=>{

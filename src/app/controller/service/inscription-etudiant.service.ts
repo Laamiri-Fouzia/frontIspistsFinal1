@@ -133,7 +133,6 @@ export class InscriptionEtudiantService {
         console.log(this.etudiantOption);
         this.http.get<Array<EtudiantOption>>(this.urlEtudiantOption + 'AncienEtudiant/option/code/' + optionCode + '/annee/' + annee + '/semestre/codesemes/' + semestreCode).subscribe(
             data => {
-
                 this.etudiantAnciens = data;
                 console.log(this.etudiantAnciens);
             }, error => {
@@ -263,7 +262,7 @@ export class InscriptionEtudiantService {
 
 
     deleteEtudiantOption() {
-        this.http.delete<number>(this.urlEtudiantOption + '/Etudiant/cne/' + this.etudiantOption.etudiant.cne).subscribe(
+        this.http.delete<number>(this.urlEtudiantOption + 'Etudiant/cne/' + this.etudiantOption.etudiant.cne).subscribe(
             data => {
                 if(data==-7){
                     this.messageService.add({

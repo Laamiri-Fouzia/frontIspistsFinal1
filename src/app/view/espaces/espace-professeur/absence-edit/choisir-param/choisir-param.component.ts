@@ -78,6 +78,13 @@ export class ChoisirParamComponent implements OnInit {
     return this.inscriptionEtudiantService.inscriptionEtudiants;
   }
 
+  get forOption(): string {
+    return this.moduleSemestreOptionService.forOption;
+  }
+
+  set forOption(value: string) {
+    this.moduleSemestreOptionService.forOption = value;
+  }
   change1() {
     this.moduleSemestreOptionService.anneUniveSelec=this.input1;
     for(let  i = 0; i < this.myOptions.length; i++) {
@@ -85,7 +92,7 @@ export class ChoisirParamComponent implements OnInit {
     }
   }
   change2() {
-    this.moduleSemestreOptionService.moduleSemestreOption.myOption.code=this.input2;
+    this.forOption=this.input2;
   }
   change3() {
     this.moduleSemestreOptionService.semestreselec=this.input3;

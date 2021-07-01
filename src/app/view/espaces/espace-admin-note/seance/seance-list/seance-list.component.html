@@ -4,7 +4,7 @@
         <p-toast></p-toast>
         <div style="margin: 7px 0">
                 <button pButton pRipple style="margin-left: 30px;width: 120px; background-color: black;color: white"  label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-                <button pButton pRipple style=" margin-left: 160px; width: 160px; background-color: #5E8F32;color: white" label="Nouveau Seance" icon="pi pi-plus" class="p-button-text"  (click)="openCreate()"></button>
+                <button pButton pRipple style=" margin-left: 160px; width: 160px; background-color: #5E8F32;color: white" label="Nouvelle Seance" icon="pi pi-plus" class="p-button-text"  (click)="openCreate()"></button>
         </div>
             <div class="card">
             <p-table #dt [value]="seances" [columns]="5"  [globalFilterFields]="['libelle','heurDebut','heurFin','dateSeance']"

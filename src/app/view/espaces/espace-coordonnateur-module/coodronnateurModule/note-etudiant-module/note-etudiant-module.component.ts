@@ -66,7 +66,9 @@ export class NoteEtudiantModuleComponent implements OnInit {
       {field: 'Note module session normale', header: 'Note module session normale'}
     ];
   }
-
+  set forOption(value: string) {
+    this.moduleSemestreOptionService.forOption = value;
+  }
   get myOptions(): Array<MyOption> {
     return this.filiereService.myOptions;
   }
@@ -77,7 +79,7 @@ export class NoteEtudiantModuleComponent implements OnInit {
     }
   }
   change2() {
-    this.moduleSemestreOptionService.moduleSemestreOption.myOption.code=this.input2;
+    this.forOption=this.input2;
     this.moduleSemestreOptionService.findOptionByCode();
   }
   change3() {

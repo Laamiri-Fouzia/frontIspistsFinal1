@@ -113,7 +113,7 @@ export class PonderationService {
         }
     );
   }
-  chercheOptions(){
+  chercheOptions() {
     this.http.get<Array<MyOption>>(this._urlBase+this._urlOption+'/filiere/code/'+this.filSelected).subscribe(
         data=>{
          console.log(data);
@@ -122,8 +122,6 @@ export class PonderationService {
           alert('ha fin dkhalet');
         }
     );
-
-
   }
 
   savePonderation(input1: number, input2: number) {

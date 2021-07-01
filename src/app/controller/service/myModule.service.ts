@@ -133,7 +133,7 @@ export class MyModuleService {
     }
 
     serchObject(myModule: MyModule) {
-        this.http.get<MyModule>(this.url +'/code/'+myModule.code).subscribe(
+        this.http.get<MyModule>(this.url +'code/'+myModule.code).subscribe(
             data => {
                 this.selected=data;
                 console.log(this.selected)

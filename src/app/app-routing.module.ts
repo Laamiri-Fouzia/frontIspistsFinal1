@@ -1,4 +1,4 @@
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
@@ -25,7 +25,7 @@ import {TestpdfComponent} from "./view/testpdf/testpdf.component";
 import {NoteSemestreOneComponent} from "./view/espaces/espace-admin-note/releve-admin/note-semestre-one/note-semestre-one.component";
 import {ImageUploadComponent} from "./view/test/image-upload/image-upload.component";
 import {ConsultationAbsencesComponent} from "./view/espaces/espace-admin-absence/consultation-absences/consultation-absences.component";
-import {LoginComponent} from "./view/login/login.component";
+
 import {AccueilComponent} from "./view/accueil/accueil.component";
 import {EspacesComponent} from "./view/espaces/espaces.component";
 import {EspaceEtudiantComponent} from "./view/espaces/espace-etudiant/espace-etudiant.component";
@@ -42,12 +42,19 @@ import {ModuleOrAffectationComponent} from "./view/espaces/espace-admin-note/mod
 import {ChoixCoordonnateurComponent} from "./view/espaces/espace-coordonnateur-module/choix-coordonnateur/choix-coordonnateur.component";
 import {EtudiantExcluComponent} from "./view/espaces/espace-admin-absence/etudiant-exclu/etudiant-exclu.component";
 import {ListeAbsenceComponent} from "./view/liste-absence/liste-absence.component";
-import {SignUpComponent} from "./view/sign-up/sign-up.component";
 import {TesttablComponent} from "./view/testtabl/testtabl.component";
 import {StudentsComponent} from "./view/espaces/espace-admin-note/students/students.component";
 import {FormationComponent} from "./view/formation/formation.component";
 import {CalendarComponent} from "ng-fullcalendar";
 import {EmploiComponent} from "./view/emploi/emploi.component";
+import {RegisterComponent} from "./view/register/register.component";
+import {LoginComponent} from "./view/login/login.component";
+import {DyalhomComponent} from "./view/dyalhom/dyalhom.component";
+import {BoardUserComponent} from "./board-user/board-user.component";
+import {BoardAdminComponent} from "./board-admin/board-admin.component";
+import {BoardModeratorComponent} from "./board-moderator/board-moderator.component";
+import {HomeComponent} from "./home/home.component";
+import {ProfileComponent} from "./view/profile/profile.component";
 
 @NgModule({
     imports: [
@@ -73,7 +80,6 @@ import {EmploiComponent} from "./view/emploi/emploi.component";
                     {path: 'view/test', component: TestpdfComponent},
                     {path: 'view/imageUpload', component: ImageUploadComponent},
                     {path: 'view/consultation', component: ConsultationAbsencesComponent},
-                    {path: 'view/login', component: LoginComponent},
                     {path: 'view/note-semestre-one', component: NoteSemestreOneComponent},
                     {path: 'espaces/etudiant', component: EspaceEtudiantComponent},
                     {path: 'view/detail-note', component: DetailNoteComponent},
@@ -89,6 +95,12 @@ import {EmploiComponent} from "./view/emploi/emploi.component";
                     {path: 'view/choixCor', component:ChoixCoordonnateurComponent},
                     {path: 'view/etudiantExcluts', component:EtudiantExcluComponent},
                     {path: 'view/lis', component:ListeAbsenceComponent},
+                    {path: 'view/register', component:RegisterComponent},
+                    {path: 'view/login', component:LoginComponent},
+                    {path: 'view/dyalhom', component:DyalhomComponent},
+                    {path: 'view/profile', component: ProfileComponent },
+                    {path: 'view/emploi', component: EmploiComponent },
+                    {path: 'view/listeEtudiant', component: StudentsComponent },
 
                 ]
             },
@@ -101,5 +113,23 @@ import {EmploiComponent} from "./view/emploi/emploi.component";
     ],
     exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }
+/*const routes: Routes = [
+    { path: 'home', component: HomeComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'profile', component: ProfileComponent },
+    { path: 'user', component: BoardUserComponent },
+    { path: 'mod', component: BoardModeratorComponent },
+    { path: 'admin', component: BoardAdminComponent },
+    { path: 'dyalhom', component: DyalhomComponent },
+    { path: '', redirectTo: 'home', pathMatch: 'full' }
+];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+*/

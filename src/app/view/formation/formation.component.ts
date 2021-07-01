@@ -17,13 +17,10 @@ export class FormationComponent implements OnInit {
         label: 'Accueil', icon: 'pi pi-fw pi-home', routerLink: ['/']
 
       }, {
-        label: 'Epaces', icon: 'pi pi-desktop', routerLink: ['/accueil/espace']
+        label: 'Espace Etudiant', icon: 'pi pi-book', routerLink: ['/espaces/etudiant']
 
       }, {
-        label: 'Formation', icon: 'pi pi-book', routerLink: ['/view/formation']
-
-      }, {
-        label: 'Aide', icon: 'pi pi-question-circle', routerLink: ['/accueil/espace']
+        label: 'Formation', icon: 'pi pi-question-circle', routerLink: ['/view/formation']
 
       },
     ];

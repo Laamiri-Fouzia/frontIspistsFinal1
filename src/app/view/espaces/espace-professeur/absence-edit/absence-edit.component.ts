@@ -3,6 +3,7 @@ import {AbsenceService} from "../../../../controller/service/absence.service";
 import {InscriptionEtudiantService} from "../../../../controller/service/inscription-etudiant.service";
 import {InscriptionEtudiantModule} from "../../../../controller/model/inscription-etudiant-module.model";
 import {Absence} from "../../../../controller/model/absence.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-absence-edit',
@@ -10,8 +11,10 @@ import {Absence} from "../../../../controller/model/absence.model";
   styleUrls: ['./absence-edit.component.scss']
 })
 export class AbsenceEditComponent implements OnInit {
-
-  constructor(private absenceService:AbsenceService,private inscriptionEtudiantService:InscriptionEtudiantService) {}
+  gotTo(viewEtudiant: string) {
+    this.router.navigate([`${viewEtudiant}`]);
+  }
+  constructor(private router:Router,private absenceService:AbsenceService,private inscriptionEtudiantService:InscriptionEtudiantService) {}
 
   toggle = true;
   value1: any;
@@ -28,6 +31,7 @@ export class AbsenceEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
 
   }
 
