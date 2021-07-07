@@ -54,6 +54,7 @@ export class StudentsComponent implements OnInit {
     this.options.push({label: 'Option :', value: null});
     this.annéeUniversitaireService.findAllyears();
   }
+
   downloadExcel() {
 
     const workbook = new Workbook();
