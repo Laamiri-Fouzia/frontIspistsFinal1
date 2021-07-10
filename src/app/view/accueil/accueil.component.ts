@@ -99,13 +99,13 @@ export class AccueilComponent implements OnInit {
     getEspace() {
         if (this.roles.includes('ROLE_ADMINOTE'))
             this.url = 'view/AdminNoteNote';
-        else if (this.roles.includes('ROLE_PROFESSEUR'))
+         if (this.roles.includes('ROLE_PROFESSEUR'))
             this.url = 'view/professeur';
-        else if (this.roles.includes('ROLE_COORDONNATEURMODULE'))
+         if (this.roles.includes('ROLE_COORDONNATEURMODULE'))
             this.url = 'view/coordonatteurModule';
-        else if (this.roles.includes('ROLE_ADMINABSENCE'))
+         if (this.roles.includes('ROLE_ADMINABSENCE'))
             this.url = 'view/AdminAbsence';
-        else if (this.roles.includes('ROLE_PROFESSEUR') && this.roles.includes('ROLE_COORDONNATEURMODULE'))
+         if (this.roles.includes('ROLE_PROFESSEUR') && this.roles.includes('ROLE_COORDONNATEURMODULE'))
             this.url = 'accueil/espace';
     }
 

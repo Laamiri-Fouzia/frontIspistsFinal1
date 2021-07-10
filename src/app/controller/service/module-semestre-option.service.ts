@@ -299,14 +299,22 @@ export class ModuleSemestreOptionService {
         if (this.moduleSemestreOption.code.trim()) {
             this.http.post<number>(this.urlBase + this.URLmoduleSemOpt, this.moduleSemestreOption).subscribe(
                 data => {
-                    this.moduleSemestreOptions.push(this.cloneModuleSemestreOption(this.moduleSemestreOption));
-                    this.moduleSemestreOption=null;
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Successful',
-                        detail: 'le module est ajouter',
-                        life: 3000
-                    });
+                    if(data===1){
+                        this.moduleSemestreOptions.push(this.cloneModuleSemestreOption(this.moduleSemestreOption));
+                        this.moduleSemestreOption=null;
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Successful',
+                            detail: 'le module est ajouter',
+                            life: 3000
+                        });
+                    }else {
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Error !',
+                            detail: 'erreur: une erreur servenue!! Réssayer une autre fois !'
+                        });
+                    }
                 },error => {
                     console.log(error);
                     this.moduleSemestreOption=new ModuleSemestreOption();

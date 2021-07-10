@@ -33,8 +33,8 @@ export class ModuleSemestreOptionCreateComponent implements OnInit {
     this.types=[
       {type: 'Type Module', code: null},
       {type: 'Majeur', code: 'majeur'},
-      {type:'Complementaire', code:'complementaire'}
-
+      {type:'Complementaire', code:'complementaire'},
+      {type:'Stage', code:'stage'}
     ];
   }
 
@@ -99,7 +99,6 @@ export class ModuleSemestreOptionCreateComponent implements OnInit {
 
 
   saveOptionSemestreModule(moduleselect: string, typemoduleselect: string) {
-
     this.moduleSemestreOptionService.saveOptionSemestreModule(moduleselect,typemoduleselect);
   }
 }
