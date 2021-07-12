@@ -210,10 +210,11 @@ export class NoteEtudiantSemestreService {
   }*/
 
 
+
   serachEtudiant(input1: string,input2: string, input3: number) {
     this.http.get<Array<NoteEtudiantSemestre>>(this._urlBase+this._urlNoteEtudiantSemestre+'/semestre/codeSemestre/'+input3+'/option/codeOption/'+input1+'/annee-universitaire/libelle/'+input2).subscribe(
         data=>{
-            if(data==null)
+            /*if(data==null)
                 this.messageService.add({
                     severity: 'error',
                     summary: 'Error !',
@@ -222,7 +223,9 @@ export class NoteEtudiantSemestreService {
             else{
                 console.log(data);
                 this.myNotesSemestre=data;
-            }
+            }*/
+            console.log(data);
+            this.myNotesSemestre=data;
         },error=>{
           alert('error');
         }

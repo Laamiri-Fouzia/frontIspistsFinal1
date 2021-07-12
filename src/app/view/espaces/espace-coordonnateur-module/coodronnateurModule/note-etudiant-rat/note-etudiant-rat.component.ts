@@ -10,6 +10,7 @@ import {AnneeUniversitaireService} from "../../../../../controller/service/annee
 import {Workbook} from "exceljs";
 import * as fs from 'file-saver';
 import {EtudiantOption} from "../../../../../controller/model/etudiant-option.model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-note-etudiant-rat',
@@ -28,7 +29,7 @@ export class NoteEtudiantRatComponent implements OnInit {
     options: any[] = new Array();
     semestres: any[] = new Array();
 
-    constructor(private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService: ModuleSemestreOptionService, private filiereService: FiliereService, private noteEtudiantModuleService: NoteEtudiantModuleService) {
+    constructor(private router:Router,private annéeUniversitaireService: AnneeUniversitaireService, private moduleSemestreOptionService: ModuleSemestreOptionService, private filiereService: FiliereService, private noteEtudiantModuleService: NoteEtudiantModuleService) {
         //anne ce que l'utilisateur voie et code ce qui est stock
 
         this.semestres = [
@@ -98,7 +99,9 @@ export class NoteEtudiantRatComponent implements OnInit {
         this.annéeUniversitaireService.findAllyears();
         console.log(this.modules);
     }
-
+    gotTo(viewEtudiant: string) {
+        this.router.navigate([`${viewEtudiant}`]);
+    }
     change1() {
         this.moduleSemestreOptionService.anneUniveSelec = this.input1;
         for (let i = 0; i < this.myOptions.length; i++) {

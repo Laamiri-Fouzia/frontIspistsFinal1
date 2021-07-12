@@ -88,13 +88,11 @@ export class NoteEtudiantModuleComponent implements OnInit {
 
   }
   change4() {
-
     if(this.modules.length<=this.moduleSemestreOptions.length){
       for(let  i = 0; i < this.moduleSemestreOptions.length; i++) {
         this.modules.push({label: this.moduleSemestreOptions[i].myModule.libelle, value: this.moduleSemestreOptions[i].code});
       }
     }
-
   }
 
   get moduleselected(): string {

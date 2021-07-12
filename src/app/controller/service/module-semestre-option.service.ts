@@ -273,6 +273,18 @@ export class ModuleSemestreOptionService {
         );
     }
 
+  findModuleStage() {
+        let urlFind='semestre/code/'+this.semestreselec+'/anneeuniv/anneeOne/'+this.anneUniveSelec+'/option/code/'+this.forOption+'/typeModule/code/stage';
+        this.http.get<Array<ModuleSemestreOption>>(this.urlBase + this.URLmoduleSemOpt +urlFind).subscribe(
+            data => {
+                console.log(data)
+                this.moduleSemestreOptions = data;
+            }, error => {
+                console.log(error);
+            }
+        );
+    }
+
     findOptionByCode(){
         this.http.get<MyOption>( this.urlOption +'/code/'+this.forOption).subscribe(
             data => {
@@ -284,6 +296,7 @@ export class ModuleSemestreOptionService {
                 console.log(error);
             });
     }
+
     private _forOption:string;
     saveOptionSemestreModule(moduleselect: string, typemoduleselect: string) {
         this.submitted = true;

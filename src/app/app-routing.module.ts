@@ -55,7 +55,8 @@ import {BoardAdminComponent} from "./board-admin/board-admin.component";
 import {BoardModeratorComponent} from "./board-moderator/board-moderator.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./view/profile/profile.component";
-import {AideComponent} from "./view/aide/aide.component";
+import {NoteEtudiantStage} from "./controller/model/note-etudiant-stage.model";
+import {NoteStageComponent} from "./view/espaces/espace-coordonnateur-module/note-stage/note-stage.component";
 
 @NgModule({
     imports: [
@@ -102,7 +103,8 @@ import {AideComponent} from "./view/aide/aide.component";
                     {path: 'view/profile', component: ProfileComponent },
                     {path: 'view/emploi', component: EmploiComponent },
                     {path: 'view/listeEtudiant', component: StudentsComponent },
-                    {path: 'view/aide', component: AideComponent },
+                    {path: 'view/noteEtudiantstage', component:NoteStageComponent  },
+
                 ]
             },
             {path: 'error', component: AppErrorComponent},

@@ -80,6 +80,19 @@ export class NoteEtudiantModuleService {
       }
     );
   }
+  serachEtudStage(mod:string) {
+
+        this.notesEtudiantModule=new Array<NoteEtudiantModule>();
+      this._moduleselected=mod;
+
+      this.http.get<Array<NoteEtudiantModule>>(this.urlBase + this.URLNoteEtudModule+'/module-semestre-option/codeModule/'+mod).subscribe(
+      data => {
+           this.filterEtudiant(data,mod);
+      }, error => {
+        console.log(error);
+      }
+    );
+  }
 
     get editDialog(): boolean {
         return this._editDialog;

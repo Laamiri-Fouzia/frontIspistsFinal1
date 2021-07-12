@@ -1,4 +1,5 @@
 <p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Note d'étudiant {{noteEtudiantModule.etudiant.nom}} {{noteEtudiantModule.etudiant.prenom}} " [modal]="true" styleClass="p-fluid">
+
     <ng-template pTemplate="content">
         <div class="p-field" style="margin-top: 100px">
             <label for="ref">Note Continue (Exemple 14.00)</label>
@@ -6,7 +7,7 @@
         </div>
 
         <div class="p-field" style="margin-bottom: 120px">
-            <label for="total">Note Examen Final</label>
+            <label for="total">Note Stage</label>
             <input type="number" pInputText id="total" [(ngModel)]="noteEtudiantModule.noteFinalAvRat" required autofocus (change)="verifyNote(noteEtudiantModule.noteFinalAvRat)"/>
         </div>
 

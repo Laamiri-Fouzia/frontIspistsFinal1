@@ -1,0 +1,13 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Note de l'étudiant  {{noteEtudiantStage.etudiant.nom}} {{noteEtudiantStage.etudiant.prenom}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field" style="margin-top: 100px;margin-bottom: 120px">
+            <label for="ref">Note</label>
+            <input placeholder="0.00" type="number" pInputText id="ref" [(ngModel)]="noteEtudiantStage.noteStage" required autofocus/>
+        </div>
+
+        <button pButton pRipple style="margin-left: 30px;width: 94px; background-color: black;color: white" label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple style=" margin-left: 60px; width: 120px; background-color: black;color: white" label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="EditNote()"></button>
+
+    </ng-template>
+</p-dialog>
+
