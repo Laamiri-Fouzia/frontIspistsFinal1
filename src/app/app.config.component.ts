@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+/*import {Component, OnInit} from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
 
@@ -228,4 +228,4 @@ export class AppConfigComponent implements OnInit {
         this.appMain.configActive = false;
         event.preventDefault();
     }
-}
+}*/

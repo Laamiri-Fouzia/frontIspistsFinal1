@@ -1,0 +1,77 @@
+<div class="layout-menu-container" (click)="onMenuClick($event)">
+    <div class="menu-scroll-content">
+        <!--<div class="layout-profile" *ngIf="app.inlineUser && !appMain.isHorizontal()">
+                <a class="layout-profile-button" (click)="appMain.onProfileClick($event)">
+                    <img src="" alt="image admine">
+                    <div class="layout-profile-userinfo">
+                        <span class="layout-profile-name">admine admine</span>
+                        <span class="layout-profile-role">??</span>
+                    </div>
+                </a>
+                <ul [@inline]="!appMain.isSlim() ? appMain.inlineUserMenuActive ? 'visibleAnimated' : 'hiddenAnimated' : appMain.inlineUserMenuActive ? 'visible' : 'hidden'" class="layout-profile-menu">
+                    <li>
+                        <a href="#" pRipple>
+                            <i class="pi pi-fw pi-user"></i><span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" pRipple>
+                            <i class="pi pi-fw pi-cog"></i><span>Paramètres</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" pRipple>
+                            <i class="pi pi-fw pi-envelope"></i><span>Messages</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" pRipple>
+                            <i class="pi pi-fw pi-bell"></i><span>Notifications</span>
+                        </a>
+                    </li>
+                </ul>
+        </div>-->
+        <ul class="layout-menu">
+            <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+        </ul>
+
+
+    </div>
+</div>
+<div class="header">
+    <h1>Comment utiliser?</h1>
+</div>
+
+<div class="row">
+    <div class="col-3 col-s-3 menu">
+        <ul>
+            <li>Création des modules</li>
+            <li>Création des filières/options/modules/séances</li>
+            <li>Emploi du temps</li>
+            <li>Absence</li>
+        </ul>
+    </div>
+
+    <div class="col-6 col-s-9">
+        <h1>L'absence:</h1>
+        <p>Etape1 :marquer l'absence<br> cette étape concerne le professeur qui va choisie l'option et la séance puis marquer les étudiants qu'ont   <br> Etape2:<br> </p>
+        <video width="400" controls>
+            <source src="../../../assets/OurImages/part1.mp4" type="video/mp4">
+            <source src="../../../assets/OurImages/part1.ogg" type="video/ogg">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <!--<div class="col-3 col-s-12">
+        <div class="aside">
+            <h2>What?</h2>
+            <p>Chania is a city on the island of Crete.</p>
+            <h2>Where?</h2>
+            <p>Crete is a Greek island in the Mediterranean Sea.</p>
+            <h2>How?</h2>
+            <p>You can reach Chania airport from all over Europe.</p>
+        </div>
+    </div>-->
+</div>
+
+

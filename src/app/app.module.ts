@@ -91,7 +91,7 @@ import {VirtualScrollerModule} from 'primeng/virtualscroller';
 import {AppComponent} from './app.component';
 import {AppCodeModule} from './app.code.component'
 import {AppMainComponent} from './app.main.component';
-import {AppConfigComponent} from './app.config.component';
+
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
@@ -189,6 +189,7 @@ import {BoardAdminComponent} from "./board-admin/board-admin.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./view/profile/profile.component";
 import {authInterceptorProviders} from "./helpers/auth.interceptor";
+import { AideComponent } from './view/aide/aide.component';
 
 
 
@@ -293,7 +294,7 @@ import {authInterceptorProviders} from "./helpers/auth.interceptor";
         AppMainComponent,
         AppMenuComponent,
         AppMenuitemComponent,
-        AppConfigComponent,
+        
         AppRightMenuComponent,
         AppTopBarComponent,
         AppFooterComponent,
@@ -367,7 +368,7 @@ import {authInterceptorProviders} from "./helpers/auth.interceptor";
         EmploiComponent,
         EmploiSelectComponent,
         RegisterComponent,LoginComponent, DyalhomComponent,BoardUserComponent
-        ,BoardModeratorComponent,BoardAdminComponent,HomeComponent,ProfileComponent
+        ,BoardModeratorComponent,BoardAdminComponent,HomeComponent,ProfileComponent, AideComponent
 
 
     ],

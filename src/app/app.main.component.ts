@@ -89,23 +89,26 @@ export class AppMainComponent {
 
     onMenuButtonClick(event) {
         this.menuClick = true;
-        this.topbarUserMenuActive = false;
-        this.topbarNotificationMenuActive = false;
-        this.rightPanelMenuActive = false;
+        this.topbarUserMenuActive = true;
+        this.topbarNotificationMenuActive = true;
+        this.rightPanelMenuActive = true;
 
         if (this.isOverlay()) {
             this.overlayMenuActive = !this.overlayMenuActive;
         }
 
         if (this.isDesktop()) {
-            this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
+
+            //this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
         } else {
-            this.staticMenuMobileActive = !this.staticMenuMobileActive;
+            this.staticMenuMobileActive = this.staticMenuMobileActive;
+            //this.staticMenuMobileActive = !this.staticMenuMobileActive;
             if (this.staticMenuMobileActive) {
-                this.blockBodyScroll();
+                //this.blockBodyScroll();
             } else {
-                this.unblockBodyScroll();
+                //this.unblockBodyScroll();
             }
+
         }
 
         event.preventDefault();

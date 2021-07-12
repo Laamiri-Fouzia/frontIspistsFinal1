@@ -8,6 +8,7 @@ import {MyOption} from "../../controller/model/my-option.model";
 import {MyModule} from "../../controller/model/myModule.model";
 import {Etudiant} from "../../controller/model/etudiant.model";
 import {TokenStorageService} from "../../controller/service/token-storage.service";
+import {AbsenceService} from "../../controller/service/absence.service";
 
 @Component({
     selector: 'app-accueil',
@@ -21,9 +22,17 @@ export class AccueilComponent implements OnInit {
     roles: string[] = [];
     url: string
 
-    constructor(public app: AppComponent, public appMain: AppMainComponent,private tokenStorageService:TokenStorageService,private router: Router, private moduleSemestreOptionService: ModuleSemestreOptionService) {
+    constructor(private absenceService:AbsenceService,public app: AppComponent, public appMain: AppMainComponent,private tokenStorageService:TokenStorageService,private router: Router, private moduleSemestreOptionService: ModuleSemestreOptionService) {
     }
 
+    get displayTable(): boolean {
+        return this.absenceService.displayTable;
+    }
+
+
+    set displayTable(value: boolean) {
+        this.absenceService.displayTable = value;
+    }
     get filieres(): Array<Filiere> {
         return this.moduleSemestreOptionService.filieres;
     }
@@ -65,9 +74,13 @@ export class AccueilComponent implements OnInit {
                 label: 'Espace Etudiant', icon: 'pi pi-book', routerLink: ['/espaces/etudiant']
 
             }, {
-                label: 'Formation', icon: 'pi pi-question-circle', routerLink: ['/view/formation']
+                label: 'Formation', icon: 'pi pi-info-circle', routerLink: ['/view/formation']
 
             },
+            {
+                label: 'Aide', icon: 'pi pi-question-circle', routerLink: ['/view/aide']
+
+            }
         ];
         this.moduleSemestreOptionService.getAllFilieres();
         this.moduleSemestreOptionService.getAllEtudiants();

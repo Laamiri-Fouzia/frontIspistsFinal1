@@ -55,6 +55,7 @@ import {BoardAdminComponent} from "./board-admin/board-admin.component";
 import {BoardModeratorComponent} from "./board-moderator/board-moderator.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./view/profile/profile.component";
+import {AideComponent} from "./view/aide/aide.component";
 
 @NgModule({
     imports: [
@@ -101,7 +102,7 @@ import {ProfileComponent} from "./view/profile/profile.component";
                     {path: 'view/profile', component: ProfileComponent },
                     {path: 'view/emploi', component: EmploiComponent },
                     {path: 'view/listeEtudiant', component: StudentsComponent },
-
+                    {path: 'view/aide', component: AideComponent },
                 ]
             },
             {path: 'error', component: AppErrorComponent},

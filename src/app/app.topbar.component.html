@@ -7,21 +7,28 @@
         <button pButton pRipple type="button" icon="pi pi-sign-out"   (click)="logout1()" class="p-button-rounded p-button-success"></button>
     </div>
 
-    <a href="#" class="layout-menu-button layout-topbar-icon" (click)="appMain.onMenuButtonClick($event)">
+    <!--<a href="#" class="layout-menu-button layout-topbar-icon" (click)="appMain.onMenuButtonClick($event)">
         <i class="pi pi-bars"></i>
-    </a>
+    </a>-->
     <div class="row">
         <div class="col-md-2">
             <div class="layout-topbar-logo" style="margin-left: 20px;margin-top:60px">
-                <img id="topbar-logo" src="assets/OurImages/logoIspitsR.png" style="width: 150px ; height: 90px ;">
+                <img id="topbar-logo" src="assets/OurImages/logoIspitsR.png" style="width: 150px ; height: 90px ; max-width: 100%;
+                height: auto;">
             </div>
         </div>
         <div class="col-md-10">
             <div class="layout-topbar-logo">
-                <img src="assets/OurImages/a.PNG" style="width: 1020px; height: 200px;">
+                <img src="assets/OurImages/a.PNG" style="width: 1020px; height: 200px; max-width: 100%;
+                height: auto;">
             </div>
         </div>
-
+        <style>
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
 
     </div>
 

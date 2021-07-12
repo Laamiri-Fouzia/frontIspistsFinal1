@@ -27,6 +27,10 @@ export class EspaceEtudiantComponent implements OnInit {
         label: 'Formation', icon: 'pi pi-question-circle', routerLink: ['/view/formation']
 
       },
+      {
+        label: 'Aide', icon: 'pi pi-fw pi-home', routerLink: ['/view/aide']
+
+      }
     ];
   }
 
