@@ -275,6 +275,7 @@ export class ModuleSemestreOptionService {
 
   findModuleStage() {
         let urlFind='semestre/code/'+this.semestreselec+'/anneeuniv/anneeOne/'+this.anneUniveSelec+'/option/code/'+this.forOption+'/typeModule/code/stage';
+        alert(urlFind)
         this.http.get<Array<ModuleSemestreOption>>(this.urlBase + this.URLmoduleSemOpt +urlFind).subscribe(
             data => {
                 console.log(data)

@@ -3,6 +3,8 @@ import {NoteEtudiantSemestreService} from "../../../../../controller/service/not
 import {NoteEtudiantModule} from "../../../../../controller/model/note-etudiant-module.model";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import {NoteEtudiantStageService} from "../../../../../controller/service/note-etudiant-stage.service";
+import {NoteEtudiantModuleService} from "../../../../../controller/service/note-etudiant-module.service";
 
 @Component({
   selector: 'app-releve',
@@ -12,8 +14,13 @@ import jsPDF from "jspdf";
 export class ReleveComponent implements OnInit {
   constructor(private noteEtudiantSemestreService:NoteEtudiantSemestreService) { }
 
-  /*ngOnInit(): void {
-  }*/
+  get tab(): any[] {
+    return this.noteEtudiantSemestreService.tab;
+  }
+
+  set tab(value: any[]) {
+    this.noteEtudiantSemestreService.tab = value;
+  }
 
   get semestreSelct(): number {
     return this.noteEtudiantSemestreService.semestreSelct;

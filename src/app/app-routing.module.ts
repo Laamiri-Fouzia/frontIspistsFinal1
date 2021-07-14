@@ -57,6 +57,7 @@ import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./view/profile/profile.component";
 import {NoteEtudiantStage} from "./controller/model/note-etudiant-stage.model";
 import {NoteStageComponent} from "./view/espaces/espace-coordonnateur-module/note-stage/note-stage.component";
+import {AideComponent} from "./view/aide/aide.component";
 
 @NgModule({
     imports: [
@@ -104,6 +105,7 @@ import {NoteStageComponent} from "./view/espaces/espace-coordonnateur-module/not
                     {path: 'view/emploi', component: EmploiComponent },
                     {path: 'view/listeEtudiant', component: StudentsComponent },
                     {path: 'view/noteEtudiantstage', component:NoteStageComponent  },
+                    {path: 'view/aide', component:AideComponent  },
 
                 ]
             },

@@ -1,4 +1,4 @@
-<div class="layout-menu-container" (click)="onMenuClick($event)">
+<div (click)="onMenuClick($event)" class="layout-menu-container">
     <div class="menu-scroll-content">
         <!--<div class="layout-profile" *ngIf="app.inlineUser && !appMain.isHorizontal()">
                 <a class="layout-profile-button" (click)="appMain.onProfileClick($event)">
@@ -32,7 +32,7 @@
                 </ul>
         </div>-->
         <ul class="layout-menu">
-            <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>
+            <li *ngFor="let item of model; let i = index;" [index]="i" [item]="item" [root]="true" app-menuitem></li>
         </ul>
 
 
@@ -54,14 +54,28 @@
 
     <div class="col-6 col-s-9">
         <h1>L'absence:</h1>
-        <p>Etape1 :marquer l'absence<br> cette étape concerne le professeur qui va choisie l'option et la séance puis marquer les étudiants qu'ont   <br> Etape2:<br> </p>
-        <video width="400" controls>
+        <p>Etape1 :marquer l'absence<br> cette étape concerne le professeur qui va choisie l'option et la séance puis
+            marquer les étudiants qu'ont <br> Etape2:<br></p>
+        <video controls width="400">
             <source src="../../../assets/OurImages/part1.mp4" type="video/mp4">
-            <source src="../../../assets/OurImages/part1.ogg" type="video/ogg">
             Your browser does not support HTML5 video.
         </video>
     </div>
+</div>
+<div class="row">
+    <div class="col-3 col-s-3">
 
+    </div>
+    <div class="col-6 col-s-9">
+        <h1>Inscription et insertion des notes:</h1>
+        <p>Etape1 :Inscription des etudiants en semestre 1 </p>
+        <p>Etape2:Insertion des notes des etudiants </p>
+        <p>Etape3:Génération des PVs des étudiants </p>
+        <video controls width="400">
+            <source src="../../../assets/OurImages/ispits%20fouzia%20finale%202.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
     <!--<div class="col-3 col-s-12">
         <div class="aside">
             <h2>What?</h2>

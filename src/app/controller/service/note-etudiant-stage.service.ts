@@ -3,6 +3,8 @@ import {NoteEtudiantModule} from "../model/note-etudiant-module.model";
 import {NoteEtudiantStage} from "../model/note-etudiant-stage.model";
 import {newArray} from "@angular/compiler/src/util";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Filiere} from "../model/filiere.model";
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +47,10 @@ export class NoteEtudiantStageService {
         }
     );
   }
+
+    public findNoteStage(): Observable<Array<NoteEtudiantStage>> {
+        return this.http.get<Array<NoteEtudiantStage>>(this.URLNoteEtudStage);
+    }
     EditNoteStage() {
         if (this.noteEtudiantStage.noteStage < 10)
             this.noteEtudiantStage.etatValidation.libelle = 'Non Validé';

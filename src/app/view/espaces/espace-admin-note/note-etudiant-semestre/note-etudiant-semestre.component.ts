@@ -128,6 +128,7 @@ export class NoteEtudiantSemestreComponent implements OnInit {
     this.createDialog = true;
     this.noteEtudiantSemestreService.detailSemestre(noteSemestres);
     this.submitted = false;
+    alert(this.createDialog)
   }
   get createDialog(): boolean {
     return this.noteEtudiantSemestreService.createDialog;

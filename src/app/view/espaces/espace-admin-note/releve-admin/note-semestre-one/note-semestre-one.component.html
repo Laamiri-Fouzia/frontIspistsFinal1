@@ -79,11 +79,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let n of notesEtudiantModules">
-                    <th>{{n.moduleSemestreOption.myModule.libelle}}</th>
-                    <td>{{n.noteGlobale}}</td>
-                    <td>{{n.etatValidation.libelle}}</td>
-                    <td>{{n.moduleSemestreOption.anneeUniversitaire.libelle}}</td>
+                <tr *ngFor="let n of tab">
+                    <th>{{n.type}}</th>
+                    <td>{{n.code}}</td>
+                    <td>{{n.resultat}}</td>
+                    <td>{{n.anne}}</td>
                 </tr>
                 <tr class="result">
                     <td class="border border-success">Moyenne du semestre</td>

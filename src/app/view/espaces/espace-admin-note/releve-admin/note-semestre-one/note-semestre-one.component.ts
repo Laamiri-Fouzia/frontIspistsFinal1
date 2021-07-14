@@ -15,7 +15,9 @@ export class NoteSemestreOneComponent implements OnInit {
 
   /*ngOnInit(): void {
   }*/
-
+  get tab(): any[] {
+    return this.noteEtudiantSemestreService.tab;
+  }
   get semestreSelct(): number {
     return this.noteEtudiantSemestreService.semestreSelct;
   }

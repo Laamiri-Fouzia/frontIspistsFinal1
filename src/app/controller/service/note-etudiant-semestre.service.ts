@@ -7,12 +7,12 @@ import {Filiere} from "../model/filiere.model";
 import {NoteEtudiantModule} from "../model/note-etudiant-module.model";
 import {Etudiant} from "../model/etudiant.model";
 import {Router} from "@angular/router";
+import {NoteEtudiantStage} from "../model/note-etudiant-stage.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteEtudiantSemestreService {
-
   constructor(private http:HttpClient,private messageService: MessageService,private router:Router) { }
   private _myOptions:Array<MyOption>;
   private _myNotesSemestre:Array<NoteEtudiantSemestre>;
@@ -34,8 +34,16 @@ export class NoteEtudiantSemestreService {
   private _notesEtudiantModules1:Array<NoteEtudiantModule>;
   private _notesEtudiantModules:Array<NoteEtudiantModule>;
   private _notesEtudiantModules2:Array<NoteEtudiantModule>;
-
+  private _tab:any[]=new Array();
   private _cneEtudiant:string;
+
+    get tab(): any[] {
+        return this._tab;
+    }
+
+    set tab(value: any[]) {
+        this._tab = value;
+    }
 
     get cneEtudiant(): string {
         return this._cneEtudiant;
@@ -247,15 +255,25 @@ export class NoteEtudiantSemestreService {
         this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+noteSemestres.etudiant.cne+'/moduleSemestreOption/semestre/code/'+this.semestreSelct).subscribe(
             data=>{
                 this.notesEtudiantModules=data;
+                for(let noteModule of data){
+                    this._tab.push({nom:noteModule.moduleSemestreOption.myModule.libelle,type: noteModule.moduleSemestreOption.typeModule.libelle, code: noteModule.noteGlobale,resultat:noteModule.etatValidation.libelle,anne:noteModule.moduleSemestreOption.anneeUniversitaire.libelle})
+                }
+
             },error => {
-                alert('error')
+                console.log(error);
+            });
+        this.http.get<NoteEtudiantStage>(this._urlBase+this.URLNoteEtudStage+'/Etudiant/cne/'+noteSemestres.etudiant.cne+'/moduleSemestreOption/semestre/code/'+this.semestreSelct).subscribe(
+            data=>{
+                this._tab.push({nom: data.moduleSemestreOption.myModule.libelle,type: data.moduleSemestreOption.typeModule.libelle, code: data.noteStage,resultat:data.etatValidation.libelle,anne:data.moduleSemestreOption.anneeUniversitaire.libelle})
             }
         );
+
     }
 
     gotToPage(viewNoteSemestreOne: string) {
         this.router.navigate([`${viewNoteSemestreOne}`]);
     }
+    private URLNoteEtudStage = 'ispits-project/note-etudiant-stage';
 
     afficherPVPouE(input1: string, input2: number) {
         this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+input1+'/moduleSemestreOption/semestre/code/'+input2).subscribe(
@@ -265,28 +283,19 @@ export class NoteEtudiantSemestreService {
                 if(this.notesEtudiantModules[0].noteEtudiantSemestre.noteSemestre===0){
                     this.gotToPage('view/erreurNote');
                 }else{
-                    this.gotToPage('view/releve');
-                }
-                /*for(let i=0 ; i<this.notesEtudiantModules.length ; i++){
-                    for(let j=0 ; j<this.notesEtudiantModules.length ; j++){
-                        if(this.notesEtudiantModules[j].moduleSemestreOption.myModule.code==this.notesEtudiantModules[i].moduleSemestreOption.myModule.code && this.notesEtudiantModules[j].moduleSemestreOption.anneeUniversitaire.anneeOne<this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.anneeOne){
-                            this.notesEtudiantModules1.push(this.notesEtudiantModules[j]);
-                        }
+                    for(let noteModule of data){
+                        this._tab.push({type: noteModule.moduleSemestreOption.myModule.libelle, code: noteModule.noteGlobale,resultat:noteModule.etatValidation.libelle,anne:noteModule.moduleSemestreOption.anneeUniversitaire.libelle})
                     }
-
-
+                    this.http.get<NoteEtudiantStage>(this._urlBase+this.URLNoteEtudStage+'/Etudiant/cne/'+input1+'/moduleSemestreOption/semestre/code/'+input2).subscribe(
+                        data=>{
+                                this._tab.push({type: data.moduleSemestreOption.myModule.libelle, code: data.noteStage,resultat:data.etatValidation.libelle,anne:data.moduleSemestreOption.anneeUniversitaire.libelle})
+                            });
+                    this.gotToPage('view/releve');
+                    console.log(this._tab);
                 }
-                for(let i=0 ; i<this.notesEtudiantModules1.length ; i++){
-            this.notesEtudiantModules.splice(1,i);
-                }
-
-                console.log(this.notesEtudiantModules1);
-                console.log(this.notesEtudiantModules2);
-                console.log(data);*/
             },error => {
             }
         );
-
     }
     afficherPVPourA(input1: string, input2: number) {
         this.http.get<Array<NoteEtudiantModule>>(this._urlBase+this._urlNoteEtudModule+'/Etudiant/cne/'+input1+'/moduleSemestreOption/semestre/code/'+input2).subscribe(
@@ -296,24 +305,16 @@ export class NoteEtudiantSemestreService {
                 if(this.notesEtudiantModules[0].noteEtudiantSemestre.noteSemestre===0){
                     this.gotToPage('view/erreurNote');
                 }else{
-                    this.gotToPage('view/note-semestre-one');
-                }
-                /*for(let i=0 ; i<this.notesEtudiantModules.length ; i++){
-                    for(let j=0 ; j<this.notesEtudiantModules.length ; j++){
-                        if(this.notesEtudiantModules[j].moduleSemestreOption.myModule.code==this.notesEtudiantModules[i].moduleSemestreOption.myModule.code && this.notesEtudiantModules[j].moduleSemestreOption.anneeUniversitaire.anneeOne<this.notesEtudiantModules[i].moduleSemestreOption.anneeUniversitaire.anneeOne){
-                            this.notesEtudiantModules1.push(this.notesEtudiantModules[j]);
-                        }
+                    for(let noteModule of data){
+                        this._tab.push({type: noteModule.moduleSemestreOption.myModule.libelle, code: noteModule.noteGlobale,resultat:noteModule.etatValidation.libelle,anne:noteModule.moduleSemestreOption.anneeUniversitaire.libelle})
                     }
-
-
+                    this.http.get<NoteEtudiantStage>(this._urlBase+this.URLNoteEtudStage+'/Etudiant/cne/'+input1+'/moduleSemestreOption/semestre/code/'+input2).subscribe(
+                        data=>{
+                            this._tab.push({type: data.moduleSemestreOption.myModule.libelle, code: data.noteStage,resultat:data.etatValidation.libelle,anne:data.moduleSemestreOption.anneeUniversitaire.libelle})
+                        });
+                    this.gotToPage('view/note-semestre-one');
+                    console.log(this._tab);
                 }
-                for(let i=0 ; i<this.notesEtudiantModules1.length ; i++){
-            this.notesEtudiantModules.splice(1,i);
-                }
-
-                console.log(this.notesEtudiantModules1);
-                console.log(this.notesEtudiantModules2);
-                console.log(data);*/
             },error => {
             }
         );
