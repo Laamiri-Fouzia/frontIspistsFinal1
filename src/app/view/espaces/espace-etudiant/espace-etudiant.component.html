@@ -15,17 +15,30 @@
     </button>
     <button (click)="gotToAbsence('view/absenceEtudiant')" class="button">CONSULTER ET JUSTIFIER L'ABSENCE</button>
 </div>-->
+<div  class="p-col-12">
+    <div class="scrollmenu">
+        <a (click)="gotTo('/')">Accueil</a>
+        <a (click)="gotTo('/espaces/etudiant')">Espace Etudiant</a>
+        <a (click)="gotTo('/view/formation')">Formation</a>
+        <a (click)="gotTo('/view/aide')">Aide</a>
+
+    </div>
+
+</div>
+
+
 <div class="container">
     <div class="container-fluid">
-        <h1 style="color:#243842;margin-left: 300px;font-size:50px;margin-top:20px">Bienvenue dans Espace Etudiant </h1>
+        <h1 style="color:#243842;font-size:50px">Bienvenue dans Espace Etudiant </h1>
 
-        <div class="card-body" style="margin-top: 160px">
+        <div class="card-body" >
+        <!--<div class="card-body" style="margin-top: 100px;margin-left:10px">-->
             <div class="row">
 
                 <div class="col-md-3 mb-5">
 
                 </div>
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3 mb-5  tito">
                     <div class="card p-3" style="width: 17rem;">
                         <div class="img1">
                             <img  class="card-img-top shadow bg-white rounded"  height="160" width="40">
@@ -38,7 +51,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3 mb-5 tito">
                     <div class="card p-3" style="width: 17rem;" >
                         <div class="img2">
                             <img  class="card-img-top shadow bg-white rounded " height="160" >
@@ -50,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-5">
+                <div class="col-md-3 mb-5 tito1">
                     <div class="card p-3" style="width: 17rem;" >
                         <div class="img3">
                             <img  class="card-img-top shadow bg-white rounded " height="160" >

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AppMainComponent} from "../../app.main.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-aide',
@@ -8,7 +9,7 @@ import {AppMainComponent} from "../../app.main.component";
 })
 export class AideComponent implements OnInit {
   model: any[];
-  constructor(public appMain: AppMainComponent) { }
+  constructor(private router: Router, public appMain: AppMainComponent) { }
 
   ngOnInit(): void {
     this.model = [
@@ -19,11 +20,11 @@ export class AideComponent implements OnInit {
         label: 'Espace Etudiant', icon: 'pi pi-book', routerLink: ['/espaces/etudiant']
 
       }, {
-        label: 'Formation', icon: 'pi pi-question-circle', routerLink: ['/view/formation']
+        label: 'Formation', icon: 'pi pi-info-circle', routerLink: ['/view/formation']
 
       },
       {
-        label: 'Aide', icon: 'pi pi-fw pi-home', routerLink: ['/view/aide']
+        label: 'Aide', icon: 'pi pi-question-circle', routerLink: ['/view/aide']
 
       }
     ];
@@ -32,5 +33,9 @@ export class AideComponent implements OnInit {
 
   onMenuClick(event) {
     this.appMain.onMenuClick(event);
+  }
+
+  gotTo(viewEtudiant: string) {
+    this.router.navigate([`${viewEtudiant}`]);
   }
 }

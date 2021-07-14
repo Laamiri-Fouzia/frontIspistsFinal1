@@ -1,4 +1,4 @@
-<div class="layout-topbar" style="padding-top: 0px;padding-right: 80px;height: 230px ;background-color:white">
+<div class="layout-topbar" style="padding-top: 0px;padding-right: 80px;height: 200px ;background-color:white">
 
 
     <div *ngIf="LoginSucces" class="layout-right-panel-button layout-topbar-icon" style="margin-top: 20px;height: 200px;width: 30px">
@@ -11,22 +11,36 @@
         <i class="pi pi-bars"></i>
     </a>-->
     <div class="row">
-        <div class="col-md-2">
-            <div class="layout-topbar-logo" style="margin-left: 20px;margin-top:60px">
-                <img id="topbar-logo" src="assets/OurImages/logoIspitsR.png" style="width: 150px ; height: 90px ; max-width: 100%;
-                height: auto;">
-            </div>
-        </div>
-        <div class="col-md-10">
+
+        <div class="col-md-12">
             <div class="layout-topbar-logo">
-                <img src="assets/OurImages/a.PNG" style="width: 1020px; height: 200px; max-width: 100%;
+                <img src="assets/OurImages/a.PNG" class="sizer" style="width: 1020px; height: 200px; max-width: 100%;
                 height: auto;">
             </div>
+            </div>
         </div>
+
         <style>
-            img {
+            /*img {
                 max-width: 100%;
                 height: auto;
+            }*/
+
+            @media screen and (max-width: 400px ){
+                .layout-topbar{
+
+                    width: 400px;
+
+                    color:transparent;
+                }
+                div.scrollmenu{
+
+                    width:349px;
+                    height:48px;
+                }
+                .here{
+                    color: deeppink;
+                }
             }
         </style>
 
@@ -120,6 +134,6 @@
                 </ul>
         </li>
     </ul>-->
-</div>
+
 
 
