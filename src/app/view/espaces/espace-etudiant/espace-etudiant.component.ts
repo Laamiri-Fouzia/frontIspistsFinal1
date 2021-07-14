@@ -24,11 +24,11 @@ export class EspaceEtudiantComponent implements OnInit {
         label: 'Espace Etudiant', icon: 'pi pi-book', routerLink: ['/espaces/etudiant']
 
       }, {
-        label: 'Formation', icon: 'pi pi-question-circle', routerLink: ['/view/formation']
+        label: 'Formation', icon: 'pi pi-info-circle', routerLink: ['/view/formation']
 
       },
       {
-        label: 'Aide', icon: 'pi pi-fw pi-home', routerLink: ['/view/aide']
+        label: 'Aide', icon: 'pi pi-question-circle', routerLink: ['/view/aide']
 
       }
     ];
@@ -43,4 +43,9 @@ export class EspaceEtudiantComponent implements OnInit {
   gotToAbsence(viewAbsenceEtudiant: string) {
     this.router.navigate([`${viewAbsenceEtudiant}`]);
   }
+
+  gotTo(viewEtudiant: string) {
+    this.router.navigate([`${viewEtudiant}`]);
+  }
+  //private router: Router
 }

@@ -122,4 +122,9 @@ export class AccueilComponent implements OnInit {
         }
 
     }
+
+    gotTo(viewEtudiant: string) {
+        this.router.navigate([`${viewEtudiant}`]);
+    }
+    //private router: Router
 }

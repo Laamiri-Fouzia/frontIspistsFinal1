@@ -1,7 +1,141 @@
+/*.tito{
+  margin-left:10px;
+}
+.tito1{
+  margin-left:10px;
+  margin-top: 30px;
+}*/
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  background-color: white;
+}
+
+div.scrollmenu a:hover {
+  background-color: white;//#777
+}
+@media screen and (max-width: 800px) {
+  .image {
+    display: block;
+    width: 100px;
+    height: 180px;
+
+    margin-bottom: 30px;
+  }
+  .image2 {
+    display: block;
+    width: 100px;
+    height: 180px;
+    margin-bottom: 30px;
+  }
+  .titre {
+    font-size: 20px;
+    color:green;
+    text-align:center;
+    margin-top:140px;
+    margin-left:70px;
+  }
+
+}
+@media screen and (max-width: 900px) {
+  div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    margin-top:140px;
+    font-size:16px;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    background-color: #7D726F;
+  }
+  div.scrollmenu a:hover {
+    background-color: #88959E;
+  }
+  .titre {
+    font-size: 20px;
+    color:green;
+    text-align:center;
+    margin-top:30px;
+    margin-left:70px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .image {
+    display: block;
+    width: 80px;
+    height: 280px;
+    //border: solid;
+    //border-size:0.5px;
+    //margin-bottom: 30px;
+
+  }
+  .image2 {
+    display: block;
+    width: 80px;//400px;
+    height: 280px;
+
+
+  }
+  div.scrollmenu a {
+    display: inline-block;
+    color: white;
+
+    margin-top:110px;
+    font-size:14px;
+    text-align: center;
+    padding: 10px;
+
+    text-decoration: none;
+    background-color: #7D726F;
+  }
+  div.scrollmenu a:hover {
+    background-color: #88959E;
+  }
+  .titre {
+    font-size: 20px;
+    color:green;
+    text-align:center;
+    margin-top:30px;
+    margin-left:70px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .AcceilText{
+    font-size: 10px;
+    text-align:left;
+    font-weight: bold;
+    margin: 30px 30px;
+    color:black;
+  }
+  div.scrollmenu a {
+    display: inline-block;
+    color: white;
+    margin-top:110px;
+    font-size:12px;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #7D726F;
+  }
+  div.scrollmenu a:hover {
+    background-color: #88959E;
+  }
+  .titre {
+    font-size: 10px;
+    color:blueviolet;
+    text-align:center;
+    margin-top:30px;
+    margin-left:1px;
+  }
+}
 .container-fluid{
-  background-image:url("../../../../assets/OurImages/LO.jpg");
+  //background-image:url("../../../../assets/OurImages/LO.jpg");
+  background-color: whitesmoke;
   margin: 0px;
-  height: 700px;
+  height: 900px;
   Width:1140px;
 
 }
