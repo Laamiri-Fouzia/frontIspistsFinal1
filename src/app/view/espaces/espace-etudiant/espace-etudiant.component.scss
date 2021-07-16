@@ -17,6 +17,23 @@ div.scrollmenu a {
 div.scrollmenu a:hover {
   background-color: white;//#777
 }
+
+.titre{
+  color:brown;
+  font-size:40px;
+  text-align:center;
+  margin-left:100px;
+}
+
+@media screen and (max-width: 400px) {
+  .titre{
+    text-align:center;
+    font-size: 1px;
+    color: whitesmoke;
+
+  }
+}
+
 @media screen and (max-width: 800px) {
   .image {
     display: block;

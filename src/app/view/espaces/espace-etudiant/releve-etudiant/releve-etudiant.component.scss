@@ -15,3 +15,30 @@ h2{
 .keltoum{
   color: brown;
 }
+
+@media screen and (max-width: 400px) {
+  .relver{
+    margin-top:62px;
+    color:purple;
+    font-size:14px;
+  }
+  .enter{
+    font-size: 1px;
+    color:#F8F9FA;
+  }
+  .cne{
+    margin-left:2px;
+    padding:7px;
+    margin-right:900px;
+    margin-top: 1px;
+  }
+  .enter2{
+    padding:1px;
+    padding-right:1px;
+  }
+  .p-col-4{
+    text-align: center;
+
+  }
+}
+
