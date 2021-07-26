@@ -17,7 +17,7 @@ export class ReleveEtudiantComponent implements OnInit {
 
   constructor(private noteEtudiantSemestreService:NoteEtudiantSemestreService,private router:Router) {
     this.semestres=[
-      {label: "Semestre :", value: null},
+      {label: "Choisir une semestre :", value: null},
       {label: "Semestre 1", value: 1},
       {label: "Semestre 2", value: 2},
       {label: "Semestre 3",value: 3},
