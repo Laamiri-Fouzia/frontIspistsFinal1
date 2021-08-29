@@ -39,6 +39,7 @@ label {
 background-size: cover;
   background-attachment: fixed;
   font-family:new time roman ;
+  width: 1350px;
   height: 1000px;
 background-image: url("../../../assets/OurImages/overlay.png"),url("../../../assets/OurImages/infer.jpg");
 }
@@ -113,13 +114,13 @@ input{
 }
 #menu {
   margin: 0;
-  width: auto;
+  width: 1350px;
   background-color: #565656;
-  font-size: 14px;
+  font-size: 12px;
   font-family: Tahoma, Geneva, sans-serif;
   font-weight: bold;
   text-align: left;
-  padding: 8px;
+  padding: 2px;
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;

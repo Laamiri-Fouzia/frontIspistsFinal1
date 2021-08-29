@@ -1768,7 +1768,7 @@ a {
     margin: 10px 0 0 5em;
   }
   .layout-wrapper.layout-horizontal .layout-menu-container {
-    width: 100%;
+    width: 1800px;
     overflow: visible;
     min-height: 45px;
     position: static;

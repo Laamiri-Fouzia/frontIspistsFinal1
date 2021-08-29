@@ -1,8 +1,7 @@
 .button {
-  padding: 100px 100px;
-  margin-left: 70px;
-  margin-right: 70px;
-  margin-top: 90px;
+  padding: 90px 100px;
+  margin-right: 60px;
+  margin-top: 80px;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
@@ -34,6 +33,7 @@
 }
 
 .page{
+  width: 1500px;
   margin: 0px;
   /*background-image: url("green6.jpg");*/
   background-size: cover;

@@ -1,8 +1,10 @@
 <div class="page">
-    <button pButton pRipple type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-secondary" (click)="gotToAbsence('')"></button>
+    <button pButton pRipple type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-secondary" (click)="gotToAbsence('accueil/espace')"></button>
 
     <h1>Bienvenue :</h1>
     <button (click)="gotToNote('view/noteEtudiantModule')" class="button">NOTES SESSION NORMALE <span class="gg">-------------</span>
     </button>
     <button (click)="gotToAbsence('view/noteEtudiantModuleRat')" class="button">NOTE SESSION RATTRAPAGE</button>
+    <button (click)="gotToAbsence('view/noteEtudiantstage')" class="button">NOTE STAGE</button>
+
 </div>

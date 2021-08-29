@@ -40,6 +40,7 @@
   background-attachment: fixed;
   font-family:new time roman;
   height: 700px;//100%
+  width: 1900px;
   // background-image: url("../../../assets/OurImages/overlay.png"),url("../../../assets/OurImages/infer.jpg");
   background-image: url("../../../../../assets/OurImages/overlay.png"),url("../../../../../assets/OurImages/ftgh.jpg");
 }
@@ -54,20 +55,20 @@ h1 {
 }
 
 
-  #menu {
-    margin: 0;
-    width: auto;
-    background-color: #565656;
-    font-size: 14px;
-    font-family: Tahoma, Geneva, sans-serif;
-    font-weight: bold;
-    text-align: left;
-    padding: 8px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -o-border-radius: 8px;
-  }
+#menu {
+  margin: 0;
+  width: 1350px;
+  background-color: #565656;
+  font-size: 12px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-weight: bold;
+  text-align: left;
+  padding: 2px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+}
 
 
   #menu ul {
